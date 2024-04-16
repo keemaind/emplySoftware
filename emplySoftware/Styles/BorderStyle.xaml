@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region BorderLoginTopPanel-->
+    <Style x:Key="BorderLoginTopPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource MC03}"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region BorderLoginMiddlePanel-->
+    <Style x:Key="BorderLoginMiddlePanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource MC01}"/>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region BorderLoginMiddleCenterPanel-->
+    <Style x:Key="BorderLoginMiddleCenterPanel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource MC03}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SC03}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+    <!--#endregion-->
+
+</ResourceDictionary>
