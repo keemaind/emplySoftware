@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
         Title="Something wrong!"
-        Height="200" Width="500"
+        Height="auto" Width="500"
+        SizeToContent="Height"
         WindowStyle="None"
         ResizeMode="NoResize"
         BorderBrush="{StaticResource SC01}"
@@ -29,7 +30,7 @@
         <!--#region TopPanel-->
         <Border x:Name="TopPanelError"
                 Grid.Row="0"
-                Style="{StaticResource BorderLoginTopPanel}">
+                Style="{StaticResource BorderTopPanel}">
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
@@ -38,8 +39,7 @@
                        Style="{StaticResource ErrorLabel}"
                        Margin="-390,0,0,0"/>
 
-                <Button Click="LoginMinimizeButton_Click"
-                        x:Name="LoginMinimizeButton"
+                <Button x:Name="LoginMinimizeButton"
                         Width="50" Height="30"
                         Style="{StaticResource MinimizeButton}">
 
@@ -48,8 +48,7 @@
                                   Foreground="{StaticResource SC04}"/>
                 </Button>
 
-                <Button Click="LoginCloseButton_Click"
-                        x:Name="LoginCloseButton"
+                <Button x:Name="LoginCloseButton"
                         Width="50" Height="30"
                         Style="{StaticResource CloseButton}"/>
 
@@ -61,21 +60,44 @@
         <!--#region MiddlePanel-->
         <Border x:Name="MiddlePanelError"
                 Grid.Row="1"
-                Style="{StaticResource BorderLoginMiddlePanel}">
+                Style="{StaticResource BorderMiddlePanel}">
 
-            <StackPanel Orientation="Horizontal"
+            <StackPanel Orientation="Vertical"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
 
-                <fa:IconImage Icon="Warning"
-                              Height="40" Width="40"
-                              Foreground="{StaticResource Orange01}"/>
+                <Border x:Name="MiddlePanelCenterBorderError"
+                        Margin="0,20,0,0"
+                        Padding="10"
+                        Style="{StaticResource BorderMiddleCenterPanel}">
 
-                <TextBlock x:Name="ErorTextBlock"
-                           Style="{StaticResource ErrorTextBlock}"/>
+                    <StackPanel Orientation="Horizontal">
+
+                        <fa:IconImage Icon="Warning"
+                                      Height="25" Width="25"
+                                      VerticalAlignment="Center"
+                                      Margin="0,0,10,0"
+                                      Foreground="{StaticResource Orange01}"/>
+
+                        <TextBlock x:Name="ErorTextBlock"
+                                   Style="{StaticResource ErrorTextBlock}"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <StackPanel>
+
+                    <Button x:Name="OKButton"
+                            Content="OK"
+                            Style="{StaticResource OKErrorButton}"
+                            Width="100" Height="30"
+                            Margin="0,20,0,20"/>
+
+                </StackPanel>
 
             </StackPanel>
-            
+
         </Border>
         <!--#endregion-->
 

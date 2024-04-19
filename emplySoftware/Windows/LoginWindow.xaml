@@ -29,7 +29,7 @@
         <!--#region TopPanel-->
         <Border x:Name="TopPanelLogin"
                 Grid.Row="0"
-                Style="{StaticResource BorderLoginTopPanel}">
+                Style="{StaticResource BorderTopPanel}">
             
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
@@ -56,7 +56,7 @@
         <!--#region MiddlePanel-->
         <Border x:Name="MiddlePanelLogin"
                 Grid.Row="1"
-                Style="{StaticResource BorderLoginMiddlePanel}">
+                Style="{StaticResource BorderMiddlePanel}">
             
             <StackPanel Orientation="Vertical"
                         Margin="0,50,0,0"
@@ -87,8 +87,8 @@
                 </StackPanel>
                 
                 <Border x:Name="MiddlePanelCenterBorderLogin"
-                            Padding="10"
-                            Style="{StaticResource BorderLoginMiddleCenterPanel}">
+                        Padding="10"
+                        Style="{StaticResource BorderMiddleCenterPanel}">
                     
                     <StackPanel Orientation="Vertical">
                         

@@ -3,6 +3,108 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:emplySoftware"
         mc:Ignorable="d"
-        Title="emplySoftware" Height="1000" Width="1000"/>
+        Title="Emply Software"
+        Height="800" Width="1200"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        BorderBrush="{StaticResource SC01}"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource MC01}"
+        AllowsTransparency="True">
+    
+    <!--#region MainWindow-->
+    <Grid>
+
+        <!--#region RowDefinitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+
+        <!--#region TopPanel-->
+        <Border x:Name="TopPanelMainWindow"
+                Grid.Row="0"
+                Style="{StaticResource BorderTopPanel}">
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                <Button x:Name="MainMinimizeButton"
+                        Width="50" Height="30"
+                        Style="{StaticResource MinimizeButton}">
+
+                    <fa:IconImage Icon="WindowMinimize"
+                                  Height="30" Width="20"
+                                  Foreground="{StaticResource SC04}"/>
+                </Button>
+
+                <Button x:Name="MainCloseButton"
+                        Width="50" Height="30"
+                        Style="{StaticResource CloseButton}"/>
+
+            </StackPanel>
+        </Border>
+        <!--#endregion-->
+        
+        <!--#region MiddlePanel-->
+        <Grid Grid.Row="1">
+
+            <!--#region ColumnDefinitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+
+            <Border Style="{StaticResource BorderForColumns}"
+                    Grid.Column="0">
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top">
+
+                    <Button x:Name="MainMenuButton"
+                            Grid.Column="0"
+                            Height="30" Width="30"
+                            Style="{StaticResource OKErrorButton}"
+                            Margin="10"
+                            HorizontalAlignment="Left">
+
+                        <fa:IconImage Icon="Bars"
+                              Height="18"
+                              Width="18"
+                              Foreground="{StaticResource SC04}"/>
+
+                    </Button>
+
+                    <TextBox x:Name="MainSearchButton"
+                             Grid.Column="0"
+                             Height="30" Width="185"
+                             Margin="0,0,10,0"
+                             Text="Search..."
+                             Style="{StaticResource SearchTextBox}">
+
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius"
+                                        Value="5"/>
+                            </Style>
+                        </TextBox.Resources>
+
+                    </TextBox>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+        <!--#endregion-->
+
+    </Grid>
+    <!--#endregion-->
+    
+</Window>

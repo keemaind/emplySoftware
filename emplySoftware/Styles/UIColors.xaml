@@ -5,6 +5,7 @@
     <SolidColorBrush x:Key="MC01" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="MC02" Color="#F5F5F5"/>
     <SolidColorBrush x:Key="MC03" Color="#F7F8FA"/>
+    <SolidColorBrush x:Key="MC04" Color="#ECEDEE"/>
     <!--#endregion-->
     
     <!--#region SecondColors-->
