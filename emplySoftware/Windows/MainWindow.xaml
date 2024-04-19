@@ -5,9 +5,4 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:emplySoftware"
         mc:Ignorable="d"
-        Title="emplySoftware" Height="450" Width="800">
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="329,185,0,0" TextWrapping="Wrap" Text="УБЬЮ" VerticalAlignment="Top" Height="41" Width="71"/>
-
-    </Grid>
-</Window>
+        Title="emplySoftware" Height="1000" Width="1000"/>

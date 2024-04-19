@@ -1,4 +1,6 @@
-﻿using System;
+﻿using emplySoftware.Class;
+using emplySoftware.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,12 @@ namespace emplySoftware
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+         
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using emplySoftware.DatabaseSQL;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace emplySoftware
     /// </summary>
     public partial class App : Application
     {
+       public static emplyDatabase ContextDatabase { get; } = new emplyDatabase();
     }
+    
 }

@@ -34,7 +34,7 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 
-                <Button x:Name="LoginMinimizeButton"
+                <Button Click="LoginMinimizeButton_Click" x:Name="LoginMinimizeButton"
                         Width="50" Height="30"
                         Style="{StaticResource MinimizeButton}">
                     
@@ -43,7 +43,7 @@
                                   Foreground="{StaticResource SC04}"/>
                 </Button>
                 
-                <Button x:Name="LoginCloseButton"
+                <Button Click="LoginCloseButton_Click" x:Name="LoginCloseButton"
                         Width="50" Height="30"
                         Style="{StaticResource CloseButton}"/>
                 
@@ -119,7 +119,7 @@
                                        Style="{StaticResource LoginTextBlock}"
                                        Margin="0,5"/>
                             
-                            <PasswordBox x:Name="LoginPasswordTextBox"
+                            <PasswordBox x:Name="LoginPasswordBox"
                                          Width="270" Height="30"
                                          Style="{StaticResource LoginPasswordBox}">
                                 
@@ -127,7 +127,7 @@
                             
                         </StackPanel>
                         
-                        <Button x:Name="SignInButton"
+                        <Button Click="SignInButton_Click" x:Name="SignInButton"
                                 Content="Sign in"
                                 Style="{StaticResource SignInButton}"
                                 Width="270" Height="30"
