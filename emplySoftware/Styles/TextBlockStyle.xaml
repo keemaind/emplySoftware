@@ -28,4 +28,12 @@
     </Style>
     <!--#endregion-->
     
+    <!--#region ErrorTextBlock-->
+    <Style x:Key="ErrorTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TC01}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <!--#endregion-->
+    
 </ResourceDictionary>

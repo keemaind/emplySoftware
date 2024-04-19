@@ -27,6 +27,7 @@
     <SolidColorBrush x:Key="Green02" Color="#196C30"/>
     <SolidColorBrush x:Key="Red01" Color="#CB4C4F"/>
     <SolidColorBrush x:Key="Red02" Color="#C63C40"/>
+    <SolidColorBrush x:Key="Orange01" Color="#FCA311"/>
     <!--#endregion-->
 
 </ResourceDictionary>

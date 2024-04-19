@@ -27,14 +27,15 @@
         <!--#endregion-->
         
         <!--#region TopPanel-->
-        <Border x:Name="TopPanel"
+        <Border x:Name="TopPanelLogin"
                 Grid.Row="0"
                 Style="{StaticResource BorderLoginTopPanel}">
             
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
                 
-                <Button Click="LoginMinimizeButton_Click" x:Name="LoginMinimizeButton"
+                <Button Click="LoginMinimizeButton_Click"
+                        x:Name="LoginMinimizeButton"
                         Width="50" Height="30"
                         Style="{StaticResource MinimizeButton}">
                     
@@ -43,7 +44,8 @@
                                   Foreground="{StaticResource SC04}"/>
                 </Button>
                 
-                <Button Click="LoginCloseButton_Click" x:Name="LoginCloseButton"
+                <Button Click="LoginCloseButton_Click"
+                        x:Name="LoginCloseButton"
                         Width="50" Height="30"
                         Style="{StaticResource CloseButton}"/>
                 
@@ -52,7 +54,7 @@
         <!--#endregion-->
         
         <!--#region MiddlePanel-->
-        <Border x:Name="MiddlePanel"
+        <Border x:Name="MiddlePanelLogin"
                 Grid.Row="1"
                 Style="{StaticResource BorderLoginMiddlePanel}">
             
@@ -84,7 +86,7 @@
                     
                 </StackPanel>
                 
-                <Border x:Name="MiddlePanelCenterBorder"
+                <Border x:Name="MiddlePanelCenterBorderLogin"
                             Padding="10"
                             Style="{StaticResource BorderLoginMiddleCenterPanel}">
                     
@@ -127,7 +129,8 @@
                             
                         </StackPanel>
                         
-                        <Button Click="SignInButton_Click" x:Name="SignInButton"
+                        <Button Click="SignInButton_Click"
+                                x:Name="SignInButton"
                                 Content="Sign in"
                                 Style="{StaticResource SignInButton}"
                                 Width="270" Height="30"

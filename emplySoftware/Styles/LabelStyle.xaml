@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--#region ErrorLabel-->
+    <Style x:Key="ErrorLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+    </Style>
+    <!--#endregion-->
+    
+</ResourceDictionary>
