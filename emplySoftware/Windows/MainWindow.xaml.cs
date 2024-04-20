@@ -27,10 +27,14 @@ namespace emplySoftware
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-         
-
+            if (MainMenuButton.IsChecked == true)
+            {
+                BorderMenuBar.Visibility = Visibility.Visible;
+                MainMenuButton.Visibility = Visibility.Collapsed;
+                MainSearchButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

@@ -56,7 +56,7 @@
 
             <!--#region ColumnDefinitions-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
@@ -65,25 +65,66 @@
                     Grid.Column="0">
 
                 <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top">
+                                VerticalAlignment="Top">
 
-                    <Button x:Name="MainMenuButton"
-                            Grid.Column="0"
-                            Height="30" Width="30"
-                            Style="{StaticResource OKErrorButton}"
-                            Margin="10"
-                            HorizontalAlignment="Left">
+                    <Border Style="{StaticResource BorderMenuBar}"
+                            x:Name="BorderMenuBar"
+                            Width="0" Height="auto"
+                            Visibility="Collapsed">
+
+                        <Border.Effect>
+
+                            <DropShadowEffect Color="#000"
+                                              Direction="350"
+                                              ShadowDepth="6"
+                                              Opacity="0.2"/>
+
+                        </Border.Effect>
+
+                        <Button Height="30" Width="150"/>
+
+                    </Border>
+
+                    <ToggleButton x:Name="MainMenuButton"
+                                      Click="MainMenuButton_Click"
+                                      Grid.Column="0"
+                                      Height="30" Width="30"
+                                      Style="{StaticResource MenuBarToggleButton}"
+                                      Margin="10"
+                                      HorizontalAlignment="Left">
 
                         <fa:IconImage Icon="Bars"
-                              Height="18"
-                              Width="18"
-                              Foreground="{StaticResource SC04}"/>
+                                          Height="18"
+                                          Width="18"
+                                          Foreground="{StaticResource SC04}"/>
 
-                    </Button>
+                        <ToggleButton.Triggers>
+
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+
+                                <BeginStoryboard>
+
+                                    <Storyboard x:Name="ShowBorderMenuBar">
+
+                                        <DoubleAnimation Storyboard.TargetName="BorderMenuBar"
+                                                             Storyboard.TargetProperty="Width"
+                                                             BeginTime="0:0:0"
+                                                             From="0" To="250"
+                                                             Duration="0:0:0:0.1"/>
+
+                                    </Storyboard>
+
+                                </BeginStoryboard>
+
+                            </EventTrigger>
+
+                        </ToggleButton.Triggers>
+
+                    </ToggleButton>
 
                     <TextBox x:Name="MainSearchButton"
                              Grid.Column="0"
-                             Height="30" Width="185"
+                             Height="30" Width="285"
                              Margin="0,0,10,0"
                              Text="Search..."
                              Style="{StaticResource SearchTextBox}">
@@ -91,7 +132,7 @@
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius"
-                                        Value="5"/>
+                                            Value="5"/>
                             </Style>
                         </TextBox.Resources>
 

@@ -35,5 +35,13 @@
         <Setter Property="BorderThickness" Value="0,0,2,0"/>
     </Style>
     <!--#endregion-->
+    
+    <!--#region BorderMenuBar-->
+    <Style x:Key="BorderMenuBar" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource MC01}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="0,10,10,0"/>
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>
