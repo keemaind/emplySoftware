@@ -19,9 +19,25 @@ namespace emplySoftware.Windows
     /// </summary>
     public partial class ErrorWindow : Window
     {
-        public ErrorWindow()
+        public ErrorWindow(string errorMessage)
         {
             InitializeComponent();
+            ErrorTextBlock.Text = errorMessage;
+        }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LoginCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void LoginMinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
     }
 }

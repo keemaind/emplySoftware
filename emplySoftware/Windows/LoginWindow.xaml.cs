@@ -40,7 +40,12 @@ namespace emplySoftware.Windows
                 this.Close();
             }
             else
-                MessageBox.Show("Данные введены некорректно. ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                string errorMessage = "Данные введены некорректно. ";
+                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                errorWindow.Owner = this;
+                errorWindow.Show();
+            }
         }
 
         private string Encription(string text)
