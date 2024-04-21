@@ -81,7 +81,135 @@
 
                         </Border.Effect>
 
-                        <Button Height="30" Width="150"/>
+                        <StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="20,20,20,10">
+
+                                <Image Source="/Icons/B02.png"
+                                       Width="30" Height="30"
+                                       VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       Margin="0,0,0,5"/>
+
+                                <Button x:Name="CloseMenuBar"
+                                        VerticalAlignment="Center"
+                                        Margin="10,0,0,0"
+                                        Height="30" Width="30"
+                                        Style="{StaticResource OKErrorButton}">
+
+                                    <fa:IconImage Icon="Close"
+                                                  Height="10" Width="10"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                </Button>
+
+                            </StackPanel>
+
+                            <RadioButton x:Name="ButtonGraphics"
+                                         Style="{StaticResource MenuBarRadioButton}">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+
+                                    <fa:IconImage Icon="ChartSimple"
+                                                  Height="15" Width="15"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10,0,5,0"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                    <TextBlock Text="Graphics"
+                                               Style="{StaticResource MenuBarTextBlockButton}"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+                            <RadioButton x:Name="ButtonTasks"
+                                         Style="{StaticResource MenuBarRadioButton}">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+
+                                    <fa:IconImage Icon="TasksAlt"
+                                                  Height="15" Width="15"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10,0,5,0"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                    <TextBlock Text="Tasks"
+                                               Style="{StaticResource MenuBarTextBlockButton}"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+                            <RadioButton x:Name="ButtonEmployees"
+                                         Style="{StaticResource MenuBarRadioButton}">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+
+                                    <fa:IconImage Icon="UserGroup"
+                                                  Height="15" Width="15"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10,0,5,0"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                    <TextBlock Text="Employees"
+                                               Style="{StaticResource MenuBarTextBlockButton}"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+                            <Separator Margin="15,0,15,10"
+                                       Background="{StaticResource SC03}"
+                                       Height="1"/>
+
+                            <RadioButton x:Name="ButtonSettings"
+                                         Style="{StaticResource MenuBarRadioButton}">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+
+                                    <fa:IconImage Icon="Gear"
+                                                  Height="15" Width="15"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10,0,5,0"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                    <TextBlock Text="Settings"
+                                               Style="{StaticResource MenuBarTextBlockButton}"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+                            <RadioButton x:Name="ButtonExit"
+                                         Style="{StaticResource MenuBarRadioButton}">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
+
+                                    <fa:IconImage Icon="UserAltSlash"
+                                                  Height="15" Width="15"
+                                                  VerticalAlignment="Center"
+                                                  Margin="10,0,5,0"
+                                                  Foreground="{StaticResource SC04}"/>
+
+                                    <TextBlock Text="Exit"
+                                               Style="{StaticResource MenuBarTextBlockButton}"/>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+                            <Separator Margin="15,0,15,10"
+                                       Background="{StaticResource SC03}"
+                                       Height="1"/>
+
+                        </StackPanel>
 
                     </Border>
 
@@ -109,7 +237,7 @@
                                         <DoubleAnimation Storyboard.TargetName="BorderMenuBar"
                                                              Storyboard.TargetProperty="Width"
                                                              BeginTime="0:0:0"
-                                                             From="0" To="250"
+                                                             From="0" To="300"
                                                              Duration="0:0:0:0.1"/>
 
                                     </Storyboard>

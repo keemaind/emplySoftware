@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="Styles/PasswordBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>
                 <ResourceDictionary Source="Styles/LabelStyle.xaml"/>
+                <ResourceDictionary Source="Styles/RadioButtonStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
             
