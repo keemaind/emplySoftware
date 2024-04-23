@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище emplyDatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище emplyDatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="chatList">
           <Key>
             <PropertyRef Name="chatID" />
@@ -12,7 +12,11 @@
           <Property Name="chatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="userID" Type="int" />
+          <Property Name="personal" Type="bit" />
+          <Property Name="Image" Type="image" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "emplyDatabase.dbo.chatUsers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="chatUsers">
           <Key>
             <PropertyRef Name="chatID" />
@@ -28,7 +32,6 @@
           <Property Name="chatID" Type="int" />
           <Property Name="userID" Type="int" />
           <Property Name="Message" Type="ntext" />
-          <Property Name="Image" Type="image" />
           <Property Name="sendDate" Type="datetime" />
         </EntityType>
         <EntityType Name="User">
@@ -41,6 +44,7 @@
           <Property Name="LastName" Type="nvarchar(max)" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" />
         </EntityType>
         <Association Name="FK_chatID_chatID">
           <End Role="chatList" Type="Self.chatList" Multiplicity="1" />
@@ -54,31 +58,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_chatList_userID">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="chatList" Type="Self.chatList" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="chatList">
-              <PropertyRef Name="chatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_chatUser_chatUser">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="chatUsers" Type="Self.chatUsers" Multiplicity="0..1" />
+        <Association Name="FK_chatUser_userID">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="chatUsers" Type="Self.chatUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="userID" />
             </Principal>
             <Dependent Role="chatUsers">
-              <PropertyRef Name="chatID" />
+              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Messages_chatList">
+        <Association Name="FK_Messages_chatID">
           <End Role="chatList" Type="Self.chatList" Multiplicity="0..1" />
           <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
           <ReferentialConstraint>
@@ -104,22 +96,23 @@
         </Association>
         <EntityContainer Name="Хранилище emplyDatabaseModelContainer">
           <EntitySet Name="chatList" EntityType="Self.chatList" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="chatUsers" EntityType="Self.chatUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chatUsers" EntityType="Self.chatUsers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [chatUsers].[chatID] AS [chatID], 
+    [chatUsers].[userID] AS [userID]
+    FROM [dbo].[chatUsers] AS [chatUsers]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_chatID_chatID" Association="Self.FK_chatID_chatID">
             <End Role="chatList" EntitySet="chatList" />
             <End Role="chatUsers" EntitySet="chatUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_chatList_userID" Association="Self.FK_chatList_userID">
-            <End Role="User" EntitySet="User" />
-            <End Role="chatList" EntitySet="chatList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_chatUser_chatUser" Association="Self.FK_chatUser_chatUser">
+          <AssociationSet Name="FK_chatUser_userID" Association="Self.FK_chatUser_userID">
             <End Role="User" EntitySet="User" />
             <End Role="chatUsers" EntitySet="chatUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Messages_chatList" Association="Self.FK_Messages_chatList">
+          <AssociationSet Name="FK_Messages_chatID" Association="Self.FK_Messages_chatID">
             <End Role="chatList" EntitySet="chatList" />
             <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
@@ -128,11 +121,32 @@
             <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="emplyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="emplyDatabase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chatList" EntityType="emplyDatabaseModel.chatList" />
+          <EntitySet Name="Messages" EntityType="emplyDatabaseModel.Messages" />
+          <EntitySet Name="User" EntityType="emplyDatabaseModel.User" />
+          <EntitySet Name="chatUsers" EntityType="emplyDatabaseModel.chatUsers" />
+          <AssociationSet Name="FK_chatID_chatID" Association="emplyDatabaseModel.FK_chatID_chatID">
+            <End Role="chatList" EntitySet="chatList" />
+            <End Role="chatUsers" EntitySet="chatUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_chatID" Association="emplyDatabaseModel.FK_Messages_chatID">
+            <End Role="chatList" EntitySet="chatList" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userID" Association="emplyDatabaseModel.FK_userID">
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chatUser_userID" Association="emplyDatabaseModel.FK_chatUser_userID">
+            <End Role="User" EntitySet="User" />
+            <End Role="chatUsers" EntitySet="chatUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="chatList">
           <Key>
             <PropertyRef Name="chatID" />
@@ -140,18 +154,10 @@
           <Property Name="chatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="chatUsers" Relationship="Self.FK_chatID_chatID" FromRole="chatList" ToRole="chatUsers" />
-          <NavigationProperty Name="User" Relationship="Self.FK_chatList_userID" FromRole="chatList" ToRole="User" />
-          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_chatList" FromRole="chatList" ToRole="Messages" />
-        </EntityType>
-        <EntityType Name="chatUsers">
-          <Key>
-            <PropertyRef Name="chatID" />
-          </Key>
-          <Property Name="chatID" Type="Int32" Nullable="false" />
-          <Property Name="userID" Type="Int32" />
-          <NavigationProperty Name="chatList" Relationship="Self.FK_chatID_chatID" FromRole="chatUsers" ToRole="chatList" />
-          <NavigationProperty Name="User" Relationship="Self.FK_chatUser_chatUser" FromRole="chatUsers" ToRole="User" />
+          <Property Name="personal" Type="Boolean" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="chatUsers" Relationship="emplyDatabaseModel.FK_chatID_chatID" FromRole="chatList" ToRole="chatUsers" />
+          <NavigationProperty Name="Messages" Relationship="emplyDatabaseModel.FK_Messages_chatID" FromRole="chatList" ToRole="Messages" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -161,10 +167,9 @@
           <Property Name="chatID" Type="Int32" />
           <Property Name="userID" Type="Int32" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="sendDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="chatList" Relationship="Self.FK_Messages_chatList" FromRole="Messages" ToRole="chatList" />
-          <NavigationProperty Name="User" Relationship="Self.FK_userID" FromRole="Messages" ToRole="User" />
+          <NavigationProperty Name="chatList" Relationship="emplyDatabaseModel.FK_Messages_chatID" FromRole="Messages" ToRole="chatList" />
+          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_userID" FromRole="Messages" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -176,13 +181,22 @@
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="chatList" Relationship="Self.FK_chatList_userID" FromRole="User" ToRole="chatList" />
-          <NavigationProperty Name="chatUsers" Relationship="Self.FK_chatUser_chatUser" FromRole="User" ToRole="chatUsers" />
-          <NavigationProperty Name="Messages" Relationship="Self.FK_userID" FromRole="User" ToRole="Messages" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Messages" Relationship="emplyDatabaseModel.FK_userID" FromRole="User" ToRole="Messages" />
+          <NavigationProperty Name="chatUsers" Relationship="emplyDatabaseModel.FK_chatUser_userID" FromRole="User" ToRole="chatUsers" />
+        </EntityType>
+        <EntityType Name="chatUsers">
+          <Key>
+            <PropertyRef Name="chatID" />
+          </Key>
+          <Property Name="chatID" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <NavigationProperty Name="chatList" Relationship="emplyDatabaseModel.FK_chatID_chatID" FromRole="chatUsers" ToRole="chatList" />
+          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_chatUser_userID" FromRole="chatUsers" ToRole="User" />
         </EntityType>
         <Association Name="FK_chatID_chatID">
-          <End Role="chatList" Type="Self.chatList" Multiplicity="1" />
-          <End Role="chatUsers" Type="Self.chatUsers" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.chatList" Role="chatList" Multiplicity="1" />
+          <End Type="emplyDatabaseModel.chatUsers" Role="chatUsers" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="chatList">
               <PropertyRef Name="chatID" />
@@ -192,45 +206,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_chatList_userID">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="chatList" Type="Self.chatList" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="chatList">
-              <PropertyRef Name="chatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Messages_chatList">
-          <End Role="chatList" Type="Self.chatList" Multiplicity="0..1" />
-          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+        <Association Name="FK_Messages_chatID">
+          <End Type="emplyDatabaseModel.chatList" Role="chatList" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.Messages" Role="Messages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="chatList">
               <PropertyRef Name="chatID" />
             </Principal>
             <Dependent Role="Messages">
-              <PropertyRef Name="chatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_chatUser_chatUser">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="chatUsers" Type="Self.chatUsers" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="chatUsers">
               <PropertyRef Name="chatID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_userID">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.Messages" Role="Messages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="userID" />
@@ -240,33 +230,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="emplyDatabase" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="chatList" EntityType="Self.chatList" />
-          <EntitySet Name="chatUsers" EntityType="Self.chatUsers" />
-          <EntitySet Name="Messages" EntityType="Self.Messages" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_chatID_chatID" Association="Self.FK_chatID_chatID">
-            <End Role="chatList" EntitySet="chatList" />
-            <End Role="chatUsers" EntitySet="chatUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_chatList_userID" Association="Self.FK_chatList_userID">
-            <End Role="User" EntitySet="User" />
-            <End Role="chatList" EntitySet="chatList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Messages_chatList" Association="Self.FK_Messages_chatList">
-            <End Role="chatList" EntitySet="chatList" />
-            <End Role="Messages" EntitySet="Messages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_chatUser_chatUser" Association="Self.FK_chatUser_chatUser">
-            <End Role="User" EntitySet="User" />
-            <End Role="chatUsers" EntitySet="chatUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_userID" Association="Self.FK_userID">
-            <End Role="User" EntitySet="User" />
-            <End Role="Messages" EntitySet="Messages" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_chatUser_userID">
+          <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.chatUsers" Role="chatUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="chatUsers">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -275,8 +251,34 @@
           <EntitySetMapping Name="chatList">
             <EntityTypeMapping TypeName="emplyDatabaseModel.chatList">
               <MappingFragment StoreEntitySet="chatList">
-                <ScalarProperty Name="chatID" ColumnName="chatID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="personal" ColumnName="personal" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="chatID" ColumnName="chatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="sendDate" ColumnName="sendDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="chatID" ColumnName="chatID" />
+                <ScalarProperty Name="messageID" ColumnName="messageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -284,32 +286,8 @@
           <EntitySetMapping Name="chatUsers">
             <EntityTypeMapping TypeName="emplyDatabaseModel.chatUsers">
               <MappingFragment StoreEntitySet="chatUsers">
+                <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="chatID" ColumnName="chatID" />
-                <ScalarProperty Name="userID" ColumnName="userID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="emplyDatabaseModel.Messages">
-              <MappingFragment StoreEntitySet="Messages">
-                <ScalarProperty Name="messageID" ColumnName="messageID" />
-                <ScalarProperty Name="chatID" ColumnName="chatID" />
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="sendDate" ColumnName="sendDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="emplyDatabaseModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

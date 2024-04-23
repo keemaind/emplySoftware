@@ -18,7 +18,6 @@ namespace emplySoftware.DatabaseSQL
         public Nullable<int> chatID { get; set; }
         public Nullable<int> userID { get; set; }
         public string Message { get; set; }
-        public byte[] Image { get; set; }
         public Nullable<System.DateTime> sendDate { get; set; }
     
         public virtual chatList chatList { get; set; }

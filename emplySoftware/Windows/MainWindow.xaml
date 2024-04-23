@@ -35,6 +35,7 @@
                         HorizontalAlignment="Right">
 
                 <Button x:Name="MainMinimizeButton"
+                        Click="MainMinimizeButton_Click"
                         Width="50" Height="30"
                         Style="{StaticResource MinimizeButton}">
 
@@ -44,6 +45,7 @@
                 </Button>
 
                 <Button x:Name="MainCloseButton"
+                        Click="MainCloseButton_Click"
                         Width="50" Height="30"
                         Style="{StaticResource CloseButton}"/>
 
@@ -265,10 +267,46 @@
                         </TextBox.Resources>
 
                     </TextBox>
+                    
 
                 </StackPanel>
 
+             
+
             </Border>
+            <Button x:Name="userSettingsWindow" Click="userSettingsWindow_Click" Grid.Column="0"  Margin="103,171,58,529" ></Button>
+            <ListView  x:Name="UserChats" 
+                       Grid.Column="1" 
+                       Margin="0 50 0 0" 
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      >
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}"></Image>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock FontSize="14" FontWeight="Bold" Width="auto"
+                                       Text="{Binding Title}" 
+                                        HorizontalAlignment="Left"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            
+            
 
         </Grid>
         <!--#endregion-->

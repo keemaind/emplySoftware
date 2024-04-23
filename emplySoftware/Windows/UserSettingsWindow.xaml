@@ -1,0 +1,22 @@
+﻿<Window x:Class="emplySoftware.Windows.UserSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:emplySoftware.Windows"
+        mc:Ignorable="d"
+        Title="UserSettingsWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+                <Border Margin="5" Height="175" Width="200" BorderBrush="#ff9c1a" BorderThickness="1">
+                    <Image Name="ImageService">
+                    </Image>
+                </Border>
+                <Button Height="30" Width="200" Margin="5" Name="BtnSelectImage"
+                Click="BtnSelectImage_Click"  Content="Выбрать фотографию"></Button>
+                <Button Height="30" Width="200" Margin="5" Name="BtnSave" Click="BtnSave_Click"  Content="Coхpанить"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -23,9 +23,10 @@ namespace emplySoftware.DatabaseSQL
         public int chatID { get; set; }
         public string Title { get; set; }
         public Nullable<int> userID { get; set; }
+        public Nullable<bool> personal { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual chatUsers chatUsers { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages { get; set; }
     }

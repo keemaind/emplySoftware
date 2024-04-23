@@ -18,6 +18,7 @@ namespace emplySoftware.DatabaseSQL
         public User()
         {
             this.Messages = new HashSet<Messages>();
+            this.chatUsers = new HashSet<chatUsers>();
         }
     
         public int userID { get; set; }
@@ -26,10 +27,11 @@ namespace emplySoftware.DatabaseSQL
         public string LastName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public byte[] Image { get; set; }
     
-        public virtual chatList chatList { get; set; }
-        public virtual chatUsers chatUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatUsers> chatUsers { get; set; }
     }
 }
