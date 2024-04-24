@@ -274,9 +274,10 @@
              
 
             </Border>
-            <Button x:Name="userSettingsWindow" Click="userSettingsWindow_Click" Grid.Column="0"  Margin="103,171,58,529" ></Button>
+
+            <Button x:Name="userSettingsWindow" Click="userSettingsWindow_Click" Grid.Column="1"  Margin="103,171,58,529" ></Button>
             <ListView  x:Name="UserChats" 
-                       Grid.Column="1" 
+                       Grid.Column="0" 
                        Margin="0 50 0 0" 
                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       >
@@ -286,16 +287,15 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
-
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Image}"></Image>
+                            <Image Source="{Binding Image}" Width="100" Height="100"></Image>
                             <StackPanel Grid.Column="1">
-                                <TextBlock FontSize="14" FontWeight="Bold" Width="auto"
+                                <TextBlock  FontSize="14" FontWeight="Bold" Width="auto"
                                        Text="{Binding Title}" 
                                         HorizontalAlignment="Left"></TextBlock>
                             </StackPanel>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="UserSettingsWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Margin="0,0,512,0">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
                 <Border Margin="5" Height="175" Width="200" BorderBrush="#ff9c1a" BorderThickness="1">
                     <Image Name="ImageService">
