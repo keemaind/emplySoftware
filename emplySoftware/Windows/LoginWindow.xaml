@@ -14,7 +14,20 @@
         BorderThickness="1"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MC01}"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        >
+    <!--#region  -->
+    <Window.Resources>
+        <ResourceDictionary>
+            <RoutedUICommand x:Key="EnterLogin"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{StaticResource EnterLogin}"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource EnterLogin}" Executed="SignInButton_Click"/>
+    </Window.CommandBindings>
     
     <!--#region LoginWindow-->
     <Grid>
@@ -130,7 +143,7 @@
                         </StackPanel>
                         
                         <Button Click="SignInButton_Click"
-                                x:Name="SignInButton"
+                                x:Name="SignInButton"     
                                 Content="Sign in"
                                 Style="{StaticResource SignInButton}"
                                 Width="270" Height="30"
