@@ -67,7 +67,7 @@
                     Grid.Column="0">
 
                 <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Top">
+                            VerticalAlignment="Top">
 
                     <Border Style="{StaticResource BorderMenuBar}"
                             x:Name="BorderMenuBar"
@@ -86,6 +86,7 @@
                         <StackPanel>
 
                             <StackPanel Orientation="Horizontal"
+                                        Panel.ZIndex="999"
                                         Margin="20,20,20,10">
 
                                 <Image Source="/Icons/B02.png"
@@ -216,17 +217,17 @@
                     </Border>
 
                     <ToggleButton x:Name="MainMenuButton"
-                                      Click="MainMenuButton_Click"
-                                      Grid.Column="0"
-                                      Height="30" Width="30"
-                                      Style="{StaticResource MenuBarToggleButton}"
-                                      Margin="10"
-                                      HorizontalAlignment="Left">
+                                  Click="MainMenuButton_Click"
+                                  Grid.Column="0"
+                                  Height="30" Width="30"
+                                  Style="{StaticResource MenuBarToggleButton}"
+                                  Margin="10"
+                                  HorizontalAlignment="Left">
 
                         <fa:IconImage Icon="Bars"
-                                          Height="18"
-                                          Width="18"
-                                          Foreground="{StaticResource SC04}"/>
+                                      Height="18"
+                                      Width="18"
+                                      Foreground="{StaticResource SC04}"/>
 
                         <ToggleButton.Triggers>
 
@@ -237,10 +238,10 @@
                                     <Storyboard x:Name="ShowBorderMenuBar">
 
                                         <DoubleAnimation Storyboard.TargetName="BorderMenuBar"
-                                                             Storyboard.TargetProperty="Width"
-                                                             BeginTime="0:0:0"
-                                                             From="0" To="300"
-                                                             Duration="0:0:0:0.1"/>
+                                                         Storyboard.TargetProperty="Width"
+                                                         BeginTime="0:0:0"
+                                                         From="0" To="300"
+                                                         Duration="0:0:0:0.1"/>
 
                                     </Storyboard>
 
@@ -267,20 +268,18 @@
                         </TextBox.Resources>
 
                     </TextBox>
-                    
 
                 </StackPanel>
-
-             
-
+                
             </Border>
 
-            <Button x:Name="userSettingsWindow" Click="userSettingsWindow_Click" Grid.Column="1"  Margin="103,171,58,529" ></Button>
-            <ListView  x:Name="UserChats" 
-                       Grid.Column="0" 
-                       Margin="0 50 0 0" 
-                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      >
+            <ListView  x:Name="UserChats"
+                       Background="Transparent"
+                       BorderBrush="Transparent"
+                       Grid.Column="0"
+                       Margin="0,50,0,0" 
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
@@ -293,7 +292,7 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Image}" Width="100" Height="100"></Image>
+                            <Image Source="{Binding Image}" Width="30" Height="30"/>
                             <StackPanel Grid.Column="1">
                                 <TextBlock  FontSize="14" FontWeight="Bold" Width="auto"
                                        Text="{Binding Title}" 
@@ -305,8 +304,6 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-            
-            
 
         </Grid>
         <!--#endregion-->

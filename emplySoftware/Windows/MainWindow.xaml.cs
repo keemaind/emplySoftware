@@ -37,6 +37,7 @@ namespace emplySoftware
             if (MainMenuButton.IsChecked == true)
             {
                 BorderMenuBar.Visibility = Visibility.Visible;
+                UserChats.Visibility = Visibility.Collapsed;
                 MainMenuButton.Visibility = Visibility.Collapsed;
                 MainSearchButton.Visibility = Visibility.Collapsed;
             }
