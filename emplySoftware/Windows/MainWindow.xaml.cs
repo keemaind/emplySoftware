@@ -30,17 +30,20 @@ namespace emplySoftware
         {
             InitializeComponent();
             FillChats(GetCurrent.CurrentUser);
+            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
+            foreach (var user in userImage)
+            {
+                UserImage.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(user.Image);
+                ProfileFirstName.Text = user.FirstName;
+                ProfileMiddleName.Text = user.MiddleName;
+            }
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MainMenuButton.IsChecked == true)
-            {
                 BorderMenuBar.Visibility = Visibility.Visible;
-                UserChats.Visibility = Visibility.Collapsed;
                 MainMenuButton.Visibility = Visibility.Collapsed;
                 MainSearchButton.Visibility = Visibility.Collapsed;
-            }
         }
         List<chats> userChats = new List<chats>();
         
@@ -110,12 +113,6 @@ namespace emplySoftware
             UserChats.ItemsSource = userChats;
         }
 
-        private void userSettingsWindow_Click(object sender, RoutedEventArgs e)
-        {
-            UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
-            userSettingsWindow.Show();
-        }
-
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -124,6 +121,19 @@ namespace emplySoftware
         private void MainCloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void CloseMenuBar_Click(object sender, RoutedEventArgs e)
+        {
+                BorderMenuBar.Visibility = Visibility.Collapsed;
+                MainMenuButton.Visibility = Visibility.Visible;
+                MainSearchButton.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonEditProfile_Click(object sender, RoutedEventArgs e)
+        {
+            UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
+            userSettingsWindow.Show();
         }
     }
     class chats

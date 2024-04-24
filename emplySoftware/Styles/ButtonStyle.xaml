@@ -268,4 +268,69 @@
     </Style>
     <!--#endregion-->
     
+    <!--#region CloseMenuButton-->
+    <Style x:Key="CloseMenuButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource MC03}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SC03}"/>
+        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                        <Border.Background>
+                            <SolidColorBrush Color="#FFFFFF" x:Name="BorderBackground"/>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="#FFFFFF" x:Name="BorderBorderBrush"/>
+                        </Border.BorderBrush>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#FFFFFF"
+                                                    To="#DEDFE1"
+                                                    Duration="0:0:0:0.2"/>
+                                    
+                                    <ColorAnimation Storyboard.TargetName="BorderBorderBrush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#FFFFFF"
+                                                    To="#DEDFE1"
+                                                    Duration="0:0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#DEDFE1"
+                                                    To="#FFFFFF"
+                                                    Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBorderBrush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#DEDFE1"
+                                                    To="#FFFFFF"
+                                                    Duration="0:0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
 </ResourceDictionary>

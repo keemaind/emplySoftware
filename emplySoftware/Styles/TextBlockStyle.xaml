@@ -48,4 +48,28 @@
     </Style>
     <!--#endregion-->
     
+    <!--#region ProfileNamesTextBlock-->
+    <Style x:Key="ProfileNamesTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TC01}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+    
+    <!--#region ProfileJobTextBlock-->
+    <Style x:Key="ProfileJobTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource SC05}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region WaterMarkForMenu-->
+    <Style x:Key="WaterMarkForMenu" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Light"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+    <!--#endregion-->
+    
 </ResourceDictionary>

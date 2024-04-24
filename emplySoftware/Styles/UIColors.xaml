@@ -12,6 +12,7 @@
     <SolidColorBrush x:Key="SC01" Color="#E5E5E5"/>
     <SolidColorBrush x:Key="SC03" Color="#DEDFE1"/>
     <SolidColorBrush x:Key="SC04" Color="#666666"/>
+    <SolidColorBrush x:Key="SC05" Color="#323232"/>
     <!--#endregion-->
     
     <!--#region TextColors-->
