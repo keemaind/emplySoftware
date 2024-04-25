@@ -29,8 +29,14 @@ namespace emplySoftware.Windows
         public UserSettingsWindow(User currentUser)
         {
             InitializeComponent();
-            
-            
+            var user = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID);
+            foreach (var us in user)
+            {
+                _mainImageData = us.Image;
+            }
+            ImageService.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
+
+
         }
 
         private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
