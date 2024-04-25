@@ -18,11 +18,10 @@ using emplySoftware.DatabaseSQL;
 using System.Diagnostics;
 using System.Collections;
 
+
 namespace emplySoftware
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
         
@@ -135,28 +134,17 @@ namespace emplySoftware
             UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
             userSettingsWindow.Show();
         }
-    }
-    class chats
-    {
-        string title;
-        int chatID;
-        byte[] image;
-
-        public string Title
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
-            get { return title; }
-            set { title = value; }
-        }
-        public int ChatID
-        {
-            get { return chatID; }
-            set { chatID = value; }
-        }
-        public byte[] Image
-        {
-            get { return image; }
-            set { image = value; }
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
 
+        //Изменение чата по выбору в listView
+        private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedChat = (UserChats.SelectedItem as chats);
+            ChatPage.NavigationService.Navigate(new ChatPage(selectedChat));}
     }
 }

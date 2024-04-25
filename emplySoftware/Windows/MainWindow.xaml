@@ -299,7 +299,8 @@
                     </RadioButton>
 
                     <RadioButton x:Name="ButtonExit"
-                                 Style="{StaticResource MenuBarRadioButton}">
+                                 Style="{StaticResource MenuBarRadioButton}"
+                                 Click="ButtonExit_Click">
 
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Left">
@@ -333,14 +334,14 @@
 
             </Border>
             <!--#endregion-->
-
+            <!--#region ChatList-->
             <ListView  x:Name="UserChats"
                        Background="Transparent"
                        BorderBrush="Transparent"
                        Grid.Column="0"
                        Margin="0,50,0,0" 
-                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                       SelectionChanged="UserChats_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" VerticalAlignment="Center"></WrapPanel>
@@ -360,12 +361,13 @@
                                         HorizontalAlignment="Left"></TextBlock>
                             </StackPanel>
                         </Grid>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-
+            <Frame x:Name="ChatPage"
+                   Grid.Column="1">
+            </Frame>
+            <!--#endregion-->
         </Grid>
         <!--#endregion-->
 
