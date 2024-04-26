@@ -354,9 +354,12 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Image}" Width="30" Height="30"/>
+                            
                             <StackPanel Grid.Column="1">
-                                <TextBlock  FontSize="14" FontWeight="Bold" Width="auto"
+                                <Image Source="{Binding Image}" Width="80" Height="80"/>
+                                <TextBlock  FontSize="14" 
+                                            FontWeight="Bold" 
+                                            Width="auto"
                                        Text="{Binding Title}" 
                                         HorizontalAlignment="Left"></TextBlock>
                             </StackPanel>

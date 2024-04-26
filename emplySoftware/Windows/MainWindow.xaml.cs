@@ -74,11 +74,12 @@ namespace emplySoftware
                 var personalGet = App.ContextDatabase.chatList.Where(p => p.chatID == chatPersGet.chatID && p.personal == true);
                 foreach (var chatUS in personalGet)
                 {
-                    string G = FIOus.GetFullName(App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID));
-
+                    var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
+                    string G = FIOus.GetFullName(us).ToString();
                     userChats.Add(new chats
                     {
                         Title = G,
+                        Image = us.Image,
                         ChatID = chatUS.chatID
                     });
                 }
