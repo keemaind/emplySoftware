@@ -57,7 +57,7 @@ namespace emplySoftware
                 foreach (var chatUS in personalUser)
                 {
                     var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
-                    string G = FIOus.GetFullName(us).ToString();
+                    string G = FIOus.GetNotFullName(us).ToString();
 
                     userChats.Add(new chats
                     {
@@ -75,7 +75,7 @@ namespace emplySoftware
                 foreach (var chatUS in personalGet)
                 {
                     var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
-                    string G = FIOus.GetFullName(us).ToString();
+                    string G = FIOus.GetNotFullName(us).ToString();
                     userChats.Add(new chats
                     {
                         Title = G,

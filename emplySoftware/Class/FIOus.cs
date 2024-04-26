@@ -18,5 +18,10 @@ namespace emplySoftware.Class
             return user.MiddleName + " " + user.FirstName + " " + user.LastName;
         }
 
+        public static string GetNotFullName(User user)
+        {
+            return user.MiddleName + " " + user.FirstName;
+        }
+
     }
 }
