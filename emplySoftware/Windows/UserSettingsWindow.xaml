@@ -19,35 +19,44 @@
     <Grid>
         
         <StackPanel VerticalAlignment="Center">
-            
+
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
 
-                <Border Style="{StaticResource UserPhotoBorder}"
-                        Width="125" Height="125">
-
-                    <Ellipse x:Name="ProfilePhotoChats"
-                             Width="120" Height="120"
-                             SnapsToDevicePixels="False">
-
-                        <Ellipse.Fill>
-
-                            <ImageBrush x:Name="ImageUser"
-                                    ImageSource="{Binding Image}"
-                                    RenderOptions.BitmapScalingMode="HighQuality"/>
-
-                        </Ellipse.Fill>
-
-                    </Ellipse>
-
-                </Border>
-
-                <Button Height="30" Width="200"
-                        Margin="5"
-                        Style="{StaticResource SelectAPictureButton}"
+                <Button Margin="10"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Padding="-20"
+                        Width="120"
+                        Height="120"
                         x:Name="BtnSelectImage"
-                        Click="BtnSelectImage_Click"
-                        Content="Select a picture"/>
+                        Click="BtnSelectImage_Click">
+
+                    <Button.Content>
+
+                        <Ellipse x:Name="ProfilePhotoChats"
+                                 Margin="10"
+                                 Height="120"
+                                 Width="120"
+                                 StrokeThickness="2"
+                                 Stroke="{StaticResource MC04}"
+                                 SnapsToDevicePixels="False">
+
+                            <Ellipse.Fill>
+
+                                <ImageBrush x:Name="ImageUser"
+                                        ImageSource="{Binding Image}"
+                                        RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                            </Ellipse.Fill>
+
+                        </Ellipse>
+
+                    </Button.Content>
+
+                </Button>
                 
                 <Button Height="30" Width="200"
                         Margin="5"
