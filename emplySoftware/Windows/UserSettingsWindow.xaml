@@ -23,11 +23,7 @@
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
 
-                <Button Margin="10"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        BorderThickness="0"
-                        Cursor="Hand"
+                <Button Style="{StaticResource ProfilePictureButton}"
                         Padding="-20"
                         Width="120"
                         Height="120"
@@ -36,8 +32,7 @@
 
                     <Button.Content>
 
-                        <Ellipse x:Name="ProfilePhotoChats"
-                                 Margin="10"
+                        <Ellipse x:Name="ProfilePhoto"
                                  Height="120"
                                  Width="120"
                                  StrokeThickness="2"
