@@ -14,7 +14,8 @@
         BorderThickness="1"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MC01}"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
     
     <!--#region MainWindow-->
     <Grid>
@@ -70,6 +71,7 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
 
+            <!--#region BorderBrush's-->
             <Border BorderThickness="0,0,2,0"
                     BorderBrush="{StaticResource MC03}"
                     Grid.Column="0" Grid.RowSpan="2"/>
@@ -77,6 +79,7 @@
             <Border BorderThickness="0,0,0,2"
                     BorderBrush="{StaticResource MC03}"
                     Grid.Column="1"/>
+            <!--#endregion-->
 
             <!--#region MenuBarButtonAndSearch-->
             <StackPanel Orientation="Horizontal"
@@ -168,11 +171,13 @@
                             <Ellipse x:Name="ProfilePhoto"
                                  Width="40" Height="40"
                                  Margin="0,0,10,0">
+                                
                                 <Ellipse.Fill>
                                     <ImageBrush x:Name="UserImage"
                                             Stretch="UniformToFill"
                                             RenderOptions.BitmapScalingMode="HighQuality"/>
                                 </Ellipse.Fill>
+                                
                             </Ellipse>
 
                             <StackPanel Orientation="Vertical"
@@ -359,12 +364,14 @@
                       BorderThickness="0"
                       SelectionChanged="UserChats_SelectionChanged"/>
 
+            <!--#endregion-->
+
+            <!--#region ChatPageFrame-->
             <Frame x:Name="ChatPage"
                    Grid.Column="1" Grid.Row="1">
             </Frame>
-
             <!--#endregion-->
-            
+
         </Grid>
         <!--#endregion-->
 

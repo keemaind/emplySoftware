@@ -15,7 +15,8 @@
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MC01}"
         AllowsTransparency="True"
-        >
+        MouseDown="Window_MouseDown">
+    
     <!--#region  -->
     <Window.Resources>
         <ResourceDictionary>

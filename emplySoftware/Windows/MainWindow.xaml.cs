@@ -147,5 +147,13 @@ namespace emplySoftware
         {
             var selectedChat = (UserChats.SelectedItem as chats);
             ChatPage.NavigationService.Navigate(new ChatPage(selectedChat));}
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

@@ -30,6 +30,10 @@
     <SolidColorBrush x:Key="Red01" Color="#CB4C4F"/>
     <SolidColorBrush x:Key="Red02" Color="#C63C40"/>
     <SolidColorBrush x:Key="Orange01" Color="#FCA311"/>
+    <SolidColorBrush x:Key="Peach01" Color="#FD8C73"/>
+    <SolidColorBrush x:Key="Peach02" Color="#FD775A"/>
+    <SolidColorBrush x:Key="Peach03" Color="#FC6341"/>
+    <SolidColorBrush x:Key="Peach04" Color="#E37E67"/>
     <!--#endregion-->
 
 </ResourceDictionary>

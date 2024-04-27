@@ -43,5 +43,14 @@
         <Setter Property="CornerRadius" Value="0,10,10,0"/>
     </Style>
     <!--#endregion-->
+    
+    <!--#region UserPhotoBorder-->
+    <Style x:Key="UserPhotoBorder" TargetType="Border">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="{StaticResource MC04}"/>
+        <Setter Property="CornerRadius" Value="100"/>
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>

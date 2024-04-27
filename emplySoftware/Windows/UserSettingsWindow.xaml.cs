@@ -34,7 +34,7 @@ namespace emplySoftware.Windows
             {
                 _mainImageData = us.Image;
             }
-            ImageService.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
+            ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
 
 
         }
@@ -46,7 +46,7 @@ namespace emplySoftware.Windows
             if (ofd.ShowDialog() == true)
             {
                 _mainImageData = File.ReadAllBytes(ofd.FileName);
-                ImageService.Source = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
+                ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
             }
         }
 
