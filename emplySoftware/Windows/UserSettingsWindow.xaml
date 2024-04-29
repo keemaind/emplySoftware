@@ -3,68 +3,207 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
         Title="User settings"
-        Height="500" Width="400"
+        Height="600" Width="400"
         WindowStyle="None"
         ResizeMode="NoResize"
-        BorderBrush="{StaticResource SC01}"
-        BorderThickness="1"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource MC01}"
+        Background="Transparent"
         AllowsTransparency="True">
     
     <!--#region UserSettings-->
-    <Grid>
-        
+    <Border CornerRadius="10"
+            Background="{StaticResource MC01}"
+            BorderBrush="{StaticResource MC03}"
+            BorderThickness="1">
+
         <StackPanel VerticalAlignment="Center">
 
-            <StackPanel HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+            <Border x:Name="MiddlePanelCenterBorderLogin"
+                    Padding="10"
+                    Style="{StaticResource BorderMiddleCenterPanel}"
+                    Width="300">
 
-                <Button Style="{StaticResource ProfilePictureButton}"
-                        Padding="-20"
-                        Width="120"
-                        Height="120"
-                        x:Name="BtnSelectImage"
-                        Click="BtnSelectImage_Click">
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
 
-                    <Button.Content>
+                    <Button Style="{StaticResource ProfilePictureButton}"
+                            Padding="-20"
+                            Width="120"
+                            Height="120"
+                            x:Name="BtnSelectImage"
+                            Click="BtnSelectImage_Click">
 
-                        <Ellipse x:Name="ProfilePhoto"
-                                 Height="120"
-                                 Width="120"
-                                 StrokeThickness="2"
-                                 Stroke="{StaticResource MC04}"
-                                 SnapsToDevicePixels="False">
+                        <Button.Content>
 
-                            <Ellipse.Fill>
+                            <Ellipse x:Name="ProfilePhoto"
+                                     Height="120"
+                                     Width="120"
+                                     StrokeThickness="2"
+                                     Stroke="{StaticResource MC04}"
+                                     SnapsToDevicePixels="False">
 
-                                <ImageBrush x:Name="ImageUser"
-                                        ImageSource="{Binding Image}"
-                                        RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <Ellipse.Fill>
 
-                            </Ellipse.Fill>
+                                    <ImageBrush x:Name="ImageUser"
+                                                ImageSource="{Binding Image}"
+                                                RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                        </Ellipse>
+                                </Ellipse.Fill>
 
-                    </Button.Content>
+                            </Ellipse>
 
-                </Button>
-                
-                <Button Height="30" Width="200"
-                        Margin="5"
-                        Style="{StaticResource SignInButton}"
-                        x:Name="BtnSave"
-                        Click="BtnSave_Click" 
-                        Content="Save"/>
-                
-            </StackPanel>
-            
+                        </Button.Content>
+
+                    </Button>
+
+                    <StackPanel x:Name="StackPanelUserLogin"
+                                Margin="5,0">
+
+                        <TextBlock Text="Login"
+                                   Style="{StaticResource LoginTextBlock}"
+                                   Margin="0,5"/>
+
+                        <TextBox x:Name="UserLoginTextBox"
+                                 Height="30" Width="200"
+                                 Margin="0,0,0,5"
+                                 Style="{StaticResource LoginTextBox}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Setter Property="CornerRadius" Value="5"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="StackPanelUserMiddleName"
+                                Margin="5,0">
+
+                        <TextBlock Text="Middle name"
+                                   Style="{StaticResource LoginTextBlock}"
+                                   Margin="0,5"/>
+
+                        <TextBox x:Name="UserMiddleNameTextBox"
+                                 Height="30" Width="200"
+                                 Margin="0,0,0,5"
+                                 Style="{StaticResource LoginTextBox}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Setter Property="CornerRadius" Value="5"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="StackPanelUserFirstName"
+                                Margin="5,0">
+
+                        <TextBlock Text="First name"
+                                   Style="{StaticResource LoginTextBlock}"
+                                   Margin="0,5"/>
+
+                        <TextBox x:Name="UserFirstNameTextBox"
+                                 Height="30" Width="200"
+                                 Margin="0,0,0,5"
+                                 Style="{StaticResource LoginTextBox}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Setter Property="CornerRadius" Value="5"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="StackPanelUserLastName"
+                                Margin="5,0">
+
+                        <TextBlock Text="Last name"
+                                   Style="{StaticResource LoginTextBlock}"
+                                   Margin="0,5"/>
+
+                        <TextBox x:Name="UserLastNameTextBox"
+                                 Height="30" Width="200"
+                                 Margin="0,0,0,5"
+                                 Style="{StaticResource LoginTextBox}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Setter Property="CornerRadius" Value="5"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="StackPanelUserPassword"
+                                Margin="5,0">
+
+                        <TextBlock Text="Password"
+                                   Style="{StaticResource LoginTextBlock}"
+                                   Margin="0,5"/>
+
+                        <TextBox x:Name="UserPasswordTextBox"
+                                 Height="30" Width="200"
+                                 Margin="0,0,0,15"
+                                 Style="{StaticResource LoginTextBox}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Setter Property="CornerRadius" Value="5"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <Button Height="30" Width="200"
+                            Margin="5"
+                            Style="{StaticResource SignInButton}"
+                            x:Name="BtnSave"
+                            Click="BtnSave_Click" 
+                            Content="Save"/>
+
+                </StackPanel>
+
+            </Border>
+
         </StackPanel>
-        
-    </Grid>
+
+    </Border>
     <!--#endregion-->
     
 </Window>

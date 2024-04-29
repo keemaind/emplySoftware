@@ -3,20 +3,23 @@
     
     <!--#region LoginTextBox-->
     <Style x:Key="LoginTextBox" TargetType="TextBox">
+        
         <Setter Property="Background" Value="{StaticResource MC01}"/>
         <Setter Property="BorderBrush" Value="{StaticResource SC01}"/>
         <Setter Property="Foreground" Value="{StaticResource TC01}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10,0,0,0"/>
+        
     </Style>
     <!--#endregion-->
     
     <!--#region SearchTextBox-->
     <Style x:Key="SearchTextBox" TargetType="TextBox">
+        
         <Setter Property="Background" Value="{StaticResource MC03}"/>
         <Setter Property="BorderBrush" Value="{StaticResource SC01}"/>
         <Setter Property="Foreground" Value="{StaticResource SC04}"/>
@@ -26,6 +29,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10,0,0,0"/>
+        
     </Style>
     <!--#endregion-->
     

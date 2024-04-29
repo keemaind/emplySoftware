@@ -18,6 +18,7 @@
         MouseDown="Window_MouseDown">
     
     <!--#region MainWindow-->
+
     <Grid>
 
         <!--#region RowDefinitions-->
@@ -53,7 +54,7 @@
             </StackPanel>
         </Border>
         <!--#endregion-->
-        
+
         <!--#region MiddlePanel-->
         <Grid Grid.Row="1">
 
@@ -63,7 +64,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
-            
+
             <!--#region RowDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
@@ -73,10 +74,12 @@
 
             <!--#region BorderBrush's-->
             <Border BorderThickness="0,0,2,0"
+                    x:Name="BorderBrush01"
                     BorderBrush="{StaticResource MC03}"
                     Grid.Column="0" Grid.RowSpan="2"/>
 
             <Border BorderThickness="0,0,0,2"
+                    x:Name="BorderBrush02"
                     BorderBrush="{StaticResource MC03}"
                     Grid.Column="1"/>
             <!--#endregion-->
@@ -171,13 +174,13 @@
                             <Ellipse x:Name="ProfilePhoto"
                                  Width="40" Height="40"
                                  Margin="0,0,10,0">
-                                
+
                                 <Ellipse.Fill>
                                     <ImageBrush x:Name="UserImage"
                                             Stretch="UniformToFill"
                                             RenderOptions.BitmapScalingMode="HighQuality"/>
                                 </Ellipse.Fill>
-                                
+
                             </Ellipse>
 
                             <StackPanel Orientation="Vertical"
@@ -355,7 +358,7 @@
 
             </Border>
             <!--#endregion-->
-            
+
             <!--#region ContactsList-->
             <ListView x:Name="UserChats"
                       ItemContainerStyle="{StaticResource ContactsListViewItem}"
@@ -376,6 +379,7 @@
         <!--#endregion-->
 
     </Grid>
+    
     <!--#endregion-->
     
 </Window>

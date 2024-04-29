@@ -134,6 +134,9 @@ namespace emplySoftware
         {
             UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
             userSettingsWindow.Show();
+
+            userSettingsWindow.Owner = this;
+            ApplyEffect(this);
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
@@ -154,6 +157,18 @@ namespace emplySoftware
             {
                 DragMove();
             }
+        }
+
+        private void ApplyEffect(Window win)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            objBlur.Radius = 4;
+            win.Effect = objBlur;
+        }
+
+        private void ClearEffect(Window win)
+        {
+            win.Effect = null;
         }
     }
 }
