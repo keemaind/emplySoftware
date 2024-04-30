@@ -47,6 +47,8 @@
     <SolidColorBrush x:Key="secondary_color_02" Color="#5c5d60"/>
     <SolidColorBrush x:Key="secondary_color_03" Color="#ffffff"/>
     <SolidColorBrush x:Key="secondary_color_04" Color="#f5f5f5"/>
+    <SolidColorBrush x:Key="secondary_color_05" Color="#818991"/>
+    <SolidColorBrush x:Key="secondary_color_06" Color="#dbdbdb"/>
     <!--#endregion-->
     
     <!--#region accent_colors-->

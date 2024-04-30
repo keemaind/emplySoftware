@@ -21,7 +21,7 @@
 
     <!--#region LoginTextBlock-->
     <Style x:Key="LoginTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource TC01}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -41,7 +41,7 @@
     
     <!--#region MenuBarTextBlockButton-->
     <Style x:Key="MenuBarTextBlockButton" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="14"/>
@@ -50,14 +50,15 @@
     
     <!--#region ProfileNamesTextBlock-->
     <Style x:Key="ProfileNamesTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource TC01}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
+    <!--#endregion-->
     
     <!--#region ProfileJobTextBlock-->
     <Style x:Key="ProfileJobTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource SC05}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_06}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -66,7 +67,7 @@
     
     <!--#region WaterMarkForMenu-->
     <Style x:Key="WaterMarkForMenu" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_05}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Light"/>
         <Setter Property="FontSize" Value="10"/>
     </Style>

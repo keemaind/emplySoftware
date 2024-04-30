@@ -4,51 +4,78 @@
     
     <!--#region SignInButton-->
     <Style x:Key="SignInButton" TargetType="Button">
+        
         <Setter Property="Background" Value="{StaticResource accent_color_04}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource MC01}"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        
         <Setter Property="Template">
+            
             <Setter.Value>
+                
                 <ControlTemplate TargetType="Button">
+                    
                     <Border x:Name="border"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="5">
+                        
                         <Border.Background>
+                            
                             <SolidColorBrush Color="#2d8cff" x:Name="BorderBackground"/>
+                            
                         </Border.Background>
+                        
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"/>
                     </Border>
+                    
                     <ControlTemplate.Triggers>
+                        
                         <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                            
                             <BeginStoryboard>
+                                
                                 <Storyboard>
+                                    
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
                                                     From="#2d8cff"
                                                     To="#0071f9"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>
+                                
                             </BeginStoryboard>
+                            
                         </EventTrigger>
+                        
                         <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                            
                             <BeginStoryboard>
+                                
                                 <Storyboard>
+                                    
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
                                                     From="#0071f9"
                                                     To="#2d8cff"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>
+                                
                             </BeginStoryboard>
+                            
                         </EventTrigger>
+                        
                     </ControlTemplate.Triggers>
+                    
                 </ControlTemplate>
+                
             </Setter.Value>
+            
         </Setter>
+        
     </Style>
     <!--#endregion-->
     
@@ -492,7 +519,7 @@
     <!--#region ProfilePictureButton-->
     <Style x:Key="ProfilePictureButton" TargetType="Button">
         
-        <Setter Property="Background" Value="{StaticResource MC01}"/>
+        <Setter Property="Background" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="10"/>
@@ -522,6 +549,83 @@
             
         </Setter>
 
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region menu_button-->
+    <Style x:Key="menu_button" TargetType="Button">
+        
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        
+        <Setter Property="Template">
+            
+            <Setter.Value>
+                
+                <ControlTemplate TargetType="Button">
+                    
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                        
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#282e33" x:Name="BorderBackground"/>
+                            
+                        </Border.Background>
+                        
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                            
+                            <BeginStoryboard>
+                                
+                                <Storyboard>
+                                    
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#282e33"
+                                                    To="#242a2e"
+                                                    Duration="0:0:0:0.2"/>
+                                </Storyboard>
+                                
+                            </BeginStoryboard>
+                            
+                        </EventTrigger>
+                        
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+                            
+                            <BeginStoryboard>
+                                
+                                <Storyboard>
+                                    
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#242a2e"
+                                                    To="#282e33"
+                                                    Duration="0:0:0:0.2"/>
+                                </Storyboard>
+                                
+                            </BeginStoryboard>
+                            
+                        </EventTrigger>
+                        
+                    </ControlTemplate.Triggers>
+                    
+                </ControlTemplate>
+                
+            </Setter.Value>
+            
+        </Setter>
+        
     </Style>
     <!--#endregion-->
     

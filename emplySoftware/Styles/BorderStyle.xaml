@@ -37,11 +37,11 @@
     </Style>
     <!--#endregion-->
     
-    <!--#region BorderMenuBar-->
-    <Style x:Key="BorderMenuBar" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource MC01}"/>
+    <!--#region border_menu_bar-->
+    <Style x:Key="border_menu_bar" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="CornerRadius" Value="0,10,10,0"/>
+        <Setter Property="CornerRadius" Value="0,15,15,15"/>
     </Style>
     <!--#endregion-->
     

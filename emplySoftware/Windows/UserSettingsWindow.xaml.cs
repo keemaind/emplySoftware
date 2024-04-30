@@ -58,5 +58,11 @@ namespace emplySoftware.Windows
             }
             App.ContextDatabase.SaveChanges();
         }
+
+        private void LoginCloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

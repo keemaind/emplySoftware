@@ -8,16 +8,24 @@
         <Setter Property="Padding" Value="10"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        
         <Setter Property="Template">
+            
             <Setter.Value>
+                
                 <ControlTemplate TargetType="RadioButton">
+                    
                     <Border x:Name="border"
                             CornerRadius="5">
+                        
                         <Border.Background>
-                            <SolidColorBrush Color="#FFFFFF" x:Name="BorderBackground"/>
+
+                            <SolidColorBrush Color="#282e33" x:Name="BorderBackground"/>
+                            
                         </Border.Background>
+                        
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -26,8 +34,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#FFFFFF"
-                                                    To="#F7F8FA"
+                                                    From="#282e33"
+                                                    To="#242a2e"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -37,14 +45,14 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#F7F8FA"
-                                                    To="#FFFFFF"
+                                                    From="#242a2e"
+                                                    To="#282e33"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" TargetName="border" Value="#F7F8FA"/>
+                            <Setter Property="Background" TargetName="border" Value="#242a2e"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

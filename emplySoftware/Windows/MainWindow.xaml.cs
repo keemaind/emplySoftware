@@ -40,9 +40,10 @@ namespace emplySoftware
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-                BorderMenuBar.Visibility = Visibility.Visible;
-                MainMenuButton.Visibility = Visibility.Collapsed;
-                MainSearchButton.Visibility = Visibility.Collapsed;
+            BorderMenuBar.Visibility = Visibility.Visible;
+            ShadowOverlay.Visibility = Visibility.Visible;
+            MainMenuButton.Visibility = Visibility.Collapsed;
+            MainSearchButton.Visibility = Visibility.Collapsed;
         }
         List<chats> userChats = new List<chats>();
         
@@ -125,18 +126,20 @@ namespace emplySoftware
 
         private void CloseMenuBar_Click(object sender, RoutedEventArgs e)
         {
-                BorderMenuBar.Visibility = Visibility.Collapsed;
-                MainMenuButton.Visibility = Visibility.Visible;
-                MainSearchButton.Visibility = Visibility.Visible;
+            BorderMenuBar.Visibility = Visibility.Collapsed;
+            ShadowOverlay.Visibility = Visibility.Collapsed;
+            MainMenuButton.Visibility = Visibility.Visible;
+            MainSearchButton.Visibility = Visibility.Visible;
+
         }
 
         private void ButtonEditProfile_Click(object sender, RoutedEventArgs e)
         {
             UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
-            userSettingsWindow.Show();
-
             userSettingsWindow.Owner = this;
             ApplyEffect(this);
+            userSettingsWindow.ShowDialog();
+            ClearEffect(this);
         }
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
