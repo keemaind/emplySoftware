@@ -41,10 +41,12 @@ namespace emplySoftware.Windows
             }
             else
             {
-                string errorMessage = "Данные введены некорректно. ";
+                string errorMessage = "Данные введены некорректно!";
                 ErrorWindow errorWindow = new ErrorWindow(errorMessage);
                 errorWindow.Owner = this;
+                ApplyEffect(this);
                 errorWindow.Show();
+                ShadowOverlay.Visibility = Visibility.Visible;
             }
         }
 
@@ -71,6 +73,18 @@ namespace emplySoftware.Windows
             {
                 DragMove();
             }
+        }
+
+        private void ApplyEffect(Window win)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            objBlur.Radius = 4;
+            win.Effect = objBlur;
+        }
+
+        private void ClearEffect(Window win)
+        {
+            win.Effect = null;
         }
     }
 }

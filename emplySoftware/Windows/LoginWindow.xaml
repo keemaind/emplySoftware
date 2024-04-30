@@ -9,156 +9,264 @@
         Title="Sign in"
         Height="500" Width="500"
         WindowStyle="None"
+        Background="Transparent"
         ResizeMode="NoResize"
-        BorderBrush="{StaticResource SC01}"
-        BorderThickness="1"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource MC01}"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown">
     
-    <!--#region  -->
+    <!--#region enter_login-->
     <Window.Resources>
+        
         <ResourceDictionary>
+            
             <RoutedUICommand x:Key="EnterLogin"/>
+            
         </ResourceDictionary>
+        
     </Window.Resources>
+    
     <Window.InputBindings>
+        
         <KeyBinding Key="Enter" Command="{StaticResource EnterLogin}"/>
+        
     </Window.InputBindings>
+    
     <Window.CommandBindings>
+        
         <CommandBinding Command="{StaticResource EnterLogin}" Executed="SignInButton_Click"/>
+        
     </Window.CommandBindings>
+    <!--#endregion-->
     
     <!--#region LoginWindow-->
-    <Grid>
+    <Border CornerRadius="15"
+            Background="{StaticResource main_color_01}"
+            x:Name="border_login">
+
+        <Grid>
         
-        <!--#region RowDefinitions-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
+            <!--#region RowDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
         
-        <!--#region TopPanel-->
-        <Border x:Name="TopPanelLogin"
-                Grid.Row="0"
-                Style="{StaticResource BorderTopPanel}">
+            <!--#region TopPanel-->
+            <Border x:Name="top_panel_login"
+                    Grid.Row="0"
+                    CornerRadius="15,15,0,0"
+                    Style="{StaticResource BorderTopPanel}">
             
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-                
-                <Button Click="LoginMinimizeButton_Click"
-                        x:Name="LoginMinimizeButton"
-                        Width="50" Height="30"
-                        Style="{StaticResource MinimizeButton}">
-                    
-                    <fa:IconImage Icon="WindowMinimize"
-                                  Height="30" Width="20"
-                                  Foreground="{StaticResource SC04}"/>
-                </Button>
-                
-                <Button Click="LoginCloseButton_Click"
-                        x:Name="LoginCloseButton"
-                        Width="50" Height="30"
-                        Style="{StaticResource CloseButton}"/>
-                
-            </StackPanel>
-        </Border>
-        <!--#endregion-->
-        
-        <!--#region MiddlePanel-->
-        <Border x:Name="MiddlePanelLogin"
-                Grid.Row="1"
-                Style="{StaticResource BorderMiddlePanel}">
-            
-            <StackPanel Orientation="Vertical"
-                        Margin="0,50,0,0"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Center">
-                
-                <StackPanel x:Name="Logo"
-                            Orientation="Vertical"
-                            HorizontalAlignment="Center"
-                            Margin="0,0,0,20">
-                    
-                    <Image Source="/Icons/B02.png"
-                           Width="35" Height="35"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Margin="0,0,0,5"/>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        
-                        <TextBlock Text="emply"
-                               Margin="0,0,3,0"
-                               Style="{StaticResource EmplyTextBlock}"/>
-                        
-                        <TextBlock Text="software"
-                               Style="{StaticResource SoftwareTextBlock}"/>
-                        
-                    </StackPanel>
-                    
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left">
+
+                    <Button Click="LoginCloseButton_Click"
+                            Margin="10,0,7,0"
+                            x:Name="LoginCloseButton"
+                            Width="13" Height="13"
+                            Style="{StaticResource CloseButton}"/>
+
+                    <Button Click="LoginMinimizeButton_Click"
+                            Margin="0,0,7,0"
+                            x:Name="LoginMinimizeButton"
+                            Width="13" Height="13"
+                            Style="{StaticResource MinimizeButton}"/>
+
                 </StackPanel>
-                
-                <Border x:Name="MiddlePanelCenterBorderLogin"
-                        Padding="10"
-                        Style="{StaticResource BorderMiddleCenterPanel}">
-                    
-                    <StackPanel Orientation="Vertical">
-                        
-                        <StackPanel x:Name="StackPanelForLoginTextBox"
-                                    Margin="5,0">
-                            
-                            <TextBlock Text="Username"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
-                            
-                            <TextBox x:Name="LoginTextBox"
-                                     Width="270" Height="30"
-                                     Style="{StaticResource LoginTextBox}">
-                                
-                                <TextBox.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius"
-                                            Value="5"/>
-                                    </Style>
-                                </TextBox.Resources>
-                                
-                            </TextBox>
-                            
-                        </StackPanel>
-                        
-                        <StackPanel x:Name="StackPanelForLoginPasswordBox"
-                                    Margin="5,0">
-                            
-                            <TextBlock Text="Password"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
-                            
-                            <PasswordBox x:Name="LoginPasswordBox"
-                                         Width="270" Height="30"
-                                         Style="{StaticResource LoginPasswordBox}">
-                                
-                            </PasswordBox>
-                            
-                        </StackPanel>
-                        
-                        <Button Click="SignInButton_Click"
-                                x:Name="SignInButton"     
-                                Content="Sign in"
-                                Style="{StaticResource SignInButton}"
-                                Width="270" Height="30"
-                                Margin="0,20,0,10"/>
-                        
-                    </StackPanel>
-                    
-                </Border>
-                
-            </StackPanel>
-            
-        </Border>
-        <!--#endregion-->
+            </Border>
+            <!--#endregion-->
         
-    </Grid>
-    <!--#endregion-->   
+            <!--#region MiddlePanel-->
+            <Border x:Name="MiddlePanelLogin"
+                    Grid.Row="1"
+                    CornerRadius="0,0,15,15"
+                    Style="{StaticResource BorderMiddlePanel}">
+            
+                <StackPanel Orientation="Vertical"
+                            Margin="0,50,0,0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center">
+                
+                    <StackPanel x:Name="Logo"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,20">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,10">
+
+                            <Border CornerRadius="7"
+                                    Margin="0,0,3,0"
+                                    Background="{StaticResource accent_color_01}"
+                                    Width="13" Height="32">
+
+                                <Border.Effect>
+
+                                    <DropShadowEffect BlurRadius="5"
+                                              Direction="-90"
+                                              Color="#ff6666"
+                                              ShadowDepth="0">
+
+                                    </DropShadowEffect>
+
+                                </Border.Effect>
+
+                            </Border>
+
+                            <Border CornerRadius="7"
+                                    Margin="0,0,3,0"
+                                    Background="{StaticResource accent_color_02}"
+                                    Width="13" Height="40">
+
+                                <Border.Effect>
+
+                                    <DropShadowEffect BlurRadius="5"
+                                                      Direction="-90"
+                                                      Color="#ffc226"
+                                                      ShadowDepth="0">
+
+                                    </DropShadowEffect>
+
+                                </Border.Effect>
+
+                            </Border>
+
+                            <Border CornerRadius="7"
+                                    Background="{StaticResource accent_color_03}"
+                                    Width="13" Height="28">
+
+                                <Border.Effect>
+
+                                    <DropShadowEffect BlurRadius="5"
+                                                      Direction="-90"
+                                                      Color="#55e374"
+                                                      ShadowDepth="0">
+
+                                    </DropShadowEffect>
+
+                                </Border.Effect>
+
+                            </Border>
+
+                        </StackPanel>
+                    
+                        <StackPanel Orientation="Horizontal">
+                        
+                            <TextBlock Text="emply"
+                                       Margin="0,0,4,0"
+                                       Style="{StaticResource EmplyTextBlock}"/>
+                        
+                            <TextBlock Text="software"
+                                       Style="{StaticResource SoftwareTextBlock}"/>
+                        
+                        </StackPanel>
+                    
+                    </StackPanel>
+                
+                    <Border x:Name="MiddlePanelCenterBorderLogin"
+                            Padding="10"
+                            Style="{StaticResource BorderMiddleCenterPanel}">
+
+                        <Border.Effect>
+
+                            <DropShadowEffect BlurRadius="10"
+                                              Direction="-90"
+                                              Color="#5c5d60"
+                                              ShadowDepth="0"/>
+
+                        </Border.Effect>
+                    
+                        <StackPanel Orientation="Vertical">
+
+                            <StackPanel x:Name="StackPanelForLoginTextBox"
+                                        Orientation="Horizontal"
+                                        Margin="5,5">
+
+                                <fa:IconImage Icon="UserAlt"
+                                              Width="13" Height="13"
+                                              Foreground="{StaticResource secondary_color_04}"
+                                              Panel.ZIndex="1"
+                                              Margin="0,0,-30,0"/>
+
+                                <TextBox x:Name="LoginTextBox"
+                                         Tag="Login"
+                                         Width="270" Height="30"
+                                         Style="{StaticResource LoginTextBox}">
+
+                                    <TextBox.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius"
+                                                Value="5"/>
+                                        </Style>
+                                    </TextBox.Resources>
+                                
+                                </TextBox>
+                            
+                            </StackPanel>
+
+                            <StackPanel x:Name="StackPanelForLoginPasswordBox"
+                                        Orientation="Horizontal"
+                                        Margin="5,5,5,0">
+
+                                <fa:IconImage Icon="Lock"
+                                              Width="13" Height="13"
+                                              Foreground="{StaticResource secondary_color_04}"
+                                              Panel.ZIndex="1"
+                                              Margin="0,0,-30,0"/>
+
+                                <PasswordBox x:Name="LoginPasswordBox"
+                                             Width="270" Height="30"
+                                             Tag="Password"
+                                             Style="{StaticResource LoginPasswordBox}">
+                                
+                                </PasswordBox>
+                            
+                            </StackPanel>
+
+                            <Button Click="SignInButton_Click"
+                                    x:Name="SignInButton"     
+                                    Content="Sign in"
+                                    Style="{StaticResource SignInButton}"
+                                    Width="270" Height="30"
+                                    Margin="0,10,0,5">
+
+                                <Button.Effect>
+
+                                    <DropShadowEffect BlurRadius="10"
+                                                      Direction="-90"
+                                                      Color="#2d8cff"
+                                                      ShadowDepth="0">
+
+                                    </DropShadowEffect>
+
+                                </Button.Effect>
+                                
+                            </Button>
+                        
+                        </StackPanel>
+                    
+                    </Border>
+                
+                </StackPanel>
+            
+            </Border>
+            <!--#endregion-->
+
+            <Border x:Name="ShadowOverlay"
+                    Background="#000"
+                    Opacity="0.2"
+                    CornerRadius="15"
+                    Panel.ZIndex="999"
+                    Visibility="Hidden"
+                    Grid.RowSpan="2"/>
+
+        </Grid>
+        
+
+    </Border>
+    <!--#endregion-->
+    
 </Window>

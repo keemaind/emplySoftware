@@ -27,6 +27,8 @@ namespace emplySoftware.Windows
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
             this.Close();
         }
 

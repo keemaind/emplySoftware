@@ -5,7 +5,8 @@
     <Style x:Key="ErrorLabel" TargetType="Label">
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Foreground" Value="{StaticResource SC04}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
     </Style>
     <!--#endregion-->
     

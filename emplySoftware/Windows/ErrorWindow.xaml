@@ -7,104 +7,136 @@
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
         Title="Something wrong!"
-        Height="auto" Width="500"
+        Height="auto" Width="400"
         SizeToContent="Height"
         WindowStyle="None"
         ResizeMode="NoResize"
-        BorderBrush="{StaticResource SC01}"
-        BorderThickness="1"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource MC01}"
+        Background="Transparent"
         AllowsTransparency="True">
-    
+
+    <Window.Effect>
+
+        <DropShadowEffect BlurRadius="15"
+                          Direction="-90"
+                          Color="#5c5d60"
+                          ShadowDepth="2"/>
+
+    </Window.Effect>
+
     <!--#region ErrorWindow-->
-    <Grid>
-        
-        <!--#region RowDefinitions-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
+    <Border CornerRadius="15"
+            Margin="20"
+            Background="{StaticResource main_color_01}">
+        <Grid>
 
-        <!--#region TopPanel-->
-        <Border x:Name="TopPanelError"
-                Grid.Row="0"
-                Style="{StaticResource BorderTopPanel}">
+            <!--#region RowDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
+            <!--#region TopPanel-->
+            <Border x:Name="top_panel_error"
+                    Grid.Row="0"
+                    CornerRadius="15,15,0,0"
+                    Style="{StaticResource BorderTopPanel}">
 
-                <Label Content="Something wrong!"
-                       Style="{StaticResource ErrorLabel}"
-                       Margin="-390,0,0,0"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left">
 
-                <Button x:Name="LoginMinimizeButton"
-                        Click="LoginMinimizeButton_Click"
-                        Width="50" Height="30"
-                        Style="{StaticResource MinimizeButton}">
+                    <Button x:Name="LoginCloseButton"
+                            Click="LoginCloseButton_Click"
+                            Margin="10,0,7,0"
+                            Width="13" Height="13"
+                            Style="{StaticResource CloseButton}"/>
 
-                    <fa:IconImage Icon="WindowMinimize"
-                                  Height="30" Width="20"
-                                  Foreground="{StaticResource SC04}"/>
-                </Button>
+                    <Button x:Name="LoginMinimizeButton"
+                            Click="LoginMinimizeButton_Click"
+                            Width="13" Height="13"
+                            Style="{StaticResource MinimizeButton}"/>
 
-                <Button x:Name="LoginCloseButton"
-                        Click="LoginCloseButton_Click"
-                        Width="50" Height="30"
-                        Style="{StaticResource CloseButton}"/>
-
-            </StackPanel>
-
-        </Border>
-        <!--#endregion-->
-        
-        <!--#region MiddlePanel-->
-        <Border x:Name="MiddlePanelError"
-                Grid.Row="1"
-                Style="{StaticResource BorderMiddlePanel}">
-
-            <StackPanel Orientation="Vertical"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-
-                <Border x:Name="MiddlePanelCenterBorderError"
-                        Margin="0,20,0,0"
-                        Padding="10"
-                        Style="{StaticResource BorderMiddleCenterPanel}">
-
-                    <StackPanel Orientation="Horizontal">
-
-                        <fa:IconImage Icon="Warning"
-                                      Height="25" Width="25"
-                                      VerticalAlignment="Center"
-                                      Margin="0,0,10,0"
-                                      Foreground="{StaticResource Orange01}"/>
-
-                        <TextBlock x:Name="ErrorTextBlock"
-                                   Style="{StaticResource ErrorTextBlock}"/>
-
-                    </StackPanel>
-
-                </Border>
-
-                <StackPanel>
-
-                    <Button x:Name="OKButton"
-                            Click="OKButton_Click"
-                            Content="OK"
-                            Style="{StaticResource OKErrorButton}"
-                            Width="100" Height="30"
-                            Margin="0,20,0,20"/>
+                    <Label Content="Something wrong!"
+                           Style="{StaticResource ErrorLabel}"
+                           Height="30"
+                           Margin="0,0,0,0"/>
 
                 </StackPanel>
 
-            </StackPanel>
+            </Border>
+            <!--#endregion-->
 
-        </Border>
-        <!--#endregion-->
+            <!--#region MiddlePanel-->
+            <Border x:Name="MiddlePanelError"
+                    Grid.Row="1"
+                    CornerRadius="0,0,15,15"
+                    Style="{StaticResource BorderMiddlePanel}">
 
-    </Grid>
+                <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <Border x:Name="MiddlePanelCenterBorderError"
+                            Margin="20,20,20,0"
+                            Padding="10"
+                            Style="{StaticResource border_error_panel}">
+
+                        <Border.Effect>
+
+                            <DropShadowEffect BlurRadius="2"
+                                              Direction="-90"
+                                              Color="#5c5d60"
+                                              ShadowDepth="0"/>
+
+                        </Border.Effect>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Border Background="{StaticResource accent_color_02}"
+                                    CornerRadius="100"
+                                    Margin="0,0,5,0"
+                                    Height="13" Width="13"/>
+
+                            <TextBlock x:Name="ErrorTextBlock"
+                                       Style="{StaticResource ErrorTextBlock}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <StackPanel>
+
+                        <Button x:Name="OKButton"
+                                Click="OKButton_Click"
+                                Content="OK"
+                                Style="{StaticResource OKErrorButton}"
+                                Width="100" Height="30"
+                                Margin="0,20,0,20">
+
+                            <Button.Effect>
+
+                                <DropShadowEffect BlurRadius="10"
+                                                      Direction="-90"
+                                                      Color="#2d8cff"
+                                                      ShadowDepth="0">
+
+                                </DropShadowEffect>
+
+                            </Button.Effect>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+            <!--#endregion-->
+
+        </Grid>
+
+    </Border>
     <!--#endregion-->
     
 </Window>

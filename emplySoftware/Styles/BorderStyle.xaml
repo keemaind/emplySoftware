@@ -1,24 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!--#region BorderTopPanel-->
+    <!--#region border_top_panel-->
     <Style x:Key="BorderTopPanel" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource MC03}"/>
+        <Setter Property="Background" Value="{StaticResource main_color_01}"/>
     </Style>
     <!--#endregion-->
     
-    <!--#region BorderMiddlePanel-->
+    <!--#region border_middle_panel-->
     <Style x:Key="BorderMiddlePanel" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource MC01}"/>
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
     </Style>
     <!--#endregion-->
 
-    <!--#region BorderMiddleCenterPanel-->
+    <!--#region border_middle_center_panel-->
     <Style x:Key="BorderMiddleCenterPanel" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource MC03}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource SC03}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="CornerRadius" Value="10"/>
+        
     </Style>
     <!--#endregion-->
     
@@ -50,6 +51,13 @@
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="{StaticResource MC04}"/>
         <Setter Property="CornerRadius" Value="100"/>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region border_error_panel-->
+    <Style x:Key="border_error_panel" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource main_color_03}"/>
+        <Setter Property="CornerRadius" Value="15"/>
     </Style>
     <!--#endregion-->
 

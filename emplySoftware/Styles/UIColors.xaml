@@ -35,5 +35,25 @@
     <SolidColorBrush x:Key="Peach03" Color="#FC6341"/>
     <SolidColorBrush x:Key="Peach04" Color="#E37E67"/>
     <!--#endregion-->
+    
+    <!--#region main_colors-->
+    <SolidColorBrush x:Key="main_color_01" Color="#242a2e"/>
+    <SolidColorBrush x:Key="main_color_02" Color="#282e33"/>
+    <SolidColorBrush x:Key="main_color_03" Color="#3a4047"/>
+    <!--#endregion-->
+    
+    <!--#region secondary_colors-->
+    <SolidColorBrush x:Key="secondary_color_01" Color="#3b444d"/>
+    <SolidColorBrush x:Key="secondary_color_02" Color="#5c5d60"/>
+    <SolidColorBrush x:Key="secondary_color_03" Color="#ffffff"/>
+    <SolidColorBrush x:Key="secondary_color_04" Color="#f5f5f5"/>
+    <!--#endregion-->
+    
+    <!--#region accent_colors-->
+    <SolidColorBrush x:Key="accent_color_01" Color="#ff6666"/>
+    <SolidColorBrush x:Key="accent_color_02" Color="#ffc226"/>
+    <SolidColorBrush x:Key="accent_color_03" Color="#55e374"/>
+    <SolidColorBrush x:Key="accent_color_04" Color="#2d8cff"/>
+    <!--#endregion-->
 
 </ResourceDictionary>
