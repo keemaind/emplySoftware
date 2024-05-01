@@ -74,6 +74,7 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Cursor" Value="IBeam"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="10,0,0,0"/>

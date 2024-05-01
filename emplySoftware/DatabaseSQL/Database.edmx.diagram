@@ -13,6 +13,11 @@
         <AssociationConnector Association="emplyDatabaseModel.FK_Messages_chatID" />
         <AssociationConnector Association="emplyDatabaseModel.FK_userID" />
         <AssociationConnector Association="emplyDatabaseModel.FK_chatUser_userID" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.Position" Width="1.5" PointX="0.75" PointY="12" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.Task" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="emplyDatabaseModel.FK_User_Position" />
+        <AssociationConnector Association="emplyDatabaseModel.FK_Task_User" />
+        <AssociationConnector Association="emplyDatabaseModel.FK_User_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

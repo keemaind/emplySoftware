@@ -34,6 +34,27 @@
           <Property Name="Message" Type="ntext" />
           <Property Name="sendDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="int" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="Deadline" Type="date" />
+          <Property Name="Difficulty" Type="float" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="userID" />
@@ -45,6 +66,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="Image" Type="image" />
+          <Property Name="PositionID" Type="int" />
         </EntityType>
         <Association Name="FK_chatID_chatID">
           <End Role="chatList" Type="Self.chatList" Multiplicity="1" />
@@ -82,6 +104,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Task_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User1" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_userID">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
@@ -97,6 +155,8 @@
         <EntityContainer Name="Хранилище emplyDatabaseModelContainer">
           <EntitySet Name="chatList" EntityType="Self.chatList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="chatUsers" EntityType="Self.chatUsers" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -115,6 +175,18 @@
           <AssociationSet Name="FK_Messages_chatID" Association="Self.FK_Messages_chatID">
             <End Role="chatList" EntitySet="chatList" />
             <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="Self.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Position" Association="Self.FK_User_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_userID" Association="Self.FK_userID">
             <End Role="User" EntitySet="User" />
@@ -145,6 +217,20 @@
           <AssociationSet Name="FK_chatUser_userID" Association="emplyDatabaseModel.FK_chatUser_userID">
             <End Role="User" EntitySet="User" />
             <End Role="chatUsers" EntitySet="chatUsers" />
+          </AssociationSet>
+          <EntitySet Name="Position" EntityType="emplyDatabaseModel.Position" />
+          <EntitySet Name="Task" EntityType="emplyDatabaseModel.Task" />
+          <AssociationSet Name="FK_User_Position" Association="emplyDatabaseModel.FK_User_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_User" Association="emplyDatabaseModel.FK_Task_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="emplyDatabaseModel.FK_User_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="chatList">
@@ -184,6 +270,11 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Messages" Relationship="emplyDatabaseModel.FK_userID" FromRole="User" ToRole="Messages" />
           <NavigationProperty Name="chatUsers" Relationship="emplyDatabaseModel.FK_chatUser_userID" FromRole="User" ToRole="chatUsers" />
+          <Property Name="PositionID" Type="Int32" />
+          <NavigationProperty Name="Position" Relationship="emplyDatabaseModel.FK_User_Position" FromRole="User" ToRole="Position" />
+          <NavigationProperty Name="Task" Relationship="emplyDatabaseModel.FK_Task_User" FromRole="User" ToRole="Task" />
+          <NavigationProperty Name="User1" Relationship="emplyDatabaseModel.FK_User_User" FromRole="User" ToRole="User1" />
+          <NavigationProperty Name="User2" Relationship="emplyDatabaseModel.FK_User_User" FromRole="User1" ToRole="User" />
         </EntityType>
         <EntityType Name="chatUsers">
           <Key>
@@ -242,6 +333,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_User_Position" FromRole="Position" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="CreateDate" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Deadline" Type="DateTime" Precision="0" />
+          <Property Name="Difficulty" Type="Double" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_Task_User" FromRole="Task" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_Position">
+          <End Type="emplyDatabaseModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_User">
+          <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="emplyDatabaseModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="emplyDatabaseModel.User" Role="User1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -273,6 +423,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="emplyDatabaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -288,6 +439,29 @@
               <MappingFragment StoreEntitySet="chatUsers">
                 <ScalarProperty Name="userID" ColumnName="userID" />
                 <ScalarProperty Name="chatID" ColumnName="chatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

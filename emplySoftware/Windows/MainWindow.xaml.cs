@@ -14,9 +14,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Navigation;
 using emplySoftware.DatabaseSQL;
 using System.Diagnostics;
 using System.Collections;
+using emplySoftware.Pages;
 
 
 namespace emplySoftware
@@ -36,6 +38,8 @@ namespace emplySoftware
                 ProfileFirstName.Text = user.FirstName;
                 ProfileMiddleName.Text = user.MiddleName;
             }
+
+            main_frame.Navigate(new Dashboard());
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
@@ -152,7 +156,8 @@ namespace emplySoftware
         private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedChat = (UserChats.SelectedItem as chats);
-            ChatPage.NavigationService.Navigate(new ChatPage(selectedChat));}
+            //Chats.NavigationService.Navigate(new Chats(selectedChat));
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

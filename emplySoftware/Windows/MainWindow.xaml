@@ -77,7 +77,7 @@
                     <!--#region RowDefinitions-->
                     <Grid.RowDefinitions>
                         
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition/>
                         
                     </Grid.RowDefinitions>
@@ -378,9 +378,37 @@
                     <!--#endregion-->
 
                     <!--#region ChatPageFrame-->
-                    <Frame x:Name="ChatPage"
+                    <Frame x:Name="main_frame"
                            Grid.Column="1" Grid.Row="1">
                     </Frame>
+                    <!--#endregion-->
+
+                    <!--#region navigation_title-->
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Top"
+                                Margin="10,15"
+                                Grid.Row="0" Grid.Column="1">
+
+                        <Border x:Name="navigation_circle_border"
+                                Style="{StaticResource navigation circle_border}"
+                                Width="13" Height="13">
+
+                            <Border.Effect>
+
+                                <DropShadowEffect BlurRadius="10"
+                                                  Direction="-90"
+                                                  Color="#2d8cff"
+                                                  ShadowDepth="0"/>
+
+                            </Border.Effect>
+                            
+                        </Border>
+
+                        <TextBlock x:Name="navigation_title"
+                                   Style="{StaticResource navigation_title_text_block}"
+                                   Text="{Binding ElementName=main_frame, Path=Content.Title}"/>
+
+                    </StackPanel>
                     <!--#endregion-->
 
                 </Grid>

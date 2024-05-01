@@ -60,5 +60,17 @@
         <Setter Property="CornerRadius" Value="15"/>
     </Style>
     <!--#endregion-->
+    
+    <!--#region navigation_circle_border-->
+    <Style x:Key="navigation circle_border" TargetType="Border">
+
+        <Setter Property="Background" Value="{StaticResource accent_color_04}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="CornerRadius" Value="100"/>
+        <Setter Property="Margin" Value="0,0,5,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>

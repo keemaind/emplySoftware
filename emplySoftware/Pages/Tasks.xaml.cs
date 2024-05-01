@@ -13,15 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace emplySoftware.Windows
+namespace emplySoftware.Pages
 {
-
-    public partial class ChatPage : Page
+    /// <summary>
+    /// Логика взаимодействия для Tasks.xaml
+    /// </summary>
+    public partial class Tasks : Page
     {
-        public ChatPage(Class.chats chats)
+        public Tasks()
         {
             InitializeComponent();
-            name52.Text = chats.Title.ToString();
         }
     }
 }
