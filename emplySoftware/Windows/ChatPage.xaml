@@ -1,0 +1,62 @@
+﻿<Page x:Class="emplySoftware.Windows.ChatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:emplySoftware.Windows"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="850"
+      Title="ChatPage">
+
+    <Grid Background="#242a2e">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+        
+                <StackPanel Orientation="Horizontal"
+                    DockPanel.Dock="Left">
+
+            <Ellipse x:Name="ProfilePhoto"
+                 Width="40" Height="40"
+                 Margin="0,0,10,0">
+
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="ChatImage"
+                            Stretch="UniformToFill"
+                            RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Ellipse.Fill>
+
+            </Ellipse>
+
+            <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Center">
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,2" Width="188">
+
+                    <TextBlock x:Name="ChatName"
+                           Margin="0,0,4,0"
+                           Style="{StaticResource ProfileNamesTextBlock}"
+                           />
+
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+        <TextBox x:Name="MainSearchButton"
+          Grid.Row="2"
+          Tag="Message"
+          Height="30" Width="285"
+          Style="{StaticResource search_text_box}"
+          />
+        <ListView Grid.Row="1" ItemsSource="{Binding MessagesList}">
+            <TextBlock Text="{Binding messageID}"/>
+            <TextBlock Text="{Binding userID}"/>
+            <TextBlock Text="{Binding Message}"/>
+            <TextBlock Text="{Binding sendDate}"/>
+            ></ListView>
+    </Grid>
+</Page>

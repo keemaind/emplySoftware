@@ -151,7 +151,8 @@
                                  Tag="Search..."
                                  Height="30" Width="285"
                                  Margin="0,0,10,0"
-                                 Style="{StaticResource search_text_box}"/>
+                                 Style="{StaticResource search_text_box}"
+                                 TextChanged="MainSearchButton_TextChanged"/>
 
                     </StackPanel>
                     <!--#endregion-->
@@ -379,7 +380,9 @@
 
                     <!--#region ChatPageFrame-->
                     <Frame x:Name="main_frame"
-                           Grid.Column="1" Grid.Row="1">
+                           Grid.Column="1" 
+                           Grid.Row="1"
+                           NavigationUIVisibility="Hidden">
                     </Frame>
                     <!--#endregion-->
 

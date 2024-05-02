@@ -19,6 +19,8 @@ using emplySoftware.DatabaseSQL;
 using System.Diagnostics;
 using System.Collections;
 using emplySoftware.Pages;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 
 namespace emplySoftware
@@ -156,7 +158,7 @@ namespace emplySoftware
         private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedChat = (UserChats.SelectedItem as chats);
-            //Chats.NavigationService.Navigate(new Chats(selectedChat));
+            main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -178,5 +180,25 @@ namespace emplySoftware
         {
             win.Effect = null;
         }
+
+        ObservableCollection<string> items = new ObservableCollection<string>();
+
+        // Создание CollectionViewSource
+
+        private void MainSearchButton_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource viewSource = new CollectionViewSource();
+            viewSource.Source = items;
+
+            // Привязка ListView к CollectionViewSource
+            UserChats.ItemsSource = viewSource.View;
+            viewSource.View.Filter = obj => 
+                {
+                    string item = obj as string;
+                    if (item == null) return false;
+                    return item.Contains(MainSearchButton.Text);
+                };
+            }
+        }
+
     }
-}
