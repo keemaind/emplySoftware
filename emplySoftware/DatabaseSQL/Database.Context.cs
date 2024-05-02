@@ -27,9 +27,9 @@ namespace emplySoftware.DatabaseSQL
     
         public virtual DbSet<chatList> chatList { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<chatUsers> chatUsers { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Task> Task { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<chatUsers> chatUsers { get; set; }
     }
 }
