@@ -42,6 +42,7 @@
                            Style="{StaticResource ProfileNamesTextBlock}"
                            />
 
+                    
                 </StackPanel>
 
             </StackPanel>
