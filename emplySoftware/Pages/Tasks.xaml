@@ -10,8 +10,19 @@
       Title="Tasks">
 
     <!--#region tasks-->
-    <Grid>
+    <Grid Margin="20">
         
+        <!--#region ColumnDefinitions-->
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+        
+        
+
     </Grid>
     <!--#endregion-->
 </Page>
