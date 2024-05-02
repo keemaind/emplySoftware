@@ -28,7 +28,7 @@
           <Key>
             <PropertyRef Name="messageID" />
           </Key>
-          <Property Name="messageID" Type="int" Nullable="false" />
+          <Property Name="messageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="chatID" Type="int" />
           <Property Name="userID" Type="int" />
           <Property Name="Message" Type="ntext" />
@@ -229,7 +229,7 @@
           <Key>
             <PropertyRef Name="messageID" />
           </Key>
-          <Property Name="messageID" Type="Int32" Nullable="false" />
+          <Property Name="messageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="chatID" Type="Int32" />
           <Property Name="userID" Type="Int32" />
           <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

@@ -14,6 +14,7 @@ namespace emplySoftware.Class
         public int userID { get; set; }
         public string Message { get; set; }
         public System.DateTime sendDate { get; set; }
+        public byte[] imageUser { get; set; }
 
     }
 }

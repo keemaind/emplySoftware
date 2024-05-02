@@ -11,53 +11,30 @@
     <Grid Background="#242a2e">
                 <Grid.RowDefinitions>
 
-                    <RowDefinition Height="100"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-        
-                <StackPanel Orientation="Horizontal"
-                    DockPanel.Dock="Left">
 
-            <Ellipse x:Name="ProfilePhoto"
-                 Width="40" Height="40"
-                 Margin="0,0,10,0">
 
-                <Ellipse.Fill>
-                    <ImageBrush x:Name="ChatImage"
-                            Stretch="UniformToFill"
-                            RenderOptions.BitmapScalingMode="HighQuality"/>
-                </Ellipse.Fill>
-
-            </Ellipse>
-
-            <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Center">
-
-                <StackPanel Orientation="Horizontal"
-                            Margin="0,0,0,2" Width="188">
-
-                    <TextBlock x:Name="ChatName"
-                           Margin="0,0,4,0"
-                           Style="{StaticResource ProfileNamesTextBlock}"
-                           />
-
-                    
-                </StackPanel>
-
-            </StackPanel>
-        </StackPanel>
-        <TextBox x:Name="MainSearchButton"
-          Grid.Row="2"
-          Tag="Message"
-          Height="30" Width="285"
-          Style="{StaticResource search_text_box}"
+        <ListView x:Name="MessagesListView"
+                  Background="Transparent"
+          ItemContainerStyle="{StaticResource MessagesListViewItem}"
+          Grid.Row="0"
+          BorderThickness="0"
           />
-        <ListView Grid.Row="1" ItemsSource="{Binding MessagesList}">
-            <TextBlock Text="{Binding messageID}"/>
-            <TextBlock Text="{Binding userID}"/>
-            <TextBlock Text="{Binding Message}"/>
-            <TextBlock Text="{Binding sendDate}"/>
-            ></ListView>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            
+            <TextBox x:Name="MsgTextBlock"
+                  
+                  Tag="Message"
+                  Height="30" Width="800"
+                  Style="{StaticResource search_text_box}"/>
+            <Button x:Name="sendMessage" Background="LightGreen"
+                    Width="40" 
+                    Height="40"
+                    Margin="3,3,3,3"
+                    Click="sendMessage_Click"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

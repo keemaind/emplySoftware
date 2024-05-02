@@ -6,11 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="f5a7fe9a13624c7fae5aaef7fc0c696f" Name="Diagram1">
         <EntityTypeShape EntityType="emplyDatabaseModel.chatList" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="emplyDatabaseModel.Messages" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.Messages" Width="1.5" PointX="5.25" PointY="4.75" />
         <EntityTypeShape EntityType="emplyDatabaseModel.Position" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="emplyDatabaseModel.Task" Width="1.5" PointX="5.25" PointY="10.25" />
         <EntityTypeShape EntityType="emplyDatabaseModel.User" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="emplyDatabaseModel.chatUsers" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.chatUsers" Width="1.5" PointX="5.25" PointY="2" />
         <AssociationConnector Association="emplyDatabaseModel.FK_chatID_chatID" />
         <AssociationConnector Association="emplyDatabaseModel.FK_Messages_chatID" />
         <AssociationConnector Association="emplyDatabaseModel.FK_userID" />
