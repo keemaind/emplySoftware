@@ -105,16 +105,13 @@
     <Compile Include="DatabaseSQL\User.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Chats.xaml.cs">
-      <DependentUpon>Chats.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ChatPage.xaml.cs">
+    <Compile Include="Pages\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ErrorWindow.xaml.cs">
@@ -126,10 +123,6 @@
     <Compile Include="Windows\UserSettingsWindow.xaml.cs">
       <DependentUpon>UserSettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\Chats.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ChatPage.xaml">
+    <Page Include="Pages\ChatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
