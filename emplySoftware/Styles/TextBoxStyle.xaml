@@ -208,4 +208,83 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region search_task_text_box-->
+    <Style x:Key="search_task_text_box" TargetType="TextBox">
+
+        <Setter Property="Background" Value="{StaticResource secondary_color_01}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="30,0,0,0"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+
+                <ControlTemplate TargetType="TextBox">
+
+                    <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
+
+                        <Grid Margin="{TemplateBinding Margin}">
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label x:Name="Watermark" 
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Visibility="Collapsed"
+                                   Margin="30,0"
+                                   Content="{TemplateBinding Tag}"
+                                   Foreground="{StaticResource secondary_color_05}"/>
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <MultiTrigger>
+
+                            <MultiTrigger.Conditions>
+
+                                <Condition Property="Text" Value=""/>
+
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="Visibility"
+                                    TargetName="Watermark"
+                                    Value="Visible"/>
+
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Style.Resources>
+
+            <Style TargetType="Border">
+
+                <Setter Property="CornerRadius" Value="15"/>
+
+            </Style>
+
+        </Style.Resources>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
