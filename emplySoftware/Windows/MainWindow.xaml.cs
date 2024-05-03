@@ -199,6 +199,11 @@ namespace emplySoftware
                     return item.Contains(MainSearchButton.Text);
                 };
             }
+
+        private void ButtonTasks_Click(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new Tasks());
         }
+    }
 
     }

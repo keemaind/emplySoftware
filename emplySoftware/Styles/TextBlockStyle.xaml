@@ -84,5 +84,17 @@
 
     </Style>
     <!--#endregion-->
-    
+
+    <!--#region task_quantity_text_block-->
+    <Style x:Key="task_quantity_text_block" TargetType="TextBlock">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_06}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>

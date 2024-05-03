@@ -274,7 +274,8 @@
                             </RadioButton>
 
                             <RadioButton x:Name="ButtonTasks"
-                                         Style="{StaticResource MenuBarRadioButton}">
+                                         Style="{StaticResource MenuBarRadioButton}"
+                                         Click="ButtonTasks_Click">
 
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Left">
