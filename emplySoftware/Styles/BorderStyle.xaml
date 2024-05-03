@@ -16,7 +16,7 @@
     <!--#region border_middle_center_panel-->
     <Style x:Key="BorderMiddleCenterPanel" TargetType="Border">
 
-        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        <Setter Property="Background" Value="{StaticResource main_color_03}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="CornerRadius" Value="10"/>
         

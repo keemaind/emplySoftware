@@ -43,26 +43,28 @@
                     CornerRadius="15,15,0,0"
                     Style="{StaticResource BorderTopPanel}">
 
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left">
+                <DockPanel>
 
-                    <Button x:Name="LoginCloseButton"
-                            Click="LoginCloseButton_Click"
-                            Margin="10,0,7,0"
-                            Width="13" Height="13"
-                            Style="{StaticResource CloseButton}"/>
+                    <Label Content="Ошибка!"
+                           Margin="5,0,0,0"
+                           Style="{StaticResource ErrorLabel}"/>
 
-                    <Button x:Name="LoginMinimizeButton"
-                            Click="LoginMinimizeButton_Click"
-                            Width="13" Height="13"
-                            Style="{StaticResource MinimizeButton}"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
 
-                    <Label Content="Something wrong!"
-                           Style="{StaticResource ErrorLabel}"
-                           Height="30"
-                           Margin="0,0,0,0"/>
+                        <Button x:Name="LoginMinimizeButton"
+                                Click="LoginMinimizeButton_Click"
+                                Width="40" Height="30"
+                                Style="{StaticResource MinimizeButton}"/>
 
-                </StackPanel>
+                        <Button x:Name="LoginCloseButton"
+                                Click="LoginCloseButton_Click"
+                                Width="40" Height="30"
+                                Style="{StaticResource CloseButton}"/>
+
+                    </StackPanel>
+
+                </DockPanel>
 
             </Border>
             <!--#endregion-->
@@ -93,8 +95,8 @@
 
                         <StackPanel Orientation="Horizontal">
 
-                            <Border Background="{StaticResource accent_color_02}"
-                                    CornerRadius="100"
+                            <Border Background="{StaticResource accent_color_01}"
+                                    CornerRadius="15"
                                     Margin="0,0,5,0"
                                     Height="13" Width="13"/>
 
@@ -110,7 +112,7 @@
                         <Button x:Name="OKButton"
                                 Click="OKButton_Click"
                                 Content="OK"
-                                Style="{StaticResource OKErrorButton}"
+                                Style="{StaticResource SignInButton}"
                                 Width="100" Height="30"
                                 Margin="0,20,0,20">
 
@@ -118,7 +120,7 @@
 
                                 <DropShadowEffect BlurRadius="10"
                                                       Direction="-90"
-                                                      Color="#2d8cff"
+                                                      Color="#41a1e5"
                                                       ShadowDepth="0">
 
                                 </DropShadowEffect>

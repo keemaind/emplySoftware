@@ -44,18 +44,12 @@
                     Style="{StaticResource BorderTopPanel}">
 
                 <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Left">
+                            HorizontalAlignment="Right">
 
                     <Button x:Name="LoginCloseButton"
                             Click="LoginCloseButton_Click"
-                            Margin="10,0,0,0"
-                            Width="13" Height="13"
+                            Width="30" Height="30"
                             Style="{StaticResource CloseButton}"/>
-
-                    <Label Content="Profile settings"
-                           Style="{StaticResource ErrorLabel}"
-                           Height="30"
-                           Margin="0,2,0,0"/>
 
                 </StackPanel>
 
@@ -250,7 +244,7 @@
 
                                 <DropShadowEffect BlurRadius="10"
                                                       Direction="-90"
-                                                      Color="#2d8cff"
+                                                      Color="#8171fe"
                                                       ShadowDepth="0">
 
                                 </DropShadowEffect>

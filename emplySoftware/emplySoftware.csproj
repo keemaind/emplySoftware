@@ -211,6 +211,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Icons\1e_.png" />
+    <Resource Include="Icons\2e_.png" />
+    <Resource Include="Icons\dfff-1.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -250,10 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\B02.png" />
-    <Resource Include="Icons\W02.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\font-awesome.css" />
