@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace emplySoftware.Class
 {
-    public class MessagesList : Messages
+    public class MessagesList
     {
         public int messageID { get; set; }
         public int chatID { get; set; }
         public int userID { get; set; }
         public string Message { get; set; }
-        public System.DateTime sendDate { get; set; }
+        public DateTime sendDate { get; set; }
         public byte[] imageUser { get; set; }
 
     }

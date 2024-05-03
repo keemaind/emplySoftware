@@ -24,13 +24,13 @@ namespace emplySoftware.Windows
     /// </summary>
     public partial class ChatPage : Page
     {
-        List<MessagesList> messagesList = new List<MessagesList>();
         public int thisChatID;
         public ChatPage(chats selectedChat)
         {
             InitializeComponent();
             thisChatID = selectedChat.ChatID;
-            Refresh();
+            ChatPageModel model = new ChatPageModel(thisChatID);
+            DataContext = model;
         }
 
         private void sendMessage_Click(object sender, RoutedEventArgs e)
@@ -50,7 +50,8 @@ namespace emplySoftware.Windows
                 App.ContextDatabase.Messages.Add(Messages);
                 App.ContextDatabase.SaveChanges();
                 MsgTextBlock.Text = "";
-                Refresh();
+                ChatPageModel model = new ChatPageModel(thisChatID);
+                DataContext = model;
 
             }
             else
@@ -61,22 +62,5 @@ namespace emplySoftware.Windows
             }
             
        }
-        private void Refresh()
-        {
-            messagesList.Clear();
-            var Messages = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
-            foreach (var message in Messages)
-            {
-                messagesList.Add(new MessagesList
-                {
-                    messageID = message.messageID,
-                    userID = (int)message.userID,
-                    Message = message.Message,
-                    sendDate = (DateTime)message.sendDate,
-                    imageUser = App.ContextDatabase.User.FirstOrDefault(p => p.userID == message.userID).Image
-                });
-            }
-            MessagesListView.ItemsSource = messagesList;
-        }
     }
 }

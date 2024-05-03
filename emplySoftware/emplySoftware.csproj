@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class\ChatPageModel.cs" />
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />
     <Compile Include="Class\GetCurrent.cs" />

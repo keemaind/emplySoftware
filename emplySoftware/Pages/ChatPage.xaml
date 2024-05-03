@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
 
 
-        <ListView x:Name="MessagesListView"
+        <ListView x:Name="MessagesListView" ItemsSource="{Binding MessagesH}"
                   Background="Transparent"
           ItemContainerStyle="{StaticResource MessagesListViewItem}"
           Grid.Row="0"
