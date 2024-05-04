@@ -37,16 +37,16 @@
     <!--#endregion-->
     
     <!--#region main_colors-->
-    <SolidColorBrush x:Key="main_color_01" Color="#18171d"/>
-    <SolidColorBrush x:Key="main_color_02" Color="#1c1c24"/>
-    <SolidColorBrush x:Key="main_color_03" Color="#24242d"/>
+    <SolidColorBrush x:Key="main_color_01" Color="#ffffff"/>
+    <SolidColorBrush x:Key="main_color_02" Color="#f6f6f6"/>
+    <SolidColorBrush x:Key="main_color_03" Color="#c6c6c6"/>
     <!--#endregion-->
     
     <!--#region secondary_colors-->
-    <SolidColorBrush x:Key="secondary_color_01" Color="#3b444d"/>
-    <SolidColorBrush x:Key="secondary_color_02" Color="#5c5d60"/>
-    <SolidColorBrush x:Key="secondary_color_03" Color="#ffffff"/>
-    <SolidColorBrush x:Key="secondary_color_04" Color="#f5f5f5"/>
+    <SolidColorBrush x:Key="secondary_color_01" Color="#474747"/>
+    <SolidColorBrush x:Key="secondary_color_02" Color="#7f7f7f"/>
+    <SolidColorBrush x:Key="secondary_color_03" Color="#a9a9a9"/>
+    <SolidColorBrush x:Key="secondary_color_04" Color="#a9a9a9"/>
     <SolidColorBrush x:Key="secondary_color_05" Color="#4a4e51"/>
     <SolidColorBrush x:Key="secondary_color_06" Color="#dbdbdb"/>
     <!--#endregion-->

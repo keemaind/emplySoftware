@@ -41,15 +41,12 @@ namespace emplySoftware
                 ProfileMiddleName.Text = user.MiddleName;
             }
 
-            main_frame.Navigate(new Dashboard());
+            main_frame.Navigate(new MainPage());
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            BorderMenuBar.Visibility = Visibility.Visible;
-            ShadowOverlay.Visibility = Visibility.Visible;
-            MainMenuButton.Visibility = Visibility.Collapsed;
-            MainSearchButton.Visibility = Visibility.Collapsed;
+
         }
         List<chats> userChats = new List<chats>();
         
@@ -132,10 +129,6 @@ namespace emplySoftware
 
         private void CloseMenuBar_Click(object sender, RoutedEventArgs e)
         {
-            BorderMenuBar.Visibility = Visibility.Collapsed;
-            ShadowOverlay.Visibility = Visibility.Collapsed;
-            MainMenuButton.Visibility = Visibility.Visible;
-            MainSearchButton.Visibility = Visibility.Visible;
 
         }
 
@@ -185,20 +178,20 @@ namespace emplySoftware
 
         // Создание CollectionViewSource
 
-        private void MainSearchButton_TextChanged(object sender, TextChangedEventArgs e)
+        private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource viewSource = new CollectionViewSource();
             viewSource.Source = items;
 
             // Привязка ListView к CollectionViewSource
             UserChats.ItemsSource = viewSource.View;
-            viewSource.View.Filter = obj => 
+            viewSource.View.Filter = obj =>
                 {
                     string item = obj as string;
                     if (item == null) return false;
-                    return item.Contains(MainSearchButton.Text);
+                    return item.Contains(search_text_box.Text);
                 };
-            }
+        }
 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {

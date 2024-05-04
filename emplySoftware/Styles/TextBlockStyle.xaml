@@ -3,7 +3,7 @@
     
     <!--#region EmplyTextBlock-->
     <Style x:Key="EmplyTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_03}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regualr"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -12,7 +12,7 @@
     
     <!--#region SoftwareTextBlock-->
     <Style x:Key="SoftwareTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_03}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -24,13 +24,12 @@
         <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
     <!--#endregion-->
     
     <!--#region ErrorTextBlock-->
     <Style x:Key="ErrorTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -50,7 +49,7 @@
     
     <!--#region ProfileNamesTextBlock-->
     <Style x:Key="ProfileNamesTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_04}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -58,7 +57,7 @@
     
     <!--#region ProfileJobTextBlock-->
     <Style x:Key="ProfileJobTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_06}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextWrapping" Value="Wrap"/>

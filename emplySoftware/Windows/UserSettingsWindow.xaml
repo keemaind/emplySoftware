@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
         Title="User settings"
-        Height="640" Width="400"
+        Height="560" Width="400"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
 
         <DropShadowEffect BlurRadius="15"
                           Direction="-90"
-                          Color="#5c5d60"
+                          Color="#7f7f7f"
                           ShadowDepth="2"/>
 
     </Window.Effect>
@@ -43,219 +43,146 @@
                     CornerRadius="15,15,0,0"
                     Style="{StaticResource BorderTopPanel}">
 
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right">
+                <DockPanel>
 
-                    <Button x:Name="LoginCloseButton"
-                            Click="LoginCloseButton_Click"
-                            Width="30" Height="30"
-                            Style="{StaticResource CloseButton}"/>
+                    <Label Content="Настройка профиля"
+                           Margin="5,0,0,0"
+                           Style="{StaticResource ErrorLabel}"/>
 
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+
+                        <Button x:Name="LoginCloseButton"
+                                Click="LoginCloseButton_Click"
+                                Width="30" Height="30"
+                                Style="{StaticResource CloseButton}"/>
+
+                    </StackPanel>
+
+                </DockPanel>
 
             </Border>
 
             <Border x:Name="middle_panel_user_settings"
                     CornerRadius="0,0,15,15"
-                    Padding="20"
+                    Padding="5"
                     Style="{StaticResource BorderMiddlePanel}"
                     Grid.Row="1">
 
-                <Border x:Name="MiddlePanelCenterBorderLogin"
-                        Padding="10"
-                        Style="{StaticResource BorderMiddleCenterPanel}"
-                        Width="300">
+                <StackPanel>
 
-                    <Border.Effect>
+                    <Button Style="{StaticResource profile_picture_button}"
+                            Padding="-20"
+                            Margin="15"
+                            Width="120" Height="120"
+                            x:Name="BtnSelectImage"
+                            Click="BtnSelectImage_Click">
 
-                        <DropShadowEffect BlurRadius="10"
+                        <Button.Effect>
+
+                            <DropShadowEffect BlurRadius="10"
                                               Direction="-90"
-                                              Color="#5c5d60"
+                                              Color="#f6f6f6"
                                               ShadowDepth="0"/>
 
-                    </Border.Effect>
+                        </Button.Effect>
 
-                    <StackPanel HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
+                        <Button.Content>
 
-                        <Button Style="{StaticResource ProfilePictureButton}"
-                                Padding="-20"
-                                Width="120"
-                                Height="120"
-                                x:Name="BtnSelectImage"
-                                Click="BtnSelectImage_Click">
-
-                            <Button.Effect>
-
-                                <DropShadowEffect BlurRadius="50"
-                                              Direction="0"
-                                              Color="#5c5d60"
-                                              ShadowDepth="0"/>
-
-                            </Button.Effect>
-
-                            <Button.Content>
-
-                                <Ellipse x:Name="ProfilePhoto"
+                            <Ellipse x:Name="ProfilePhoto"
                                          Height="120"
                                          Width="120"
                                          SnapsToDevicePixels="False">
 
-                                    <Ellipse.Fill>
+                                <Ellipse.Fill>
 
-                                        <ImageBrush x:Name="ImageUser"
-                                                    ImageSource="{Binding Image}"
-                                                    RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    <ImageBrush x:Name="ImageUser"
+                                                ImageSource="{Binding Image}"
+                                                RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                                    </Ellipse.Fill>
+                                </Ellipse.Fill>
 
-                                </Ellipse>
+                            </Ellipse>
 
-                            </Button.Content>
+                        </Button.Content>
 
-                        </Button>
+                    </Button>
 
-                        <StackPanel x:Name="StackPanelUserLogin"
-                                    Margin="5,0">
+                    <Border x:Name="MiddlePanelCenterBorderLogin"
+                        Style="{StaticResource BorderMiddleCenterPanel}"
+                        Width="300">
 
-                            <TextBlock Text="Login"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
+                        <Border.Effect>
 
-                            <TextBox x:Name="UserLoginTextBox"
-                                     Height="30" Width="200"
-                                     Margin="0,0,0,5"
-                                     Style="{StaticResource edit_profile_text_box}">
+                            <DropShadowEffect BlurRadius="10"
+                                              Direction="-90"
+                                              Color="#f6f6f6"
+                                              ShadowDepth="0"/>
 
-                                <TextBox.Resources>
+                        </Border.Effect>
 
-                                    <Style TargetType="{x:Type Border}">
+                        <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
 
-                                        <Setter Property="CornerRadius" Value="5"/>
+                            <StackPanel x:Name="StackPanelUserLogin">
 
-                                    </Style>
+                                <TextBox x:Name="UserLoginTextBox"
+                                         Tag="Логин"
+                                         Height="50" Width="300"
+                                         Style="{StaticResource edit_profile_text_box_01}">
 
-                                </TextBox.Resources>
+                                </TextBox>
 
-                            </TextBox>
+                            </StackPanel>
 
-                        </StackPanel>
+                            <StackPanel x:Name="StackPanelUserMiddleName">
 
-                        <StackPanel x:Name="StackPanelUserMiddleName"
-                                    Margin="5,0">
+                                <TextBox x:Name="UserMiddleNameTextBox"
+                                         Height="50" Width="300"
+                                         Tag="Фамилия"
+                                         Style="{StaticResource edit_profile_text_box_02}"/>
 
-                            <TextBlock Text="Middle name"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
+                            </StackPanel>
 
-                            <TextBox x:Name="UserMiddleNameTextBox"
-                                     Height="30" Width="200"
-                                     Margin="0,0,0,5"
-                                     Style="{StaticResource edit_profile_text_box}">
+                            <StackPanel x:Name="StackPanelUserFirstName">
 
-                                <TextBox.Resources>
+                                <TextBox x:Name="UserFirstNameTextBox"
+                                         Height="50" Width="300"
+                                         Tag="Имя"
+                                         Style="{StaticResource edit_profile_text_box_02}"/>
 
-                                    <Style TargetType="{x:Type Border}">
+                            </StackPanel>
 
-                                        <Setter Property="CornerRadius" Value="5"/>
+                            <StackPanel x:Name="StackPanelUserLastName">
 
-                                    </Style>
+                                <TextBox x:Name="UserLastNameTextBox"
+                                         Height="50" Width="300"
+                                         Tag="Отчество"
+                                         Style="{StaticResource edit_profile_text_box_02}"/>
 
-                                </TextBox.Resources>
+                            </StackPanel>
 
-                            </TextBox>
+                            <StackPanel x:Name="StackPanelUserPassword">
 
-                        </StackPanel>
+                                <PasswordBox x:Name="UserPasswordTextBox"
+                                             Height="50" Width="300"
+                                             Style="{StaticResource edit_profile_password_box}"/>
 
-                        <StackPanel x:Name="StackPanelUserFirstName"
-                                    Margin="5,0">
-
-                            <TextBlock Text="First name"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
-
-                            <TextBox x:Name="UserFirstNameTextBox"
-                                     Height="30" Width="200"
-                                     Margin="0,0,0,5"
-                                     Style="{StaticResource edit_profile_text_box}">
-
-                                <TextBox.Resources>
-
-                                    <Style TargetType="{x:Type Border}">
-
-                                        <Setter Property="CornerRadius" Value="5"/>
-
-                                    </Style>
-
-                                </TextBox.Resources>
-
-                            </TextBox>
+                            </StackPanel>
 
                         </StackPanel>
 
-                        <StackPanel x:Name="StackPanelUserLastName"
-                                    Margin="5,0">
+                    </Border>
 
-                            <TextBlock Text="Last name"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
+                    <Button Height="40" Width="200"
+                            Margin="15"
+                            Style="{StaticResource save_button}"
+                            x:Name="BtnSave"
+                            Click="BtnSave_Click">
 
-                            <TextBox x:Name="UserLastNameTextBox"
-                                     Height="30" Width="200"
-                                     Margin="0,0,0,5"
-                                     Style="{StaticResource edit_profile_text_box}">
+                    </Button>
 
-                                <TextBox.Resources>
-
-                                    <Style TargetType="{x:Type Border}">
-
-                                        <Setter Property="CornerRadius" Value="5"/>
-
-                                    </Style>
-
-                                </TextBox.Resources>
-
-                            </TextBox>
-
-                        </StackPanel>
-
-                        <StackPanel x:Name="StackPanelUserPassword"
-                                    Margin="5,0">
-
-                            <TextBlock Text="Password"
-                                       Style="{StaticResource LoginTextBlock}"
-                                       Margin="0,5"/>
-
-                            <PasswordBox x:Name="UserPasswordTextBox"
-                                     Height="30" Width="200"
-                                     Margin="0,0,0,15"
-                                     Style="{StaticResource edit_profile_password_box}"/>
-
-                        </StackPanel>
-
-                        <Button Height="30" Width="200"
-                                Margin="5"
-                                Style="{StaticResource SignInButton}"
-                                x:Name="BtnSave"
-                                Click="BtnSave_Click" 
-                                Content="Save">
-
-                            <Button.Effect>
-
-                                <DropShadowEffect BlurRadius="10"
-                                                      Direction="-90"
-                                                      Color="#8171fe"
-                                                      ShadowDepth="0">
-
-                                </DropShadowEffect>
-
-                            </Button.Effect>
-
-                        </Button>
-
-                    </StackPanel>
-
-                </Border>
+                </StackPanel>
 
             </Border>
 

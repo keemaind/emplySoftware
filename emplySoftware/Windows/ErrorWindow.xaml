@@ -19,7 +19,7 @@
 
         <DropShadowEffect BlurRadius="15"
                           Direction="-90"
-                          Color="#5c5d60"
+                          Color="#7f7f7f"
                           ShadowDepth="2"/>
 
     </Window.Effect>
@@ -88,7 +88,7 @@
 
                             <DropShadowEffect BlurRadius="2"
                                               Direction="-90"
-                                              Color="#5c5d60"
+                                              Color="#f6f6f6"
                                               ShadowDepth="0"/>
 
                         </Border.Effect>
@@ -112,20 +112,9 @@
                         <Button x:Name="OKButton"
                                 Click="OKButton_Click"
                                 Content="OK"
-                                Style="{StaticResource SignInButton}"
-                                Width="100" Height="30"
+                                Style="{StaticResource ok_error_button}"
+                                Width="100" Height="40"
                                 Margin="0,20,0,20">
-
-                            <Button.Effect>
-
-                                <DropShadowEffect BlurRadius="10"
-                                                      Direction="-90"
-                                                      Color="#41a1e5"
-                                                      ShadowDepth="0">
-
-                                </DropShadowEffect>
-
-                            </Button.Effect>
 
                         </Button>
 

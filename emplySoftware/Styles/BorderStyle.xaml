@@ -16,9 +16,9 @@
     <!--#region border_middle_center_panel-->
     <Style x:Key="BorderMiddleCenterPanel" TargetType="Border">
 
-        <Setter Property="Background" Value="{StaticResource main_color_03}"/>
+        <Setter Property="Background" Value="{StaticResource main_color_01}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="CornerRadius" Value="30"/>
         
     </Style>
     <!--#endregion-->
@@ -56,7 +56,7 @@
 
     <!--#region border_error_panel-->
     <Style x:Key="border_error_panel" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource main_color_03}"/>
+        <Setter Property="Background" Value="{StaticResource main_color_01}"/>
         <Setter Property="CornerRadius" Value="15"/>
     </Style>
     <!--#endregion-->
@@ -70,6 +70,33 @@
         <Setter Property="Margin" Value="0,0,5,0"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
 
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region sidebar_menu_border-->
+    <Style x:Key="sidebar_menu_border" TargetType="Border">
+
+        <Setter Property="Background" Value="{StaticResource main_color_01}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="CornerRadius" Value="15,0,0,15"/>
+
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region contacts_list_border-->
+    <Style x:Key="contacts_list_border" TargetType="Border">
+
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region border_main_page-->
+    <Style x:Key="border_main_page" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        <Setter Property="CornerRadius" Value="15"/>
     </Style>
     <!--#endregion-->
 

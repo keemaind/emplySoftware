@@ -4,7 +4,7 @@
     <!--#region ContactsListViewItem-->
     <Style x:Key="ContactsListViewItem" TargetType="ListViewItem">
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
@@ -39,9 +39,11 @@
 
                                 <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
                                             Text="{Binding Title}"
+                                            x:Name="name_chat"
                                             Margin="0,0,0,2"/>
 
                                 <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
+                                            x:Name="text_chat"
                                             Text="This is just simple text for testing, don't worry."/>
 
                             </StackPanel>
@@ -50,7 +52,7 @@
 
                         <Border.Background>
 
-                            <SolidColorBrush Color="#282e33" x:Name="BorderBackground"/>
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
 
                         </Border.Background>
 
@@ -65,8 +67,8 @@
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#282e33"
-                                                    To="#242a2e"
+                                                    From="#ffffff"
+                                                    To="#ececec"
                                                     Duration="0:0:0:0.2"/>
                                     
                                 </Storyboard>
@@ -83,8 +85,8 @@
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#242a2e"
-                                                    To="#282e33"
+                                                    From="#ececec"
+                                                    To="#ffffff"
                                                     Duration="0:0:0:0.2"/>
                                     
                                 </Storyboard>
@@ -95,7 +97,24 @@
 
                         <Trigger Property="IsSelected" Value="True">
 
-                            <Setter Property="Background" Value="#1c2124" TargetName="border"/>
+                            <Setter Property="Background" TargetName="border">
+
+                                <Setter.Value>
+
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                        <GradientStop Color="#41a1e5" Offset="0"/>
+                                        <GradientStop Color="#4db1bd" Offset="1"/>
+
+                                    </LinearGradientBrush>
+
+                                </Setter.Value>
+                                
+                            </Setter>
+
+                            <Setter Property="Foreground" TargetName="name_chat" Value="#ffffff"/>
+
+                            <Setter Property="Foreground" TargetName="text_chat" Value="#ffffff"/>
 
                         </Trigger>
 

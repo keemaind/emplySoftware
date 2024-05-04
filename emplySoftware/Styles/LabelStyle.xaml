@@ -3,11 +3,20 @@
     
     <!--#region ErrorLabel-->
     <Style x:Key="ErrorLabel" TargetType="Label">
-        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_06}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_02}"/>
     </Style>
     <!--#endregion-->
-    
+
+    <!--#region contacts_label-->
+    <Style x:Key="contacts_label" TargetType="Label">
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_03}"/>
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
