@@ -145,6 +145,7 @@
                                      Margin="0,50,0,0"/>
 
                         <RadioButton x:Name="ButtonTasks"
+                                     Click="ButtonTasks_Click"
                                      Style="{StaticResource tasks_radio_button}"
                                      Height="30" Width="30"
                                      HorizontalContentAlignment="Center"
@@ -241,7 +242,7 @@
 
             </Border>
 
-            <!--#region ChatPageFrame-->
+            <!--#region main_frame-->
             <Frame x:Name="main_frame"
                    Content="{Binding CurrentPage}"
                    Grid.Column="2" 

@@ -4,7 +4,7 @@
     <!--#region EmplyTextBlock-->
     <Style x:Key="EmplyTextBlock" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
-        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regualr"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Light"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
