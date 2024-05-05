@@ -27,7 +27,7 @@
             <TextBox x:Name="MsgTextBlock"
                   
                   Tag="Message"
-                  Height="30" Width="800"
+                  Height="30" Width="546"
                   Style="{StaticResource search_text_box}"/>
             <Button x:Name="sendMessage" Background="LightGreen"
                     Width="40" 

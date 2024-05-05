@@ -26,7 +26,6 @@ namespace emplySoftware.Class
 
         private ObservableCollection<Messages> messages = null;
 
-
         public ObservableCollection<Messages> MessagesH
         {
             get
@@ -56,8 +55,5 @@ namespace emplySoftware.Class
                 });
             }
         }
-
-
-
     }
 }

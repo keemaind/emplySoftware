@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace emplySoftware.Windows
 {
@@ -25,14 +26,26 @@ namespace emplySoftware.Windows
     public partial class ChatPage : Page
     {
         public int thisChatID;
+        //private DispatcherTimer timer;
         public ChatPage(chats selectedChat)
         {
             InitializeComponent();
             thisChatID = selectedChat.ChatID;
+            //timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(2);
+            //timer.Tick += Timer_Tick;
+            //timer.Start();
+            RefreshData();
+        }
+        //private void Timer_Tick(object sender, EventArgs e)
+        //{
+        //    RefreshData();
+        //}
+        private void RefreshData()
+        {
             ChatPageModel model = new ChatPageModel(thisChatID);
             DataContext = model;
         }
-
         private void sendMessage_Click(object sender, RoutedEventArgs e)
         {
             string msg = MsgTextBlock.Text.ToString();
@@ -40,7 +53,7 @@ namespace emplySoftware.Windows
             
             if (msg != null)
             {
-                var Messages = new DatabaseSQL.Messages
+                var Messages = new Messages
                 {
                     chatID = thisChatID,
                     userID = us.userID,
@@ -50,8 +63,7 @@ namespace emplySoftware.Windows
                 App.ContextDatabase.Messages.Add(Messages);
                 App.ContextDatabase.SaveChanges();
                 MsgTextBlock.Text = "";
-                ChatPageModel model = new ChatPageModel(thisChatID);
-                DataContext = model;
+                RefreshData();
 
             }
             else

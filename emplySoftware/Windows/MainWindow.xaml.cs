@@ -28,7 +28,8 @@ namespace emplySoftware
 
     public partial class MainWindow : Window
     {
-        
+        private Page chatPage;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace emplySoftware
         }
         List<chats> userChats = new List<chats>();
         
-
+        
         private void FillChats(User currentUser)
         {
             //Заполнение созданных чатов если он личный, заполняется ФИО с кем ведется чат 
@@ -69,6 +70,7 @@ namespace emplySoftware
                         Image = us.Image,
                         ChatID = chatPers.chatID,
                     });
+
                 }
             }
             //Заполнение чатов где пользователь в чате с кем то
@@ -152,6 +154,7 @@ namespace emplySoftware
         {
             var selectedChat = (UserChats.SelectedItem as chats);
             main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
+
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -196,6 +199,11 @@ namespace emplySoftware
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
             main_frame.NavigationService.Navigate(new Tasks());
+        }
+
+        private void CreateChat_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
