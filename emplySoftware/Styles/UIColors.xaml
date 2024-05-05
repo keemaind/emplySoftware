@@ -54,7 +54,7 @@
     <!--#region accent_colors-->
     <SolidColorBrush x:Key="accent_color_01" Color="#f02036"/>
     <SolidColorBrush x:Key="accent_color_02" Color="#8171fe"/>
-    <SolidColorBrush x:Key="accent_color_03" Color="#55e374"/>
+    <SolidColorBrush x:Key="accent_color_03" Color="#4bb57b"/>
     <SolidColorBrush x:Key="accent_color_04" Color="#41a1e5"/>
     <SolidColorBrush x:Key="accent_color_05" Color="#4db1bd"/>
     <!--#endregion-->

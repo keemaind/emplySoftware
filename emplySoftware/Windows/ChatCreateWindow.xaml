@@ -51,9 +51,8 @@
                             HorizontalAlignment="Right">
 
                         <Button x:Name="LoginCloseButton"
-                            Click="LoginCloseButton_Click"
-                            Width="30" Height="30"
-                            Style="{StaticResource CloseButton}"/>
+                                Width="30" Height="30"
+                                Style="{StaticResource CloseButton}"/>
 
                     </StackPanel>
 
@@ -70,12 +69,10 @@
                 <StackPanel>
 
                     <Button Style="{StaticResource profile_picture_button}"
-                        Padding="-20"
-                        Margin="15"
-                        Width="120" Height="120"
-                        x:Name="GroupChatImage"
-                          
-                        Click="BtnSelectImage_Click">
+                            Padding="-20"
+                            Margin="15"
+                            Width="120" Height="120"
+                            x:Name="GroupChatImage">
 
                         <Button.Effect>
 
@@ -174,10 +171,9 @@
                     </Border>
 
                     <Button Height="40" Width="200"
-                        Margin="15"
-                        Style="{StaticResource save_button}"
-                        x:Name="BtnSave"
-                        Click="BtnSave_Click">
+                            Margin="15"
+                            Style="{StaticResource save_button}"
+                            x:Name="BtnSave">
 
                     </Button>
 
