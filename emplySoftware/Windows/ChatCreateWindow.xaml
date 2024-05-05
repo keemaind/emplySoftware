@@ -51,6 +51,7 @@
                             HorizontalAlignment="Right">
 
                         <Button x:Name="LoginCloseButton"
+                            Click="LoginCloseButton_Click"
                             Width="30" Height="30"
                             Style="{StaticResource CloseButton}"/>
 
@@ -73,7 +74,8 @@
                         Margin="15"
                         Width="120" Height="120"
                         x:Name="GroupChatImage"
-                          >
+                          
+                        Click="BtnSelectImage_Click">
 
                         <Button.Effect>
 
@@ -174,7 +176,8 @@
                     <Button Height="40" Width="200"
                         Margin="15"
                         Style="{StaticResource save_button}"
-                        x:Name="BtnSave">
+                        x:Name="BtnSave"
+                        Click="BtnSave_Click">
 
                     </Button>
 
