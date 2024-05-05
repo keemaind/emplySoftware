@@ -28,6 +28,7 @@ namespace emplySoftware.Windows
     {
        
         private byte[] _mainImageData;
+        private bool Im = false;
         public UserSettingsWindow(User currentUser)
         {
             InitializeComponent();
@@ -49,22 +50,42 @@ namespace emplySoftware.Windows
             {
                 _mainImageData = File.ReadAllBytes(ofd.FileName);
                 ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
+                Im = true;
             }
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             var user = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID);
-            foreach (var us  in user) { 
-                us.Image = _mainImageData;
-                us.FirstName = UserFirstNameTextBox.Text.ToString();
-                us.MiddleName = UserMiddleNameTextBox.Text.ToString();
-                us.LastName = UserLastNameTextBox.Text.ToString();
-                us.Login = UserLoginTextBox.Text.ToString();
-                us.Password = Encription(UserPasswordTextBox.Password.ToString());
+            if (UserFirstNameTextBox.Text == "" || UserMiddleNameTextBox.Text == "" || UserLastNameTextBox.Text == "" || UserLoginTextBox.Text == "" || UserPasswordTextBox.Password == "" )
+            {
+                if (Im == false) { }
+                else
+                {
+                    foreach (var us in user)
+                    {
+                        us.Image = _mainImageData;
+                    }
+                }
             }
-            App.ContextDatabase.SaveChanges();
+            else
+            {
+                foreach (var us in user)
+                {
+                    us.Image = _mainImageData;
+                    us.FirstName = UserFirstNameTextBox.Text.ToString();
+                    us.MiddleName = UserMiddleNameTextBox.Text.ToString();
+                    us.LastName = UserLastNameTextBox.Text.ToString();
+                    us.Login = UserLoginTextBox.Text.ToString();
+                    us.Password = Encription(UserPasswordTextBox.Password.ToString());
+                }
+                App.ContextDatabase.SaveChanges();
+            }
+            this.Close();
+                
         }
+            
+        
         private string Encription(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
