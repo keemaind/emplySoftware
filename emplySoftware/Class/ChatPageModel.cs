@@ -41,7 +41,6 @@ namespace emplySoftware.Class
         }
         private void Refresh(int thisChatID)
         {
-            
             var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
             foreach (var message in MessagesBD)
             {

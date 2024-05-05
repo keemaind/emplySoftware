@@ -26,25 +26,34 @@ namespace emplySoftware.Windows
     public partial class ChatPage : Page
     {
         public int thisChatID;
-        //private DispatcherTimer timer;
+        private DispatcherTimer timer;
+        int msgCount;
         public ChatPage(chats selectedChat)
         {
             InitializeComponent();
             thisChatID = selectedChat.ChatID;
-            //timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(2);
-            //timer.Tick += Timer_Tick;
-            //timer.Start();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            ChatPageModel model = new ChatPageModel(thisChatID);
+            msgCount = model.MessagesH.Count();
+            DataContext = model;
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
             RefreshData();
         }
-        //private void Timer_Tick(object sender, EventArgs e)
-        //{
-        //    RefreshData();
-        //}
         private void RefreshData()
         {
-            ChatPageModel model = new ChatPageModel(thisChatID);
-            DataContext = model;
+            int msgCountRD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).Count();
+            if (msgCount != msgCountRD)
+            {
+                ChatPageModel model = new ChatPageModel(thisChatID);
+                msgCount = model.MessagesH.Count();
+                DataContext = model;
+            }
+
         }
         private void sendMessage_Click(object sender, RoutedEventArgs e)
         {
@@ -64,7 +73,6 @@ namespace emplySoftware.Windows
                 App.ContextDatabase.SaveChanges();
                 MsgTextBlock.Text = "";
                 RefreshData();
-
             }
             else
             {
