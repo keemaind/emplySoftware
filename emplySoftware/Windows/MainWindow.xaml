@@ -207,7 +207,7 @@
 
                         <TextBox Tag="Поиск..."
                                  x:Name="search_text_box"
-                                 TextChanged="search_text_box_TextChanged"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                                  Height="40" Width="280"
                                  Margin="15,0,0,0"
                                  Style="{StaticResource search_text_box}"/>
@@ -232,6 +232,8 @@
 
                     <!--#region ContactsList-->
                     <ListView x:Name="UserChats"
+                              ItemsSource="{Binding userChats}"
+                              
                               ItemContainerStyle="{StaticResource ContactsListViewItem}"
                               Background="Transparent"
                               BorderThickness="0"

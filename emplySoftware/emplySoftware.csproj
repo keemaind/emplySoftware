@@ -75,6 +75,7 @@
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />
     <Compile Include="Class\GetCurrent.cs" />
+    <Compile Include="Class\MainWindowModel.cs" />
     <Compile Include="Class\MessagesList.cs" />
     <Compile Include="DatabaseSQL\chatList.cs">
       <DependentUpon>Database.tt</DependentUpon>

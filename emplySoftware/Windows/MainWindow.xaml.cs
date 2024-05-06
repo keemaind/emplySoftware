@@ -35,7 +35,8 @@ namespace emplySoftware
         public MainWindow()
         {
             InitializeComponent();
-            FillChats(GetCurrent.CurrentUser);
+            MainWindowModel model = new MainWindowModel();
+            DataContext = model;
             var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
             foreach (var user in userImage)
             {
@@ -50,98 +51,6 @@ namespace emplySoftware
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-        List<chats> userChats = new List<chats>();
-        
-        
-        private void FillChats(User currentUser)
-        {
-
-            //Заполнение созданных чатов если он личный, заполняется ФИО с кем ведется чат 
-            var chatListPersonalCreate = App.ContextDatabase.chatList.Where(p => p.userID == currentUser.userID && p.personal == true);
-            foreach (var chatPers in chatListPersonalCreate)
-            {
-                string last;
-                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatPers.chatID).ToList();
-                if (ll.Count() == 0) last = " ";
-                else last = ll.Last().Message.ToString();
-                var personalUser = App.ContextDatabase.chatUsers.Where(p => p.chatID == chatPers.chatID);
-                foreach (var chatUS in personalUser)
-                {
-                    var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
-                    string G = FIOus.GetNotFullName(us).ToString();
-                    
-                    userChats.Add(new chats
-                    {
-                        Title = G,
-                        Image = us.Image,
-                        ChatID = chatPers.chatID,
-                        lastMessage = last
-                    });
-
-                }
-            }
-            //Заполнение чатов где пользователь в чате с кем то
-            var chatListPersonalGet = App.ContextDatabase.chatUsers.Where(p => p.userID == currentUser.userID);
-            foreach (var chatPersGet in chatListPersonalGet)
-            {
-                string last;
-                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatPersGet.chatID).ToList();
-                if (ll.Count() == 0) last = " ";
-                else last = ll.Last().Message.ToString();
-                var personalGet = App.ContextDatabase.chatList.Where(p => p.chatID == chatPersGet.chatID && p.personal == true);
-                foreach (var chatUS in personalGet)
-                {
-                    var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
-                    
-                    string G = FIOus.GetNotFullName(us).ToString();
-                    userChats.Add(new chats
-                    {
-                        Title = G,
-                        Image = us.Image,
-                        ChatID = chatUS.chatID,
-                        lastMessage = last
-                    });
-                }
-            }
-            //Заполнение созданных групповых чатов, заполняется название чата
-            var chatListGroupCreate = App.ContextDatabase.chatList.Where(p => p.userID == currentUser.userID && p.personal == false);
-            foreach (var chatGrop in chatListGroupCreate)
-            {
-                string last;
-                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatGrop.chatID).ToList();
-                if (ll.Count() == 0) last = " ";
-                else last = ll.Last().Message.ToString();
-                userChats.Add(new chats
-                    {
-                        Title = chatGrop.Title,
-                        Image = chatGrop.Image,
-                        ChatID = chatGrop.chatID,
-                         lastMessage = last
-                });
-            }
-            //Заполнение групповых чатов где находится пользователь, заполняется название чата
-            var chatListGroupGet = App.ContextDatabase.chatUsers.Where(p => p.userID == currentUser.userID);
-            foreach (var chatGrop in chatListGroupGet)
-            {
-                
-                var chatGropGet = App.ContextDatabase.chatList.Where(p => p.chatID == chatGrop.chatID && p.personal == false);
-                foreach (var chatGet in chatGropGet)
-                {
-                    string last;
-                    var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatGet.chatID).ToList();
-                    if (ll.Count() == 0) last = " ";
-                    else last = ll.Last().Message.ToString();
-                    userChats.Add(new chats
-                    {
-                        Title = chatGet.Title,
-                        Image = chatGet.Image,
-                        ChatID = chatGet.chatID,
-                        lastMessage = last
-                    });
-                }
-            }
-            UserChats.ItemsSource = userChats;
         }
 
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -206,20 +115,7 @@ namespace emplySoftware
 
         // Создание CollectionViewSource
 
-        private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource viewSource = new CollectionViewSource();
-            viewSource.Source = items;
 
-            // Привязка ListView к CollectionViewSource
-            UserChats.ItemsSource = viewSource.View;
-            viewSource.View.Filter = obj =>
-                {
-                    string item = obj as string;
-                    if (item == null) return false;
-                    return item.Contains(search_text_box.Text);
-                };
-        }
 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
