@@ -7,8 +7,8 @@
       xmlns:local="clr-namespace:emplySoftware.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="730"
-      d:DesignWidth="850"
-      Title="Tasks">
+      d:DesignWidth="775"
+      Title="Задачи">
 
     <!--#region tasks-->
     <Grid Margin="10,0">
@@ -16,7 +16,7 @@
         <!--#region RowDefinitions-->
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
@@ -24,26 +24,48 @@
         
         <!--#region top_panel-->
         <Border x:Name="top_panel"
-                Grid.Row="0">
+                Grid.Row="0"
+                Margin="20,0"
+                BorderBrush="{StaticResource main_color_03}"
+                BorderThickness="0,0,0,1">
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
 
-                <!--#region searching__and_adding_task-->
+                <fa:IconImage Icon="Bolt" 
+                              Width="21" Height="21">
+
+                    <fa:IconImage.Foreground>
+
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="#f02036" Offset="0"/>
+                            <GradientStop Color="#fd8c73" Offset="1"/>
+
+                        </LinearGradientBrush>
+
+                    </fa:IconImage.Foreground>
+
+                </fa:IconImage>
+
+                <Label Content="Задачи"
+                       Margin="0,0,270,0"
+                       Style="{StaticResource contacts_label}"/>
+
+                <TextBox Tag="Найти задачу..."
+                         x:Name="search_text_box"
+                         Height="40" Width="280"
+                         Margin="15,0,0,0"
+                         Style="{StaticResource search_task_text_box}"/>
+
+                <fa:IconImage Icon="Filter"
+                              Foreground="{StaticResource secondary_color_04}"
+                              Height="15" Width="15"
+                              Margin="-40,0,0,0"/>
 
                 <Button x:Name="add_task_button"
-                            Height="25" Width="25"
-                            Margin="0,0,-30,0"
-                            Panel.ZIndex="1"
-                            Style="{StaticResource add_task_button}"/>
-
-                <TextBox x:Name="MainSearchButton"
-                         Tag="Search task..."
-                         Height="30" Width="300"
-                         Margin="0,0,10,0"
-                         Style="{StaticResource search_task_text_box}"/>
-    
-                <!--#endregion-->
+                        Margin="10,0"
+                        Height="25" Width="25"
+                        Style="{StaticResource create_task_button}"/>
 
             </StackPanel>
 
