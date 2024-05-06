@@ -11,6 +11,7 @@ namespace emplySoftware.Class
         string title;
         int chatID;
         byte[] image;
+        public string lastMessage;
 
         public string Title
         {
@@ -27,5 +28,11 @@ namespace emplySoftware.Class
             get { return image; }
             set { image = value; }
         }
+        public string LastMessage
+        {
+            get { return lastMessage; }
+            set { lastMessage = value; }
+        }
+        
     }
 }

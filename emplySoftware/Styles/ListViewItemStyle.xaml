@@ -44,7 +44,7 @@
 
                                 <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
                                             x:Name="text_chat"
-                                            Text="This is just simple text for testing, don't worry."/>
+                                            Text="{Binding LastMessage}"/>
 
                             </StackPanel>
 

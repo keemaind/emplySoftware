@@ -14,13 +14,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Navigation;
 using emplySoftware.DatabaseSQL;
 using System.Diagnostics;
 using System.Collections;
 using emplySoftware.Pages;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Window = System.Windows.Window;
+using System.Runtime.InteropServices;
 
 
 namespace emplySoftware
@@ -28,7 +30,7 @@ namespace emplySoftware
 
     public partial class MainWindow : Window
     {
-        private Page chatPage;
+        
 
         public MainWindow()
         {
@@ -54,21 +56,27 @@ namespace emplySoftware
         
         private void FillChats(User currentUser)
         {
+
             //Заполнение созданных чатов если он личный, заполняется ФИО с кем ведется чат 
             var chatListPersonalCreate = App.ContextDatabase.chatList.Where(p => p.userID == currentUser.userID && p.personal == true);
             foreach (var chatPers in chatListPersonalCreate)
             {
+                string last;
+                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatPers.chatID).ToList();
+                if (ll.Count() == 0) last = " ";
+                else last = ll.Last().Message.ToString();
                 var personalUser = App.ContextDatabase.chatUsers.Where(p => p.chatID == chatPers.chatID);
                 foreach (var chatUS in personalUser)
                 {
                     var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
                     string G = FIOus.GetNotFullName(us).ToString();
-
+                    
                     userChats.Add(new chats
                     {
                         Title = G,
                         Image = us.Image,
                         ChatID = chatPers.chatID,
+                        lastMessage = last
                     });
 
                 }
@@ -77,16 +85,22 @@ namespace emplySoftware
             var chatListPersonalGet = App.ContextDatabase.chatUsers.Where(p => p.userID == currentUser.userID);
             foreach (var chatPersGet in chatListPersonalGet)
             {
+                string last;
+                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatPersGet.chatID).ToList();
+                if (ll.Count() == 0) last = " ";
+                else last = ll.Last().Message.ToString();
                 var personalGet = App.ContextDatabase.chatList.Where(p => p.chatID == chatPersGet.chatID && p.personal == true);
                 foreach (var chatUS in personalGet)
                 {
                     var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUS.userID);
+                    
                     string G = FIOus.GetNotFullName(us).ToString();
                     userChats.Add(new chats
                     {
                         Title = G,
                         Image = us.Image,
-                        ChatID = chatUS.chatID
+                        ChatID = chatUS.chatID,
+                        lastMessage = last
                     });
                 }
             }
@@ -94,25 +108,36 @@ namespace emplySoftware
             var chatListGroupCreate = App.ContextDatabase.chatList.Where(p => p.userID == currentUser.userID && p.personal == false);
             foreach (var chatGrop in chatListGroupCreate)
             {
-                    userChats.Add(new chats
+                string last;
+                var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatGrop.chatID).ToList();
+                if (ll.Count() == 0) last = " ";
+                else last = ll.Last().Message.ToString();
+                userChats.Add(new chats
                     {
                         Title = chatGrop.Title,
                         Image = chatGrop.Image,
                         ChatID = chatGrop.chatID,
-                    });
+                         lastMessage = last
+                });
             }
             //Заполнение групповых чатов где находится пользователь, заполняется название чата
             var chatListGroupGet = App.ContextDatabase.chatUsers.Where(p => p.userID == currentUser.userID);
             foreach (var chatGrop in chatListGroupGet)
             {
+                
                 var chatGropGet = App.ContextDatabase.chatList.Where(p => p.chatID == chatGrop.chatID && p.personal == false);
                 foreach (var chatGet in chatGropGet)
                 {
+                    string last;
+                    var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatGet.chatID).ToList();
+                    if (ll.Count() == 0) last = " ";
+                    else last = ll.Last().Message.ToString();
                     userChats.Add(new chats
                     {
                         Title = chatGet.Title,
                         Image = chatGet.Image,
-                        ChatID = chatGet.chatID
+                        ChatID = chatGet.chatID,
+                        lastMessage = last
                     });
                 }
             }
