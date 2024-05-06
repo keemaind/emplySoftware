@@ -71,6 +71,63 @@
 
         </Border>
         <!--#endregion-->
+        
+        <!--#region middle_panel-->
+        <Border x:Name="middle_panel"
+                Grid.Row="1"
+                Margin="20,10">
+
+            <DataGrid x:Name="data_grid_task"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Название"
+                                        Binding="{Binding Title}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Сотрудник"
+                                        Binding="{Binding EmployeeID}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Сложность"
+                                        Binding="{Binding Difficulty}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Статус"
+                                        Binding="{Binding Status}"
+                                        Width="*"/>
+
+                    <DataGridTemplateColumn Header="Операции"
+                                            Width="auto">
+                        
+                        <DataGridTemplateColumn.CellTemplate>
+                            
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <Button x:Name="data_grid_edit_button"
+                                            Background="Transparent"/>
+
+                                    <Button x:Name="data_grid_delete_button"
+                                            Background="Transparent"/>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                            
+                        </DataGridTemplateColumn.CellTemplate>
+                        
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+            
+        </Border>
+        <!--#endregion-->
 
     </Grid>
     <!--#endregion-->

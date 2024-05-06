@@ -1,6 +1,8 @@
-﻿using System;
+﻿using emplySoftware.DatabaseSQL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,8 @@ namespace emplySoftware.Pages
         public Tasks()
         {
             InitializeComponent();
+
+            data_grid_task.ItemsSource = App.ContextDatabase.Task.ToList();
         }
     }
 }
