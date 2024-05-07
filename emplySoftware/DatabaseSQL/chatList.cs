@@ -17,6 +17,7 @@ namespace emplySoftware.DatabaseSQL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public chatList()
         {
+            this.chatUsers = new HashSet<chatUsers>();
             this.Messages = new HashSet<Messages>();
         }
     
@@ -26,7 +27,8 @@ namespace emplySoftware.DatabaseSQL
         public Nullable<bool> personal { get; set; }
         public byte[] Image { get; set; }
     
-        public virtual chatUsers chatUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatUsers> chatUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages { get; set; }
     }

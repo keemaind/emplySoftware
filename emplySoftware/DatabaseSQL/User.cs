@@ -17,9 +17,9 @@ namespace emplySoftware.DatabaseSQL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.chatUsers = new HashSet<chatUsers>();
             this.Messages = new HashSet<Messages>();
             this.Task = new HashSet<Task>();
-            this.chatUsers = new HashSet<chatUsers>();
         }
     
         public int userID { get; set; }
@@ -32,11 +32,11 @@ namespace emplySoftware.DatabaseSQL
         public Nullable<int> PositionID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatUsers> chatUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages { get; set; }
         public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<chatUsers> chatUsers { get; set; }
     }
 }

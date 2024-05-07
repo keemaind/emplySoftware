@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Window = System.Windows.Window;
 using System.Runtime.InteropServices;
+using System.Xml.Linq;
 
 
 namespace emplySoftware
@@ -44,7 +45,6 @@ namespace emplySoftware
                 ProfileFirstName.Text = user.FirstName;
                 ProfileMiddleName.Text = user.MiddleName;
             }
-
             main_frame.Navigate(new MainPage());
         }
 
@@ -124,8 +124,16 @@ namespace emplySoftware
 
         private void CreateChat_Click(object sender, RoutedEventArgs e)
         {
-
+            ChatCreatePage p1 = new ChatCreatePage();
+            p1.DataChanged += P1_DataChanged;
+            main_frame.Navigate(p1);
+            //main_frame.NavigationService.Navigate(new ChatCreatePage());
+        }
+        private void P1_DataChanged(object sender, EventArgs e)
+        {
+            MainWindowModel model = new MainWindowModel();
+            DataContext = model;
         }
     }
 
-    }
+}

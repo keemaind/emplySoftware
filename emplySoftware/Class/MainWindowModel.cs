@@ -1,8 +1,10 @@
 ﻿using emplySoftware.DatabaseSQL;
+using emplySoftware.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Navigation;
 
 namespace emplySoftware.Class
 {
@@ -30,7 +32,7 @@ namespace emplySoftware.Class
         public MainWindowModel()
         {
             FillChats(GetCurrent.CurrentUser);
-            
+
         }
         private void FillChats(User currentUser)
         {
@@ -118,7 +120,6 @@ namespace emplySoftware.Class
                 }
             }
         }
-        
 
         public string SearchText
         {
@@ -141,14 +142,33 @@ namespace emplySoftware.Class
                     }
                 }
 
-                //_searchText = value;
-                //userChatsView.Filter = x =>
-                //{
-                //    var chats = x as chats;
-                //    return value.Length > 0 ? chats.Title.StartsWith(value) : true;
-                //};
 
             }
         }
+
+        //private chats _selectedItem;
+
+
+        //public chats SelectedItem
+        //{
+        //    get { return _selectedItem; }
+        //    set
+        //    {
+        //        if (_selectedItem != value)
+        //        {
+        //            _selectedItem = value;
+        //            OnPropertyChanged("SelectedItem");
+        //            OnSelectedItemChanged(SelectedItem);
+        //        }
+        //    }
+        //}
+
+
+
+        //private void OnSelectedItemChanged(chats selectedChat)
+        //{
+        //    main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
+        //}
+
     }
 }

@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:emplySoftware.Windows"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="850"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="ChatPage">
 
-    <Grid Background="#242a2e">
+    <Grid Background="Transparent">
                 <Grid.RowDefinitions>
 
                     <RowDefinition Height="*"/>
@@ -25,15 +25,17 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             
             <TextBox x:Name="MsgTextBlock"
-                  
+                  Foreground="Gray"
                   Tag="Message"
-                  Height="30" Width="546"
+                  Margin="10,0,3,0"
+                  Height="30" Width="700"
                   Style="{StaticResource search_text_box}"/>
             <Button x:Name="sendMessage" Background="LightGreen"
                     Width="40" 
                     Height="40"
                     Margin="3,3,3,3"
-                    Click="sendMessage_Click"/>
+                    Click="sendMessage_Click"
+                    Style="{StaticResource sendMSG_button}"/>
         </StackPanel>
         
     </Grid>

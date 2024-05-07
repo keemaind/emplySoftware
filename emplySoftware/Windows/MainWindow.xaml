@@ -249,7 +249,8 @@
                    Content="{Binding CurrentPage}"
                    Grid.Column="2" 
                    Grid.Row="1"
-                   NavigationUIVisibility="Hidden"/>
+                   NavigationUIVisibility="Visible"
+                   />
             <!--#endregion-->
 
 

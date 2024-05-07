@@ -1,0 +1,87 @@
+﻿<Page x:Class="emplySoftware.Pages.ChatCreatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:emplySoftware.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChatCreatePage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+
+        <Button Style="{StaticResource profile_picture_button}"
+        Visibility="Hidden"
+        Padding="-20"
+        Grid.Row="0"
+        Width="80" Height="80"
+        x:Name="BtnSelectImage"
+        Click="BtnSelectImage_Click">
+
+            <Button.Effect>
+
+                <DropShadowEffect BlurRadius="10"
+                          Direction="-90"
+                          Color="#f6f6f6"
+                          ShadowDepth="0"/>
+
+            </Button.Effect>
+
+            <Button.Content>
+
+                <Ellipse x:Name="ProfilePhoto"
+                     Height="80"
+                     Width="80"
+                     SnapsToDevicePixels="False">
+
+                    <Ellipse.Fill>
+
+                        <ImageBrush x:Name="ImageUser"
+                            ImageSource="{Binding Image}"
+                            RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                    </Ellipse.Fill>
+
+                </Ellipse>
+
+            </Button.Content>
+
+        </Button>
+
+        <CheckBox x:Name="GroupChat" Grid.Row="0" Content="Групповой чат" 
+                  HorizontalAlignment="Left" 
+                  Margin="127,21,0,0" 
+                  VerticalAlignment="Top"
+                  Checked="GroupChat_Checked"/>
+        <CheckBox x:Name="PersonalChat" Grid.Row="0" Content="Личный чат" 
+                  HorizontalAlignment="Left" 
+                  Margin="27,21,0,0" 
+                  VerticalAlignment="Top"
+                  Checked="PersonalChat_Checked"/>
+        <TextBox x:Name="TitleChat" 
+                 Visibility="Hidden"
+                 Height="30" 
+                 Margin="27,50,572,20"/>
+        <StackPanel Grid.Row="1" 
+                    x:Name="PersonalChatCreate">
+            <ListView x:Name="UsersList" 
+                      Visibility="Hidden"
+                      ItemContainerStyle="{StaticResource Users}"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      />
+
+        </StackPanel>
+        <Button Grid.Row="1"
+     x:Name="Create"
+     Style="{StaticResource SignInButton}"
+     Width="270" Height="40"
+     Margin="265,305,265,-45" Click="Create_Click">
+
+        </Button>
+    </Grid>
+</Page>

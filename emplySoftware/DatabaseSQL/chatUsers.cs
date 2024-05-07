@@ -16,6 +16,7 @@ namespace emplySoftware.DatabaseSQL
     {
         public int chatID { get; set; }
         public Nullable<int> userID { get; set; }
+        public int tblID { get; set; }
     
         public virtual chatList chatList { get; set; }
         public virtual User User { get; set; }

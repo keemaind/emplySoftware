@@ -130,10 +130,9 @@
     <!--#endregion-->
 
     <!--#region MessagesListViewItem-->
-    
     <Style x:Key="MessagesListViewItem" TargetType="ListViewItem">
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Background" Value="{StaticResource main_color_02}"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
@@ -167,11 +166,12 @@
                             <StackPanel VerticalAlignment="Center">
 
                                 <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
-                                        Text="{Binding Message}"
-                                        Margin="0,0,0,2"/>
+        Text="{Binding Message}"
+        Margin="0,0,0,2"/>
 
                                 <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
-                                        Text="{Binding sendDate}"/>
+        Text="{Binding sendDate}"/>
+
 
                             </StackPanel>
 
@@ -179,7 +179,7 @@
 
                         <Border.Background>
 
-                            <SolidColorBrush Color="#282e33" x:Name="BorderBackground"/>
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
 
                         </Border.Background>
 
@@ -194,8 +194,8 @@
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#282e33"
-                                                To="#242a2e"
+                                                From="#ffffff"
+                                                To="#ececec"
                                                 Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
@@ -212,8 +212,8 @@
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#242a2e"
-                                                To="#282e33"
+                                                From="#ececec"
+                                                To="#ffffff"
                                                 Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
@@ -224,7 +224,24 @@
 
                         <Trigger Property="IsSelected" Value="True">
 
-                            <Setter Property="Background" Value="#1c2124" TargetName="border"/>
+                            <Setter Property="Background" TargetName="border">
+
+                                <Setter.Value>
+
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                        <GradientStop Color="#41a1e5" Offset="0"/>
+                                        <GradientStop Color="#4db1bd" Offset="1"/>
+
+                                    </LinearGradientBrush>
+
+                                </Setter.Value>
+
+                            </Setter>
+
+                            <!--<Setter Property="Foreground" TargetName="name_chat" Value="#ffffff"/>
+
+                            <Setter Property="Foreground" TargetName="text_chat" Value="#ffffff"/>-->
 
                         </Trigger>
 
@@ -237,6 +254,134 @@
         </Setter>
 
     </Style>
-    
+
+    <!--#endregion-->
+
+    <!--#region Users-->
+    <Style x:Key="Users" TargetType="ListViewItem">
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+
+                    <Border Height="50"
+                         Margin="10,5"
+                         Padding="10,5"
+                         x:Name="border"
+                         CornerRadius="15">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Ellipse x:Name="ProfilePhotoChats"
+                                  Width="30" Height="30"
+                                  Margin="0,0,10,0"
+                                  SnapsToDevicePixels="False">
+
+                                <Ellipse.Fill>
+
+                                    <ImageBrush x:Name="UserChatsImages"
+                                             ImageSource="{Binding Image}"
+                                             Stretch="UniformToFill"
+                                             RenderOptions.BitmapScalingMode="HighQuality"
+                                             AlignmentX="Center"
+                                             AlignmentY="Center"/>
+
+                                </Ellipse.Fill>
+
+                            </Ellipse>
+
+                            <StackPanel VerticalAlignment="Center">
+
+                                <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
+                                         Text="{Binding FirstName}"
+                                         x:Name="name_chat"
+                                         Margin="0,0,0,2"/>
+
+                                <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
+                                         x:Name="text_chat"
+                                         Text="{Binding Login}"/>
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                 Storyboard.TargetProperty="Color"
+                                                 From="#ffffff"
+                                                 To="#ececec"
+                                                 Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                 Storyboard.TargetProperty="Color"
+                                                 From="#ececec"
+                                                 To="#ffffff"
+                                                 Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+
+                            <Setter Property="Background" TargetName="border">
+
+                                <Setter.Value>
+
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                        <GradientStop Color="#41a1e5" Offset="0"/>
+                                        <GradientStop Color="#4db1bd" Offset="1"/>
+
+                                    </LinearGradientBrush>
+
+                                </Setter.Value>
+
+                            </Setter>
+
+                            <Setter Property="Foreground" TargetName="name_chat" Value="#ffffff"/>
+
+                            <Setter Property="Foreground" TargetName="text_chat" Value="#ffffff"/>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>

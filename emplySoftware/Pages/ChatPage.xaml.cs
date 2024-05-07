@@ -60,7 +60,7 @@ namespace emplySoftware.Windows
             string msg = MsgTextBlock.Text.ToString();
             var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == GetCurrent.CurrentUser.userID);
             
-            if (msg != null)
+            if (msg != "")
             {
                 var Messages = new Messages
                 {
