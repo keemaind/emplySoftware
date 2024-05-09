@@ -26,6 +26,8 @@ namespace emplySoftware.DatabaseSQL
         public Nullable<int> userID { get; set; }
         public Nullable<bool> personal { get; set; }
         public byte[] Image { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chatUsers> chatUsers { get; set; }

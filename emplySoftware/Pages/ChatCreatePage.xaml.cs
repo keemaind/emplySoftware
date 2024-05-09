@@ -82,16 +82,18 @@ namespace emplySoftware.Pages
         {
             if((bool)GroupChat.IsChecked)
             {
+                DateTime nn = DateTime.Now;
                 var newGroupChat = new chatList
                 {
                     Title = TitleChat.Text.ToString(),
                     userID = GetCurrent.CurrentUser.userID,
                     personal = false,
-                    Image = _mainImageData
+                    Image = _mainImageData,
+                    CreateDate = nn,
                 };
                 App.ContextDatabase.chatList.Add(newGroupChat);
                 App.ContextDatabase.SaveChanges();
-                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.Title == TitleChat.Text.ToString()).chatID;
+                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
                 foreach (User users in UsersList.SelectedItems)
                 {
                     var usersInChat = new chatUsers
@@ -106,15 +108,18 @@ namespace emplySoftware.Pages
             }
             else if ((bool)PersonalChat.IsChecked)
             {
+                DateTime nn = DateTime.Now;
                 var newPersonalChat = new chatList
                 {
                     Title = "Личный чат",
                     userID = GetCurrent.CurrentUser.userID,
                     personal = true,
+                    CreateDate=nn,
                 };
                 App.ContextDatabase.chatList.Add(newPersonalChat);
                 App.ContextDatabase.SaveChanges();
-                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.Title == TitleChat.Text.ToString()).chatID;
+
+                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
                 foreach (User users in UsersList.SelectedItems)
                 {
                     var usersInChat = new chatUsers
@@ -125,6 +130,7 @@ namespace emplySoftware.Pages
                     App.ContextDatabase.chatUsers.Add(usersInChat);
                 }
                 App.ContextDatabase.SaveChanges();
+
                 DataChanged?.Invoke(this, new EventArgs());
             }
            else 

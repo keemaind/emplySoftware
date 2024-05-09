@@ -146,29 +146,7 @@ namespace emplySoftware.Class
             }
         }
 
-        //private chats _selectedItem;
-
-
-        //public chats SelectedItem
-        //{
-        //    get { return _selectedItem; }
-        //    set
-        //    {
-        //        if (_selectedItem != value)
-        //        {
-        //            _selectedItem = value;
-        //            OnPropertyChanged("SelectedItem");
-        //            OnSelectedItemChanged(SelectedItem);
-        //        }
-        //    }
-        //}
-
-
-
-        //private void OnSelectedItemChanged(chats selectedChat)
-        //{
-        //    main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
-        //}
+ 
 
     }
 }
