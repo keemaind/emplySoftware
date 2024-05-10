@@ -77,7 +77,11 @@
                 Grid.Row="1"
                 Margin="20,10">
 
-            <DataGrid ColumnHeaderStyle="{DynamicResource column_header_task}" CellStyle="{DynamicResource cell_task}" RowStyle="{DynamicResource row_task}" Style="{DynamicResource data_grid_task}" x:Name="data_grid_task"
+            <DataGrid ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                      Style="{DynamicResource DataGridStyle1}"
+                      x:Name="data_grid_task"
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
 

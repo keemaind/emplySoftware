@@ -15,7 +15,7 @@
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource secondary_color_03}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_02}"/>
     </Style>
     <!--#endregion-->
 
