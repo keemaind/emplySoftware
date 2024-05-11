@@ -3,13 +3,16 @@
     
     <!--#region ContactsListViewItem-->
     <Style x:Key="ContactsListViewItem" TargetType="ListViewItem">
+
         <Setter Property="Cursor" Value="Hand"/>
-        
+
         <Setter Property="Template">
+            
             <Setter.Value>
+                
                 <ControlTemplate TargetType="ListViewItem">
 
-                    <Border Height="50"
+                    <Border Height="50" MaxWidth="328" Width="228"
                             Margin="10,5"
                             Padding="10,5"
                             x:Name="border"
@@ -42,9 +45,10 @@
                                             x:Name="name_chat"
                                             Margin="0,0,0,2"/>
 
-                                <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
+                                <TextBlock  Style="{StaticResource message_text_block}"
                                             x:Name="text_chat"
-                                            Text="{Binding LastMessage}"/>
+                                            Text="{Binding LastMessage}"
+                                            TextTrimming="CharacterEllipsis"/>
 
                             </StackPanel>
 

@@ -95,5 +95,14 @@
 
     </Style>
     <!--#endregion-->
+    
+    <!--#region message_text_block-->
+    <Style x:Key="message_text_block" TargetType="TextBlock">
+        
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="10"/>
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>

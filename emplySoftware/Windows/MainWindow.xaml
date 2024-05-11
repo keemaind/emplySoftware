@@ -35,7 +35,7 @@
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="350"/>
+                <ColumnDefinition MaxWidth="350" Width="250"/>
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
@@ -200,6 +200,11 @@
                         <Label Content="Контакты"
                                Style="{StaticResource contacts_label}"/>
 
+                        <Button x:Name="CreateChat"
+                                Width="24" Height="24"
+                                Click="CreateChat_Click"
+                                Style="{StaticResource create_chat_button}"/>
+
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal"
@@ -208,7 +213,7 @@
                         <TextBox Tag="Поиск..."
                                  x:Name="search_text_box"
                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                                 Height="40" Width="280"
+                                 Height="40" MaxWidth="280" Width="220"
                                  Margin="15,0,0,0"
                                  Style="{StaticResource search_text_box}"/>
 
@@ -216,13 +221,6 @@
                                       Foreground="{StaticResource secondary_color_04}"
                                       Height="15" Width="15"
                                       Margin="-40,0,0,0"/>
-                        
-                        <!--#region create_chat-->
-                        <Button x:Name="CreateChat"
-                                Margin="10,0"
-                                Width="25" Height="25"
-                                Click="CreateChat_Click"
-                                Style="{StaticResource create_chat_button}"/>
 
                     </StackPanel>
 
@@ -233,7 +231,6 @@
                     <!--#region ContactsList-->
                     <ListView x:Name="UserChats"
                               ItemsSource="{Binding userChats}"
-                              
                               ItemContainerStyle="{StaticResource ContactsListViewItem}"
                               Background="Transparent"
                               BorderThickness="0"

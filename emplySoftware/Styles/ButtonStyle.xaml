@@ -1420,15 +1420,16 @@
                             x:Name="border"
                             CornerRadius="100">
 
-                        <Border.Background>
-
-                            <SolidColorBrush Color="#8171fe" x:Name="border_background"/>
-
-                        </Border.Background>
-
                         <fa:IconImage Icon="UserPlus"
-                                      Width="12" Height="12"
-                                      Foreground="#fff"/>
+                                      Width="18" Height="18">
+
+                            <fa:IconImage.Foreground>
+
+                                <SolidColorBrush Color="#7f7f7f" x:Name="border_icon"/>
+
+                            </fa:IconImage.Foreground>
+                            
+                        </fa:IconImage>
 
                     </Border>
 
@@ -1440,11 +1441,12 @@
 
                                 <Storyboard>
 
-                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#8171fe"
-                                                    To="#6d5aec"
+                                                    From="#7f7f7f"
+                                                    To="#8171fe"
                                                     Duration="0:0:0:0.2"/>
+
                                 </Storyboard>
 
                             </BeginStoryboard>
@@ -1457,11 +1459,12 @@
 
                                 <Storyboard>
 
-                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#6d5aec"
-                                                    To="#8171fe"
+                                                    From="#8171fe"
+                                                    To="#7f7f7f"
                                                     Duration="0:0:0:0.2"/>
+
                                 </Storyboard>
 
                             </BeginStoryboard>
