@@ -75,12 +75,12 @@
         <!--#region middle_panel-->
         <Border x:Name="middle_panel"
                 Grid.Row="1"
-                Margin="20,10">
+                Margin="10,5,10,10">
 
-            <DataGrid ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                      CellStyle="{DynamicResource DataGridCellStyle1}"
-                      RowStyle="{DynamicResource DataGridRowStyle1}"
-                      Style="{DynamicResource DataGridStyle1}"
+            <DataGrid ColumnHeaderStyle="{DynamicResource data_grid_column_header_task}"
+                      CellStyle="{DynamicResource data_grid_cell_task}"
+                      RowStyle="{DynamicResource data_grid_row_task}"
+                      Style="{DynamicResource data_grid_task}"
                       x:Name="data_grid_task"
                       AutoGenerateColumns="False"
                       IsReadOnly="True">
@@ -89,7 +89,7 @@
 
                     <DataGridTextColumn Header="Название"
                                         Binding="{Binding Title}"
-                                        Width="*"/>
+                                        MinWidth="300"/>
 
                     <DataGridTextColumn Header="Сотрудник"
                                         Binding="{Binding EmployeeID}"
@@ -104,7 +104,7 @@
                                         Width="*"/>
 
                     <DataGridTemplateColumn Header="Операции"
-                                            Width="auto">
+                                            Width="*">
                         
                         <DataGridTemplateColumn.CellTemplate>
                             
