@@ -78,7 +78,6 @@
     <Compile Include="Class\GetCurrent.cs" />
     <Compile Include="Class\MainWindowModel.cs" />
     <Compile Include="Class\MessagesList.cs" />
-    <Compile Include="Class\RowToBrushConverter.cs" />
     <Compile Include="Class\tasks.cs" />
     <Compile Include="DatabaseSQL\chatList.cs">
       <DependentUpon>Database.tt</DependentUpon>

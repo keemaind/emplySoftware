@@ -29,64 +29,11 @@ namespace emplySoftware.Pages
 
             LoadGrid(GetCurrent.CurrentUser);
         }
-        public static T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            var taskList = tasks.TaskFills(GetCurrent.CurrentUser);
-        }
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                string controlName = child.GetValue(Control.NameProperty) as string;
-                if (controlName == name)
-                {
-                    return child as T;
-                }
-                else
-                {
-                    T result = FindVisualChildByName<T>(child, name);
-                    if (result != null)
-                        return result;
-                }
-            }
-            return null;
-        }
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                string controlName = child.GetValue(Control.NameProperty) as string;
-                if (controlName == name)
-                {
-                    return child as T;
-                }
-                else
-                {
-                    T result = FindVisualChildByName<T>(child, name);
-                    if (result != null)
-                        return result;
-                }
-            }
-            return null;
-        }
+        
+        
         private void LoadGrid(User user)
         {
-            var taskList = tasks.TaskFills(GetCurrent.CurrentUser);
-
-            Border border01 = FindVisualChildByName<Border>(data_grid_task, "dot_border_01");
-            Border border02 = FindVisualChildByName<Border>(data_grid_task, "dot_border_02");
-            Border border03 = FindVisualChildByName<Border>(data_grid_task, "dot_border_03");
-            Border border04 = FindVisualChildByName<Border>(data_grid_task, "dot_border_04");
-            Border border05 = FindVisualChildByName<Border>(data_grid_task, "dot_border_05");
-
-            foreach (tasks task in taskList)
-            {
-                if (task.Difficulty == 1)
-                {
-                    border01.Background = new SolidColorBrush(Color.FromRgb(76,181,124));
-                }
-            };
+            data_grid_task.ItemsSource = tasks.TaskFills(GetCurrent.CurrentUser);
         }
     }
 }
