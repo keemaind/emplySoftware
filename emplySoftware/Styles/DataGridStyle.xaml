@@ -2,35 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
-    <!--#region button_data_grid-->
-    <Style x:Key="button_data_grid" TargetType="Button">
-        
-        <Setter Property="Foreground" Value="White"/>
-        
-        <Setter Property="FontFamily" Value="Dubai Medium"/>
-        
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        
-        <Style.Resources>
-            
-            <Style TargetType ="Border">
-                
-                <Setter Property="CornerRadius" Value="5"/>
-                
-            </Style>
-            
-        </Style.Resources>
-        
-    </Style>
-    <!--#endregion-->
-    
     <!--#region solid_color_brush-->
     <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
     <!--#endregion-->
 
     <!--#region select_all_button-->
     <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
-        
+
         <Setter Property="Template">
             
             <Setter.Value>
@@ -346,6 +324,7 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
         <Setter Property="FontSize" Value="12"/>
