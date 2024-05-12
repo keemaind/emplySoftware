@@ -27,7 +27,7 @@ namespace emplySoftware.Pages
         {
             InitializeComponent();
 
-            data_grid_task.ItemsSource = App.ContextDatabase.Task.ToList();
+            LoadGrid(GetCurrent.CurrentUser);
         }
 
         private void LoadGrid(User user)
