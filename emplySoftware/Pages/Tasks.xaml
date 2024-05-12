@@ -111,9 +111,53 @@
                                         Binding="{Binding FioUser}"
                                         Width="*"/>
 
-                    <DataGridTextColumn Header="Сложность"
-                                        Binding="{Binding Difficulty}"
-                                        Width="*"/>
+                    <DataGridTemplateColumn Header="Сложность"
+                                            Width="*">
+
+                        <DataGridTemplateColumn.CellTemplate>
+
+                            <DataTemplate x:Name="dataTemplate">
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+
+                                    <Border x:Name="dot_border_01"
+                                            Margin="2,0,3,0"
+                                            CornerRadius="100"
+                                            Height="10" Width="10"
+                                            Background="{StaticResource secondary_color_01}"/>
+
+                                    <Border x:Name="dot_border_02"
+                                            Margin="0,0,3,0"
+                                            CornerRadius="100"
+                                            Height="10" Width="10"
+                                            Background="{StaticResource secondary_color_01}"/>
+
+                                    <Border x:Name="dot_border_03"
+                                            Margin="0,0,3,0"
+                                            CornerRadius="100"
+                                            Height="10" Width="10"
+                                            Background="{StaticResource secondary_color_01}"/>
+
+                                    <Border x:Name="dot_border_04"
+                                            Margin="0,0,3,0"
+                                            CornerRadius="100"
+                                            Height="10" Width="10"
+                                            Background="{StaticResource secondary_color_01}"/>
+
+                                    <Border x:Name="dot_border_05"
+                                            Margin="0,0,5,0"
+                                            CornerRadius="100"
+                                            Height="10" Width="10"
+                                            Background="{StaticResource secondary_color_01}"/>
+
+                                </StackPanel>
+                                
+                            </DataTemplate>
+                            
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
 
                     <DataGridTextColumn Header="Статус"
                                         Binding="{Binding Status}"
