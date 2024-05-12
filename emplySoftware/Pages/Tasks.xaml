@@ -108,7 +108,7 @@
                                         MinWidth="300"/>
 
                     <DataGridTextColumn Header="Сотрудник"
-                                        Binding="{Binding EmployeeID}"
+                                        Binding="{Binding FioUser}"
                                         Width="*"/>
 
                     <DataGridTextColumn Header="Сложность"

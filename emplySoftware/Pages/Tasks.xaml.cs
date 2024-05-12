@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using emplySoftware.Class;
 
 namespace emplySoftware.Pages
 {
@@ -27,6 +28,11 @@ namespace emplySoftware.Pages
             InitializeComponent();
 
             data_grid_task.ItemsSource = App.ContextDatabase.Task.ToList();
+        }
+
+        private void LoadGrid(User user)
+        {
+            data_grid_task.ItemsSource = tasks.TaskFills(GetCurrent.CurrentUser);
         }
     }
 }

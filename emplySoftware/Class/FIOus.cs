@@ -23,5 +23,10 @@ namespace emplySoftware.Class
             return user.MiddleName + " " + user.FirstName;
         }
 
+        internal static string GetFullName(int? employeeID)
+        {
+            User us = App.ContextDatabase.User.Where(p => p.userID == employeeID).FirstOrDefault();
+            return $"{us.MiddleName} {us.FirstName[0]}. {us.LastName[0]}.";
+        }
     }
 }
