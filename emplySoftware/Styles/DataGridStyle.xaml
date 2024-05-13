@@ -324,7 +324,7 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="5,1,1,1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Margin" Value="5,0,5,10"/>
@@ -406,7 +406,31 @@
         </Setter>
         
         <Style.Triggers>
-            
+
+            <DataTrigger Binding="{Binding Status}" Value="Выполнена">
+
+                <Setter Property="BorderBrush" Value="#4bb57b"/>
+
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Status}" Value="Выполняется">
+
+                <Setter Property="BorderBrush" Value="#41a1e5"/>
+
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Status}" Value="Запланирована">
+
+                <Setter Property="BorderBrush" Value="#8171fe"/>
+
+            </DataTrigger>
+
+            <DataTrigger Binding="{Binding Status}" Value="Отменена">
+
+                <Setter Property="BorderBrush" Value="#f01f36"/>
+
+            </DataTrigger>
+
             <Trigger Property="IsMouseOver" Value="True">
 
                 <Setter Property="BorderBrush">
