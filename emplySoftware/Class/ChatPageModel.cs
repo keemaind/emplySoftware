@@ -52,6 +52,7 @@ namespace emplySoftware.Class
                     sendDate = (DateTime)message.sendDate,
                     imageUser = App.ContextDatabase.User.FirstOrDefault(p => p.userID == message.userID).Image
                 });
+                
             }
         }
     }

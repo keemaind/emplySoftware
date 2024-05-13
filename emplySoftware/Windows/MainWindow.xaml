@@ -102,6 +102,7 @@
                                         <Ellipse.Fill>
 
                                             <ImageBrush x:Name="UserImage"
+                                                        ImageSource="{Binding imageUserST}"
                                                     Stretch="UniformToFill"
                                                     RenderOptions.BitmapScalingMode="HighQuality"/>
 
@@ -212,8 +213,9 @@
 
                         <TextBox Tag="Поиск..."
                                  x:Name="search_text_box"
-                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                 
                                  Height="40" MaxWidth="280" Width="220"
+                                 TextChanged="search_text_box_TextChanged"
                                  Margin="15,0,0,0"
                                  Style="{StaticResource search_text_box}"/>
 

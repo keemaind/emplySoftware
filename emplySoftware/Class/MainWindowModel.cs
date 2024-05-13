@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace emplySoftware.Class
@@ -26,12 +27,14 @@ namespace emplySoftware.Class
                 return userChat;
             }
         }
+        public byte[] imageUserST { get; set; }
 
-        private string _searchText;
 
         public MainWindowModel()
         {
             FillChats(GetCurrent.CurrentUser);
+            CurrentUser();
+
 
         }
         private void FillChats(User currentUser)
@@ -121,32 +124,17 @@ namespace emplySoftware.Class
             }
         }
 
-        public string SearchText
+        private void CurrentUser()
         {
-            get => _searchText;
-            set
+            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
+            foreach (var user in userImage)
             {
-                _searchText = value;
-                if (_searchText == "")
-                {
-                    FillChats(GetCurrent.CurrentUser);
-                }
-                else
-                {
-                    
-                    var filteredItems = userChats.Where(item => item.Title == _searchText);
-                    userChats.Clear();
-                    foreach (var item in filteredItems)
-                    {
-                        userChats.Add(item);
-                    }
-                }
-
-
+                imageUserST = user.Image;
             }
         }
 
- 
+
+
 
     }
 }

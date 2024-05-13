@@ -32,20 +32,14 @@ namespace emplySoftware
     public partial class MainWindow : Window
     {
         
-
+        MainPage mainPage = new MainPage();
         public MainWindow()
         {
             InitializeComponent();
             MainWindowModel model = new MainWindowModel();
             DataContext = model;
-            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
-            foreach (var user in userImage)
-            {
-                UserImage.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(user.Image);
-                ProfileFirstName.Text = user.FirstName;
-                ProfileMiddleName.Text = user.MiddleName;
-            }
-            main_frame.Navigate(new MainPage());
+            main_frame.Navigate(mainPage);
+
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
@@ -72,6 +66,7 @@ namespace emplySoftware
         {
             UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
             userSettingsWindow.Owner = this;
+            userSettingsWindow.DataChanged += P1_DataChanged;
             ApplyEffect(this);
             userSettingsWindow.ShowDialog();
             ClearEffect(this);
@@ -111,9 +106,7 @@ namespace emplySoftware
             win.Effect = null;
         }
 
-        ObservableCollection<string> items = new ObservableCollection<string>();
-
-        // Создание CollectionViewSource
+       
 
 
 
@@ -133,7 +126,23 @@ namespace emplySoftware
         {
             MainWindowModel model = new MainWindowModel();
             DataContext = model;
+            main_frame.Navigate(mainPage);
         }
+
+
+        private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserChats.ItemsSource);
+            view.Filter = UserFilter;
+        }
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(search_text_box.Text))
+                return true;
+            else
+                return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
     }
 
 }

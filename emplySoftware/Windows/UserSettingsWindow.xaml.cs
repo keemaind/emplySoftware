@@ -26,7 +26,7 @@ namespace emplySoftware.Windows
     /// </summary>
     public partial class UserSettingsWindow : Window
     {
-       
+        public event EventHandler DataChanged;
         private byte[] _mainImageData;
         private bool Im = false;
         public UserSettingsWindow(User currentUser)
@@ -66,6 +66,8 @@ namespace emplySoftware.Windows
                     {
                         us.Image = _mainImageData;
                     }
+                    App.ContextDatabase.SaveChanges();
+                    DataChanged?.Invoke(this, new EventArgs());
                 }
             }
             else
