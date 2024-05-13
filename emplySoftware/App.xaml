@@ -20,6 +20,8 @@
                 <ResourceDictionary Source="Styles/RadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ListViewItemStyle.xaml"/>
                 <ResourceDictionary Source="Styles/DataGridStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="Styles/DatePickerStyle.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
             

@@ -1497,15 +1497,16 @@
                             x:Name="border"
                             CornerRadius="100">
 
-                        <Border.Background>
+                        <fa:IconImage Icon="PlusCircle"
+                                      Width="24" Height="24">
 
-                            <SolidColorBrush Color="#4bb57b" x:Name="border_background"/>
+                            <fa:IconImage.Foreground>
 
-                        </Border.Background>
+                                <SolidColorBrush Color="#4bb57b" x:Name="border_icon"/>
 
-                        <fa:IconImage Icon="Plus"
-                                      Width="12" Height="12"
-                                      Foreground="#fff"/>
+                            </fa:IconImage.Foreground>
+                            
+                        </fa:IconImage>
 
                     </Border>
 
@@ -1517,10 +1518,10 @@
 
                                 <Storyboard>
 
-                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
                                                     Storyboard.TargetProperty="Color"
                                                     From="#4bb57b"
-                                                    To="#43a36f"
+                                                    To="#2b9a62"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>
 
@@ -1534,9 +1535,9 @@
 
                                 <Storyboard>
 
-                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#43a36f"
+                                                    From="#2b9a62"
                                                     To="#4bb57b"
                                                     Duration="0:0:0:0.2"/>
                                 </Storyboard>

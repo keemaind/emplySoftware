@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using emplySoftware.Class;
+using emplySoftware.Windows;
 
 namespace emplySoftware.Pages
 {
@@ -34,6 +35,26 @@ namespace emplySoftware.Pages
         private void LoadGrid(User user)
         {
             data_grid_task.ItemsSource = tasks.TaskFills(GetCurrent.CurrentUser);
+        }
+
+        private void add_task_button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+
+            AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
+            ApplyEffect(mainWindow);
+            addEditTaskWindow.ShowDialog();
+            ClearEffect(mainWindow);
+        }
+        private void ApplyEffect(Window win)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            objBlur.Radius = 4;
+            win.Effect = objBlur;
+        }
+        private void ClearEffect(Window win)
+        {
+            win.Effect = null;
         }
     }
 }

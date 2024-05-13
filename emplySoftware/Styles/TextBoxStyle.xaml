@@ -414,4 +414,228 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region add_edit_task_text_box_01-->
+    <Style x:Key="add_edit_task_text_box_01" TargetType="TextBox">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="110,0,0,0"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type TextBox}">
+
+                    <Border x:Name="border"
+                            CornerRadius="30,30,0,0"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+
+                        <Grid>
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                              Focusable="False"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label Content="{TemplateBinding Tag}"
+                                   FontFamily="/FontTypes/#Montserrat Regular"
+                                   FontSize="10"
+                                   Foreground="#a9a9a9"
+                                   Margin="15,0,0,0"
+                                   VerticalAlignment="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsEnabled" Value="false">
+
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_01}"/>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region add_edit_task_text_box_02-->
+    <Style x:Key="add_edit_task_text_box_02" TargetType="TextBox">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderThickness" Value="0,1,0,1"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="110,0,0,0"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type TextBox}">
+
+                    <Border x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+
+                        <Grid>
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                              Focusable="False"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label Content="{TemplateBinding Tag}"
+                                   FontFamily="/FontTypes/#Montserrat Regular"
+                                   FontSize="10"
+                                   Foreground="#a9a9a9"
+                                   Margin="15,0,0,0"
+                                   VerticalAlignment="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsEnabled" Value="false">
+
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_01}"/>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region add_edit_task_text_box_03-->
+    <Style x:Key="add_edit_task_text_box_03" TargetType="TextBox">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+        <Setter Property="BorderThickness" Value="0,1,0,0"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="110,0,0,0"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type TextBox}">
+
+                    <Border x:Name="border"
+                            CornerRadius="0,0,30,30"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+
+                        <Grid>
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                              Focusable="False"
+                                              HorizontalScrollBarVisibility="Hidden"
+                                              VerticalScrollBarVisibility="Hidden"/>
+
+                            <Label Content="{TemplateBinding Tag}"
+                                   FontFamily="/FontTypes/#Montserrat Regular"
+                                   FontSize="10"
+                                   Foreground="#a9a9a9"
+                                   Margin="15,0,0,0"
+                                   VerticalAlignment="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsEnabled" Value="false">
+
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
+
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+
+                            <Setter Property="BorderBrush" Value="{StaticResource main_color_01}"/>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
