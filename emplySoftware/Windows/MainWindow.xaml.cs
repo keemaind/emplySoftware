@@ -39,7 +39,7 @@ namespace emplySoftware
             MainWindowModel model = new MainWindowModel();
             DataContext = model;
             main_frame.Navigate(mainPage);
-
+            
         }
 
         private void MainMenuButton_Click(object sender, RoutedEventArgs e)
@@ -82,6 +82,7 @@ namespace emplySoftware
         private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedChat = (UserChats.SelectedItem as chats);
+
             main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
 
         }
@@ -105,10 +106,6 @@ namespace emplySoftware
         {
             win.Effect = null;
         }
-
-       
-
-
 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
@@ -143,6 +140,12 @@ namespace emplySoftware
                 return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
+        private void NewMessage_Change(object sender, EventArgs e)
+        {
+            
+        }
+        
+        
     }
 
 }

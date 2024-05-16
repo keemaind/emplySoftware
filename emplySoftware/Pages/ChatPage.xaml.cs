@@ -25,6 +25,7 @@ namespace emplySoftware.Windows
     /// </summary>
     public partial class ChatPage : Page
     {
+        public event EventHandler DataChanged;
         public int thisChatID;
         private DispatcherTimer timer;
         int msgCount;
@@ -52,6 +53,7 @@ namespace emplySoftware.Windows
                 ChatPageModel model = new ChatPageModel(thisChatID);
                 msgCount = model.MessagesH.Count();
                 DataContext = model;
+                DataChanged?.Invoke(this, new EventArgs());
             }
 
         }
@@ -73,6 +75,7 @@ namespace emplySoftware.Windows
                 App.ContextDatabase.SaveChanges();
                 MsgTextBlock.Text = "";
                 RefreshData();
+                DataChanged?.Invoke(this, new EventArgs());
             }
             else
             {

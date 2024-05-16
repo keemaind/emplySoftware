@@ -1,5 +1,6 @@
 ﻿using emplySoftware.DatabaseSQL;
 using emplySoftware.Windows;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -29,13 +30,13 @@ namespace emplySoftware.Class
         }
         public byte[] imageUserST { get; set; }
 
+        public List<System.Windows.Controls.Page> listChats = new List<System.Windows.Controls.Page>();
 
         public MainWindowModel()
         {
             FillChats(GetCurrent.CurrentUser);
+            createChatPages();
             CurrentUser();
-
-
         }
         private void FillChats(User currentUser)
         {
@@ -131,6 +132,17 @@ namespace emplySoftware.Class
             {
                 imageUserST = user.Image;
             }
+        }
+
+        private void createChatPages()
+        {
+            //listChats.Clear();
+            //foreach (chats item in userChats)
+            //{
+            //    ChatPage createdPage = new ChatPage(item);
+            //    listChats.Add(createdPage);
+
+            //}
         }
 
 
