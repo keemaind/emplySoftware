@@ -41,7 +41,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left">
 
-                    <fa:IconImage Icon="Bolt"
+                    <fa:IconImage Icon="bolt"
                               Width="21" Height="21">
 
                         <fa:IconImage.Foreground>
@@ -130,9 +130,14 @@
                                 <StackPanel Orientation="Horizontal">
 
                                     <Button x:Name="data_grid_edit_button"
+                                            Width="20" Height="20"
+                                            Margin="0,0,10,0"
+                                            Click="data_grid_edit_button_Click"
                                             Style="{StaticResource data_grid_edit_button}"/>
 
                                     <Button x:Name="data_grid_delete_button"
+                                            Width="20" Height="20"
+                                            Click="data_grid_delete_button_Click"
                                             Style="{StaticResource data_grid_delete_button}"/>
 
                                 </StackPanel>

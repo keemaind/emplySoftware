@@ -18,8 +18,18 @@ namespace emplySoftware.DatabaseSQL
         public emplyDatabase()
             : base("name=emplyDatabase")
         {
+
         }
-    
+
+        private static emplyDatabase _context;
+
+        public static emplyDatabase GetContext()
+        {
+            if (_context == null)
+                _context = new emplyDatabase();
+            return _context;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

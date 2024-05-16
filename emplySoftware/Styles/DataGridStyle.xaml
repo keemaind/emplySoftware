@@ -324,7 +324,7 @@
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
-        <Setter Property="BorderThickness" Value="5,1,1,1"/>
+        <Setter Property="BorderThickness" Value="5,2,2,2"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Margin" Value="5,0,5,10"/>
@@ -452,6 +452,21 @@
             
             <Trigger Property="IsSelected" Value="True">
 
+                <Setter Property="Background">
+
+                    <Setter.Value>
+
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="#41a1e5" Offset="0"/>
+                            <GradientStop Color="#4db1bd" Offset="1"/>
+
+                        </LinearGradientBrush>
+
+                    </Setter.Value>
+
+                </Setter>
+
                 <Setter Property="BorderBrush">
 
                     <Setter.Value>
@@ -464,24 +479,20 @@
                         </LinearGradientBrush>
 
                     </Setter.Value>
-                    
+
                 </Setter>
-                
-                <Setter Property="Foreground" Value="White"/>
-                
+
             </Trigger>
             
             <MultiTrigger>
-                
+
                 <MultiTrigger.Conditions>
-                    
+
                     <Condition Property="IsSelected" Value="True"/>
                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
-                    
+
                 </MultiTrigger.Conditions>
-                
-                <Setter Property="Background" Value="#dfdfdf"/>
-                
+
             </MultiTrigger>
             
         </Style.Triggers>

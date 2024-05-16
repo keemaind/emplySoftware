@@ -42,6 +42,7 @@ namespace emplySoftware.Pages
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 
             AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
+
             ApplyEffect(mainWindow);
             addEditTaskWindow.ShowDialog();
             ClearEffect(mainWindow);
@@ -55,6 +56,24 @@ namespace emplySoftware.Pages
         private void ClearEffect(Window win)
         {
             win.Effect = null;
+        }
+
+        private void data_grid_edit_button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+
+            var currentTask = (sender as Button).DataContext as DatabaseSQL.Task;
+
+            AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow(currentTask);
+            ApplyEffect(mainWindow);
+            addEditTaskWindow.ShowDialog();
+            ClearEffect(mainWindow);
+
+        }
+
+        private void data_grid_delete_button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

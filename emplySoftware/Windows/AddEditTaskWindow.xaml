@@ -51,7 +51,8 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right">
 
-                        <Button x:Name="LoginCloseButton"
+                        <Button x:Name="add_edit_task_close_button"
+                                Click="add_edit_task_close_button_Click"
                                 Width="30" Height="30"
                                 Style="{StaticResource CloseButton}"/>
 

@@ -186,10 +186,10 @@
                     </Border>
 
                     <Button Click="SignInButton_Click"
-                                    x:Name="SignInButton"
-                                    Style="{StaticResource SignInButton}"
-                                    Width="270" Height="40"
-                                    Margin="0,20,0,5">
+                            x:Name="SignInButton"
+                            Style="{StaticResource SignInButton}"
+                            Width="270" Height="40"
+                            Margin="0,20,0,5">
 
                     </Button>
 
