@@ -72,13 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class\ChatPageModel.cs" />
+    <Compile Include="ViewModels\ChatPageModel.cs" />
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />
     <Compile Include="Class\GetCurrent.cs" />
-    <Compile Include="Class\MainWindowModel.cs" />
+    <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="Class\MessagesList.cs" />
-    <Compile Include="Class\tasks.cs" />
+    <Compile Include="ViewModels\tasks.cs" />
     <Compile Include="DatabaseSQL\chatList.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
