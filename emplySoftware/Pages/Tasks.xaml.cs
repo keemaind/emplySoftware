@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using emplySoftware.Class;
 using emplySoftware.Windows;
+using System.ComponentModel;
 
 namespace emplySoftware.Pages
 {
@@ -27,11 +28,65 @@ namespace emplySoftware.Pages
         public Tasks()
         {
             InitializeComponent();
-
-            LoadGrid(GetCurrent.CurrentUser);
+            //LoadGrid(GetCurrent.CurrentUser);
+            HELP();
         }
-        
-        
+        private void HELP()
+        {
+            pbCalculationProgress.Value = 0;
+            data_grid_task.Items.Clear();
+
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_DoWork;
+            worker.ProgressChanged += worker_ProgressChanged;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync(10);
+        }
+        List<DatabaseSQL.Task> data_grid_tasks = new List<DatabaseSQL.Task>();
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int i = 0;
+            
+            var taskList = App.ContextDatabase.Task.Where(x => x.EmployeeID == GetCurrent.CurrentUser.userID).ToList();
+            int max = taskList.Count;
+            foreach (var task in taskList)
+            {
+                i++;
+                int progressPercentage = Convert.ToInt32(((double)i / max) * 100);
+                data_grid_tasks.Add(new DatabaseSQL.Task
+                {
+                    ID = task.ID,
+                    EmployeeID = task.EmployeeID,
+                    Title = task.Title,
+                    Description = task.Description,
+                    CreateDate = task.CreateDate,
+                    Deadline = task.Deadline,
+                    Difficulty = task.Difficulty,
+                    Status = task.Status,
+                    FioUser = FIOus.GetFullName(task.EmployeeID),
+                });
+                (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
+            }
+            e.Result = data_grid_tasks;
+            
+        }
+        public int item = 0;
+        void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+            pbCalculationProgress.Value = e.ProgressPercentage;
+            if (e.UserState != null)
+            {
+                data_grid_task.Items.Add(data_grid_tasks[item]);
+                item++;
+            }
+                
+        }
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            
+        }
         private void LoadGrid(User user)
         {
             data_grid_task.ItemsSource = tasks.TaskFills(GetCurrent.CurrentUser);
