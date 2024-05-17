@@ -94,8 +94,7 @@
         
         <!--#region middle_panel-->
         <Border x:Name="middle_panel"
-                Grid.Row="1"
-                Margin="10,5,10,10">
+                Grid.Row="1">
 
             <DataGrid ColumnHeaderStyle="{DynamicResource data_grid_column_header_task}"
                       CellStyle="{DynamicResource data_grid_cell_task}"
@@ -113,15 +112,15 @@
 
                     <DataGridTextColumn Header="Сотрудник"
                                         Binding="{Binding FioUser}"
-                                        Width="*"/>
+                                        MinWidth="150"/>
 
                     <DataGridTextColumn Header="Сложность"
                                         Binding="{Binding Difficulty}"
-                                        Width="*"/>
+                                        MinWidth="100"/>
 
                     <DataGridTextColumn Header="Статус"
                                         Binding="{Binding Status}"
-                                        Width="*"/>
+                                        MinWidth="100"/>
 
                     <DataGridTemplateColumn Header="Операции"
                                             MinWidth="100">
