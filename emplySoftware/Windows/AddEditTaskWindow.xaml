@@ -165,6 +165,7 @@
                     <Button Height="40" Width="300"
                             Margin="15"
                             Style="{StaticResource save_button}"
+                            Click="BtnSave_Click"
                             x:Name="BtnSave">
 
                     </Button>

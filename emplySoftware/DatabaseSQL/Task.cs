@@ -22,7 +22,14 @@ namespace emplySoftware.DatabaseSQL
         public Nullable<System.DateTime> Deadline { get; set; }
         public Nullable<double> Difficulty { get; set; }
         public string Status { get; set; }
-    
+        string fioUser;
+
+        public string FioUser
+        {
+            get { return fioUser; }
+            set { fioUser = value; }
+        }
+
         public virtual User User { get; set; }
     }
 }

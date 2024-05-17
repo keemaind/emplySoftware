@@ -77,7 +77,6 @@
     <Compile Include="Class\FIOus.cs" />
     <Compile Include="Class\GetCurrent.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
-    <Compile Include="Class\MessagesList.cs" />
     <Compile Include="ViewModels\tasks.cs" />
     <Compile Include="DatabaseSQL\chatList.cs">
       <DependentUpon>Database.tt</DependentUpon>
@@ -138,6 +137,9 @@
     </Compile>
     <Compile Include="Windows\UserSettingsWindow.xaml.cs">
       <DependentUpon>UserSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\YesOrNoWindow.xaml.cs">
+      <DependentUpon>YesOrNoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\ChatCreatePage.xaml">
       <SubType>Designer</SubType>
@@ -232,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\YesOrNoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

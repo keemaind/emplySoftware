@@ -35,6 +35,7 @@ namespace emplySoftware.Windows
             }
             combo_box_task_user.ItemsSource = listUsers;
         }
+
         public AddEditTaskWindow(DatabaseSQL.Task task)
         {
             InitializeComponent();
@@ -66,6 +67,14 @@ namespace emplySoftware.Windows
         private void add_edit_task_close_button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+
         }
     }
 }
