@@ -109,36 +109,38 @@
 
                             <StackPanel x:Name="stack_panel_task_user">
 
-                                <ComboBox x:Name="combo_box_task_user"
-                                         Height="50" Width="400"
-                                         Style="{StaticResource combo_box_task_user}"/>
+                                <ComboBox ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
+                                          x:Name="combo_box_task_user"
+                                          Height="50" Width="400"
+                                          Style="{StaticResource combo_box_task_user}"/>
 
                             </StackPanel>
 
                             <StackPanel x:Name="stack_panel_task_create_date">
 
-                                <DatePicker x:Name="date_picker_create_date"
-                                         Height="50" Width="400"
-                                         Tag="Дата создания"
-                                         Style="{StaticResource add_edit_task_date_picker}"/>
+                                <DatePicker CalendarStyle="{DynamicResource date_picker_calendar_style}" x:Name="date_picker_create_date"
+                                            Height="50" Width="400"
+                                            Tag="Дата создания"
+                                            Style="{StaticResource add_edit_task_date_picker}"/>
 
                             </StackPanel>
 
                             <StackPanel x:Name="stack_panel_task_deadline">
 
                                 <DatePicker x:Name="date_picker_task_deadline"
-                                         Height="50" Width="400"
-                                         Tag="Крайний срок"
-                                         Style="{StaticResource add_edit_task_date_picker}"/>
+                                            Height="50" Width="400"
+                                            Tag="Крайний срок"
+                                            Style="{StaticResource add_edit_task_date_picker}"/>
 
                             </StackPanel>
 
                             <StackPanel x:Name="stack_panel_task_status">
 
                                 <ComboBox x:Name="combo_box_task_status"
-                                         Height="50" Width="400"
-                                         Tag="Статус"
-                                         Style="{StaticResource combo_box_task_status}">
+                                          Height="50" Width="400"
+                                          Tag="Статус"
+                                          ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
+                                          Style="{StaticResource combo_box_task_status}">
 
                                     <ComboBoxItem Content="Запланирована"/>
                                     <ComboBoxItem Content="Выполняется"/>

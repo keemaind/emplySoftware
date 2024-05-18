@@ -128,7 +128,12 @@ namespace emplySoftware.Pages
 
         private void data_grid_delete_button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
 
+            YesOrNoWindow yesOrNoWindow = new YesOrNoWindow();
+            ApplyEffect(mainWindow);
+            yesOrNoWindow.ShowDialog();
+            ClearEffect(mainWindow);
         }
     }
 }

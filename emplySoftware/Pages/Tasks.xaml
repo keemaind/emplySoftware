@@ -83,9 +83,9 @@
                             Style="{StaticResource create_task_button}"/>
 
                 </StackPanel>
+                
                 <ProgressBar x:Name="pbCalculationProgress"
-                    Grid.Column="1" 
-                             HorizontalAlignment="Left" Height="10" Margin="126,30,0,0" VerticalAlignment="Top" Width="100"/>
+                             Visibility="Collapsed"/>
 
             </Grid>
 

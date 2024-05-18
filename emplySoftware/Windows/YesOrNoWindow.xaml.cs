@@ -42,17 +42,6 @@ namespace emplySoftware.Windows
             choice = true;
             this.Close();
         }
-        
-
-        private void LoginCloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void LoginMinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        }
     }
     
     

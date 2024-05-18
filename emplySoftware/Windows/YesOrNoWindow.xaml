@@ -45,25 +45,10 @@
 
                 <DockPanel>
 
-                    <Label Content="Ошибка!"
+                    <Label Content="Удаление задачи"
                            Margin="5,0,0,0"
                            Style="{StaticResource ErrorLabel}"/>
-
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-
-                        <Button x:Name="LoginMinimizeButton"
-                                Click="LoginMinimizeButton_Click"
-                                Width="40" Height="30"
-                                Style="{StaticResource MinimizeButton}"/>
-
-                        <Button x:Name="LoginCloseButton"
-                                Click="LoginCloseButton_Click"
-                                Width="40" Height="30"
-                                Style="{StaticResource CloseButton}"/>
-
-                    </StackPanel>
-
+                    
                 </DockPanel>
 
             </Border>
@@ -108,20 +93,19 @@
 
                     </Border>
 
-                    <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
 
                         <Button x:Name="YesButton"
                                 Click="YesButton_Click"
-                                Content="OK"
-                                Style="{StaticResource ok_error_button}"
-                                Width="100" Height="40"
-                                Margin="0,20,0,20">
+                                Style="{StaticResource confrim_delete_task_button}"
+                                Width="200" Height="40"
+                                Margin="0,20,15,20">
 
                         </Button>
                         <Button x:Name="NoButton"
                                 Click="NoButton_Click"
-                                Content="OK"
-                                Style="{StaticResource ok_error_button}"
+                                Style="{StaticResource cancel_delete_button}"
                                 Width="100" Height="40"
                                 Margin="0,20,0,20">
 

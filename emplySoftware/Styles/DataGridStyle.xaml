@@ -209,7 +209,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Margin" Value="15,0"/>
+        <Setter Property="Margin" Value="0,0"/>
         
         <Setter Property="Template">
             
@@ -237,7 +237,7 @@
     <!--#region column_header_gripper_task-->
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         
-        <Setter Property="Width" Value="8"/>
+        <Setter Property="Width" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Cursor" Value="SizeWE"/>
         
@@ -321,15 +321,15 @@
     <!--#region data_grid_row_task-->
     <Style x:Key="data_grid_row_task" TargetType="{x:Type DataGridRow}">
         
-        <Setter Property="Background" Value="White"/>
-        <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource main_color_02}"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
-        <Setter Property="BorderThickness" Value="5,2,2,2"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="5,0,5,10"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="10"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="Width" Value="820"/>
@@ -404,32 +404,8 @@
             </Setter.Value>
             
         </Setter>
-        
+
         <Style.Triggers>
-
-            <DataTrigger Binding="{Binding Status}" Value="Выполнена">
-
-                <Setter Property="BorderBrush" Value="#4bb57b"/>
-
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Status}" Value="Выполняется">
-
-                <Setter Property="BorderBrush" Value="#41a1e5"/>
-
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Status}" Value="Запланирована">
-
-                <Setter Property="BorderBrush" Value="#8171fe"/>
-
-            </DataTrigger>
-
-            <DataTrigger Binding="{Binding Status}" Value="Отменена">
-
-                <Setter Property="BorderBrush" Value="#f01f36"/>
-
-            </DataTrigger>
 
             <Trigger Property="IsMouseOver" Value="True">
 
@@ -449,23 +425,8 @@
                 </Setter>
 
             </Trigger>
-            
+
             <Trigger Property="IsSelected" Value="True">
-
-                <Setter Property="Background">
-
-                    <Setter.Value>
-
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                            <GradientStop Color="#41a1e5" Offset="0"/>
-                            <GradientStop Color="#4db1bd" Offset="1"/>
-
-                        </LinearGradientBrush>
-
-                    </Setter.Value>
-
-                </Setter>
 
                 <Setter Property="BorderBrush">
 
