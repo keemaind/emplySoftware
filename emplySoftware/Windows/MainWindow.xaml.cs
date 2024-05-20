@@ -24,6 +24,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Window = System.Windows.Window;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
+using System.Windows.Threading;
+using System.Windows.Forms;
 
 
 namespace emplySoftware
@@ -49,7 +51,7 @@ namespace emplySoftware
 
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+            System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private void MainCloseButton_Click(object sender, RoutedEventArgs e)
@@ -78,14 +80,7 @@ namespace emplySoftware
             this.Close();
         }
 
-        //Изменение чата по выбору в listView
-        private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var selectedChat = (UserChats.SelectedItem as chats);
-
-            main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
-
-        }
+        
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -139,13 +134,109 @@ namespace emplySoftware
             else
                 return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
+        #region ЧАТ 
+        //Изменение чата по выбору в listView
+        private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedChat = (UserChats.SelectedItem as chats);
+            var persOrGrop =  App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
+            if (persOrGrop.Value == true) ChatPersonalPage(selectedChat);
+            else ChatGroupPage(selectedChat);
 
-        private void NewMessage_Change(object sender, EventArgs e)
+
+            //main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
+
+        }
+        List<MessageList> MessageList = new List<MessageList>();
+
+        public event EventHandler DataChanged;
+        public int thisChatID;
+        private DispatcherTimer timer;
+        int msgCount;
+
+        public void ChatPersonalPage(chats selectedChat)
         {
             
+            thisChatID = selectedChat.ChatID;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            MessagesListView.ItemsSource = MessageList;
+            Refresh(thisChatID);
+            msgCount = MessageList.Count();
         }
-        
-        
+
+        public void ChatGroupPage(chats selectedChat)
+        {
+            thisChatID = selectedChat.ChatID;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            MessagesListView.ItemsSource = MessageList;
+            Refresh(thisChatID);
+            msgCount = MessageList.Count();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+        private void RefreshData()
+        {
+            int msgCountRD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).Count();
+            if (msgCount != msgCountRD)
+            {
+                MessageList.Clear();
+                Refresh(thisChatID);
+                msgCount = MessageList.Count();
+                DataChanged?.Invoke(this, new EventArgs());
+            }
+        }
+        private void Refresh(int thisChatID)
+        {
+            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+            foreach (var message in MessagesBD)
+            {
+                MessageList.Add(new MessageList
+                {
+                    messageID = message.messageID,
+                    userID = (int)message.userID,
+                    Message = message.Message,
+                    sendDate = (DateTime)message.sendDate,
+                    imageUser = 
+                });
+            }
+        }
+        private void sendMessage_Click(object sender, RoutedEventArgs e)
+        {
+            string msg = MsgTextBlock.Text.ToString();
+            var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == GetCurrent.CurrentUser.userID);
+
+            if (msg != "")
+            {
+                var Messages = new Messages
+                {
+                    chatID = thisChatID,
+                    userID = us.userID,
+                    Message = msg,
+                    sendDate = DateTime.Now,
+                };
+                App.ContextDatabase.Messages.Add(Messages);
+                App.ContextDatabase.SaveChanges();
+                MsgTextBlock.Text = "";
+                RefreshData();
+                DataChanged?.Invoke(this, new EventArgs());
+            }
+            else
+            {
+                string errorMessage = "Сообщение не может быть пустым!";
+                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                errorWindow.ShowDialog();
+            }
+        }
+        #endregion ЧАТ 
     }
 
 }

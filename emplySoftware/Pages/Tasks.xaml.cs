@@ -41,20 +41,21 @@ namespace emplySoftware.Pages
             worker.DoWork += worker_DoWork;
             worker.ProgressChanged += worker_ProgressChanged;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync(10);
+            worker.RunWorkerAsync(20);
         }
-        List<DatabaseSQL.Task> data_grid_tasks = new List<DatabaseSQL.Task>();
+        List<TaskList> data_grid_tasks = new List<TaskList>();
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             int i = 0;
             
             var taskList = App.ContextDatabase.Task.Where(x => x.EmployeeID == GetCurrent.CurrentUser.userID).ToList();
             int max = taskList.Count;
+            string FioUs = FIOus.GetFullName(GetCurrent.CurrentUser);
             foreach (var task in taskList)
             {
                 i++;
                 int progressPercentage = Convert.ToInt32(((double)i / max) * 100);
-                data_grid_tasks.Add(new DatabaseSQL.Task
+                data_grid_tasks.Add(new TaskList
                 {
                     ID = task.ID,
                     EmployeeID = task.EmployeeID,
@@ -64,7 +65,7 @@ namespace emplySoftware.Pages
                     Deadline = task.Deadline,
                     Difficulty = task.Difficulty,
                     Status = task.Status,
-                    FioUser = FIOus.GetFullName(task.EmployeeID),
+                    FioUser = FioUs
                 });
                 (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
             }
@@ -87,10 +88,7 @@ namespace emplySoftware.Pages
         {
             
         }
-        private void LoadGrid(User user)
-        {
-            data_grid_task.ItemsSource = tasks.TaskFills(GetCurrent.CurrentUser);
-        }
+        
 
         private void add_task_button_Click(object sender, RoutedEventArgs e)
         {

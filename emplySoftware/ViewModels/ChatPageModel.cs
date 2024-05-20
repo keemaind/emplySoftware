@@ -24,13 +24,13 @@ namespace emplySoftware.Class
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private ObservableCollection<Messages> messages = null;
+        private ObservableCollection<MessageList> messages = null;
 
-        public ObservableCollection<Messages> MessagesH
+        public ObservableCollection<MessageList> MessagesH
         {
             get
             {
-                messages = messages ?? new ObservableCollection<Messages>();
+                messages = messages ?? new ObservableCollection<MessageList>();
                 return messages;
             }
         }
@@ -41,10 +41,11 @@ namespace emplySoftware.Class
         }
         private void Refresh(int thisChatID)
         {
+           
             var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
             foreach (var message in MessagesBD)
             {
-                MessagesH.Add(new Messages
+                MessagesH.Add(new MessageList
                 {
                     messageID = message.messageID,
                     userID = (int)message.userID,

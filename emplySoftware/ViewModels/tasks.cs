@@ -9,13 +9,7 @@ namespace emplySoftware.Class
 {
     public class tasks : DatabaseSQL.Task
     {
-        string fioUser;
-
-        public string FioUser
-        {
-            get { return fioUser; }
-            private set { fioUser = value; }
-        }
+        
 
 
         public static List<tasks> TaskFills(User user)
