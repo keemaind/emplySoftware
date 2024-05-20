@@ -195,7 +195,7 @@ namespace emplySoftware
                     userID = (int)message.userID,
                     Message = message.Message,
                     sendDate = (DateTime)message.sendDate,
-                    imageUser = 
+                    
                 });
             }
         }

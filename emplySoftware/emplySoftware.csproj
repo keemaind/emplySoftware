@@ -79,7 +79,6 @@
     <Compile Include="Class\FIOus.cs" />
     <Compile Include="Class\GetCurrent.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
-    <Compile Include="ViewModels\tasks.cs" />
     <Compile Include="DatabaseSQL\chatList.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
