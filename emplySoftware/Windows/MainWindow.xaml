@@ -286,7 +286,9 @@
 
             <StackPanel Grid.Column="2" 
                         Grid.Row="1"  
-                        Orientation="Horizontal">
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        Margin="10,10">
                 <TextBox x:Name="MsgTextBlock"
                          Foreground="Gray"
                          Tag="Message"
