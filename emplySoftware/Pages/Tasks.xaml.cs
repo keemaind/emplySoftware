@@ -135,5 +135,13 @@ namespace emplySoftware.Pages
             yesOrNoWindow.ShowDialog();
             ClearEffect(mainWindow);
         }
+
+        private void combo_box_task_status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
     }
 }
