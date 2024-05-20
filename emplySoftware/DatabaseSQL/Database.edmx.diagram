@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f5a7fe9a13624c7fae5aaef7fc0c696f" Name="Diagram1">
-        <EntityTypeShape EntityType="emplyDatabaseModel.Task" Width="1.5" PointX="5.25" PointY="10.25" />
         <EntityTypeShape EntityType="emplyDatabaseModel.chatList" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="emplyDatabaseModel.chatUsers" Width="1.5" PointX="5.625" PointY="3.875" />
         <EntityTypeShape EntityType="emplyDatabaseModel.Messages" Width="1.5" PointX="5.625" PointY="6.625" />
@@ -16,6 +15,7 @@
         <AssociationConnector Association="emplyDatabaseModel.FK_chatUsers_User" />
         <AssociationConnector Association="emplyDatabaseModel.FK_userID" />
         <AssociationConnector Association="emplyDatabaseModel.FK_User_Position" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.Task" Width="1.5" PointX="5.625" PointY="10.25" />
         <AssociationConnector Association="emplyDatabaseModel.FK_Task_User" />
         </Diagram>
     </edmx:Diagrams>

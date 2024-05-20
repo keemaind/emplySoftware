@@ -18,28 +18,18 @@ namespace emplySoftware.DatabaseSQL
         public emplyDatabase()
             : base("name=emplyDatabase")
         {
-
         }
-
-        private static emplyDatabase _context;
-
-        public static emplyDatabase GetContext()
-        {
-            if (_context == null)
-                _context = new emplyDatabase();
-            return _context;
-        }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<chatList> chatList { get; set; }
         public virtual DbSet<chatUsers> chatUsers { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Task> Task { get; set; }
     }
 }

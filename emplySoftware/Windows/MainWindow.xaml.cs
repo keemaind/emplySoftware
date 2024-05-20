@@ -43,7 +43,7 @@ namespace emplySoftware
             main_frame.Navigate(mainPage);
             
         }
-
+        #region Визуал часть
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -70,8 +70,6 @@ namespace emplySoftware
             this.Close();
         }
 
-        
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -91,6 +89,7 @@ namespace emplySoftware
         {
             win.Effect = null;
         }
+        #endregion
 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
@@ -117,6 +116,7 @@ namespace emplySoftware
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserChats.ItemsSource);
             view.Filter = UserFilter;
         }
+
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(search_text_box.Text))
@@ -124,6 +124,7 @@ namespace emplySoftware
             else
                 return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
+
         #region ЧАТ 
         //Изменение чата по выбору в listView
         private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)

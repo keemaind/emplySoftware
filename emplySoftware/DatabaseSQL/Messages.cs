@@ -22,6 +22,5 @@ namespace emplySoftware.DatabaseSQL
     
         public virtual chatList chatList { get; set; }
         public virtual User User { get; set; }
-        public byte[] imageUser { get; set; }
     }
 }

@@ -47,7 +47,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="EmployeeID" Type="int" />
@@ -178,7 +178,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="emplyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="emplyDatabase" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Task" EntityType="emplyDatabaseModel.Task" />
           <EntitySet Name="chatList" EntityType="emplyDatabaseModel.chatList" />
           <EntitySet Name="chatUsers" EntityType="emplyDatabaseModel.chatUsers" />
           <EntitySet Name="Messages" EntityType="emplyDatabaseModel.Messages" />
@@ -204,25 +203,12 @@
             <End Role="Position" EntitySet="Position" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <EntitySet Name="Task" EntityType="emplyDatabaseModel.Task" />
           <AssociationSet Name="FK_Task_User" Association="emplyDatabaseModel.FK_Task_User">
             <End Role="User" EntitySet="User" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="Task">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Deadline" Type="DateTime" Precision="0" />
-          <Property Name="Difficulty" Type="Double" />
-          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_Task_User" FromRole="Task" ToRole="User" />
-        </EntityType>
         <EntityType Name="chatList">
           <Key>
             <PropertyRef Name="chatID" />
@@ -345,6 +331,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Deadline" Type="DateTime" Precision="0" />
+          <Property Name="Difficulty" Type="Double" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="emplyDatabaseModel.FK_Task_User" FromRole="Task" ToRole="User" />
+        </EntityType>
         <Association Name="FK_Task_User">
           <End Type="emplyDatabaseModel.User" Role="User" Multiplicity="0..1" />
           <End Type="emplyDatabaseModel.Task" Role="Task" Multiplicity="*" />
@@ -363,20 +363,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище emplyDatabaseModelContainer" CdmEntityContainer="emplyDatabase">
-          <EntitySetMapping Name="Task">
-            <EntityTypeMapping TypeName="emplyDatabaseModel.Task">
-              <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
-                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="chatList">
             <EntityTypeMapping TypeName="emplyDatabaseModel.chatList">
               <MappingFragment StoreEntitySet="chatList">
@@ -430,6 +416,20 @@
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

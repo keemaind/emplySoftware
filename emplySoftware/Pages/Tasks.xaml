@@ -68,15 +68,18 @@
 
                     <ComboBox x:Name="combo_box_task_status"
                               SelectionChanged="combo_box_task_status_SelectionChanged"
-                              Height="40" Width="200"
+                              Height="40" Width="300"
                               Margin="0,0,10,0"
                               Tag="Статус"
                               ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
                               Style="{StaticResource combo_box_task_status}">
 
+                        <ComboBoxItem Content="Все"
+                                      x:Name="combo_box_task_all"/>
+                        
                         <ComboBoxItem Content="Запланирована"
                                       x:Name="combo_box_task_planned"/>
-                        
+
                         <ComboBoxItem Content="Выполняется"
                                       x:Name="combo_box_task_execute"/>
                         
@@ -125,6 +128,7 @@
                       Style="{DynamicResource data_grid_task}"
                       x:Name="data_grid_task"
                       AutoGenerateColumns="False"
+                      ItemsSource="{Binding TaskList}"
                       IsReadOnly="True">
 
                 <DataGrid.Columns>
