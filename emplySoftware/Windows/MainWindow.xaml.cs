@@ -146,7 +146,9 @@ namespace emplySoftware
 
         public void ChatPersonalPage(chats selectedChat)
         {
+            var userInChat = App.ContextDatabase.chatUsers.FirstOrDefault(p => p.chatID == thisChatID).userID;
             
+            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
             thisChatID = selectedChat.ChatID;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);

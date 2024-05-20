@@ -275,6 +275,7 @@
                    NavigationUIVisibility="Hidden"
                    />
             <!--#endregion-->
+            
             <ListView Grid.Column="2" 
                       Grid.Row="1"
                       x:Name="MessagesListView" ItemsSource="{Binding MessageList}"
