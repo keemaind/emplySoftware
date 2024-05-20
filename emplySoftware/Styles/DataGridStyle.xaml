@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
                     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <!--#region solid_color_brush-->
@@ -126,13 +127,23 @@
                                         
                                         <Button Command="{x:Static DataGrid.SelectAllCommand}"
                                                 Focusable="false"
-                                                Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}"
-                                                Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle,
+                                                                                              TypeInTargetAssembly={x:Type DataGrid}}}"
+                                                
+                                                Visibility="{Binding HeadersVisibility,
+                                                                     ConverterParameter={x:Static DataGridHeadersVisibility.All},
+                                                                     Converter={x:Static DataGrid.HeadersVisibilityConverter},
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                
+                                                Width="{Binding CellsPanelHorizontalOffset,
+                                                                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                         
                                         <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
                                                                         Grid.Column="1"
-                                                                        Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                                        Visibility="{Binding HeadersVisibility,
+                                                                                             ConverterParameter={x:Static DataGridHeadersVisibility.Column},
+                                                                                             Converter={x:Static DataGrid.HeadersVisibilityConverter},
+                                                                                             RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                                         
                                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
                                                                 CanContentScroll="{TemplateBinding CanContentScroll}"
@@ -207,9 +218,11 @@
     <Style x:Key="data_grid_cell_task" TargetType="{x:Type DataGridCell}">
         
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#222528"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Margin" Value="0,0"/>
+        <Setter Property="Margin" Value="15,0"/>
         
         <Setter Property="Template">
             
@@ -220,9 +233,9 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderThickness="0"
                             SnapsToDevicePixels="True">
-                        
+
                         <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        
+
                     </Border>
                     
                 </ControlTemplate>
@@ -267,7 +280,7 @@
         <Setter Property="Background" Value="{StaticResource main_color_02}"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_02}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Margin" Value="5,0,5,10"/>
+        <Setter Property="Margin" Value="5,10,5,10"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Height" Value="40"/>
@@ -280,24 +293,45 @@
                     
                     <Grid>
                         
-                        <theme:DataGridHeaderBorder Background="{TemplateBinding Background}"
-                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                    IsPressed="{TemplateBinding IsPressed}"
-                                                    IsHovered="{TemplateBinding IsMouseOver}"
-                                                    IsClickable="{TemplateBinding CanUserSort}"
-                                                    Padding="{TemplateBinding Padding}"
-                                                    SortDirection="{TemplateBinding SortDirection}"
-                                                    SeparatorVisibility="{TemplateBinding SeparatorVisibility}"
-                                                    SeparatorBrush="{TemplateBinding SeparatorBrush}"
-                                                    CornerRadius="10">
-                            
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            
-                        </theme:DataGridHeaderBorder>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="10">
+
+                            <Grid Margin="{TemplateBinding Margin}">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  RecognizesAccessKey="True"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  VerticalAlignment="Center"/>
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Column="1"
+                                            Margin="5,0,0,0">
+
+                                    <fa:IconImage Icon="ArrowUpLong"
+                                                  x:Name="sort_up_icon"
+                                                  Width="10" Height="10"
+                                                  Foreground="#7f7f7f"/>
+
+                                    <fa:IconImage Icon="ArrowDownLong"
+                                                  x:Name="sort_down_icon"
+                                                  Width="10" Height="10"
+                                                  Foreground="#7f7f7f"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
                         
                         <Thumb x:Name="PART_LeftHeaderGripper"
                                HorizontalAlignment="Left"
@@ -308,6 +342,22 @@
                                Style="{StaticResource ColumnHeaderGripperStyle}"/>
                         
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="SortDirection" Value="Ascending">
+
+                            <Setter Property="Foreground" Value="#c6c6c6" TargetName="sort_up_icon"/>
+
+                        </Trigger>
+
+                        <Trigger Property="SortDirection" Value="Descending">
+
+                            <Setter Property="Foreground" Value="#c6c6c6" TargetName="sort_down_icon"/>
+
+                        </Trigger>
+                        
+                    </ControlTemplate.Triggers>
                     
                 </ControlTemplate>
                 
@@ -409,20 +459,7 @@
 
             <Trigger Property="IsMouseOver" Value="True">
 
-                <Setter Property="BorderBrush">
-
-                    <Setter.Value>
-
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                            <GradientStop Color="#41a1e5" Offset="0"/>
-                            <GradientStop Color="#4db1bd" Offset="1"/>
-
-                        </LinearGradientBrush>
-                        
-                    </Setter.Value>
-                    
-                </Setter>
+                <Setter Property="BorderBrush" Value="{StaticResource main_color_03}"/>
 
             </Trigger>
 
@@ -442,6 +479,8 @@
                     </Setter.Value>
 
                 </Setter>
+
+                <Setter Property="BorderThickness" Value="2"/>
 
             </Trigger>
             

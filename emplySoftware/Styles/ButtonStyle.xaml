@@ -1831,7 +1831,7 @@
                                     <ColorAnimation Storyboard.TargetName="border_background"
                                                     Storyboard.TargetProperty="Color"
                                                     From="#f02036"
-                                                    To="#e71026"
+                                                    To="#cf0e22"
                                                     Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
@@ -1848,7 +1848,7 @@
 
                                     <ColorAnimation Storyboard.TargetName="border_background"
                                                     Storyboard.TargetProperty="Color"
-                                                    From="#e71026"
+                                                    From="#cf0e22"
                                                     To="#f02036"
                                                     Duration="0:0:0:0.2"/>
 

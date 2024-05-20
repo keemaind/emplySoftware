@@ -44,11 +44,6 @@ namespace emplySoftware
             
         }
 
-        private void MainMenuButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -57,11 +52,6 @@ namespace emplySoftware
         private void MainCloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void CloseMenuBar_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ButtonEditProfile_Click(object sender, RoutedEventArgs e)

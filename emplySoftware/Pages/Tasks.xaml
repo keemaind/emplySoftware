@@ -41,7 +41,7 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left">
 
-                    <fa:IconImage Icon="bolt"
+                    <fa:IconImage Icon="Book"
                               Width="21" Height="21">
 
                         <fa:IconImage.Foreground>
@@ -66,8 +66,31 @@
                             Grid.Column="1"
                             HorizontalAlignment="Right">
 
+                    <ComboBox x:Name="combo_box_task_status"
+                              SelectionChanged="combo_box_task_status_SelectionChanged"
+                              Height="40" Width="200"
+                              Margin="0,0,10,0"
+                              Tag="Статус"
+                              ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
+                              Style="{StaticResource combo_box_task_status}">
+
+                        <ComboBoxItem Content="Запланирована"
+                                      x:Name="combo_box_task_planned"/>
+                        
+                        <ComboBoxItem Content="Выполняется"
+                                      x:Name="combo_box_task_execute"/>
+                        
+                        <ComboBoxItem Content="Выполнена"
+                                      x:Name="combo_box_task_executed"/>
+                        
+                        <ComboBoxItem Content="Отменена"
+                                      x:Name="combo_box_task_canceled"/>
+
+                    </ComboBox>
+
                     <TextBox Tag="Найти задачу..."
                              x:Name="search_text_box"
+                             TextChanged="search_text_box_TextChanged"
                              Height="40" Width="280"
                              Style="{StaticResource search_task_text_box}"/>
 
@@ -120,13 +143,13 @@
 
                     <DataGridTextColumn Header="Статус"
                                         Binding="{Binding Status}"
-                                        MinWidth="100"/>
+                                        Width="*"/>
 
                     <DataGridTemplateColumn Header="Операции"
-                                            MinWidth="100">
-                        
+                                            MinWidth="140">
+
                         <DataGridTemplateColumn.CellTemplate>
-                            
+
                             <DataTemplate>
 
                                 <StackPanel Orientation="Horizontal">
@@ -145,9 +168,9 @@
                                 </StackPanel>
 
                             </DataTemplate>
-                            
+
                         </DataGridTemplateColumn.CellTemplate>
-                        
+
                     </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
