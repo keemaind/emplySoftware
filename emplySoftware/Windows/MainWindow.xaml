@@ -152,11 +152,55 @@
                             <ToggleButton x:Name="menu_button"
                                           Style="{StaticResource sidebar_menu_toggle_button}"
                                           Height="40"
-                                          Margin="24,0"
+                                          Margin="29,0,10,0"
                                           HorizontalAlignment="Left"
-                                          Click="menu_button_Click"/>
+                                          Click="menu_button_Click">
+
+                                <ToggleButton.Triggers>
+                                    
+                                    <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                        
+                                        <BeginStoryboard>
+
+                                            <Storyboard>
+
+                                                <DoubleAnimation Storyboard.TargetName="sidebar_menu"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 From="80"
+                                                                 To="330"
+                                                                 Duration="0:0:0:0.2"/>
+                                                
+                                            </Storyboard>
+                                            
+                                        </BeginStoryboard>
+                                        
+                                    </EventTrigger>
+
+                                    <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+
+                                        <BeginStoryboard>
+
+                                            <Storyboard>
+
+                                                <DoubleAnimation Storyboard.TargetName="sidebar_menu"
+                                                                 Storyboard.TargetProperty="Width"
+                                                                 From="330"
+                                                                 To="80"
+                                                                 Duration="0:0:0:0.2"/>
+
+                                            </Storyboard>
+
+                                        </BeginStoryboard>
+
+                                    </EventTrigger>
+
+                                </ToggleButton.Triggers>
+
+                            </ToggleButton>
 
                             <TextBlock Text="Навигационное меню"
+                                       x:Name="navigation_menu_text_block"
+                                       Visibility="Collapsed"
                                        Style="{StaticResource sidebar_text_block}"/>
 
                         </StackPanel>
@@ -175,14 +219,14 @@
                         <RadioButton x:Name="ButtonGraphics"
                                      Style="{StaticResource graphics_radio_button}"
                                      Height="40" 
-                                     Margin="24,0"
+                                     Margin="29,0"
                                      HorizontalAlignment="Left"
                                      HorizontalContentAlignment="Center"/>
 
                         <RadioButton x:Name="ButtonTasks"
                                      Click="ButtonTasks_Click"
                                      Style="{StaticResource tasks_radio_button}"
-                                     Margin="24,10,24,0"
+                                     Margin="29,10,29,0"
                                      HorizontalAlignment="Left"
                                      HorizontalContentAlignment="Center"/>
 
@@ -200,7 +244,7 @@
                         <RadioButton x:Name="ButtonEmployees"
                                      Style="{StaticResource employees_radio_button}"
                                      Height="40"
-                                     Margin="24,0"
+                                     Margin="29,0"
                                      HorizontalAlignment="Left"
                                      HorizontalContentAlignment="Center"/>
 
@@ -222,7 +266,7 @@
                                  Click="ButtonExit_Click"
                                  Style="{StaticResource exit_radio_button}"
                                  Height="40"
-                                 Margin="24,0"
+                                 Margin="29,0"
                                  HorizontalAlignment="Left"
                                  HorizontalContentAlignment="Center"/>
 
