@@ -101,23 +101,6 @@
 
                             </Setter>
 
-                            <Setter Property="BorderThickness" TargetName="border" Value="0,0,3,0"/>
-                            
-                            <Setter Property="BorderBrush" TargetName="border">
-
-                                <Setter.Value>
-
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                                        <GradientStop Color="#41a1e5" Offset="0"/>
-                                        <GradientStop Color="#4db1bd" Offset="1"/>
-
-                                    </LinearGradientBrush>
-
-                                </Setter.Value>
-                                
-                            </Setter>
-
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -229,23 +212,6 @@
 
                             </Setter>
 
-                            <Setter Property="BorderThickness" TargetName="border" Value="0,0,3,0"/>
-
-                            <Setter Property="BorderBrush" TargetName="border">
-
-                                <Setter.Value>
-
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                                        <GradientStop Color="#41a1e5" Offset="0"/>
-                                        <GradientStop Color="#4db1bd" Offset="1"/>
-
-                                    </LinearGradientBrush>
-
-                                </Setter.Value>
-
-                            </Setter>
-
                         </Trigger>
 
                     </ControlTemplate.Triggers>
@@ -343,23 +309,6 @@
                         <Trigger Property="IsChecked" Value="True">
 
                             <Setter Property="Foreground" TargetName="icon">
-
-                                <Setter.Value>
-
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                                        <GradientStop Color="#41a1e5" Offset="0"/>
-                                        <GradientStop Color="#4db1bd" Offset="1"/>
-
-                                    </LinearGradientBrush>
-
-                                </Setter.Value>
-
-                            </Setter>
-
-                            <Setter Property="BorderThickness" TargetName="border" Value="0,0,3,0"/>
-
-                            <Setter Property="BorderBrush" TargetName="border">
 
                                 <Setter.Value>
 

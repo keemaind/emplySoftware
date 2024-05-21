@@ -150,12 +150,14 @@
                                                                 Grid.ColumnSpan="2" Grid.Row="1"/>
                                         
                                         <ScrollBar x:Name="PART_VerticalScrollBar"
-                                                   Grid.Column="2"
+                                                   Grid.Column="3"
                                                    Maximum="{TemplateBinding ScrollableHeight}"
                                                    Orientation="Vertical"
                                                    Grid.Row="1"
                                                    Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                   ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                   Style="{StaticResource custom_scroll_bar}"/>
                                         
                                         <Grid Grid.Column="1" Grid.Row="2">
                                             
