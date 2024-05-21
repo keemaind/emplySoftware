@@ -33,13 +33,25 @@ namespace emplySoftware
 
     public partial class MainWindow : Window
     {
-        
+        List<MessageList> MessagesList = new List<MessageList>();
+        public event EventHandler DataChanged;
+        private BackgroundWorker worker = null;
+        public int thisChatID;
+        private DispatcherTimer timer;
+        int msgCount;
+        public int curUserID;
         MainPage mainPage = new MainPage();
+        public byte[] usImg = null;
+        public byte[] curUsImg = null;
+
         public MainWindow()
         {
             InitializeComponent();
             MainWindowModel model = new MainWindowModel();
             DataContext = model;
+            curUsImg = model.imageUserST;
+            curUserID = GetCurrent.CurrentUser.userID;
+            
             main_frame.Navigate(mainPage);
             
         }
@@ -91,11 +103,11 @@ namespace emplySoftware
         }
         #endregion
 
+        #region Разные методы 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
             main_frame.NavigationService.Navigate(new Tasks());
         }
-
         private void CreateChat_Click(object sender, RoutedEventArgs e)
         {
             ChatCreatePage p1 = new ChatCreatePage();
@@ -109,14 +121,11 @@ namespace emplySoftware
             DataContext = model;
             main_frame.Navigate(mainPage);
         }
-
-
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserChats.ItemsSource);
             view.Filter = UserFilter;
         }
-
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(search_text_box.Text))
@@ -124,114 +133,56 @@ namespace emplySoftware
             else
                 return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
+        #endregion 
 
         #region ЧАТ 
+
+        List<GroupUserImages> usersImageList = new List<GroupUserImages>();
+        DispatcherTimer Ltimer = new DispatcherTimer();
         //Изменение чата по выбору в listView
         private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedChat = (UserChats.SelectedItem as chats);
-            var persOrGrop =  App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
-            if (persOrGrop.Value == true) ChatPersonalPage(selectedChat);
-            else ChatGroupPage(selectedChat);
-
-
-            //main_frame.NavigationService.Navigate(new ChatPage(selectedChat));
-
-        }
-        List<MessageList> MessageList = new List<MessageList>();
-
-        public event EventHandler DataChanged;
-        public int thisChatID;
-        private DispatcherTimer timer;
-        int msgCount;
-
-        public void ChatPersonalPage(chats selectedChat)
-        {
-            thisChatID = selectedChat.ChatID;
-            var chatUs = App.ContextDatabase.chatUsers.FirstOrDefault(p => p.chatID == thisChatID);
-            var UsImg = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUs.userID);
-
-            var CurUsImg = App.ContextDatabase.User.FirstOrDefault(p => p.userID == GetCurrent.CurrentUser.userID);
+            if (Ltimer.IsEnabled) Ltimer.Stop();
             
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-            MessagesListView.ItemsSource = MessageList;
-            RefreshPersonalChat(thisChatID, UsImg.Image, CurUsImg.Image);
-            msgCount = MessageList.Count();
-        }
-        private void RefreshPersonalChat(int thisChatID, byte[] UsImg, byte[] CurUsImg)
-        {
-            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
-            int curUsInt = GetCurrent.CurrentUser.userID;
-            foreach (var message in MessagesBD)
+            MessagesList.Clear();
+            MessagesListView.Items.Clear();
+            var selectedChat = (UserChats.SelectedItem as chats);
+            var persOrGrop = App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
+            if (persOrGrop.Value == true) 
             {
-                if (message.userID == curUsInt)
+                thisChatID = selectedChat.ChatID;
+                usImg = selectedChat.Image;
+
+                PersonalMessageAdd();
+                main_frame.Visibility = Visibility.Hidden;
+                sendBlock.Visibility = Visibility.Visible;
+                MsgTextBlock.Visibility = Visibility.Visible;
+                sendMessage.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                thisChatID = selectedChat.ChatID;
+                var usersImages = App.ContextDatabase.chatUsers.Where(p => p.chatID == selectedChat.ChatID).ToList();
+                foreach (var usIm in usersImages)
                 {
-                    MessageList.Add(new MessageList
+                    usersImageList.Add( new GroupUserImages
                     {
-                        messageID = message.messageID,
-                        userID = (int)message.userID,
-                        Message = message.Message,
-                        sendDate = (DateTime)message.sendDate,
-                        imageUser = CurUsImg
+                        userID = (int)usIm.userID,
+                        imageUser = App.ContextDatabase.User.FirstOrDefault(p => p.userID == usIm.userID).Image
                     });
                 }
-                else
-                    MessageList.Add(new MessageList
-                    {
-                        messageID = message.messageID,
-                        userID = (int)message.userID,
-                        Message = message.Message,
-                        sendDate = (DateTime)message.sendDate,
-                        imageUser = UsImg
-                    });
+                main_frame.Visibility = Visibility.Hidden;
+                ChatGroupPage();
+                sendBlock.Visibility = Visibility.Visible;
+                MsgTextBlock.Visibility = Visibility.Visible;
+                sendMessage.Visibility = Visibility.Visible;
+
 
             }
-        }
-        public void ChatGroupPage(chats selectedChat)
-        {
-            thisChatID = selectedChat.ChatID;
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-            MessagesListView.ItemsSource = MessageList;
-            Refresh(thisChatID);
-            msgCount = MessageList.Count();
+
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            RefreshData();
-        }
-        private void RefreshData()
-        {
-            int msgCountRD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).Count();
-            if (msgCount != msgCountRD)
-            {
-                MessageList.Clear();
-                Refresh(thisChatID);
-                msgCount = MessageList.Count();
-                DataChanged?.Invoke(this, new EventArgs());
-            }
-        }
-        private void Refresh(int thisChatID)
-        {
-            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
-            foreach (var message in MessagesBD)
-            {
-                MessageList.Add(new MessageList
-                {
-                    messageID = message.messageID,
-                    userID = (int)message.userID,
-                    Message = message.Message,
-                    sendDate = (DateTime)message.sendDate,
-                    
-                });
-            }
-        }
+        #region Отправка сообщения 
         private void sendMessage_Click(object sender, RoutedEventArgs e)
         {
             string msg = MsgTextBlock.Text.ToString();
@@ -259,7 +210,223 @@ namespace emplySoftware
                 errorWindow.ShowDialog();
             }
         }
-        #endregion ЧАТ 
+        #endregion 
+
+        #region Заполнение группового чата
+
+        public void ChatGroupPage()
+        {
+
+            MessagesList.Clear();
+            MessagesListView.Items.Clear();
+
+            worker = new BackgroundWorker();
+            worker.WorkerSupportsCancellation = true;
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_GroupDoWork;
+            worker.ProgressChanged += worker_GroupProgressChanged;
+            worker.RunWorkerCompleted += worker_GroupRunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+        void worker_GroupDoWork(object sender, DoWorkEventArgs e)
+        {
+            int i = 0;
+            int progressPercentage = 0;
+            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+            int max = MessagesBD.Count;
+            foreach (var message in MessagesBD)
+            {
+                i++;
+                progressPercentage = Convert.ToInt32(((double)i / max) * 100);
+ 
+                //if (message.userID == im.userID)
+                
+                //{
+                //        MessagesList.Add(new MessageList
+                //        {
+                //            messageID = message.messageID,
+                //            userID = (int)message.userID,
+                //            Message = message.Message,
+                //            sendDate = (DateTime)message.sendDate,
+                //            imageUser = im.imageUser
+                //        });
+                //}
+                
+                (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
+            }
+            e.Result = MessagesList;
+
+        }
+        public int Groupitem = 0;
+        void worker_GroupProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+            if (e.UserState != null)
+            {
+                MessagesListView.Items.Add(MessagesList[Groupitem]);
+                Groupitem++;
+            }
+
+        }
+        void worker_GroupRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Groupitem = 0;
+            Ltimer.Interval = TimeSpan.FromSeconds(3);
+            Ltimer.Tick += GroupTimer_Tick;
+            Ltimer.Start();
+            msgCount = MessagesList.Count();
+            worker.CancelAsync();
+        }
+
+        private void GroupTimer_Tick(object sender, EventArgs e)
+        {
+            GroupRefreshData();
+        }
+
+        private void GroupRefreshData()
+        {
+            var msgCountNew = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+            if (msgCount != msgCountNew.Count())
+            {
+                var newMSG = msgCountNew.Last();
+                foreach (var im in usersImageList)
+                {
+                    if (newMSG.userID == im.userID)
+                    {
+                        MessagesList.Add(new MessageList
+                        {
+                            messageID = newMSG.messageID,
+                            userID = (int)newMSG.userID,
+                            Message = newMSG.Message,
+                            sendDate = (DateTime)newMSG.sendDate,
+                            imageUser = im.imageUser
+                        });
+                    }
+                }
+                msgCount = MessagesList.Count();
+                MessagesListView.Items.Add(MessagesList[msgCount - 1]);
+                
+                DataChanged?.Invoke(this, new EventArgs());
+            }
+        }
+        #endregion
+
+        #region Заполнение персонального чата поочередно, а также обновление в реальном времени 
+        
+        private void PersonalMessageAdd()
+        {
+
+            MessagesList.Clear();
+            MessagesListView.Items.Clear();
+
+            worker = new BackgroundWorker();
+            worker.WorkerSupportsCancellation = true;
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += worker_PersonalDoWork;
+            worker.ProgressChanged += worker_PersonalProgressChanged;
+            worker.RunWorkerCompleted += worker_PersonalRunWorkerCompleted;
+            worker.RunWorkerAsync();
+           
+        }
+
+        void worker_PersonalDoWork(object sender, DoWorkEventArgs e)
+        {
+            int i = 0;
+            int progressPercentage = 0;
+            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+            int max = MessagesBD.Count;
+
+            foreach (var message in MessagesBD)
+            {
+                i++;
+                progressPercentage = Convert.ToInt32(((double)i / max) * 100);
+                if (message.userID == curUserID)
+                {
+                    MessagesList.Add(new MessageList
+                    {
+                        messageID = message.messageID,
+                        userID = (int)message.userID,
+                        Message = message.Message,
+                        sendDate = (DateTime)message.sendDate,
+                        imageUser = curUsImg
+                    });
+                }
+                else
+                    MessagesList.Add(new MessageList
+                    {
+                        messageID = message.messageID,
+                        userID = (int)message.userID,
+                        Message = message.Message,
+                        sendDate = (DateTime)message.sendDate,
+                        imageUser = usImg
+                    });
+                (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
+            }
+            e.Result = MessagesList;
+
+        }
+        public int item = 0;
+        void worker_PersonalProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+            //pbCalculationProgress.Value = e.ProgressPercentage;
+            if (e.UserState != null)
+            {
+                MessagesListView.Items.Add(MessagesList[item]);
+                item++;
+            }
+
+        }
+        void worker_PersonalRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            item = 0;
+            Ltimer.Interval = TimeSpan.FromSeconds(2);
+            Ltimer.Tick += Timer_Tick;
+            Ltimer.Start();
+            msgCount = MessagesList.Count();
+            worker.CancelAsync();
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+        private void RefreshData()
+        {
+                var msgCountNew = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+                if (msgCount != msgCountNew.Count())
+                {
+                    var newMSG = msgCountNew.Last();
+
+                    if (newMSG.userID == curUserID)
+                    {
+                        MessagesList.Add(new MessageList
+                        {
+                            messageID = newMSG.messageID,
+                            userID = (int)newMSG.userID,
+                            Message = newMSG.Message,
+                            sendDate = (DateTime)newMSG.sendDate,
+                            imageUser = curUsImg
+                        });
+                    }
+                    else
+                        MessagesList.Add(new MessageList
+                        {
+                            messageID = newMSG.messageID,
+                            userID = (int)newMSG.userID,
+                            Message = newMSG.Message,
+                            sendDate = (DateTime)newMSG.sendDate,
+                            imageUser = usImg
+                        });
+                    msgCount = MessagesList.Count();
+                    MessagesListView.Items.Add(MessagesList[msgCount - 1]);
+                    DataChanged?.Invoke(this, new EventArgs());
+                
+            }
+            
+        }
+        #endregion 
+        
+        #endregion
     }
 
 }

@@ -157,7 +157,6 @@ namespace emplySoftware.Pages
 
             }
             else
-
                 ClearEffect(mainWindow);
         }
 
@@ -209,9 +208,6 @@ namespace emplySoftware.Pages
             else
                 return ((item as TaskList).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
-
-       
-
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(data_grid_task.Items);

@@ -59,7 +59,7 @@ namespace emplySoftware.Class
                         Title = G,
                         Image = us.Image,
                         ChatID = chatPers.chatID,
-                        lastMessage = last
+                        LastMessage = last
                     });
                 }
             }
@@ -82,7 +82,7 @@ namespace emplySoftware.Class
                         Title = G,
                         Image = us.Image,
                         ChatID = chatUS.chatID,
-                        lastMessage = last
+                        LastMessage = last
                     });
                 }
             }
@@ -99,7 +99,7 @@ namespace emplySoftware.Class
                     Title = chatGrop.Title,
                     Image = chatGrop.Image,
                     ChatID = chatGrop.chatID,
-                    lastMessage = last
+                    LastMessage = last
                 });
             }
             //Заполнение групповых чатов где находится пользователь, заполняется название чата
@@ -119,7 +119,7 @@ namespace emplySoftware.Class
                         Title = chatGet.Title,
                         Image = chatGet.Image,
                         ChatID = chatGet.chatID,
-                        lastMessage = last
+                        LastMessage = last
                     });
                 }
             }

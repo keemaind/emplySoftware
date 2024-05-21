@@ -80,13 +80,14 @@ namespace emplySoftware.Pages
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if((bool)GroupChat.IsChecked)
+            int curINT = GetCurrent.CurrentUser.userID;
+            if ((bool)GroupChat.IsChecked)
             {
                 DateTime nn = DateTime.Now;
                 var newGroupChat = new chatList
                 {
                     Title = TitleChat.Text.ToString(),
-                    userID = GetCurrent.CurrentUser.userID,
+                    userID = curINT,
                     personal = false,
                     Image = _mainImageData,
                     CreateDate = nn,
@@ -101,18 +102,26 @@ namespace emplySoftware.Pages
                         chatID = newChatId,
                         userID = users.userID
                     };
+
                     App.ContextDatabase.chatUsers.Add(usersInChat);
                 }
+                var creatorChat = new chatUsers
+                {
+                    chatID = newChatId,
+                    userID = curINT,
+                };
+                App.ContextDatabase.chatUsers.Add(creatorChat);
                 App.ContextDatabase.SaveChanges();
                 DataChanged?.Invoke(this, new EventArgs());
             }
             else if ((bool)PersonalChat.IsChecked)
             {
+                
                 DateTime nn = DateTime.Now;
                 var newPersonalChat = new chatList
                 {
                     Title = "Личный чат",
-                    userID = GetCurrent.CurrentUser.userID,
+                    userID = curINT,
                     personal = true,
                     CreateDate=nn,
                 };
@@ -127,8 +136,15 @@ namespace emplySoftware.Pages
                         chatID = newChatId,
                         userID = users.userID
                     };
+
                     App.ContextDatabase.chatUsers.Add(usersInChat);
                 }
+                var creatorChat = new chatUsers
+                {
+                    chatID= newChatId,
+                    userID = curINT,
+                };
+                App.ContextDatabase.chatUsers.Add(creatorChat);
                 App.ContextDatabase.SaveChanges();
 
                 DataChanged?.Invoke(this, new EventArgs());
