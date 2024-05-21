@@ -72,7 +72,7 @@
                               Margin="0,0,10,0"
                               Tag="Статус"
                               ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
-                              Style="{StaticResource combo_box_task_status}">
+                              Style="{StaticResource combo_box_task_status_02}">
 
                         <ComboBoxItem Content="Все"
                                       x:Name="combo_box_task_all"/>
@@ -147,10 +147,10 @@
 
                     <DataGridTextColumn Header="Статус"
                                         Binding="{Binding Status}"
-                                        Width="*"/>
+                                        MinWidth="120"/>
 
                     <DataGridTemplateColumn Header="Операции"
-                                            MinWidth="140">
+                                            MinWidth="100">
 
                         <DataGridTemplateColumn.CellTemplate>
 

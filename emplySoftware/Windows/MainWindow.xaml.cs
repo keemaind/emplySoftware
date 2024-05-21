@@ -260,6 +260,18 @@ namespace emplySoftware
             }
         }
         #endregion ЧАТ 
+
+        private void menu_button_Click(object sender, RoutedEventArgs e)
+        {
+            if (menu_button.IsChecked == true)
+            {
+                sidebar_menu.Width = 330;
+            }
+            else
+            {
+                sidebar_menu.Width = 80;
+            }
+        }
     }
 
 }
