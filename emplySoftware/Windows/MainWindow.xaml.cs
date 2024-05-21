@@ -147,19 +147,49 @@ namespace emplySoftware
 
         public void ChatPersonalPage(chats selectedChat)
         {
-            var userInChat = App.ContextDatabase.chatUsers.FirstOrDefault(p => p.chatID == thisChatID).userID;
-            
-            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
             thisChatID = selectedChat.ChatID;
+            var chatUs = App.ContextDatabase.chatUsers.FirstOrDefault(p => p.chatID == thisChatID);
+            var UsImg = App.ContextDatabase.User.FirstOrDefault(p => p.userID == chatUs.userID);
+
+            var CurUsImg = App.ContextDatabase.User.FirstOrDefault(p => p.userID == GetCurrent.CurrentUser.userID);
+            
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
             MessagesListView.ItemsSource = MessageList;
-            Refresh(thisChatID);
+            RefreshPersonalChat(thisChatID, UsImg.Image, CurUsImg.Image);
             msgCount = MessageList.Count();
         }
+        private void RefreshPersonalChat(int thisChatID, byte[] UsImg, byte[] CurUsImg)
+        {
+            var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
+            int curUsInt = GetCurrent.CurrentUser.userID;
+            foreach (var message in MessagesBD)
+            {
+                if (message.userID == curUsInt)
+                {
+                    MessageList.Add(new MessageList
+                    {
+                        messageID = message.messageID,
+                        userID = (int)message.userID,
+                        Message = message.Message,
+                        sendDate = (DateTime)message.sendDate,
+                        imageUser = CurUsImg
+                    });
+                }
+                else
+                    MessageList.Add(new MessageList
+                    {
+                        messageID = message.messageID,
+                        userID = (int)message.userID,
+                        Message = message.Message,
+                        sendDate = (DateTime)message.sendDate,
+                        imageUser = UsImg
+                    });
 
+            }
+        }
         public void ChatGroupPage(chats selectedChat)
         {
             thisChatID = selectedChat.ChatID;
