@@ -30,7 +30,7 @@
 
                             <fa:IconImage Icon="Bars"
                                           x:Name="icon"
-                                          Height="30" Width="30"
+                                          Height="20" Width="20"
                                           VerticalAlignment="Center">
 
                                 <fa:IconImage.Foreground>

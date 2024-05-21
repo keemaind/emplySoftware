@@ -433,11 +433,11 @@ namespace emplySoftware
         {
             if (menu_button.IsChecked == true)
             {
-                sidebar_menu.Width = 330;
+                navigation_menu_text_block.Visibility = Visibility.Visible;
             }
             else
             {
-                sidebar_menu.Width = 80;
+                navigation_menu_text_block.Visibility = Visibility.Collapsed;
             }
         }
     }
