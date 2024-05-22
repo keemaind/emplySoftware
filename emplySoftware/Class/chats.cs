@@ -14,6 +14,7 @@ namespace emplySoftware.Class
         public int ChatID { get; set; }
         public string LastMessage { get; set; }
         public byte[] Image {  get; set; }
+        
 
     }
 }

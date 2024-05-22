@@ -407,7 +407,8 @@
                               ItemContainerStyle="{StaticResource ContactsListViewItem}"
                               Background="Transparent"
                               BorderThickness="0"
-                              SelectionChanged="UserChats_SelectionChanged"/>
+                              SelectionChanged="UserChats_SelectionChanged"
+                              Tag="{Binding Path=.}" />
                     <!--#endregion-->
 
                 </StackPanel>

@@ -26,6 +26,9 @@ using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using System.Windows.Threading;
 using System.Windows.Forms;
+using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.UI.Xaml.Controls;
+using TextChangedEventArgs = System.Windows.Controls.TextChangedEventArgs;
 
 
 namespace emplySoftware
@@ -36,8 +39,9 @@ namespace emplySoftware
         List<MessageList> MessagesList = new List<MessageList>();
         public event EventHandler DataChanged;
         private BackgroundWorker worker = null;
+        private BackgroundWorker NotifyWorker = null;
         public int thisChatID;
-        private DispatcherTimer timer;
+        DispatcherTimer NotifyTimer = new DispatcherTimer();
         int msgCount;
         public int curUserID;
         MainPage mainPage = new MainPage();
@@ -51,10 +55,9 @@ namespace emplySoftware
             DataContext = model;
             curUsImg = model.imageUserST;
             curUserID = GetCurrent.CurrentUser.userID;
-
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
-            
             main_frame.Navigate(mainPage);
+            //StartReceiveNotification();
             
         }
         #region Визуал часть
@@ -135,22 +138,102 @@ namespace emplySoftware
             else
                 return ((item as chats).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
-        #endregion 
+        #endregion
 
         #region ЧАТ 
 
+        #region Уведомления
+        private void StartReceiveNotification()
+        {
+            NotifyWorker = new BackgroundWorker();
+            NotifyWorker.WorkerSupportsCancellation = true;
+            NotifyWorker.WorkerReportsProgress = true;
+            NotifyWorker.DoWork += NotifyWorkerDoWork;
+            //NotifyWorker.ProgressChanged += worker_GroupProgressChanged;
+            NotifyWorker.RunWorkerAsync();
+
+
+        }
+        void NotifyWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            NotifyTimer.Interval = TimeSpan.FromSeconds(5);
+            NotifyTimer.Tick += NotifyTimer_Tick;
+            NotifyTimer.Start();
+        }
+
+        private void NotifyTimer_Tick(object sender, EventArgs e)
+        {
+            NotifyCheck();
+        }
+        private void NotifyCheck()
+        {
+
+            foreach (chats chat in UserChats.Items)
+            {
+
+                var msgNew = App.ContextDatabase.Messages.Where(p => p.chatID == chat.ChatID).ToList().Last();
+                if (chat.LastMessage == msgNew.Message)
+                {
+                }
+                else
+                {
+                    var slcItem = UserChats.SelectedItem;
+                    int slcIndex = UserChats.SelectedIndex;
+                    if (slcIndex == -1)
+                    {
+                        MainWindowModel model = new MainWindowModel();
+                        if (msgNew.userID == GetCurrent.CurrentUser.userID)
+                        {
+                            var notification = new ToastContentBuilder();
+                            notification.AddText(msgNew.Message);
+                            notification.Show();
+                            DataContext = model;
+
+                        }
+                        DataContext = model;
+                    }
+                    else
+                    {
+                        MainWindowModel model = new MainWindowModel();
+                        if (msgNew.userID != GetCurrent.CurrentUser.userID)
+                        {
+                            var notification = new ToastContentBuilder();
+                            notification.AddText(msgNew.Message);
+                            notification.Show();
+                            UserChats.SelectedIndex = -1;
+                            DataContext = model;
+                            UserChats.SelectedIndex = slcIndex;
+                        }
+                        
+                        
+                        DataContext = model;
+                        UserChats.SelectedIndex = slcIndex;
+                        
+
+                    }
+                }
+            }
+        }
+
+        #endregion
         List<GroupUserImages> usersImageList = new List<GroupUserImages>();
         DispatcherTimer Ltimer = new DispatcherTimer();
-        //Изменение чата по выбору в listView
-        private void UserChats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void UserChats_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (Ltimer.IsEnabled) Ltimer.Stop();
-            
+
             MessagesList.Clear();
             MessagesListView.Items.Clear();
             var selectedChat = (UserChats.SelectedItem as chats);
+            if (selectedChat == null)
+            {
+
+            }
+            else
+            {
             var persOrGrop = App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
-            if (persOrGrop.Value == true) 
+            if (persOrGrop.Value == true)
             {
                 thisChatID = selectedChat.ChatID;
                 usImg = selectedChat.Image;
@@ -164,14 +247,13 @@ namespace emplySoftware
             else
             {
                 thisChatID = selectedChat.ChatID;
-                
+
                 main_frame.Visibility = Visibility.Hidden;
                 ChatGroupPage();
                 sendBlock.Visibility = Visibility.Visible;
                 MsgTextBlock.Visibility = Visibility.Visible;
                 sendMessage.Visibility = Visibility.Visible;
-
-
+            }
             }
 
         }
