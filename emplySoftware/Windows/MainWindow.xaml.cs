@@ -164,15 +164,7 @@ namespace emplySoftware
             else
             {
                 thisChatID = selectedChat.ChatID;
-                var usersImages = App.ContextDatabase.chatUsers.Where(p => p.chatID == selectedChat.ChatID).ToList();
-                foreach (var usIm in usersImages)
-                {
-                    usersImageList.Add( new GroupUserImages
-                    {
-                        userID = (int)usIm.userID,
-                        imageUser = App.ContextDatabase.User.FirstOrDefault(p => p.userID == usIm.userID).Image
-                    });
-                }
+                
                 main_frame.Visibility = Visibility.Hidden;
                 ChatGroupPage();
                 sendBlock.Visibility = Visibility.Visible;
@@ -218,7 +210,7 @@ namespace emplySoftware
 
         public void ChatGroupPage()
         {
-
+            usersImageList.Clear();
             MessagesList.Clear();
             MessagesListView.Items.Clear();
 
@@ -232,28 +224,39 @@ namespace emplySoftware
         }
         void worker_GroupDoWork(object sender, DoWorkEventArgs e)
         {
+            
+            var usersImages = App.ContextDatabase.chatUsers.Where(p => p.chatID == thisChatID).ToList();
+            foreach (var usIm in usersImages)
+            {
+                usersImageList.Add(new GroupUserImages
+                {
+                    userID = (int)usIm.userID,
+                    imageUser = App.ContextDatabase.User.FirstOrDefault(p => p.userID == usIm.userID).Image
+                });
+            }
             int i = 0;
             int progressPercentage = 0;
             var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
             int max = MessagesBD.Count;
-            foreach (var message in MessagesBD)
+            foreach (Messages message in MessagesBD)
             {
                 i++;
                 progressPercentage = Convert.ToInt32(((double)i / max) * 100);
- 
-                //if (message.userID == im.userID)
-                
-                //{
-                //        MessagesList.Add(new MessageList
-                //        {
-                //            messageID = message.messageID,
-                //            userID = (int)message.userID,
-                //            Message = message.Message,
-                //            sendDate = (DateTime)message.sendDate,
-                //            imageUser = im.imageUser
-                //        });
-                //}
-                
+                foreach (GroupUserImages usImd in usersImageList)
+                {
+                    if (message.userID == usImd.userID)
+                    {
+                        MessagesList.Add(new MessageList
+                        {
+                            messageID = message.messageID,
+                            userID = (int)message.userID,
+                            Message = message.Message,
+                            sendDate = (DateTime)message.sendDate,
+                            imageUser = usImd.imageUser
+                        });
+                    }
+
+                }
                 (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
             }
             e.Result = MessagesList;
@@ -273,7 +276,7 @@ namespace emplySoftware
         void worker_GroupRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Groupitem = 0;
-            Ltimer.Interval = TimeSpan.FromSeconds(3);
+            Ltimer.Interval = TimeSpan.FromSeconds(2);
             Ltimer.Tick += GroupTimer_Tick;
             Ltimer.Start();
             msgCount = MessagesList.Count();
@@ -291,7 +294,7 @@ namespace emplySoftware
             if (msgCount != msgCountNew.Count())
             {
                 var newMSG = msgCountNew.Last();
-                foreach (var im in usersImageList)
+                foreach (GroupUserImages im in usersImageList)
                 {
                     if (newMSG.userID == im.userID)
                     {
@@ -306,7 +309,7 @@ namespace emplySoftware
                     }
                 }
                 msgCount = MessagesList.Count();
-                MessagesListView.Items.Add(MessagesList[msgCount - 1]);
+                MessagesListView.Items.Add(MessagesList[msgCount-1]);
                 
                 DataChanged?.Invoke(this, new EventArgs());
             }
