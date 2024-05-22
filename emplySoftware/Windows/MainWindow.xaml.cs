@@ -443,6 +443,7 @@ namespace emplySoftware
                 tasks_text_block.Visibility = Visibility.Visible;
                 users_text_block.Visibility = Visibility.Visible;
                 exit_text_block.Visibility = Visibility.Visible;
+                home_text_block.Visibility = Visibility.Visible;
                 user_name_menu.Visibility = Visibility.Visible;
                 user_grade.Visibility = Visibility.Visible;
             }
@@ -453,9 +454,20 @@ namespace emplySoftware
                 tasks_text_block.Visibility = Visibility.Collapsed;
                 users_text_block.Visibility = Visibility.Collapsed;
                 exit_text_block.Visibility = Visibility.Collapsed;
+                home_text_block.Visibility = Visibility.Collapsed;
                 user_name_menu.Visibility = Visibility.Collapsed;
                 user_grade.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void ButtonGraphics_Click(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new Dashboard());
+        }
+
+        private void ButtonHome_Click(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new MainPage());
         }
     }
 
