@@ -94,53 +94,51 @@
 
                     </Grid.RowDefinitions>
 
-                    <Button Style="{StaticResource profile_picture_button_mw}"
-                            Width="58" Height="58"
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            x:Name="BtnSelectImage"
-                            Click="ButtonEditProfile_Click">
+                    <StackPanel Orientation="Horizontal">
 
-                        <Button.Content>
+                        <Button Style="{StaticResource profile_picture_button_mw}"
+                                Width="58" Height="58"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                x:Name="BtnSelectImage"
+                                Click="ButtonEditProfile_Click">
 
-                            <Ellipse x:Name="ProfilePhoto"
-                                     Width="49" Height="49"
-                                     HorizontalAlignment="Center"
-                                     VerticalAlignment="Center">
+                            <Button.Content>
 
-                                <Ellipse.Fill>
+                                <Ellipse x:Name="ProfilePhoto"
+                                         Width="49" Height="49"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center">
+
+                                    <Ellipse.Fill>
 
                                         <ImageBrush x:Name="UserImage"
                                                     ImageSource="{Binding imageUserST}"
                                                     Stretch="UniformToFill"
                                                     RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                                </Ellipse.Fill>
+                                    </Ellipse.Fill>
 
-                            </Ellipse>
+                                </Ellipse>
 
-                        </Button.Content>
+                            </Button.Content>
 
-                    </Button>
+                        </Button>
 
-                    <StackPanel Orientation="Vertical"
-                                VerticalAlignment="Center"
-                                Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical"
+                                    VerticalAlignment="Center">
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,0,0,2">
-
-                            <TextBlock x:Name="ProfileMiddleName"
-                                       Margin="0,0,4,0"
+                            <TextBlock x:Name="user_name_menu"
+                                       Margin="0,0,0,2"
+                                       Visibility="Collapsed"
                                        Style="{StaticResource ProfileNamesTextBlock}"/>
 
-                            <TextBlock x:Name="ProfileFirstName"
-                                       Style="{StaticResource ProfileNamesTextBlock}"/>
+                            <TextBlock Text="Frontend-разработчик"
+                                       x:Name="user_grade"
+                                       Visibility="Collapsed"
+                                       Style="{StaticResource ProfileJobTextBlock}"/>
 
                         </StackPanel>
-
-                        <TextBlock Text="Frontend-разработчик"
-                                   Style="{StaticResource ProfileJobTextBlock}"/>
 
                     </StackPanel>
 
@@ -216,19 +214,38 @@
 
                         </Separator>
 
-                        <RadioButton x:Name="ButtonGraphics"
-                                     Style="{StaticResource graphics_radio_button}"
-                                     Height="40" 
-                                     Margin="29,0"
-                                     HorizontalAlignment="Left"
-                                     HorizontalContentAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
 
-                        <RadioButton x:Name="ButtonTasks"
-                                     Click="ButtonTasks_Click"
-                                     Style="{StaticResource tasks_radio_button}"
-                                     Margin="29,10,29,0"
-                                     HorizontalAlignment="Left"
-                                     HorizontalContentAlignment="Center"/>
+                            <RadioButton x:Name="ButtonGraphics"
+                                         Style="{StaticResource graphics_radio_button}"
+                                         Height="40" 
+                                         Margin="29,0,10,0"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Center"/>
+
+                            <TextBlock Text="Графики"
+                                       x:Name="charts_text_block"
+                                       Visibility="Collapsed"
+                                       Style="{StaticResource sidebar_text_block}"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <RadioButton x:Name="ButtonTasks"
+                                         Click="ButtonTasks_Click"
+                                         Style="{StaticResource tasks_radio_button}"
+                                         Margin="29,0,10,0"
+                                         Height="40"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Center"/>
+
+                            <TextBlock Text="Задачи"
+                                       x:Name="tasks_text_block"
+                                       Visibility="Collapsed"
+                                       Style="{StaticResource sidebar_text_block}"/>
+
+                        </StackPanel>
 
                         <Separator Background="{StaticResource main_color_02}"
                                    Margin="20">
@@ -241,12 +258,21 @@
 
                         </Separator>
 
-                        <RadioButton x:Name="ButtonEmployees"
-                                     Style="{StaticResource employees_radio_button}"
-                                     Height="40"
-                                     Margin="29,0"
-                                     HorizontalAlignment="Left"
-                                     HorizontalContentAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal">
+
+                            <RadioButton x:Name="ButtonEmployees"
+                                         Style="{StaticResource employees_radio_button}"
+                                         Height="40"
+                                         Margin="29,0,10,0"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Center"/>
+
+                            <TextBlock Text="Пользователи"
+                                       x:Name="users_text_block"
+                                       Visibility="Collapsed"
+                                       Style="{StaticResource sidebar_text_block}"/>
+
+                        </StackPanel>
 
                         <Separator Background="{StaticResource main_color_02}"
                                    Margin="20">
@@ -261,14 +287,23 @@
 
                     </StackPanel>
 
-                    <RadioButton x:Name="ButtonExit"
-                                 Grid.Row="2"
-                                 Click="ButtonExit_Click"
-                                 Style="{StaticResource exit_radio_button}"
-                                 Height="40"
-                                 Margin="29,0"
-                                 HorizontalAlignment="Left"
-                                 HorizontalContentAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2">
+
+                        <RadioButton x:Name="ButtonExit"
+                                     Click="ButtonExit_Click"
+                                     Style="{StaticResource exit_radio_button}"
+                                     Height="40"
+                                     Margin="29,0,10,0"
+                                     HorizontalAlignment="Left"
+                                     HorizontalContentAlignment="Center"/>
+
+                        <TextBlock Text="Выйти"
+                                   x:Name="exit_text_block"
+                                   Visibility="Collapsed"
+                                   Style="{StaticResource sidebar_text_block}"/>
+
+                    </StackPanel>
 
                 </Grid>
 

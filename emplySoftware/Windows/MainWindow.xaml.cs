@@ -51,6 +51,8 @@ namespace emplySoftware
             DataContext = model;
             curUsImg = model.imageUserST;
             curUserID = GetCurrent.CurrentUser.userID;
+
+            user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             
             main_frame.Navigate(mainPage);
             
@@ -434,10 +436,22 @@ namespace emplySoftware
             if (menu_button.IsChecked == true)
             {
                 navigation_menu_text_block.Visibility = Visibility.Visible;
+                charts_text_block.Visibility = Visibility.Visible;
+                tasks_text_block.Visibility = Visibility.Visible;
+                users_text_block.Visibility = Visibility.Visible;
+                exit_text_block.Visibility = Visibility.Visible;
+                user_name_menu.Visibility = Visibility.Visible;
+                user_grade.Visibility = Visibility.Visible;
             }
             else
             {
                 navigation_menu_text_block.Visibility = Visibility.Collapsed;
+                charts_text_block.Visibility = Visibility.Collapsed;
+                tasks_text_block.Visibility = Visibility.Collapsed;
+                users_text_block.Visibility = Visibility.Collapsed;
+                exit_text_block.Visibility = Visibility.Collapsed;
+                user_name_menu.Visibility = Visibility.Collapsed;
+                user_grade.Visibility = Visibility.Collapsed;
             }
         }
     }
