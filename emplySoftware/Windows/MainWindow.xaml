@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:local="clr-namespace:emplySoftware"
+        xmlns:pages="clr-namespace:emplySoftware.Pages"
         mc:Ignorable="d"
         Title="Emply Software"
         Height="800" Width="1200"
@@ -214,65 +215,83 @@
 
                         </Separator>
 
-                        <StackPanel Orientation="Horizontal">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+
+                            </Grid.RowDefinitions>
+
+                            <RadioButton x:Name="ButtonHome"
+                                         Style="{StaticResource home_radio_button}"
+                                         Height="40" 
+                                         Margin="29,0,0,0"
+                                         Click="ButtonHome_Click"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Center"/>
+
+                            <TextBlock Text="Главная"
+                                       Grid.Column="1"
+                                       x:Name="home_text_block"
+                                       Visibility="Collapsed"
+                                       Style="{StaticResource sidebar_text_block}"/>
 
                             <RadioButton x:Name="ButtonGraphics"
                                          Style="{StaticResource graphics_radio_button}"
                                          Height="40" 
-                                         Margin="29,0,10,0"
+                                         Margin="29,0,0,0"
+                                         Grid.Row="1"
+                                         Click="ButtonGraphics_Click"
                                          HorizontalAlignment="Left"
                                          HorizontalContentAlignment="Center"/>
 
                             <TextBlock Text="Графики"
+                                       Grid.Column="1" Grid.Row="1"
                                        x:Name="charts_text_block"
                                        Visibility="Collapsed"
                                        Style="{StaticResource sidebar_text_block}"/>
 
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-
                             <RadioButton x:Name="ButtonTasks"
                                          Click="ButtonTasks_Click"
                                          Style="{StaticResource tasks_radio_button}"
-                                         Margin="29,0,10,0"
+                                         Margin="29,0,0,0"
                                          Height="40"
+                                         Grid.Row="2"
                                          HorizontalAlignment="Left"
                                          HorizontalContentAlignment="Center"/>
 
                             <TextBlock Text="Задачи"
+                                       Grid.Row="2" Grid.Column="1"
                                        x:Name="tasks_text_block"
                                        Visibility="Collapsed"
                                        Style="{StaticResource sidebar_text_block}"/>
 
-                        </StackPanel>
-
-                        <Separator Background="{StaticResource main_color_02}"
-                                   Margin="20">
-
-                            <Separator.RenderTransform>
-
-                                <ScaleTransform ScaleY="2"/>
-
-                            </Separator.RenderTransform>
-
-                        </Separator>
-
-                        <StackPanel Orientation="Horizontal">
-
                             <RadioButton x:Name="ButtonEmployees"
                                          Style="{StaticResource employees_radio_button}"
                                          Height="40"
-                                         Margin="29,0,10,0"
+                                         Margin="29,0,0,0"
+                                         Grid.Row="3"
                                          HorizontalAlignment="Left"
                                          HorizontalContentAlignment="Center"/>
 
                             <TextBlock Text="Пользователи"
                                        x:Name="users_text_block"
                                        Visibility="Collapsed"
+                                       Grid.Row="3" Grid.Column="1"
                                        Style="{StaticResource sidebar_text_block}"/>
 
-                        </StackPanel>
+                        </Grid>
 
                         <Separator Background="{StaticResource main_color_02}"
                                    Margin="20">
@@ -282,15 +301,27 @@
                                 <ScaleTransform ScaleY="2"/>
 
                             </Separator.RenderTransform>
-                            
+
                         </Separator>
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="2">
+                    <StackPanel Grid.Row="2">
 
-                        <RadioButton x:Name="ButtonExit"
+                        <Separator Background="{StaticResource main_color_02}"
+                                   Margin="20,10">
+
+                            <Separator.RenderTransform>
+
+                                <ScaleTransform ScaleY="2"/>
+
+                            </Separator.RenderTransform>
+
+                        </Separator>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <RadioButton x:Name="ButtonExit"
                                      Click="ButtonExit_Click"
                                      Style="{StaticResource exit_radio_button}"
                                      Height="40"
@@ -298,10 +329,12 @@
                                      HorizontalAlignment="Left"
                                      HorizontalContentAlignment="Center"/>
 
-                        <TextBlock Text="Выйти"
+                            <TextBlock Text="Выйти"
                                    x:Name="exit_text_block"
                                    Visibility="Collapsed"
                                    Style="{StaticResource sidebar_text_block}"/>
+
+                        </StackPanel>
 
                     </StackPanel>
 
