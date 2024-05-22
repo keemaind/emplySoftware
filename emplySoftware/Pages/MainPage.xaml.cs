@@ -1,4 +1,5 @@
-﻿using System;
+﻿using emplySoftware.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace emplySoftware.Pages
         public MainPage()
         {
             InitializeComponent();
+            user_main_page.Text = FIOus.GetFirstName(GetCurrent.CurrentUser) + "!";
         }
     }
 }

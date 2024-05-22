@@ -113,5 +113,29 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <!--#endregion-->
+    
+    <!--#region main_page_title-->
+    <Style x:Key="main_page_title" TargetType="TextBlock">
+
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region main_page_subtitle-->
+    <Style x:Key="main_page_subtitle" TargetType="TextBlock">
+
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="20,-5"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>

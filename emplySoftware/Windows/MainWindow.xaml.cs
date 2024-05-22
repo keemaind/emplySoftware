@@ -551,6 +551,13 @@ namespace emplySoftware
         {
             main_frame.NavigationService.Navigate(new MainPage());
         }
+
+        private void MainMaximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+        }
     }
 
 }

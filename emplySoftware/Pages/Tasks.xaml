@@ -135,22 +135,27 @@
 
                     <DataGridTextColumn Header="Название"
                                         Binding="{Binding Title}"
-                                        MinWidth="300"/>
+                                        MinWidth="300"
+                                        Width="*"/>
 
                     <DataGridTextColumn Header="Сотрудник"
                                         Binding="{Binding FioUser}"
-                                        MinWidth="150"/>
+                                        MinWidth="150"
+                                        Width="*"/>
 
                     <DataGridTextColumn Header="Сложность"
                                         Binding="{Binding Difficulty}"
-                                        MinWidth="100"/>
+                                        MinWidth="100"
+                                        Width="*"/>
 
                     <DataGridTextColumn Header="Статус"
                                         Binding="{Binding Status}"
-                                        MinWidth="120"/>
+                                        MinWidth="120"
+                                        Width="*"/>
 
                     <DataGridTemplateColumn Header="Операции"
-                                            MinWidth="100">
+                                            MinWidth="100"
+                                            Width="*">
 
                         <DataGridTemplateColumn.CellTemplate>
 

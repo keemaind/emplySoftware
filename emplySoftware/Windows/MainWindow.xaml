@@ -10,7 +10,6 @@
         Title="Emply Software"
         Height="800" Width="1200"
         WindowStyle="None"
-        ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
@@ -64,6 +63,11 @@
                                 Click="MainMinimizeButton_Click"
                                 Width="40" Height="30"
                                 Style="{StaticResource MinimizeButton}"/>
+
+                        <Button x:Name="MainMaximizeButton"
+                                Click="MainMaximizeButton_Click"
+                                Width="40" Height="30"
+                                Style="{StaticResource maximize_button}"/>
 
                         <Button x:Name="MainCloseButton"
                                 Click="MainCloseButton_Click"
