@@ -269,6 +269,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Icons\check.png" />
+    <Resource Include="Icons\chat.png" />
+    <Resource Include="Icons\task.png" />
+    <Resource Include="Icons\link.png" />
+    <Resource Include="Icons\eyebrow_face.png" />
+    <Resource Include="Icons\winking_face.png" />
     <Resource Include="Icons\1e_.png" />
     <Resource Include="Icons\2e_.png" />
     <Resource Include="Icons\dfff-1.png" />

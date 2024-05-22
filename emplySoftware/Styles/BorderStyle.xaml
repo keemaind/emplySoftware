@@ -95,8 +95,102 @@
 
     <!--#region border_main_page-->
     <Style x:Key="border_main_page" TargetType="Border">
+        
         <Setter Property="Background" Value="{StaticResource main_color_02}"/>
         <Setter Property="CornerRadius" Value="15"/>
+        
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region hi_border-->
+    <Style x:Key="hi_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#8171fe" Offset="0"/>
+                    <GradientStop Color="#41a1e5" Offset="1"/>
+
+                </LinearGradientBrush>
+                
+            </Setter.Value>
+            
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region warning_border-->
+    <Style x:Key="warning_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#f02036" Offset="0"/>
+                    <GradientStop Color="#FCA311" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region task_info_border-->
+    <Style x:Key="task_info_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#4bb57b" Offset="0"/>
+                    <GradientStop Color="#4db1bd" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region task_info_border-->
+    <Style x:Key="contacts_info_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#8171fe" Offset="0"/>
+                    <GradientStop Color="#f02036" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
     </Style>
     <!--#endregion-->
 

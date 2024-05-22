@@ -5,23 +5,284 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:emplySoftware.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="730"
+      d:DesignWidth="875"
       Title="Главная">
 
+    <!--#region main_page-->
     <Grid>
 
-        <Border x:Name="MiddlePanelCenterBorderError"
-                Margin="20,20,20,0"
-                Padding="10"
-                Style="{StaticResource border_main_page}"
-                Width="400"
-                Height="50">
+        <Grid.RowDefinitions>
 
-            <Label Content="Пожалуйста, выберите раздел или чат"
-                   Style="{StaticResource ErrorLabel}"
-                   HorizontalAlignment="Center"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="*"/>
 
-        </Border>
+        </Grid.RowDefinitions>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="hi_border"
+                    Margin="20"
+                    Style="{StaticResource hi_border}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0">
+
+                        <Image Source="/Icons/winking_face.png"
+                               Width="40" Height="40"/>
+
+                        <TextBlock Text="Добро пожаловать, "
+                                   Style="{StaticResource main_page_title}"
+                                   Margin="5,0,2,0"/>
+
+                        <TextBlock x:Name="user_main_page"
+                                   Style="{StaticResource main_page_title}"
+                                   Margin="0"/>
+
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Чтобы начать работу выбери раздел в навигационном меню или чат с сотрудником!"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"/>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Direction="-90"
+                                      Color="#c6c6c6"/>
+
+                </Border.Effect>
+                
+            </Border>
+
+            <Border x:Name="warning_border"
+                    Margin="20"
+                    Grid.Column="1"
+                    Style="{StaticResource warning_border}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0">
+
+                        <Image Source="/Icons/eyebrow_face.png"
+                               Width="40" Height="40"/>
+
+                        <TextBlock Text="Предупреждение!"
+                                   Style="{StaticResource main_page_title}"
+                                   Margin="5,0,2,0"/>
+
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Данное приложение до сих пор находится в стадии разработки! Чтобы сделать приложение лучше свяжись с разработчиком напрямую!"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"/>
+
+                    <StackPanel Grid.Row="2">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="20,5">
+
+                            <Image Source="/Icons/link.png"
+                                   Grid.Row="2"
+                                   Width="18" Height="18"/>
+
+                            <TextBlock Text="tg: darovskikhs"
+                                       Style="{StaticResource main_page_subtitle}"
+                                       VerticalAlignment="Center"
+                                       Margin="5,0,0,0"
+                                       FontSize="10"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="20,0,5,0">
+
+                            <Image Source="/Icons/link.png"
+                                   Grid.Row="2"
+                                   Width="18" Height="18"/>
+
+                            <TextBlock Text="tg: keemind"
+                                       Style="{StaticResource main_page_subtitle}"
+                                       VerticalAlignment="Center"
+                                       Margin="5,0,0,0"
+                                       FontSize="10"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Direction="-90"
+                                      Color="#c6c6c6"/>
+
+                </Border.Effect>
+
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="task_info_border"
+                    Margin="20"
+                    Style="{StaticResource task_info_border}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0">
+
+                        <Image Source="/Icons/check.png"
+                               Width="40" Height="40"/>
+
+                        <TextBlock Text="Задачи и графики"
+                                   Style="{StaticResource main_page_title}"
+                                   Margin="5,0,2,0"/>
+
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Text="В навигационном меню ты можешь найти такие разделы как 'Задачи' и 'Графики'."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"/>
+
+                    <TextBlock Grid.Row="2"
+                               Text="В разделе 'Задачи' ты можешь просматривать, добавлять, редактировать и удалять задачи, а также фильтровать их по статусу и искать их в поисковой строке."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"
+                               Margin="20,5"/>
+
+                    <TextBlock Grid.Row="3"
+                               Text="В разделе 'Графики' ты можешь просматривать различную статистику сотрудников и задач."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"
+                               Margin="20,5"/>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Direction="-90"
+                                      Color="#c6c6c6"/>
+
+                </Border.Effect>
+
+            </Border>
+
+            <Border x:Name="contacts_info_border"
+                    Margin="20"
+                    Grid.Column="1"
+                    Style="{StaticResource contacts_info_border}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0">
+
+                        <Image Source="/Icons/chat.png"
+                               Width="40" Height="40"/>
+
+                        <TextBlock Text="Контакты"
+                                   Style="{StaticResource main_page_title}"
+                                   Margin="5,0,2,0"/>
+
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Рядом с навигационным меню находится раздел 'Контакты'."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"/>
+
+                    <TextBlock Grid.Row="2"
+                               Text="В данном разделе ты можешь выбирать чаты с сотрудниками или групповые чаты."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"
+                               Margin="20,5"/>
+
+                    <TextBlock Grid.Row="3"
+                               Text="Также ты можешь создать новый чат! Для этого необходимо просто нажать на человечка рядом с заголовком раздела. Там ты можешь выбрать личный или групповый чат."
+                               TextWrapping="Wrap"
+                               Style="{StaticResource main_page_subtitle}"
+                               Margin="20,5"/>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0"
+                                      Direction="-90"
+                                      Color="#c6c6c6"/>
+
+                </Border.Effect>
+
+            </Border>
+
+        </Grid>
 
     </Grid>
+    <!--#endregion-->
+    
 </Page>

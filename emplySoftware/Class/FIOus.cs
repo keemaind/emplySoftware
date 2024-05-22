@@ -33,5 +33,10 @@ namespace emplySoftware.Class
             User us = App.ContextDatabase.User.Where(p => p.userID == employeeID).FirstOrDefault();
             return us.MiddleName + " " + us.FirstName + " " + us.LastName;
         }
+
+        public static string GetFirstName(User user)
+        {
+            return user.FirstName;
+        }
     }
 }
