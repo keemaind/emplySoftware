@@ -138,4 +138,27 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region dashboard_count_tasks-->
+    <Style x:Key="dashboard_count_tasks" TargetType="TextBlock">
+
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Margin" Value="5,0,10,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region dashboard_title_tasks-->
+    <Style x:Key="dashboard_title_tasks" TargetType="TextBlock">
+
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>

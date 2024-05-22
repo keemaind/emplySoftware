@@ -194,4 +194,96 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region dashboard_completed_tasks_border-->
+    <Style x:Key="dashboard_completed_tasks_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#4bb57b" Offset="0"/>
+                    <GradientStop Color="#3c9162" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region dashboard_executing_tasks_border-->
+    <Style x:Key="dashboard_executing_tasks_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#41a1e5" Offset="0"/>
+                    <GradientStop Color="#1d89d6" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region dashboard_planned_tasks_border-->
+    <Style x:Key="dashboard_planned_tasks_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#8171fe" Offset="0"/>
+                    <GradientStop Color="#543efe" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region dashboard_canceled_tasks_border-->
+    <Style x:Key="dashboard_canceled_tasks_border" TargetType="Border">
+
+        <Setter Property="Background">
+
+            <Setter.Value>
+
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                    <GradientStop Color="#f02036" Offset="0"/>
+                    <GradientStop Color="#cf0e22" Offset="1"/>
+
+                </LinearGradientBrush>
+
+            </Setter.Value>
+
+        </Setter>
+
+        <Setter Property="CornerRadius" Value="15"/>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
