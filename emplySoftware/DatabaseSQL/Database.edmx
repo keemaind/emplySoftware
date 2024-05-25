@@ -35,6 +35,16 @@
           <Property Name="Message" Type="ntext" />
           <Property Name="sendDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="newsID" />
+          </Key>
+          <Property Name="newsID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="ntext" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IMAGE" Type="image" />
+        </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="ID" />
@@ -145,6 +155,7 @@
           <EntitySet Name="chatList" EntityType="Self.chatList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="chatUsers" EntityType="Self.chatUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -208,6 +219,7 @@
             <End Role="User" EntitySet="User" />
             <End Role="Task" EntitySet="Task" />
           </AssociationSet>
+          <EntitySet Name="News" EntityType="emplyDatabaseModel.News" />
           </EntityContainer>
         <EntityType Name="chatList">
           <Key>
@@ -357,6 +369,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="newsID" />
+          </Key>
+          <Property Name="newsID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -430,6 +452,17 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="emplyDatabaseModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="newsID" ColumnName="newsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

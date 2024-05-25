@@ -31,5 +31,6 @@ namespace emplySoftware.DatabaseSQL
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Task> Task { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }

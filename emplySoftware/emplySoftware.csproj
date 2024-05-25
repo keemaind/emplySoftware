@@ -68,6 +68,9 @@
     <Compile Include="Class\GroupUserImages.cs" />
     <Compile Include="Class\MessageList.cs" />
     <Compile Include="Class\TaskList.cs" />
+    <Compile Include="DatabaseSQL\News.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChatPageModel.cs" />
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />

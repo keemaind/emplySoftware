@@ -17,6 +17,7 @@
         <AssociationConnector Association="emplyDatabaseModel.FK_User_Position" />
         <EntityTypeShape EntityType="emplyDatabaseModel.Task" Width="1.5" PointX="5.625" PointY="10.25" />
         <AssociationConnector Association="emplyDatabaseModel.FK_Task_User" />
+        <EntityTypeShape EntityType="emplyDatabaseModel.News" Width="1.5" PointX="3.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -29,6 +29,7 @@ using System.Windows.Forms;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Xaml.Controls;
 using TextChangedEventArgs = System.Windows.Controls.TextChangedEventArgs;
+using System.Windows.Controls.Primitives;
 
 
 namespace emplySoftware
@@ -47,6 +48,7 @@ namespace emplySoftware
         MainPage mainPage = new MainPage();
         public byte[] usImg = null;
         public byte[] curUsImg = null;
+        public int slcIndex = -20;
 
         public MainWindow()
         {
@@ -57,8 +59,8 @@ namespace emplySoftware
             curUserID = GetCurrent.CurrentUser.userID;
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
-            //StartReceiveNotification();
-            
+            StartReceiveNotification();
+
         }
         #region Визуал часть
         private void MainMinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -156,7 +158,7 @@ namespace emplySoftware
         }
         void NotifyWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            NotifyTimer.Interval = TimeSpan.FromSeconds(5);
+            NotifyTimer.Interval = TimeSpan.FromSeconds(2);
             NotifyTimer.Tick += NotifyTimer_Tick;
             NotifyTimer.Start();
         }
@@ -170,15 +172,14 @@ namespace emplySoftware
 
             foreach (chats chat in UserChats.Items)
             {
-
                 var msgNew = App.ContextDatabase.Messages.Where(p => p.chatID == chat.ChatID).ToList().Last();
                 if (chat.LastMessage == msgNew.Message)
                 {
                 }
                 else
                 {
-                    var slcItem = UserChats.SelectedItem;
-                    int slcIndex = UserChats.SelectedIndex;
+                    var slcitem = UserChats.SelectedItem;
+                    slcIndex = UserChats.SelectedIndex;
                     if (slcIndex == -1)
                     {
                         MainWindowModel model = new MainWindowModel();
@@ -188,7 +189,6 @@ namespace emplySoftware
                             notification.AddText(msgNew.Message);
                             notification.Show();
                             DataContext = model;
-
                         }
                         DataContext = model;
                     }
@@ -200,16 +200,15 @@ namespace emplySoftware
                             var notification = new ToastContentBuilder();
                             notification.AddText(msgNew.Message);
                             notification.Show();
-                            UserChats.SelectedIndex = -1;
+                            UserChats.SelectedItem = null;
                             DataContext = model;
-                            UserChats.SelectedIndex = slcIndex;
+                            UserChats.SelectedItem = slcitem;
+                            slcIndex = -20;
                         }
-                        
-                        
+                        UserChats.SelectedItem = null;
                         DataContext = model;
-                        UserChats.SelectedIndex = slcIndex;
-                        
-
+                        UserChats.SelectedItem = slcitem;
+                        slcIndex = -20;
                     }
                 }
             }
@@ -223,38 +222,44 @@ namespace emplySoftware
         {
             if (Ltimer.IsEnabled) Ltimer.Stop();
 
-            MessagesList.Clear();
-            MessagesListView.Items.Clear();
+           
             var selectedChat = (UserChats.SelectedItem as chats);
-            if (selectedChat == null)
+            if (slcIndex == -20)
             {
+                MessagesList.Clear();
+                MessagesListView.Items.Clear();
+                var persOrGrop = App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
+                if (persOrGrop.Value == true)
+                {
+                    thisChatID = selectedChat.ChatID;
+                    usImg = selectedChat.Image;
 
-            }
-            else
-            {
-            var persOrGrop = App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
-            if (persOrGrop.Value == true)
-            {
-                thisChatID = selectedChat.ChatID;
-                usImg = selectedChat.Image;
+                    PersonalMessageAdd();
+                    main_frame.Visibility = Visibility.Hidden;
+                    sendBlock.Visibility = Visibility.Visible;
+                    MsgTextBlock.Visibility = Visibility.Visible;
+                    sendMessage.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    thisChatID = selectedChat.ChatID;
 
-                PersonalMessageAdd();
-                main_frame.Visibility = Visibility.Hidden;
-                sendBlock.Visibility = Visibility.Visible;
-                MsgTextBlock.Visibility = Visibility.Visible;
-                sendMessage.Visibility = Visibility.Visible;
+                    main_frame.Visibility = Visibility.Hidden;
+                    ChatGroupPage();
+                    sendBlock.Visibility = Visibility.Visible;
+                    MsgTextBlock.Visibility = Visibility.Visible;
+                    sendMessage.Visibility = Visibility.Visible;
+                }
             }
-            else
-            {
-                thisChatID = selectedChat.ChatID;
+            else 
+            { 
+            
+            
+            }
 
-                main_frame.Visibility = Visibility.Hidden;
-                ChatGroupPage();
-                sendBlock.Visibility = Visibility.Visible;
-                MsgTextBlock.Visibility = Visibility.Visible;
-                sendMessage.Visibility = Visibility.Visible;
-            }
-            }
+
+           
+            
 
         }
 
@@ -262,7 +267,7 @@ namespace emplySoftware
         private void sendMessage_Click(object sender, RoutedEventArgs e)
         {
             string msg = MsgTextBlock.Text.ToString();
-            var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == GetCurrent.CurrentUser.userID);
+            var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == curUserID);
 
             if (msg != "")
             {
