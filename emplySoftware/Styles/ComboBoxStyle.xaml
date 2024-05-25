@@ -668,7 +668,7 @@
                             <TextBox Name="PART_EditableTextBox"
                                      Margin="15,0,0,0"
                                      Cursor="Hand"
-                                     FontFamily="/FontTypes/#Montserrat Regular"
+                                     FontFamily="/FontTypes/#Montserrat Medium"
                                      FontSize="12"
                                      Text="Статус"
                                      Foreground="#a9a9a9"

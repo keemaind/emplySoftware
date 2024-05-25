@@ -1,7 +1,62 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
-    
+
+    <!--#region date_picker_button_template-->
+    <ControlTemplate TargetType="Button" x:Key="date_picker_button_template">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.ColumnSpan="2"
+                Name="Border"
+                BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" 
+                CornerRadius="15"
+                BorderThickness="0" 
+                Background="{StaticResource ComboBoxNormalBackgroundBrush}"/>
+
+            <Border Grid.Column="1"
+                BorderBrush="Transparent"
+                Name="ButtonBorder"
+                Cursor="Hand"
+                Height="20" Width="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                CornerRadius="15"
+                BorderThickness="0" 
+                Background="{StaticResource ComboBoxNormalBackgroundBrush}"/>
+
+            <fa:IconImage Name="Arrow"
+                          Icon="Calendar"
+                          Cursor="Hand"
+                          Height="14" Width="14"
+                          Foreground="#a9a9a9"
+                          Grid.Column="1"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+
+        </Grid>
+
+        <ControlTemplate.Triggers>
+
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource main_color_01}"/>
+                <Setter Property="Foreground" Value="#7f7f7f" TargetName="Arrow"/>
+
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+
+    </ControlTemplate>
+    <!--#endregion-->
+
     <!--#region date_picker_text_box-->
     <Style x:Key="date_picker_text_box" TargetType="TextBox">
         
@@ -90,10 +145,7 @@
                                 HorizontalAlignment="Center">
                         
                         <CalendarItem x:Name="PART_CalendarItem"
-                                      Background="{TemplateBinding Background}"
-                                      BorderBrush="{TemplateBinding BorderBrush}"
-                                      BorderThickness="{TemplateBinding BorderThickness}"
-                                      Style="{TemplateBinding CalendarItemStyle}"/>
+                                      Style="{StaticResource calendar_item_style}"/>
                         
                     </StackPanel>
                     
@@ -138,22 +190,17 @@
                                                    Grid.Column="0"
                                                    Padding="110,0,0,0"
                                                    VerticalAlignment="Center"/>
-                                
+
                                 <Button x:Name="PART_Button"
                                         Grid.Column="1"
-                                        Background="Transparent"
-                                        Margin="0,0,10,0"
+                                        Background="#fff"
+                                        Margin="-20,0,0,0"
                                         Cursor="Hand"
+                                        Height="20"
                                         BorderBrush="Transparent"
-                                        BorderThickness="0">
-                                    
-                                    <fa:IconImage Icon="Calendar"
-                                                  x:Name="button_icon"
-                                                  Foreground="#a9a9a9"
-                                                  Width="14" Height="14"/>
-                                    
-                                </Button>
-                                
+                                        BorderThickness="0"
+                                        Template="{StaticResource date_picker_button_template}"/>
+
                                 <Popup x:Name="PART_Popup"
                                        AllowsTransparency="True"
                                        Placement="Bottom"
@@ -180,7 +227,7 @@
 
                         <Trigger Property="IsMouseOver" Value="True" SourceName="PART_Button">
                             
-                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Background" Value="#fff"/>
                             <Setter Property="BorderThickness" Value="0"/>
                             
                         </Trigger>
@@ -195,5 +242,103 @@
         
     </Style>
     <!--#endregion-->
-    
+
+    <!--#region dashboard_date_picker-->
+    <Style x:Key="dashboard_date_picker" TargetType="DatePicker">
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="DatePicker">
+
+                    <Grid>
+
+                        <Border x:Name="Border"
+                                Grid.ColumnSpan="2"
+                                BorderThickness="1"
+                                CornerRadius="15"
+                                BorderBrush="{StaticResource main_color_03}"
+                                Background="Transparent">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30"/>
+
+                                </Grid.ColumnDefinitions>
+
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                               Style="{StaticResource date_picker_text_box}"
+                                               FontFamily="/FontTypes/#Montserrat Regular"
+                                               Grid.Column="0"
+                                               Padding="15,0,0,0"
+                                               VerticalAlignment="Center"/>
+
+                                <Button x:Name="PART_Button"
+                                    Grid.Column="1"
+                                    Background="#fff"
+                                    Margin="-20,0,0,0"
+                                    Cursor="Hand"
+                                    Height="20"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="0"
+                                    Template="{StaticResource date_picker_button_template}"/>
+
+                                <Popup x:Name="PART_Popup"
+                                   AllowsTransparency="True"
+                                   Placement="Bottom"
+                                   PlacementTarget="{Binding ElementName=PART_TextBox}"
+                                   StaysOpen="False"/>
+
+                                <Label x:Name="Watermark"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"
+                                   Foreground="#a9a9a9"
+                                   Visibility="Collapsed"
+                                   FontSize="10"
+                                   Padding="15,0,0,0"
+                                   Content="{TemplateBinding Tag}"
+                                   FontFamily="/FontTypes/#Montserrat Medium"/>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True" SourceName="PART_Button">
+
+                            <Setter Property="Background" Value="#fff"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+
+                        </Trigger>
+
+                        <MultiTrigger>
+
+                            <MultiTrigger.Conditions>
+
+                                <Condition Property="Text" Value="" SourceName="PART_TextBox"/>
+
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="Visibility" TargetName="Watermark" Value="Visible"/>
+
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>

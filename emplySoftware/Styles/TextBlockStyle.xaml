@@ -160,5 +160,16 @@
 
     </Style>
     <!--#endregion-->
+    
+    <!--#region dashboard_days_text_block-->
+    <Style x:Key="dashboard_days_text_block" TargetType="TextBlock">
+
+        <Setter Property="Foreground" Value="#7f7f7f"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+    </Style>
+    <!--#endregion-->
 
 </ResourceDictionary>
