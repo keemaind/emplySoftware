@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,17 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 namespace emplySoftware.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Dashboard.xaml
+    /// Логика взаимодействия для TestPage.xaml
     /// </summary>
-    public partial class Dashboard : Page
+    public partial class TestPage : Page
     {
-        public Dashboard()
+        public TestPage()
         {
             InitializeComponent();
         }
