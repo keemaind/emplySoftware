@@ -1,4 +1,5 @@
 ﻿using emplySoftware.Class;
+using emplySoftware.DatabaseSQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -32,6 +34,31 @@ namespace emplySoftware.Pages
                 listUsers.Add(mfl);
             }
             user_chart_combo_box.ItemsSource = listUsers;
+            type_chart_combo_box.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
+        }
+
+        private void user_chart_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<User> usersBD = App.ContextDatabase.User.ToList();
+            if (user_chart_combo_box.SelectedItem.ToString() is string user &&
+                type_chart_combo_box.SelectedItem is SeriesChartType currentType)
+            {
+                User userG = usersBD.First(p => p.GetFullName() == user);
+                Series currentSeries = ChartTask.Series.FirstOrDefault();
+                currentSeries.ChartType = currentType;
+                currentSeries.Points.Clear();
+
+                int userID = userG.userID;
+
+                var tasks = App.ContextDatabase.Task.ToList();
+                foreach (var task in tasks)
+                {
+                    if (task.EmployeeID == userID)
+                    {
+                        currentSeries.Points.AddXY(task.Title, task.Difficulty);
+                    }
+                }
+            }
         }
     }
 }
