@@ -33,7 +33,7 @@
                     Margin="20,0"
                     CalendarStyle="{DynamicResource calendar_style}"
                     Style="{StaticResource dashboard_date_picker}"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Left"/>
         <!--#endregion-->
 
         <!--#region dashboard_subtop_panel-->
@@ -345,19 +345,38 @@
                                       Width="250" Height="40"
                                       Style="{StaticResource combo_box_chart_type}"/>
 
+                            <Button x:Name="ExcelButton"
+                                    Width="40" Height="40"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource ExcelButton}"/>
+
+                            <Button x:Name="WordButton"
+                                    Width="40" Height="40"
+                                    Margin="10,0,0,0"
+                                    Style="{StaticResource WordButton}"/>
+
                         </StackPanel>
 
                     </Border>
 
                     <Grid Grid.Row="1">
-                        <WindowsFormsHost Grid.Row="1" Margin="52,23,44,29">
+
+                        <WindowsFormsHost Margin="52,23,44,29">
+
                             <charts:Chart x:Name="ChartTask">
+
                                 <charts:Chart.Legends>
+
                                     <charts:Legend>
+
                                     </charts:Legend>
+
                                 </charts:Chart.Legends>
+
                             </charts:Chart>
+
                         </WindowsFormsHost>
+
                     </Grid>
 
                 </Grid>

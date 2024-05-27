@@ -9,34 +9,29 @@
       Title="ChatPage">
 
     <Grid Background="Transparent">
-                <Grid.RowDefinitions>
 
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
 
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
 
-        <ListView x:Name="MessagesListView" ItemsSource="{Binding MessagesH}"
-                  Background="Transparent"
-          ItemContainerStyle="{StaticResource MessagesListViewItem}"
-          Grid.Row="0"
-          BorderThickness="0"
-          />
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            
-            <TextBox x:Name="MsgTextBlock"
-                  Foreground="Gray"
-                  Tag="Message"
-                  Margin="10,0,3,0"
-                  Height="30" Width="700"
-                  Style="{StaticResource search_text_box}"/>
-            <Button x:Name="sendMessage" Background="LightGreen"
-                    Width="40" 
-                    Height="40"
-                    Margin="3,3,3,3"
-                    Click="sendMessage_Click"
-                    Style="{StaticResource sendMSG_button}"/>
-        </StackPanel>
-        
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="MsgTextBlock"
+                 Grid.Row="1"
+                 Tag="Отправить сообщение..."
+                 Margin="10,0,5,0"
+                 Height="40"
+                 Style="{StaticResource search_text_box}"/>
+
+        <Button x:Name="sendMessage"
+                Background="LightGreen"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Width="35" Height="35"
+                Margin="10,0"
+                Click="sendMessage_Click"
+                Style="{StaticResource sendMSG_button}"/>
+
     </Grid>
 </Page>

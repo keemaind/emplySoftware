@@ -492,19 +492,18 @@
                         Margin="10,10">
                 
                 <TextBox x:Name="MsgTextBlock"
-                         Foreground="Gray"
-                         Tag="Message"
+                         Tag="Отправить сообщение..."
                          Visibility="Collapsed"
-                         Height="30" Width="700"
+                         Height="40" Width="{Binding ElementName=sendBlock, Path=ActualWidth}"
                          Style="{StaticResource search_text_box}"/>
                 
-                <Button x:Name="sendMessage" Background="LightGreen"
-                        Width="40"
-                        Height="40"
+                <Button x:Name="sendMessage"
+                        Width="32" Height="32"
                         Visibility="Collapsed"
-                        Margin="3,3,3,3"
+                        Margin="-43,0,0,0"
                         Click="sendMessage_Click"
                         Style="{StaticResource sendMSG_button}"/>
+
             </StackPanel>
 
 

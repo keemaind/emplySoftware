@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ChartArea = System.Windows.Forms.DataVisualization.Charting.ChartArea;
+using Series = System.Windows.Forms.DataVisualization.Charting.Series;
 
 namespace emplySoftware.Pages
 {
@@ -28,6 +30,12 @@ namespace emplySoftware.Pages
         public Dashboard()
         {
             InitializeComponent();
+            ChartTask.ChartAreas.Add(new ChartArea("Main"));
+            var currentSeries = new Series("Difficulty")
+            {
+                IsValueShownAsLabel = true,
+            };
+            ChartTask.Series.Add(currentSeries);
             foreach (var user in App.ContextDatabase.User.ToList())
             {
                 string mfl = FIOus.GetFullName(user);
