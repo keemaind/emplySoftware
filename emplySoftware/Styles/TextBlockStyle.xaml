@@ -171,4 +171,15 @@
     </Style>
     <!--#endregion-->
 
+	<!--#region dashboard_title_chart-->
+	<Style x:Key="dashboard_title_chart" TargetType="TextBlock">
+
+		<Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+		<Setter Property="FontSize" Value="12"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+
+	</Style>
+	<!--#endregion-->
+
 </ResourceDictionary>

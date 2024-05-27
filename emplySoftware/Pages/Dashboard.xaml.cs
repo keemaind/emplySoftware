@@ -1,4 +1,5 @@
-﻿using System;
+﻿using emplySoftware.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -13,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 namespace emplySoftware.Pages
 {
@@ -23,9 +22,16 @@ namespace emplySoftware.Pages
     /// </summary>
     public partial class Dashboard : Page
     {
+        private List<string> listUsers = new List<string>();
         public Dashboard()
         {
             InitializeComponent();
+            foreach (var user in App.ContextDatabase.User.ToList())
+            {
+                string mfl = FIOus.GetFullName(user);
+                listUsers.Add(mfl);
+            }
+            user_chart_combo_box.ItemsSource = listUsers;
         }
     }
 }
