@@ -407,7 +407,7 @@
 
                     <!--#region ContactsList-->
                     <ListView x:Name="UserChats"
-                              ItemsSource="{Binding userChats}"
+                              
                               ItemContainerStyle="{StaticResource ContactsListViewItem}"
                               Background="Transparent"
                               BorderThickness="0"
@@ -426,6 +426,51 @@
                    Grid.Row="1"
                    NavigationUIVisibility="Hidden"/>
             <!--#endregion-->
+
+            <Viewbox x:Name="loadSpinner"
+                    Visibility="Collapsed" 
+                         Grid.Column="2" 
+                         Grid.Row="1" 
+                         Height="30" 
+                         Width="30" 
+                         Stretch="Fill">
+                    <Path Stretch="Fill" 
+                          Data="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2,4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12" 
+                          RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <RotateTransform/>
+                        </Path.RenderTransform>
+                    <Path.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop x:Name="B1" Color="#f02036" Offset="0.0"/>
+                            <GradientStop x:Name="B2" Color="#8171fe" Offset="0.5"/>
+                            <GradientStop x:Name="B3" Color="#41a1e5" Offset="1.1"/>
+                        </LinearGradientBrush>
+                    </Path.Stroke>
+
+                    <Path.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <Trigger Property="Image.IsEnabled" Value="True">
+                                        <Trigger.EnterActions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation
+                                            Storyboard.TargetProperty="RenderTransform.Angle"
+                                            From="0"
+                                            To="360"
+                                            Duration="0:0:1"
+                                            RepeatBehavior="Forever" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </Trigger.EnterActions>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                    
+                </Viewbox>
             
             <ListView Grid.Column="2" 
                       Grid.Row="1"

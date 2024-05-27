@@ -109,11 +109,8 @@ namespace emplySoftware.Class
 
         private void CurrentUser()
         {
-            var userImage = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID).ToList();
-            foreach (var user in userImage)
-            {
-                imageUserST = user.Image;
-            }
+            imageUserST = GetCurrent.CurrentUser.Image;
+            
         }
 
         

@@ -38,9 +38,11 @@ namespace emplySoftware
     public partial class MainWindow : Window
     {
         List<MessageList> MessagesList = new List<MessageList>();
+        List<chats> userChats = new List<chats>();
         public event EventHandler DataChanged;
         private BackgroundWorker worker = null;
         private BackgroundWorker NotifyWorker = null;
+        private BackgroundWorker chatFillerWorker = null;
         public int thisChatID;
         DispatcherTimer NotifyTimer = new DispatcherTimer();
         int msgCount;
@@ -49,17 +51,19 @@ namespace emplySoftware
         public byte[] usImg = null;
         public byte[] curUsImg = null;
         public int slcIndex = -20;
+        
 
         public MainWindow()
         {
             InitializeComponent();
             MainWindowModel model = new MainWindowModel();
             DataContext = model;
+            StartChatFill();
             curUsImg = model.imageUserST;
             curUserID = GetCurrent.CurrentUser.userID;
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
-            StartReceiveNotification();
+            //StartReceiveNotification();
 
         }
         #region Визуал часть
@@ -153,12 +157,10 @@ namespace emplySoftware
             NotifyWorker.DoWork += NotifyWorkerDoWork;
             //NotifyWorker.ProgressChanged += worker_GroupProgressChanged;
             NotifyWorker.RunWorkerAsync();
-
-
         }
         void NotifyWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            NotifyTimer.Interval = TimeSpan.FromSeconds(2);
+            NotifyTimer.Interval = TimeSpan.FromSeconds(3);
             NotifyTimer.Tick += NotifyTimer_Tick;
             NotifyTimer.Start();
         }
@@ -170,7 +172,7 @@ namespace emplySoftware
         private void NotifyCheck()
         {
 
-            foreach (chats chat in UserChats.Items)
+            foreach (chats chat in userChats.ToArray())
             {
                 var msgNew = App.ContextDatabase.Messages.Where(p => p.chatID == chat.ChatID).ToList().Last();
                 if (chat.LastMessage == msgNew.Message)
@@ -182,36 +184,133 @@ namespace emplySoftware
                     slcIndex = UserChats.SelectedIndex;
                     if (slcIndex == -1)
                     {
-                        MainWindowModel model = new MainWindowModel();
-                        if (msgNew.userID == GetCurrent.CurrentUser.userID)
+                        //MainWindowModel model = new MainWindowModel();
+                        if (msgNew.userID == curUserID)
                         {
                             var notification = new ToastContentBuilder();
                             notification.AddText(msgNew.Message);
                             notification.Show();
-                            DataContext = model;
+                            StartChatFill();
                         }
-                        DataContext = model;
+                        StartChatFill();
                     }
                     else
                     {
-                        MainWindowModel model = new MainWindowModel();
-                        if (msgNew.userID != GetCurrent.CurrentUser.userID)
+                    //    MainWindowModel model = new MainWindowModel();
+                        if (msgNew.userID != curUserID)
                         {
                             var notification = new ToastContentBuilder();
                             notification.AddText(msgNew.Message);
                             notification.Show();
                             UserChats.SelectedItem = null;
-                            DataContext = model;
+                            StartChatFill();
                             UserChats.SelectedItem = slcitem;
                             slcIndex = -20;
                         }
                         UserChats.SelectedItem = null;
-                        DataContext = model;
+                        StartChatFill();
                         UserChats.SelectedItem = slcitem;
                         slcIndex = -20;
                     }
                 }
             }
+        }
+
+        private void StartChatFill()
+        {
+            UserChats.Items.Clear();
+            userChats.Clear();
+            chatFillerWorker = new BackgroundWorker();
+            chatFillerWorker.WorkerSupportsCancellation = true;
+            chatFillerWorker.WorkerReportsProgress = true;
+            chatFillerWorker.DoWork += chatFillerWorkerDoWork;
+            chatFillerWorker.ProgressChanged += chatFillerWorker_ProgressChanged;
+            chatFillerWorker.RunWorkerCompleted += chatFillerWorker_RunWorkerCompleted;
+            chatFillerWorker.RunWorkerAsync();
+        }
+        int chatItem = 0;
+        void chatFillerWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            int i = 0;
+            int progressPercentage = 0;
+            var chatUs = App.ContextDatabase.chatUsers.Where(p => p.userID == curUserID).ToList();
+            int max = chatUs.Count;
+            foreach (var chat in chatUs)
+            {   i++;
+                progressPercentage = Convert.ToInt32(((double)i / max) * 100);
+                var chats = App.ContextDatabase.chatList.Where(p => p.chatID == chat.chatID).ToList();
+                foreach (var chatj in chats)
+                {
+
+                    if (chatj.personal == true)
+                    {
+                        string last;
+                        var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatj.chatID).ToList();
+                        if (ll.Count() == 0)
+                        {
+                            last = "";
+                        }
+                        else last = ll.Last().Message.ToString();
+                        var chatUsers = App.ContextDatabase.chatUsers.Where(x => x.chatID == chatj.chatID).ToList();
+                        foreach (var uss in chatUsers)
+                        {
+                            if (uss.userID == curUserID)
+                            { }
+                            else
+                            {
+                                var us = App.ContextDatabase.User.FirstOrDefault(p => p.userID == uss.userID);
+                                string G = FIOus.GetNotFullName(us).ToString();
+                                userChats.Add(new chats
+                                {
+                                    Title = G,
+                                    Image = us.Image,
+                                    ChatID = chatj.chatID,
+                                    LastMessage = last
+                                });
+                                (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        string last;
+                        var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatj.chatID).ToList();
+                        if (ll.Count() == 0)
+                        {
+                            last = "";
+                        }
+                        else
+                        {
+                            last = ll.Last().Message.ToString();
+                            userChats.Add(new chats
+                            {
+                                Title = chatj.Title,
+                                Image = chatj.Image,
+                                ChatID = chatj.chatID,
+                                LastMessage = last
+                            });
+                            (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
+                        }
+
+                    }
+                }
+            }
+        }
+        void chatFillerWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            //pbCalculationProgress.Value = e.ProgressPercentage;
+            if (e.UserState != null)
+            {
+                UserChats.Items.Add(userChats[chatItem]);
+                chatItem++;
+            }
+        }
+
+        void chatFillerWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            chatItem = 0;
+            chatFillerWorker.CancelAsync();
         }
 
         #endregion
@@ -278,11 +377,13 @@ namespace emplySoftware
                     Message = msg,
                     sendDate = DateTime.Now,
                 };
+                
                 App.ContextDatabase.Messages.Add(Messages);
                 App.ContextDatabase.SaveChanges();
                 MsgTextBlock.Text = "";
-                RefreshData();
-                DataChanged?.Invoke(this, new EventArgs());
+                //MessagesListView.Items.Add(Messagesll);
+                //RefreshData();
+                //DataChanged?.Invoke(this, new EventArgs());
             }
             else
             {
@@ -300,7 +401,7 @@ namespace emplySoftware
             usersImageList.Clear();
             MessagesList.Clear();
             MessagesListView.Items.Clear();
-
+            loadSpinner.Visibility = Visibility.Visible;
             worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
             worker.WorkerReportsProgress = true;
@@ -362,6 +463,7 @@ namespace emplySoftware
         }
         void worker_GroupRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            loadSpinner.Visibility = Visibility.Collapsed;
             Groupitem = 0;
             Ltimer.Interval = TimeSpan.FromSeconds(2);
             Ltimer.Tick += GroupTimer_Tick;
@@ -410,7 +512,7 @@ namespace emplySoftware
 
             MessagesList.Clear();
             MessagesListView.Items.Clear();
-
+            loadSpinner.Visibility = Visibility.Visible;
             worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
             worker.WorkerReportsProgress = true;
@@ -423,6 +525,7 @@ namespace emplySoftware
 
         void worker_PersonalDoWork(object sender, DoWorkEventArgs e)
         {
+            
             int i = 0;
             int progressPercentage = 0;
             var MessagesBD = App.ContextDatabase.Messages.Where(p => p.chatID == thisChatID).ToList();
@@ -471,6 +574,7 @@ namespace emplySoftware
         }
         void worker_PersonalRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            loadSpinner.Visibility = Visibility.Collapsed;
             item = 0;
             Ltimer.Interval = TimeSpan.FromSeconds(2);
             Ltimer.Tick += Timer_Tick;
@@ -498,8 +602,7 @@ namespace emplySoftware
                             Message = newMSG.Message,
                             sendDate = (DateTime)newMSG.sendDate,
                             imageUser = curUsImg
-                        });
-                    }
+                        });}
                     else
                         MessagesList.Add(new MessageList
                         {
