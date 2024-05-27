@@ -118,7 +118,8 @@
 
                             <StackPanel x:Name="stack_panel_task_create_date">
 
-                                <DatePicker CalendarStyle="{DynamicResource date_picker_calendar_style}" x:Name="date_picker_create_date"
+                                <DatePicker CalendarStyle="{DynamicResource calendar_style}"
+                                            x:Name="date_picker_create_date"
                                             Height="50" Width="400"
                                             Tag="Дата создания"
                                             Style="{StaticResource add_edit_task_date_picker}"/>
@@ -128,6 +129,7 @@
                             <StackPanel x:Name="stack_panel_task_deadline">
 
                                 <DatePicker x:Name="date_picker_task_deadline"
+                                            CalendarStyle="{DynamicResource calendar_style}"
                                             Height="50" Width="400"
                                             Tag="Крайний срок"
                                             Style="{StaticResource add_edit_task_date_picker}"/>

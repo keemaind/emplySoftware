@@ -142,10 +142,9 @@
     <Style x:Key="dashboard_count_tasks" TargetType="TextBlock">
 
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
-        <Setter Property="FontSize" Value="26"/>
-        <Setter Property="Margin" Value="5,0,10,0"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_02}"/>
 
     </Style>
     <!--#endregion-->
@@ -156,9 +155,31 @@
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Regular"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="{StaticResource main_color_01}"/>
+        <Setter Property="Foreground" Value="{StaticResource secondary_color_02}"/>
 
     </Style>
     <!--#endregion-->
+    
+    <!--#region dashboard_days_text_block-->
+    <Style x:Key="dashboard_days_text_block" TargetType="TextBlock">
+
+        <Setter Property="Foreground" Value="#7f7f7f"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Bold"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+
+    </Style>
+    <!--#endregion-->
+
+	<!--#region dashboard_title_chart-->
+	<Style x:Key="dashboard_title_chart" TargetType="TextBlock">
+
+		<Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+		<Setter Property="FontSize" Value="12"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
+
+	</Style>
+	<!--#endregion-->
 
 </ResourceDictionary>

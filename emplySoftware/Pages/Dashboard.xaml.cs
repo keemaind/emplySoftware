@@ -1,6 +1,8 @@
-﻿using System;
+﻿using emplySoftware.Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,16 @@ namespace emplySoftware.Pages
     /// </summary>
     public partial class Dashboard : Page
     {
+        private List<string> listUsers = new List<string>();
         public Dashboard()
         {
             InitializeComponent();
+            foreach (var user in App.ContextDatabase.User.ToList())
+            {
+                string mfl = FIOus.GetFullName(user);
+                listUsers.Add(mfl);
+            }
+            user_chart_combo_box.ItemsSource = listUsers;
         }
     }
 }

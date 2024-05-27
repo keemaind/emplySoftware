@@ -42,6 +42,8 @@
     <!--#region LoginWindow-->
     <Border CornerRadius="15"
             Background="{StaticResource main_color_01}"
+            BorderBrush="{StaticResource main_color_03}"
+            BorderThickness="1"
             x:Name="border_login">
 
         <Grid>
@@ -57,6 +59,8 @@
             <Border x:Name="top_panel_login"
                     Grid.Row="0"
                     CornerRadius="15,15,0,0"
+                    BorderThickness="0,0,0,1"
+                    BorderBrush="{StaticResource main_color_03}"
                     Style="{StaticResource BorderTopPanel}">
             
                 <StackPanel Orientation="Horizontal"

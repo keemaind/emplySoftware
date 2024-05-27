@@ -8,190 +8,365 @@
       mc:Ignorable="d" 
       d:DesignHeight="730"
       d:DesignWidth="875"
+      d:DataContext="{d:DesignInstance local:Dashboard}"
       Title="Графики">
 
     <!--#region dashboard-->
     <Grid>
 
+        <!--#region row_dashboard_layout-->
         <Grid.RowDefinitions>
-            
-            <RowDefinition Height="200"/>
+
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
+        <!--#endregion-->
 
-        <Grid>
+        <!--#region dashboard_top_panel-->
+        <DatePicker x:Name="search_date_picker"
+                    Tag="Фильтрация по дате..."
+                    Width="300" Height="40"
+                    Margin="20,0"
+                    CalendarStyle="{DynamicResource calendar_style}"
+                    Style="{StaticResource dashboard_date_picker}"
+                    HorizontalAlignment="Center"/>
+        <!--#endregion-->
 
+        <!--#region dashboard_subtop_panel-->
+        <Grid Grid.Row="1">
+
+            <!--#region column_subtop_panel_layout-->
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
 
             </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            
+            <!--#region count_complete_tasks-->
+            <Border x:Name="count_complete_tasks"
+                    Margin="20,10,10,20"
+                    CornerRadius="20"
+                    Background="{StaticResource main_color_01}">
 
-            <Grid>
+                <Grid>
 
-                <Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
 
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
 
-                </Grid.ColumnDefinitions>
+                    </Grid.RowDefinitions>
 
-                <Grid.RowDefinitions>
-
-                    <RowDefinition/>
-                    <RowDefinition/>
-
-                </Grid.RowDefinitions>
-
-                <Border x:Name="dashboard_completed_tasks_border"
-                        Margin="20,20,10,10"
-                        Style="{StaticResource dashboard_completed_tasks_border}">
-
-                    <Grid>
-
-                        <Grid.ColumnDefinitions>
-
-                            <ColumnDefinition Width="190"/>
-                            <ColumnDefinition Width="*"/>
-
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="10">
-
-                            <TextBlock Text="52"
-                                   Style="{StaticResource dashboard_count_tasks}"/>
-
-                            <TextBlock Text="Выполненных задач"
-                                   TextWrapping="Wrap"
-                                   Width="110"
-                                   Style="{StaticResource dashboard_title_tasks}"/>
-
-                        </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
 
                         <fa:IconImage Icon="CheckDouble"
-                                      Grid.Column="1"
-                                      Width="80" Height="80"
-                                      Foreground="{StaticResource main_color_01}"/>
+                                      Margin="15,0,10,0"
+                                      Width="28" Height="28">
 
-                    </Grid>
+                            <fa:IconImage.Foreground>
 
-                </Border>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 
-                <Border x:Name="dashboard_executing_tasks_border"
-                        Grid.Column="1"
-                        Margin="10,20,20,10"
-                        Style="{StaticResource dashboard_executing_tasks_border}">
+                                    <GradientStop Color="#4bb57b" Offset="0"/>
+                                    <GradientStop Color="#3c9162" Offset="1"/>
 
-                    <Grid>
+                                </LinearGradientBrush>
 
-                        <Grid.ColumnDefinitions>
+                            </fa:IconImage.Foreground>
 
-                            <ColumnDefinition Width="190"/>
-                            <ColumnDefinition Width="*"/>
+                        </fa:IconImage>
 
-                        </Grid.ColumnDefinitions>
+                        <StackPanel>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="10">
+                            <TextBlock Text="Выполнено"
+                                       Style="{StaticResource dashboard_title_tasks}"/>
+
+                            <TextBlock Text="52"
+                                       x:Name="completed_tasks_text_block"
+                                       Style="{StaticResource dashboard_count_tasks}"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                      Direction="-90"
+                      Color="#f6f6f6"
+                      ShadowDepth="0"/>
+
+                </Border.Effect>
+
+            </Border>
+            <!--#endregion-->
+
+            <!--#region count_executing_tasks-->
+            <Border x:Name="count_executing_tasks"
+                    Margin="10,10,10,20"
+                    Grid.Column="1"
+                    CornerRadius="20"
+                    Background="{StaticResource main_color_01}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+
+                        <fa:IconImage Icon="Fire"
+                                      Margin="15,0,10,0"
+                                      Width="28" Height="28">
+
+                            <fa:IconImage.Foreground>
+
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                    <GradientStop Color="#41a1e5" Offset="0"/>
+                                    <GradientStop Color="#1d89d6" Offset="1"/>
+
+                                </LinearGradientBrush>
+
+                            </fa:IconImage.Foreground>
+
+                        </fa:IconImage>
+
+                        <StackPanel>
+
+                            <TextBlock Text="Выполняется"
+                                       Style="{StaticResource dashboard_title_tasks}"/>
 
                             <TextBlock Text="43"
-                                   Style="{StaticResource dashboard_count_tasks}"/>
-
-                            <TextBlock Text="Выполняемых задач"
-                                   TextWrapping="Wrap"
-                                   Width="110"
-                                   Style="{StaticResource dashboard_title_tasks}"/>
+                                       x:Name="executing_tasks_text_block"
+                                       Style="{StaticResource dashboard_count_tasks}"/>
 
                         </StackPanel>
 
-                        <fa:IconImage Icon="fire"
-                                      Grid.Column="1"
-                                      Width="80" Height="80"
-                                      Foreground="{StaticResource main_color_01}"/>
+                    </StackPanel>
 
-                    </Grid>
+                </Grid>
 
-                </Border>
+                <Border.Effect>
 
-                <Border x:Name="dashboard_planned_tasks_border"
-                        Grid.Row="1"
-                        Margin="20,10,10,20"
-                        Style="{StaticResource dashboard_planned_tasks_border}">
+                    <DropShadowEffect BlurRadius="10"
+                                      Direction="-90"
+                                      Color="#f6f6f6"
+                                      ShadowDepth="0"/>
 
-                    <Grid>
+                </Border.Effect>
 
-                        <Grid.ColumnDefinitions>
+            </Border>
+            <!--#endregion-->
 
-                            <ColumnDefinition Width="190"/>
-                            <ColumnDefinition Width="*"/>
+            <!--#region count_planned_tasks-->
+            <Border x:Name="count_planned_tasks"
+                    Margin="10,10,10,20"
+                    Grid.Column="2"
+                    CornerRadius="20"
+                    Background="{StaticResource main_color_01}">
 
-                        </Grid.ColumnDefinitions>
+                <Grid>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="10">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+
+                        <fa:IconImage Icon="CalendarDay"
+                                      Margin="15,0,10,0"
+                                      Width="28" Height="28">
+
+                            <fa:IconImage.Foreground>
+
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                    <GradientStop Color="#8171fe" Offset="0"/>
+                                    <GradientStop Color="#543efe" Offset="1"/>
+
+                                </LinearGradientBrush>
+
+                            </fa:IconImage.Foreground>
+
+                        </fa:IconImage>
+
+                        <StackPanel>
+
+                            <TextBlock Text="Запланировано"
+                       Style="{StaticResource dashboard_title_tasks}"/>
 
                             <TextBlock Text="59"
-                                   Style="{StaticResource dashboard_count_tasks}"/>
-
-                            <TextBlock Text="Запланированных задач"
-                                   TextWrapping="Wrap"
-                                   Width="120"
-                                   Style="{StaticResource dashboard_title_tasks}"/>
+                       x:Name="planned_tasks_text_block"
+                       Style="{StaticResource dashboard_count_tasks}"/>
 
                         </StackPanel>
 
-                        <fa:IconImage Icon="BoltLightning"
-                                      Grid.Column="1"
-                                      Width="80" Height="80"
-                                      Foreground="{StaticResource main_color_01}"/>
+                    </StackPanel>
 
-                    </Grid>
+                </Grid>
 
-                </Border>
+                <Border.Effect>
 
-                <Border x:Name="dashboard_canceled_tasks_border"
-                        Grid.Column="1" Grid.Row="1"
-                        Margin="10,10,20,20"
-                        Style="{StaticResource dashboard_canceled_tasks_border}">
+                    <DropShadowEffect BlurRadius="10"
+                                      Direction="-90"
+                                      Color="#f6f6f6"
+                                      ShadowDepth="0"/>
 
-                    <Grid>
+                </Border.Effect>
 
-                        <Grid.ColumnDefinitions>
+            </Border>
+            <!--#endregion-->
 
-                            <ColumnDefinition Width="190"/>
-                            <ColumnDefinition Width="*"/>
+            <!--#region count_canceled_tasks-->
+            <Border x:Name="count_canceled_tasks"
+                    Margin="10,10,20,20"
+                    Grid.Column="3"
+                    CornerRadius="20"
+                    Background="{StaticResource main_color_01}">
 
-                        </Grid.ColumnDefinitions>
+                <Grid>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="10">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="1">
+
+                        <fa:IconImage Icon="Cancel"
+                                      Margin="15,0,10,0"
+                                      Width="28" Height="28">
+
+                            <fa:IconImage.Foreground>
+
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                    <GradientStop Color="#f02036" Offset="0"/>
+                                    <GradientStop Color="#cf0e22" Offset="1"/>
+
+                                </LinearGradientBrush>
+
+                            </fa:IconImage.Foreground>
+
+                        </fa:IconImage>
+
+                        <StackPanel>
+
+                            <TextBlock Text="Отменено"
+                       Style="{StaticResource dashboard_title_tasks}"/>
 
                             <TextBlock Text="16"
-                                   Style="{StaticResource dashboard_count_tasks}"/>
-
-                            <TextBlock Text="Отменённых задач"
-                                   TextWrapping="Wrap"
-                                   Width="110"
-                                   Style="{StaticResource dashboard_title_tasks}"/>
+                       x:Name="canceled_tasks_text_block"
+                       Style="{StaticResource dashboard_count_tasks}"/>
 
                         </StackPanel>
 
-                        <fa:IconImage Icon="Xmark"
-                                      Grid.Column="1"
-                                      Width="80" Height="80"
-                                      Foreground="{StaticResource main_color_01}"/>
+                    </StackPanel>
+
+                </Grid>
+
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                                      Direction="-90"
+                                      Color="#f6f6f6"
+                                      ShadowDepth="0"/>
+
+                </Border.Effect>
+
+            </Border>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region dashboard_middle_panel-->
+        <Grid Grid.Row="2">
+
+            <!--#region chart_users-->
+            <Border x:Name="chart_users"
+                    Margin="20,10,20,20"
+                    CornerRadius="20"
+                    Background="{StaticResource main_color_01}">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Border Background="Transparent"
+                            BorderBrush="{StaticResource main_color_02}"
+                            BorderThickness="0,0,0,2">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="10,5">
+
+                            <ComboBox x:Name="user_chart_combo_box"
+                                      ItemContainerStyle="{StaticResource combo_box_item_container_style}"
+                                      Width="300" Height="40"
+                                      Margin="0,0,10,0"
+                                      Style="{StaticResource combo_box_chart}"/>
+
+                            <ComboBox x:Name="type_chart_combo_box"
+                                      ItemContainerStyle="{StaticResource combo_box_item_container_style}"
+                                      Width="250" Height="40"
+                                      Style="{StaticResource combo_box_chart_type}"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <Grid Grid.Row="1">
 
                     </Grid>
 
-                </Border>
+                </Grid>
 
-            </Grid>
-            
+                <Border.Effect>
+
+                    <DropShadowEffect BlurRadius="10"
+                          Direction="-90"
+                          Color="#f6f6f6"
+                          ShadowDepth="0"/>
+
+                </Border.Effect>
+
+            </Border>
+            <!--#endregion-->
+
         </Grid>
-        
+        <!--#endregion-->
+
     </Grid>
     <!--#endregion-->
     
