@@ -295,16 +295,17 @@
 
                             </Ellipse>
 
-                            <StackPanel VerticalAlignment="Center">
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal">
 
                                 <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
-                                         Text="{Binding FirstName}"
-                                         x:Name="name_chat"
-                                         Margin="0,0,0,2"/>
+                                            Text="{Binding MiddleName}"
+                                            Margin="0,0,2,0"
+                                            x:Name="middle_name_chat"/>
 
-                                <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
-                                         x:Name="text_chat"
-                                         Text="{Binding Login}"/>
+                                <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
+                                            Text="{Binding FirstName}"
+                                            x:Name="name_chat"/>
 
                             </StackPanel>
 
@@ -363,8 +364,8 @@
 
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 
-                                        <GradientStop Color="#41a1e5" Offset="0"/>
-                                        <GradientStop Color="#4db1bd" Offset="1"/>
+                                        <GradientStop Color="#4bb57b" Offset="0"/>
+                                        <GradientStop Color="#3c9162" Offset="1"/>
 
                                     </LinearGradientBrush>
 
@@ -374,7 +375,7 @@
 
                             <Setter Property="Foreground" TargetName="name_chat" Value="#ffffff"/>
 
-                            <Setter Property="Foreground" TargetName="text_chat" Value="#ffffff"/>
+                            <Setter Property="Foreground" TargetName="middle_name_chat" Value="#ffffff"/>
 
                         </Trigger>
 

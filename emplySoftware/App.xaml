@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 
                 <ResourceDictionary Source="Styles/UIColors.xaml"/>
+                <ResourceDictionary Source="Styles/CheckBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/CalendarStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ToggleButtonStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBarStyle.xaml"/>

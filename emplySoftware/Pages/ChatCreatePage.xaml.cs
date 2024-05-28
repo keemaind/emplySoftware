@@ -64,6 +64,10 @@ namespace emplySoftware.Pages
         {
             BtnSelectImage.Visibility = Visibility.Visible;
             TitleChat.Visibility = Visibility.Visible;
+            preview_border_contacts.Visibility = Visibility.Collapsed;
+            preview_text_block_contacts.Visibility = Visibility.Collapsed;
+            preview_border_group.Visibility = Visibility.Collapsed;
+            preview_text_block_group.Visibility = Visibility.Collapsed;
             PersonalChat.IsChecked = false;
             UsersList.Visibility = Visibility.Visible;
             UsersList.SelectionMode = SelectionMode.Multiple;
@@ -71,8 +75,12 @@ namespace emplySoftware.Pages
 
         private void PersonalChat_Checked(object sender, RoutedEventArgs e)
         {
-            BtnSelectImage.Visibility = Visibility.Hidden;
-            TitleChat.Visibility = Visibility.Hidden;
+            BtnSelectImage.Visibility = Visibility.Collapsed;
+            preview_border_group.Visibility = Visibility.Visible;
+            preview_border_contacts.Visibility = Visibility.Collapsed;
+            preview_text_block_contacts.Visibility = Visibility.Collapsed;
+            preview_text_block_group.Visibility = Visibility.Visible;
+            TitleChat.Visibility = Visibility.Collapsed;
             GroupChat.IsChecked = false;
             UsersList.Visibility = Visibility.Visible;
             UsersList.SelectionMode = SelectionMode.Single;

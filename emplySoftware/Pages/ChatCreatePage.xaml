@@ -6,82 +6,189 @@
       xmlns:local="clr-namespace:emplySoftware.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChatCreatePage">
+      Title="Добавление нового чата">
 
-    <Grid Background="White">
+    <Grid>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="300"/>
+
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
 
-        <Button Style="{StaticResource profile_picture_button}"
-        Visibility="Hidden"
-        Padding="-20"
-        Grid.Row="0"
-        Width="80" Height="80"
-        x:Name="BtnSelectImage"
-        Click="BtnSelectImage_Click">
+        <Grid.ColumnDefinitions>
 
-            <Button.Effect>
+            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="GroupChatBorder"
+                Margin="15"
+                Visibility="Visible"
+                CornerRadius="20"
+                Padding="10"
+                Background="{StaticResource main_color_01}">
+
+            <Border.Effect>
 
                 <DropShadowEffect BlurRadius="10"
-                          Direction="-90"
-                          Color="#f6f6f6"
-                          ShadowDepth="0"/>
+                                  Direction="-90"
+                                  Color="#f6f6f6"
+                                  ShadowDepth="0"/>
 
-            </Button.Effect>
+            </Border.Effect>
 
-            <Button.Content>
+            <StackPanel Orientation="Horizontal">
 
-                <Ellipse x:Name="ProfilePhoto"
-                     Height="80"
-                     Width="80"
-                     SnapsToDevicePixels="False">
+                <Border x:Name="preview_border_group"
+                        Style="{StaticResource BorderMiddlePanel}"
+                        CornerRadius="20"
+                        Width="310" Height="50"
+                        Margin="10,0">
 
-                    <Ellipse.Fill>
+                    <TextBlock x:Name="preview_text_block_group"
+                               Text="Параметры группового чата"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="/FontTypes/#Montserrat Medium"
+                               FontSize="14"
+                               Foreground="{StaticResource secondary_color_02}"></TextBlock>
 
-                        <ImageBrush x:Name="ImageUser"
-                            ImageSource="{Binding Image}"
-                            RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
 
-                    </Ellipse.Fill>
+                <Button Style="{StaticResource profile_picture_button}"
+                        Visibility="Collapsed"
+                        Padding="-20"
+                        HorizontalAlignment="Left"
+                        Width="80" Height="80"
+                        x:Name="BtnSelectImage"
+                        Click="BtnSelectImage_Click">
 
-                </Ellipse>
+                    <Button.Effect>
 
-            </Button.Content>
+                        <DropShadowEffect BlurRadius="10"
+                                          Direction="-90"
+                                          Color="#f6f6f6"
+                                          ShadowDepth="0"/>
 
-        </Button>
+                    </Button.Effect>
 
-        <CheckBox x:Name="GroupChat" Grid.Row="0" Content="Групповой чат" 
+                    <Button.Content>
+
+                        <Ellipse x:Name="ProfilePhoto"
+                                 Height="80"
+                                 Width="80"
+                                 SnapsToDevicePixels="False">
+
+                            <Ellipse.Fill>
+
+                                <ImageBrush x:Name="ImageUser"
+                                            ImageSource="{Binding Image}"
+                                            RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                            </Ellipse.Fill>
+
+                        </Ellipse>
+
+                    </Button.Content>
+
+                </Button>
+
+                <TextBox x:Name="TitleChat" 
+                         Visibility="Collapsed"
+                         Width="210"
+                         Height="60"
+                         Tag="Введите название группы..."
+                         VerticalContentAlignment="Top"
+                         Style="{StaticResource search_text_box}"
+                         TextWrapping="Wrap"
+                         BorderBrush="{StaticResource main_color_02}"
+                         Padding="0"
+                         Margin="5"/>
+
+            </StackPanel>
+
+        </Border>
+
+        <CheckBox Style="{DynamicResource CheckBoxStyle}"
+                  x:Name="GroupChat"
+                  Grid.Row="1"
+                  Content="Групповой" 
                   HorizontalAlignment="Left" 
-                  Margin="127,21,0,0" 
+                  Margin="190,21,0,0" 
                   VerticalAlignment="Top"
                   Checked="GroupChat_Checked"/>
-        <CheckBox x:Name="PersonalChat" Grid.Row="0" Content="Личный чат" 
+
+        <CheckBox x:Name="PersonalChat"
+                  Grid.Row="1"
+                  Style="{StaticResource CheckBoxStyle}"
+                  Content="Личный" 
                   HorizontalAlignment="Left" 
-                  Margin="27,21,0,0" 
+                  Margin="100,21,0,0" 
                   VerticalAlignment="Top"
                   Checked="PersonalChat_Checked"/>
-        <TextBox x:Name="TitleChat" 
-                 Visibility="Hidden"
-                 Height="30" 
-                 Margin="27,50,572,20"/>
-        <StackPanel Grid.Row="1" 
-                    x:Name="PersonalChatCreate">
-            <ListView x:Name="UsersList" 
-                      Visibility="Hidden"
-                      ItemContainerStyle="{StaticResource Users}"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      />
 
-        </StackPanel>
+        <Border x:Name="PersonalChatCreate"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="15"
+                CornerRadius="20"
+                Padding="10"
+                Background="{StaticResource main_color_01}">
+
+            <Grid>
+
+                <Border x:Name="preview_border_contacts"
+                        Style="{StaticResource BorderMiddlePanel}"
+                        CornerRadius="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="350" Height="50"
+                        Margin="10,0">
+
+                    <TextBlock x:Name="preview_text_block_contacts"
+                               Text="Выберите тип чата для просмотра контактов"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontFamily="/FontTypes/#Montserrat Medium"
+                               FontSize="12"
+                               Foreground="{StaticResource secondary_color_02}"></TextBlock>
+
+                </Border>
+
+                <ListView x:Name="UsersList" 
+                          Visibility="Collapsed"
+                          ItemContainerStyle="{StaticResource Users}"
+                          Background="Transparent"
+                          VerticalAlignment="Top"
+                          Margin="0,10"
+                          BorderThickness="0"/>
+
+            </Grid>
+
+            <Border.Effect>
+
+                <DropShadowEffect BlurRadius="10"
+                                  Direction="-90"
+                                  Color="#f6f6f6"
+                                  ShadowDepth="0"/>
+
+            </Border.Effect>
+
+        </Border>
+
         <Button Grid.Row="1"
-     x:Name="Create"
-     Style="{StaticResource SignInButton}"
-     Width="270" Height="40"
-     Margin="265,305,265,-45" Click="Create_Click">
+                x:Name="Create"
+                VerticalAlignment="Top"
+                Style="{StaticResource CreateChatButton}"
+                Width="250" Height="40"
+                Margin="0,50"
+                Click="Create_Click">
 
         </Button>
+
     </Grid>
+
 </Page>
