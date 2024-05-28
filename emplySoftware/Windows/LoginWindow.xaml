@@ -100,27 +100,16 @@
                                     HorizontalAlignment="Center"
                                     Margin="0,0,0,10">
 
-                            <Image Source="/Icons/1e_.png"
-                                   Width="50" Height="50"
-                                   RenderOptions.BitmapScalingMode="HighQuality">
-
-                                <Image.Effect>
-
-                                    <DropShadowEffect BlurRadius="15"
-                                                      Direction="-90"
-                                                      Color="#8171fe"
-                                                      ShadowDepth="0"/>
-
-                                </Image.Effect>
-                                
-                            </Image>
+                            <Image Source="/Icons/logo.png"
+                                   Width="80" Height="80"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
 
                         </StackPanel>
                     
                         <StackPanel Orientation="Horizontal">
                         
                             <TextBlock Text="emply"
-                                       Margin="6,0,6,0"
+                                       Margin="6,0,4,0"
                                        Style="{StaticResource EmplyTextBlock}"/>
                         
                             <TextBlock Text="software"
