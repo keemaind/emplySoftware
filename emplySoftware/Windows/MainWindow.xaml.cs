@@ -215,9 +215,12 @@ namespace emplySoftware
                 }
             }
         }
+        #endregion
 
+        #region Филлер контактов
         private void StartChatFill()
         {
+            loadSpinnerContacts.Visibility = Visibility.Visible;
             UserChats.Items.Clear();
             userChats.Clear();
             chatFillerWorker = new BackgroundWorker();
@@ -231,6 +234,7 @@ namespace emplySoftware
         int chatItem = 0;
         void chatFillerWorkerDoWork(object sender, DoWorkEventArgs e)
         {
+            
             int i = 0;
             int progressPercentage = 0;
             var chatUs = App.ContextDatabase.chatUsers.Where(p => p.userID == curUserID).ToList();
@@ -309,6 +313,7 @@ namespace emplySoftware
 
         void chatFillerWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            loadSpinnerContacts.Visibility = Visibility.Collapsed;
             chatItem = 0;
             chatFillerWorker.CancelAsync();
         }
