@@ -13,6 +13,7 @@
       d:DataContext="{d:DesignInstance local:Dashboard}"
       Title="Графики">
 
+    
     <!--#region dashboard-->
     <Grid>
 
@@ -25,7 +26,7 @@
 
         </Grid.RowDefinitions>
         <!--#endregion-->
-
+        
         <!--#region dashboard_top_panel-->
         <DatePicker x:Name="search_date_picker"
                     Tag="Фильтрация по дате..."
@@ -33,7 +34,8 @@
                     Margin="20,0"
                     CalendarStyle="{DynamicResource calendar_style}"
                     Style="{StaticResource dashboard_date_picker}"
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left"
+                    SelectedDateChanged="search_date_picker_SelectedDateChanged"/>
         <!--#endregion-->
 
         <!--#region dashboard_subtop_panel-->
@@ -91,7 +93,7 @@
                             <TextBlock Text="Выполнено"
                                        Style="{StaticResource dashboard_title_tasks}"/>
 
-                            <TextBlock Text="52"
+                            <TextBlock Text="0"
                                        x:Name="completed_tasks_text_block"
                                        Style="{StaticResource dashboard_count_tasks}"/>
 
@@ -155,7 +157,7 @@
                             <TextBlock Text="Выполняется"
                                        Style="{StaticResource dashboard_title_tasks}"/>
 
-                            <TextBlock Text="43"
+                            <TextBlock Text="0"
                                        x:Name="executing_tasks_text_block"
                                        Style="{StaticResource dashboard_count_tasks}"/>
 
@@ -219,7 +221,7 @@
                             <TextBlock Text="Запланировано"
                        Style="{StaticResource dashboard_title_tasks}"/>
 
-                            <TextBlock Text="59"
+                            <TextBlock Text="0"
                        x:Name="planned_tasks_text_block"
                        Style="{StaticResource dashboard_count_tasks}"/>
 
@@ -283,7 +285,7 @@
                             <TextBlock Text="Отменено"
                        Style="{StaticResource dashboard_title_tasks}"/>
 
-                            <TextBlock Text="16"
+                            <TextBlock Text="0"
                        x:Name="canceled_tasks_text_block"
                        Style="{StaticResource dashboard_count_tasks}"/>
 
@@ -344,40 +346,33 @@
                                       ItemContainerStyle="{StaticResource combo_box_item_container_style}"
                                       Width="250" Height="40"
                                       Style="{StaticResource combo_box_chart_type}"/>
-
+                            
                             <Button x:Name="ExcelButton"
                                     Width="40" Height="40"
                                     Margin="10,0,0,0"
+                                    Click="ExcelButton_Click"
                                     Style="{StaticResource ExcelButton}"/>
 
                             <Button x:Name="WordButton"
                                     Width="40" Height="40"
                                     Margin="10,0,0,0"
+                                    Click="WordButton_Click"
                                     Style="{StaticResource WordButton}"/>
 
                         </StackPanel>
-
+                        
                     </Border>
+                    <WindowsFormsHost x:Name="dd" Grid.Row="2" Margin="100" Foreground="Black">
+                        <charts:Chart x:Name="ChartTask">
+                            <charts:Chart.Legends>
+                                <charts:Legend>
+                                    
+                                </charts:Legend>
+                            </charts:Chart.Legends>
+                        </charts:Chart>
 
-                    <Grid Grid.Row="1">
+                    </WindowsFormsHost>
 
-                        <WindowsFormsHost Margin="52,23,44,29">
-
-                            <charts:Chart x:Name="ChartTask">
-
-                                <charts:Chart.Legends>
-
-                                    <charts:Legend>
-
-                                    </charts:Legend>
-
-                                </charts:Chart.Legends>
-
-                            </charts:Chart>
-
-                        </WindowsFormsHost>
-
-                    </Grid>
 
                 </Grid>
 
