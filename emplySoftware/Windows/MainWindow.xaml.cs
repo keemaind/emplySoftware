@@ -79,7 +79,7 @@ namespace emplySoftware
 
         private void ButtonEditProfile_Click(object sender, RoutedEventArgs e)
         {
-            UserSettingsWindow userSettingsWindow = new UserSettingsWindow(GetCurrent.CurrentUser);
+            UserSettingsWindow userSettingsWindow = new UserSettingsWindow();
             userSettingsWindow.Owner = this;
             userSettingsWindow.DataChanged += P1_DataChanged;
             ApplyEffect(this);
@@ -332,16 +332,18 @@ namespace emplySoftware
                 {
                     thisChatID = selectedChat.ChatID;
                     usImg = selectedChat.Image;
-
+                    MessagesListView.Visibility = Visibility.Visible;
                     PersonalMessageAdd();
                     main_frame.Visibility = Visibility.Hidden;
                     sendBlock.Visibility = Visibility.Visible;
                     MsgTextBlock.Visibility = Visibility.Visible;
                     sendMessage.Visibility = Visibility.Visible;
+                    MessagesListView.ScrollIntoView(MessagesListView);
                 }
                 else
                 {
                     thisChatID = selectedChat.ChatID;
+                    MessagesListView.Visibility = Visibility.Visible;
 
                     main_frame.Visibility = Visibility.Hidden;
                     ChatGroupPage();

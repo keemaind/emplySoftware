@@ -29,17 +29,16 @@ namespace emplySoftware.Windows
         public event EventHandler DataChanged;
         private byte[] _mainImageData;
         private bool Im = false;
-        public UserSettingsWindow(User currentUser)
+        public UserSettingsWindow()
         {
             InitializeComponent();
-            var user = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID);
-            foreach (var us in user)
-            {
-                _mainImageData = us.Image;
-            }
-            ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
-
-
+            User user = GetCurrent.CurrentUser;
+            
+            UserFirstNameTextBox.Text = user.FirstName;
+            UserLastNameTextBox.Text = user.LastName;
+            UserMiddleNameTextBox.Text = user.MiddleName;
+            UserLoginTextBox.Text = user.Login;
+            ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(user.Image);
         }
 
         private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
@@ -56,34 +55,40 @@ namespace emplySoftware.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            var user = App.ContextDatabase.User.Where(p => p.userID == GetCurrent.CurrentUser.userID);
+            User us = GetCurrent.CurrentUser;
             if (UserFirstNameTextBox.Text == "" || UserMiddleNameTextBox.Text == "" || UserLastNameTextBox.Text == "" || UserLoginTextBox.Text == "" || UserPasswordTextBox.Password == "" )
             {
                 if (Im == false) { }
                 else
                 {
-                    foreach (var us in user)
-                    {
-                        us.Image = _mainImageData;
-                    }
+                    us.Image = _mainImageData;
                     App.ContextDatabase.SaveChanges();
                     DataChanged?.Invoke(this, new EventArgs());
                 }
+                string errorMessage = "Поле не должно быть пустым!";
+                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                errorWindow.Owner = this; 
+                errorWindow.ShowDialog();
             }
             else
             {
-                foreach (var us in user)
-                {
+                
                     us.Image = _mainImageData;
                     us.FirstName = UserFirstNameTextBox.Text.ToString();
                     us.MiddleName = UserMiddleNameTextBox.Text.ToString();
                     us.LastName = UserLastNameTextBox.Text.ToString();
                     us.Login = UserLoginTextBox.Text.ToString();
-                    us.Password = Encription(UserPasswordTextBox.Password.ToString());
+                if (UserPasswordTextBox.Password == "")
+                {
+                   string psw = Encription(us.Password);
+                   us.Password = psw;
                 }
+                else
+                    us.Password = Encription(UserPasswordTextBox.Password.ToString());
                 App.ContextDatabase.SaveChanges();
+                this.Close();
             }
-            this.Close();
+            
                 
         }
             
@@ -100,5 +105,6 @@ namespace emplySoftware.Windows
             this.Close();
 
         }
+
     }
 }
