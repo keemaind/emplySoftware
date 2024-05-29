@@ -2471,5 +2471,355 @@
 
     </Style>
     <!--#endregion-->
-    
+
+    <!--#region ShowAllCountTaskButton-->
+    <Style x:Key="ShowAllCountTaskButton" TargetType="Button">
+
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="15">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                        <Border.BorderBrush>
+
+                            <SolidColorBrush Color="#4DB1BD" x:Name="border_borderbrush"/>
+                        </Border.BorderBrush>
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                            <fa:IconImage Icon="Eye"
+                                          Margin="0,0,1,0"
+                                          Width="14" Height="14">
+
+                                <fa:IconImage.Foreground>
+
+                                    <SolidColorBrush Color="#4DB1BD" x:Name="border_icon"></SolidColorBrush>
+
+                                </fa:IconImage.Foreground>
+
+                            </fa:IconImage>
+
+                            <Label Content="Все задачи"
+                                   FontFamily="/FontTypes/#Montserrat Medium"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+
+                                <Label.Foreground>
+
+                                    <SolidColorBrush Color="#4DB1BD" x:Name="border_label"/>
+
+                                </Label.Foreground>
+
+                            </Label>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#ffffff"
+                                                To="#4DB1BD"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#4DB1BD"
+                                                To="#ffffff"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#4DB1BD"
+                                                To="#ffffff"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#4DB1BD"
+                                                    To="#ffffff"
+                                                    Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#4DB1BD"
+                                                To="#ffffff"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#ffffff"
+                                                To="#4DB1BD"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#ffffff"
+                                                To="#4DB1BD"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#ffffff"
+                                                    To="#4DB1BD"
+                                                    Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region SaveChartButton-->
+    <Style x:Key="SaveChartButton" TargetType="Button">
+
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border x:Name="border"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="15">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#fdb643" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                        <Grid>
+
+                            <fa:IconImage Icon="Download"
+                                  Width="16" Height="16"
+                                  Foreground="#ffffff"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                        Storyboard.TargetProperty="Color"
+                                        From="#fdb643"
+                                        To="#fca311"
+                                        Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                        Storyboard.TargetProperty="Color"
+                                        From="#fca311"
+                                        To="#fdb643"
+                                        Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region GenerateChartButton-->
+    <Style x:Key="GenerateChartButton" TargetType="Button">
+
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border x:Name="border"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="15">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                        <Border.BorderBrush>
+
+                            <SolidColorBrush Color="#4BB57B" x:Name="border_borderbrush"/>
+                        </Border.BorderBrush>
+
+                        <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+
+                            <Label Content="Создать"
+                               FontFamily="/FontTypes/#Montserrat Medium"
+                               FontSize="12"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+
+                                <Label.Foreground>
+
+                                    <SolidColorBrush Color="#4BB57B" x:Name="border_label"/>
+
+                                </Label.Foreground>
+
+                            </Label>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                            Storyboard.TargetProperty="Color"
+                                            From="#ffffff"
+                                            To="#4BB57B"
+                                            Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                            Storyboard.TargetProperty="Color"
+                                            From="#4BB57B"
+                                            To="#ffffff"
+                                            Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#4BB57B"
+                                                To="#ffffff"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                            Storyboard.TargetProperty="Color"
+                                            From="#4BB57B"
+                                            To="#ffffff"
+                                            Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                            Storyboard.TargetProperty="Color"
+                                            From="#ffffff"
+                                            To="#4BB57B"
+                                            Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#ffffff"
+                                                To="#4BB57B"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
 </ResourceDictionary>
