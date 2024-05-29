@@ -147,14 +147,17 @@ namespace emplySoftware.Pages
         private void data_grid_delete_button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
-
+            var currentTask = (sender as Button).DataContext as TaskList;
+            var Task = App.ContextDatabase.Task.FirstOrDefault(x => x.ID == currentTask.ID);
             YesOrNoWindow yesOrNoWindow = new YesOrNoWindow();
             ApplyEffect(mainWindow);
             yesOrNoWindow.ShowDialog();
             bool choice = yesOrNoWindow.choice;
             if (choice)
             {
-
+                App.ContextDatabase.Task.Remove(Task);
+                App.ContextDatabase.SaveChanges();
+                ClearEffect(mainWindow);
             }
             else
                 ClearEffect(mainWindow);

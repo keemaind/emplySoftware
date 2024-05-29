@@ -61,6 +61,10 @@ namespace emplySoftware
             StartChatFill();
             curUsImg = model.imageUserST;
             curUserID = GetCurrent.CurrentUser.userID;
+            if(GetCurrent.Admin == true)
+            {
+                ButtonEmployees.Visibility = Visibility.Visible;
+            }
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
             //StartReceiveNotification();
@@ -638,7 +642,10 @@ namespace emplySoftware
                 navigation_menu_text_block.Visibility = Visibility.Visible;
                 charts_text_block.Visibility = Visibility.Visible;
                 tasks_text_block.Visibility = Visibility.Visible;
-                users_text_block.Visibility = Visibility.Visible;
+                if (GetCurrent.Admin == true)
+                {
+                    users_text_block.Visibility = Visibility.Visible;
+                }
                 exit_text_block.Visibility = Visibility.Visible;
                 home_text_block.Visibility = Visibility.Visible;
                 user_name_menu.Visibility = Visibility.Visible;
@@ -676,6 +683,11 @@ namespace emplySoftware
             if(this.WindowState == WindowState.Normal)
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
+        }
+
+        private void ButtonEmployees_Click(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new AdmiPanel());
         }
     }
 

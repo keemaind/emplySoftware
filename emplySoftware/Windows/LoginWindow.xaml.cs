@@ -31,13 +31,32 @@ namespace emplySoftware.Windows
         {
             string password = Encription(LoginPasswordBox.Password).ToString();
             var currentUser = App.ContextDatabase.User.FirstOrDefault(p => p.Login == LoginTextBox.Text && p.Password == password);
-
+            
             if (currentUser != null)
             {
-                GetCurrent.CurrentUser = currentUser;
-                MainWindow mainPage = new MainWindow();
-                mainPage.Show();
-                this.Close();
+                if (currentUser.Banned == true)
+                {
+                    string errorMessage = "Ваш аккаунт заблокирован!";
+                    ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                    errorWindow.Owner = this; ;
+                    ApplyEffect(this);
+                    errorWindow.ShowDialog();
+                    ClearEffect(this);
+                }
+                else
+                {
+                    if(currentUser.PositionID == 2)
+                    {
+                        GetCurrent.Admin = true;
+                    }
+                    GetCurrent.CurrentUser = currentUser;
+                    currentUser.StartSession = DateTime.Now;
+                    App.ContextDatabase.SaveChanges();
+                    MainWindow mainPage = new MainWindow();
+                    mainPage.Show();
+                    this.Close();
+                }
+                
             }
             else
             {

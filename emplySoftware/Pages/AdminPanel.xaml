@@ -1,0 +1,148 @@
+﻿<Page x:Class="emplySoftware.Windows.AdmiPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+      xmlns:local="clr-namespace:emplySoftware.Windows"
+      mc:Ignorable="d" 
+      d:DesignHeight="730" d:DesignWidth="875"
+      Title="AdmiPanel">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="10" Orientation="Horizontal"
+                HorizontalAlignment="Left">
+
+                <fa:IconImage Icon="User"
+                  Width="21" Height="21">
+
+                    <fa:IconImage.Foreground>
+
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                            <GradientStop Color="#8171fe" Offset="0"/>
+                            <GradientStop Color="#41a1e5" Offset="1"/>
+
+                        </LinearGradientBrush>
+
+                    </fa:IconImage.Foreground>
+
+                </fa:IconImage>
+
+                <Label Content="Пользователи"
+                       Style="{StaticResource contacts_label}"/>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                Grid.Column="1"
+                HorizontalAlignment="Right">
+
+                <ComboBox x:Name="combo_box_user_status"
+                  SelectionChanged="combo_box_user_status_SelectionChanged"
+                  Height="40" Width="300"
+                  Margin="0,0,10,0"
+                  Tag="Статус"
+                  ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
+                  Style="{StaticResource combo_box_task_status_02}">
+
+                    <ComboBoxItem Content="Все"
+                          x:Name="combo_box_task_all"/>
+                    
+                    <ComboBoxItem Content="Забанен"
+                          x:Name="combo_box_task_planned"/>
+                    
+                </ComboBox>
+
+                <TextBox Tag="Найти пользователя..."
+                 x:Name="search_text_box"
+                 TextChanged="search_text_box_TextChanged"
+                 Height="40" Width="280"
+                 Style="{StaticResource search_task_text_box}"/>
+
+                <fa:IconImage Icon="Filter"
+                      Foreground="{StaticResource secondary_color_04}"
+                      Height="15" Width="15"
+                      Margin="-40,0,0,0"/>
+
+                
+
+            </StackPanel>
+
+
+        </Grid>
+        
+        <DataGrid Grid.Row="1" ColumnHeaderStyle="{DynamicResource data_grid_column_header_task}"
+          CellStyle="{DynamicResource data_grid_cell_task}"
+          RowStyle="{DynamicResource data_grid_row_task}"
+          Style="{DynamicResource data_grid_task}"
+          x:Name="data_grid_user"
+          AutoGenerateColumns="False"
+          ItemsSource="{Binding TaskList}"
+          IsReadOnly="True">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Логин"
+                            Binding="{Binding Login}"
+                            MinWidth="70"
+                            Width="*"/>
+
+                <DataGridTextColumn Header="Последнее начало сеанса"
+                            Binding="{Binding StartSession}"
+                            MinWidth="130"
+                            Width="*"/>
+                
+                <DataGridTextColumn Header="Статус пользователя"
+                    Binding="{Binding Status}"
+                    MinWidth="120"
+                    Width="*"/>
+
+                <DataGridTemplateColumn Header="Операции"
+                                MinWidth="10"
+                                Width="*">
+
+                    <DataGridTemplateColumn.CellTemplate>
+
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button x:Name="ban_button"
+                                Width="20" Height="20"
+                                Margin="0,0,10,0"
+                                Click="ban_button_Click"
+                                Style="{StaticResource data_grid_edit_button}"/>
+
+                                <Button x:Name="unBan_button"
+                                Width="20" Height="20"
+                                Click="unBan_button_Click"
+                                Style="{StaticResource data_grid_delete_button}"/>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Page>

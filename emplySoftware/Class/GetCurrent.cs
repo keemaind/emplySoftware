@@ -11,5 +11,6 @@ namespace emplySoftware.Class
     internal class GetCurrent : DatabaseSQL.User
     {
         public static User CurrentUser { get; set; }
+        public static bool Admin {  get; set; }
     }
 }

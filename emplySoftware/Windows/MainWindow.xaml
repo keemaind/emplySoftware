@@ -284,6 +284,8 @@
                                        Style="{StaticResource sidebar_text_block}"/>
 
                             <RadioButton x:Name="ButtonEmployees"
+                                         Visibility="Collapsed"
+                                         Click="ButtonEmployees_Click"
                                          Style="{StaticResource employees_radio_button}"
                                          Height="40"
                                          Margin="29,0,0,0"

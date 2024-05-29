@@ -70,6 +70,7 @@
     <Compile Include="Class\GroupUserImages.cs" />
     <Compile Include="Class\MessageList.cs" />
     <Compile Include="Class\TaskList.cs" />
+    <Compile Include="Class\UserList.cs" />
     <Compile Include="DatabaseSQL\News.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
@@ -128,6 +129,9 @@
     </Compile>
     <Compile Include="Windows\AddEditTaskWindow.xaml.cs">
       <DependentUpon>AddEditTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPanel.xaml.cs">
+      <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\DashboardWindow.xaml.cs">
       <DependentUpon>DashboardWindow.xaml</DependentUpon>
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddEditTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

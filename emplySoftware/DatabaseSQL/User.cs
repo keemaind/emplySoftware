@@ -30,6 +30,8 @@ namespace emplySoftware.DatabaseSQL
         public string Password { get; set; }
         public byte[] Image { get; set; }
         public Nullable<int> PositionID { get; set; }
+        public Nullable<System.DateTime> StartSession { get; set; }
+        public Nullable<bool> Banned { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chatUsers> chatUsers { get; set; }
@@ -38,7 +40,6 @@ namespace emplySoftware.DatabaseSQL
         public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
-
         public string GetFullName()
         {
             return MiddleName + " " + FirstName + " " + LastName;

@@ -78,6 +78,8 @@
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="Image" Type="image" />
           <Property Name="PositionID" Type="int" />
+          <Property Name="StartSession" Type="datetime" />
+          <Property Name="Banned" Type="bit" />
         </EntityType>
         <Association Name="FK_chatUsers_chatList">
           <End Role="chatList" Type="Self.chatList" Multiplicity="1" />
@@ -282,6 +284,8 @@
           <NavigationProperty Name="Messages" Relationship="emplyDatabaseModel.FK_userID" FromRole="User" ToRole="Messages" />
           <NavigationProperty Name="Position" Relationship="emplyDatabaseModel.FK_User_Position" FromRole="User" ToRole="Position" />
           <NavigationProperty Name="Task" Relationship="emplyDatabaseModel.FK_Task_User" FromRole="User" ToRole="Task" />
+          <Property Name="StartSession" Type="DateTime" Precision="3" />
+          <Property Name="Banned" Type="Boolean" />
         </EntityType>
         <Association Name="FK_chatUsers_chatList">
           <End Type="emplyDatabaseModel.chatList" Role="chatList" Multiplicity="1" />
@@ -430,6 +434,8 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="emplyDatabaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Banned" ColumnName="Banned" />
+                <ScalarProperty Name="StartSession" ColumnName="StartSession" />
                 <ScalarProperty Name="PositionID" ColumnName="PositionID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
