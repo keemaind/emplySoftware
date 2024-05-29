@@ -67,8 +67,8 @@
                 Background="{StaticResource main_color_01}">
 
             <TextBox x:Name="NewsTextBox"
+                     Tag="Введите новость..."
                 TextWrapping="Wrap" 
-                     Text="TextBox"
                      AcceptsReturn="True"
                      Style="{StaticResource NewsTextBox}"/>
 

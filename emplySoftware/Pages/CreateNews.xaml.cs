@@ -1,4 +1,5 @@
 ﻿using emplySoftware.DatabaseSQL;
+using emplySoftware.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -39,29 +40,33 @@ namespace emplySoftware.Pages
                 ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(_mainImageData);
                 Im = true;
             }
-            
+
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            if (TitleNews.Text == " " || NewsTextBox.Text == "")
+            if (TitleNews.Text == "" || NewsTextBox.Text == "")
             {
-
+                string errorMessage = "Поле пустое!";
+                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                errorWindow.ShowDialog();
+                
             }
             else
             {
-                if (_mainImageData == null) 
+                if (_mainImageData == null)
                 {
                     var theNews = new News
                     {
                         CreateDate = DateTime.Now,
                         Title = TitleNews.Text,
                         Description = NewsTextBox.Text,
-                        
+
                     };
                     App.ContextDatabase.News.Add(theNews);
-                    App.ContextDatabase.SaveChanges();  
-                }else
+                    App.ContextDatabase.SaveChanges();
+                }
+                else
                 {
                     var theNews = new News
                     {
@@ -73,9 +78,22 @@ namespace emplySoftware.Pages
                     App.ContextDatabase.News.Add(theNews);
                     App.ContextDatabase.SaveChanges();
                 }
-                
+
             }
 
+        }
+        private void ApplyEffect(Window win)
+        {
+            System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();
+            objBlur.Radius = 4;
+            win.Effect = objBlur;
+            
+        }
+
+        private void ClearEffect(Window win)
+        {
+            win.Effect = null;
+            
         }
     }
 }
