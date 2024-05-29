@@ -129,6 +129,9 @@
     <Compile Include="Windows\AddEditTaskWindow.xaml.cs">
       <DependentUpon>AddEditTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DashboardWindow.xaml.cs">
+      <DependentUpon>DashboardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddEditTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DashboardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,7 +293,6 @@
     <Resource Include="FontTypes\Montserrat-Medium.ttf" />
     <Resource Include="FontTypes\Montserrat-Regular.ttf" />
     <Resource Include="FontTypes\Montserrat-Thin.ttf" />
-    <Resource Include="1e_.ico" />
     <Content Include="DatabaseSQL\Database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Database.edmx</DependentUpon>

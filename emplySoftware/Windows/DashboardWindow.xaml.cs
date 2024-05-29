@@ -1,23 +1,30 @@
 ﻿using emplySoftware.Class;
-using emplySoftware.DatabaseSQL;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms.Integration;
-using Windows.System;
 using ChartArea = System.Windows.Forms.DataVisualization.Charting.ChartArea;
 using Series = System.Windows.Forms.DataVisualization.Charting.Series;
 using Word = Microsoft.Office.Interop.Word;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using Window = System.Windows.Window;
 
-namespace emplySoftware.Pages
+namespace emplySoftware.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Dashboard.xaml
+    /// Логика взаимодействия для DashboardWindow.xaml
     /// </summary>
-    public partial class Dashboard : System.Windows.Controls.Page
+    public partial class DashboardWindow : Window
     {
         private List<string> listUsers = new List<string>();
         private List<DatabaseSQL.User> users1 = new List<DatabaseSQL.User>();
@@ -25,7 +32,7 @@ namespace emplySoftware.Pages
         int exec = 0;
         int plan = 0;
         int canc = 0;
-        public Dashboard()
+        public DashboardWindow()
         {
             InitializeComponent();
             users1 = App.ContextDatabase.User.ToList();
@@ -42,8 +49,8 @@ namespace emplySoftware.Pages
                 string mfl = FIOus.GetFullName(user);
                 listUsers.Add(mfl);
             }
-            
-            
+
+
 
             var tasks = App.ContextDatabase.Task.ToList();
             foreach (var task in tasks)
@@ -69,7 +76,7 @@ namespace emplySoftware.Pages
         }
         public void cki()
         {
-            
+
             if (user_chart_combo_box.SelectedItem.ToString() is string user &&
                 type_chart_combo_box.SelectedItem is SeriesChartType currentType)
             {
@@ -177,7 +184,7 @@ namespace emplySoftware.Pages
             application.Visible = true;
         }
 
-        
+
         private void search_date_picker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             comp = 0;
@@ -201,6 +208,11 @@ namespace emplySoftware.Pages
             planned_tasks_text_block.Text = plan.ToString();
             canceled_tasks_text_block.Text = canc.ToString();
 
+        }
+
+        private void LoginCloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

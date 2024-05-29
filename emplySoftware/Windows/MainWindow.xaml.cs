@@ -659,7 +659,11 @@ namespace emplySoftware
 
         private void ButtonGraphics_Click(object sender, RoutedEventArgs e)
         {
-            main_frame.NavigationService.Navigate(new Dashboard());
+            DashboardWindow dashboardWindow = new DashboardWindow();
+            dashboardWindow.Owner = this;
+            ApplyEffect(this);
+            dashboardWindow.ShowDialog();
+            ClearEffect(this);
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
