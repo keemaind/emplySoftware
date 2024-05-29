@@ -236,6 +236,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
 
@@ -297,6 +298,21 @@
                                        x:Name="users_text_block"
                                        Visibility="Collapsed"
                                        Grid.Row="3" Grid.Column="1"
+                                       Style="{StaticResource sidebar_text_block}"/>
+                            
+                            <RadioButton x:Name="ButtonNews"
+                                         Visibility="Collapsed"
+                                         Click="ButtonNews_Click"
+                                         Style="{StaticResource news_radio_button}"
+                                         Height="40"
+                                         Margin="29,0,0,0"
+                                         Grid.Row="4"
+                                         HorizontalAlignment="Left"
+                                         HorizontalContentAlignment="Center"/>
+                            <TextBlock Text="Новости"
+                                       x:Name="news_text_block"
+                                       Visibility="Collapsed"
+                                       Grid.Row="4" Grid.Column="1"
                                        Style="{StaticResource sidebar_text_block}"/>
 
                         </Grid>

@@ -75,6 +75,9 @@
     <Compile Include="DatabaseSQL\News.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CreateNews.xaml.cs">
+      <DependentUpon>CreateNews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChatPageModel.cs" />
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />
@@ -153,6 +156,10 @@
       <DependentUpon>YesOrNoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\ChatCreatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateNews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

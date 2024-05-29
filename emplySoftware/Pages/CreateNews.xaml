@@ -1,0 +1,156 @@
+﻿<Page x:Class="emplySoftware.Pages.CreateNews"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:emplySoftware.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Создание новости">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="251*"/>
+            <RowDefinition Height="50*"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="GroupChatBorder"
+                Margin="15,15,15,15"
+                Visibility="Visible"
+                CornerRadius="20"
+                Padding="10"
+                Background="{StaticResource main_color_01}">
+
+            <Border.Effect>
+
+                <DropShadowEffect BlurRadius="10"
+                                  Direction="-90"
+                                  Color="#f6f6f6"
+                                  ShadowDepth="0"/>
+
+            </Border.Effect>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="TitleNews" 
+                         Visibility="Visible"
+                         Width="313"
+                         Height="60"
+                         Tag="Введите название новости..."
+                         VerticalContentAlignment="Top"
+                         Style="{StaticResource search_text_box}"
+                         TextWrapping="Wrap"
+                         BorderBrush="{StaticResource main_color_02}"
+                         Padding="0"
+                         Margin="5"/>
+
+            </StackPanel>
+
+        </Border>
+
+        <Border x:Name="newsDescription"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Margin="15,15,15,15"
+                CornerRadius="20"
+                Padding="10"
+                Background="{StaticResource main_color_01}">
+
+            <TextBox x:Name="NewsTextBox"
+                TextWrapping="Wrap" 
+                     Text="TextBox"
+                     AcceptsReturn="True"
+                     Style="{StaticResource NewsTextBox}"/>
+
+            <Border.Effect>
+
+                <DropShadowEffect BlurRadius="10"
+                                  Direction="-90"
+                                  Color="#f6f6f6"
+                                  ShadowDepth="0"/>
+
+            </Border.Effect>
+
+        </Border>
+        <Border x:Name="ImageBorder"
+        Grid.Column="0"
+        Margin="15,10,15,15"
+        CornerRadius="20"
+        Padding="10"
+        Background="{StaticResource main_color_01}" Grid.Row="1">
+
+            <Grid>
+
+                <Button 
+        Visibility="Visible"
+        Padding="-20"
+        HorizontalAlignment="Center"
+        Width="330"
+        x:Name="BtnSelectImage"
+        Click="BtnSelectImage_Click">
+
+                    <Button.Effect>
+
+                        <DropShadowEffect BlurRadius="10"
+                          Direction="-90"
+                          Color="#f6f6f6"
+                          ShadowDepth="0"/>
+
+                    </Button.Effect>
+
+                    <Button.Content>
+
+                        <Ellipse x:Name="ProfilePhoto"
+                 Height="80"
+                 Width="80"
+                 SnapsToDevicePixels="False">
+
+                            <Ellipse.Fill>
+
+                                <ImageBrush x:Name="ImageUser"
+                            
+                            RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                            </Ellipse.Fill>
+
+                        </Ellipse>
+
+                    </Button.Content>
+
+                </Button>
+
+            </Grid>
+
+            <Border.Effect>
+
+                <DropShadowEffect BlurRadius="10"
+                          Direction="-90"
+                          Color="#f6f6f6"
+                          ShadowDepth="0"/>
+
+            </Border.Effect>
+
+        </Border>
+        <Button Grid.Row="2"
+                x:Name="Create"
+                VerticalAlignment="Top"
+                Style="{StaticResource CreateNewsButton}"
+                Width="250" Height="40"
+                Margin="0,5,0,0"
+                Click="Create_Click">
+
+        </Button>
+
+    </Grid>
+
+</Page>

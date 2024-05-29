@@ -40,6 +40,7 @@ namespace emplySoftware.DatabaseSQL
         public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Task { get; set; }
+
         public string GetFullName()
         {
             return MiddleName + " " + FirstName + " " + LastName;

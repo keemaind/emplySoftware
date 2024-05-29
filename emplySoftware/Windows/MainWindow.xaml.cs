@@ -64,6 +64,7 @@ namespace emplySoftware
             if(GetCurrent.Admin == true)
             {
                 ButtonEmployees.Visibility = Visibility.Visible;
+                ButtonNews.Visibility = Visibility.Visible;
             }
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
@@ -645,6 +646,7 @@ namespace emplySoftware
                 if (GetCurrent.Admin == true)
                 {
                     users_text_block.Visibility = Visibility.Visible;
+                    news_text_block.Visibility= Visibility.Visible;
                 }
                 exit_text_block.Visibility = Visibility.Visible;
                 home_text_block.Visibility = Visibility.Visible;
@@ -657,6 +659,7 @@ namespace emplySoftware
                 charts_text_block.Visibility = Visibility.Collapsed;
                 tasks_text_block.Visibility = Visibility.Collapsed;
                 users_text_block.Visibility = Visibility.Collapsed;
+                news_text_block.Visibility = Visibility.Collapsed;
                 exit_text_block.Visibility = Visibility.Collapsed;
                 home_text_block.Visibility = Visibility.Collapsed;
                 user_name_menu.Visibility = Visibility.Collapsed;
@@ -688,6 +691,11 @@ namespace emplySoftware
         private void ButtonEmployees_Click(object sender, RoutedEventArgs e)
         {
             main_frame.NavigationService.Navigate(new AdmiPanel());
+        }
+
+        private void ButtonNews_Click(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new CreateNews());
         }
     }
 

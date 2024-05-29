@@ -39,7 +39,7 @@
           <Key>
             <PropertyRef Name="newsID" />
           </Key>
-          <Property Name="newsID" Type="int" Nullable="false" />
+          <Property Name="newsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="ntext" />
           <Property Name="CreateDate" Type="datetime" />
