@@ -345,8 +345,14 @@
                             <ComboBox x:Name="type_chart_combo_box"
                                       ItemContainerStyle="{StaticResource combo_box_item_container_style}"
                                       Width="250" Height="40"
+                                      SelectionChanged="type_chart_combo_box_SelectionChanged"
                                       Style="{StaticResource combo_box_chart_type}"/>
-                            
+                            <Button x:Name="GraphButton"
+                                    Width="40" Height="40"
+                                    Margin="10,0,0,0"
+                                    Click="GraphButton_Click"
+                                    Style="{StaticResource ExcelButton}"/>
+
                             <Button x:Name="ExcelButton"
                                     Width="40" Height="40"
                                     Margin="10,0,0,0"
@@ -362,16 +368,7 @@
                         </StackPanel>
                         
                     </Border>
-                    <WindowsFormsHost x:Name="dd" Grid.Row="2" Margin="100" Foreground="Black">
-                        <charts:Chart x:Name="ChartTask">
-                            <charts:Chart.Legends>
-                                <charts:Legend>
-                                    
-                                </charts:Legend>
-                            </charts:Chart.Legends>
-                        </charts:Chart>
-
-                    </WindowsFormsHost>
+                    
 
 
                 </Grid>
@@ -390,6 +387,16 @@
 
         </Grid>
         <!--#endregion-->
+        <WindowsFormsHost x:Name="dd" Grid.Row="2" Margin="100" Foreground="Black">
+            <charts:Chart x:Name="ChartTask">
+                <charts:Chart.Legends>
+                    <charts:Legend>
+
+                    </charts:Legend>
+                </charts:Chart.Legends>
+            </charts:Chart>
+
+        </WindowsFormsHost>
 
     </Grid>
     <!--#endregion-->

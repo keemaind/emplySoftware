@@ -64,7 +64,6 @@ namespace emplySoftware.Pages
 
         private void user_chart_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             cki();
         }
         public void cki()
@@ -201,6 +200,34 @@ namespace emplySoftware.Pages
             planned_tasks_text_block.Text = plan.ToString();
             canceled_tasks_text_block.Text = canc.ToString();
 
+        }
+
+        private void type_chart_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cki();
+        }
+
+        private void GraphButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (user_chart_combo_box.SelectedItem.ToString() is string user &&
+                type_chart_combo_box.SelectedItem is SeriesChartType currentType)
+            {
+                DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
+                Series currentSeries = ChartTask.Series.FirstOrDefault();
+                currentSeries.ChartType = currentType;
+                currentSeries.Points.Clear();
+
+                int userID = userG.userID;
+
+                var tasks = App.ContextDatabase.Task.ToList();
+                foreach (var task in tasks)
+                {
+                    if (task.EmployeeID == userID)
+                    {
+                        currentSeries.Points.AddXY(task.Title, task.Difficulty);
+                    }
+                }
+            }
         }
     }
 }

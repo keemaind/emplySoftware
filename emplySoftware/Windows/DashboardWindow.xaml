@@ -9,11 +9,9 @@
         mc:Ignorable="d"
         Title="Графики"
         Height="730" Width="875"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen"
-        Background="Transparent"
-        AllowsTransparency="True">
+        WindowStartupLocation="CenterScreen">
 
     <Window.Effect>
 
@@ -403,6 +401,12 @@
                                   Width="250" Height="40"
                                   Style="{StaticResource combo_box_chart_type}"/>
 
+                                        <Button x:Name="ChartButton"
+                                        Width="40" Height="40"
+                                        Margin="10,0,0,0"
+                                         Click="ChartButton_Click"
+                                          />
+
                                         <Button x:Name="ExcelButton"
                                 Width="40" Height="40"
                                 Margin="10,0,0,0"
@@ -418,7 +422,7 @@
                                     </StackPanel>
 
                                 </Border>
-                                <WindowsFormsHost x:Name="dd" Grid.Row="2" Margin="100" Foreground="Black">
+                                <WindowsFormsHost x:Name="dd" Grid.Row="1" Margin="50" >
                                     <charts:Chart x:Name="ChartTask">
                                         <charts:Chart.Legends>
                                             <charts:Legend>
@@ -428,6 +432,7 @@
                                     </charts:Chart>
 
                                 </WindowsFormsHost>
+
 
 
                             </Grid>
@@ -453,6 +458,7 @@
             </Border>
             <!--#endregion-->
 
+           
         </Grid>
 
     </Border>
