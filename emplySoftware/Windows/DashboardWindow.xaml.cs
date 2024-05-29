@@ -18,6 +18,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Window = System.Windows.Window;
+using emplySoftware.Pages;
+using System.Windows.Forms;
 
 namespace emplySoftware.Windows
 {
@@ -41,7 +43,7 @@ namespace emplySoftware.Windows
             {
                 IsValueShownAsLabel = true,
             };
-
+            
             ChartTask.Series.Add(currentSeries);
 
             foreach (var user in users1)
@@ -53,50 +55,40 @@ namespace emplySoftware.Windows
             user_chart_combo_box.ItemsSource = listUsers;
             type_chart_combo_box.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
 
-            var tasks = App.ContextDatabase.Task.ToList();
-            foreach (var task in tasks)
-            {
-                if (task.Status == "Выполнена") comp++;
-                else if (task.Status == "Выполняется") exec++;
-                else if (task.Status == "Запланирована") plan++;
-                else if (task.Status == "Отменена") canc++;
-            }
-            completed_tasks_text_block.Text = comp.ToString();
-            executing_tasks_text_block.Text = exec.ToString();
-            planned_tasks_text_block.Text = plan.ToString();
-            canceled_tasks_text_block.Text = canc.ToString();
-
             
+
+
         }
 
         private void user_chart_combo_box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            cki();
-        }
-        public void cki()
-        {
-
-            if (user_chart_combo_box.SelectedItem.ToString() is string user &&
-                type_chart_combo_box.SelectedItem is SeriesChartType currentType)
+            comp = 0;
+            exec = 0;
+            plan = 0;
+            canc = 0;
+            if (user_chart_combo_box.SelectedItem.ToString() is string user)
             {
                 DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
-                Series currentSeries = ChartTask.Series.FirstOrDefault();
-                currentSeries.ChartType = currentType;
-                currentSeries.Points.Clear();
-
-                int userID = userG.userID;
-
-                var tasks = App.ContextDatabase.Task.ToList();
+                var tasks = App.ContextDatabase.Task.Where(x => x.EmployeeID == userG.userID).ToList();
                 foreach (var task in tasks)
                 {
-                    if (task.EmployeeID == userID)
-                    {
-                        currentSeries.Points.AddXY(task.Title, task.Difficulty);
-                    }
+
+                    if (task.Status == "Выполнена") comp++;
+                    else if (task.Status == "Выполняется") exec++;
+                    else if (task.Status == "Запланирована") plan++;
+                    else if (task.Status == "Отмененa") canc++;
+
+
                 }
+                completed_tasks_text_block.Text = comp.ToString();
+                executing_tasks_text_block.Text = exec.ToString();
+                planned_tasks_text_block.Text = plan.ToString();
+                canceled_tasks_text_block.Text = canc.ToString();
             }
+            
+
         }
+        
         private void ExcelButton_Click(object sender, RoutedEventArgs e)
         {
             var tasks = App.ContextDatabase.Task.ToList();
@@ -185,7 +177,71 @@ namespace emplySoftware.Windows
         }
 
 
-        private void search_date_picker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void LoginCloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void ChartButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ComboBoxItem selectedValueSeries = (ComboBoxItem)type_series_combo_box.SelectedItem;
+                ComboBoxItem selectedValueStatus = (ComboBoxItem)type_status_combo_box.SelectedItem;
+                if (user_chart_combo_box.SelectedItem.ToString() is string user &&
+                type_chart_combo_box.SelectedItem is SeriesChartType currentType && selectedValueSeries.Content.ToString() == "Сложность" && selectedValueStatus.Content.ToString() != "")
+                {
+                    
+                    DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
+                    Series currentSeries = ChartTask.Series.FirstOrDefault();
+                    currentSeries.ChartType = currentType;
+                    currentSeries.Points.Clear();
+                    int userID = userG.userID;
+                    var tasks = App.ContextDatabase.Task.ToList(); 
+                    if (selectedValueStatus.Content.ToString() == "Все")
+                    {
+                        tasks.Clear();
+                        tasks = App.ContextDatabase.Task.ToList();
+
+                    }else if (selectedValueStatus.Content.ToString() == "Выполнено")
+                    {
+                        tasks.Clear();
+                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Выполнена").ToList();
+                    }
+                    else if (selectedValueStatus.Content.ToString() == "Выполняется")
+                    {
+                        tasks.Clear();
+                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Выполняется").ToList();
+                    }
+                    else if (selectedValueStatus.Content.ToString() == "Запланировано")
+                    {tasks.Clear();
+                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Запланирована").ToList();
+                    }
+                    else if (selectedValueStatus.Content.ToString() == "Отменена")
+                    {
+                        tasks.Clear();
+                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Отменена").ToList();
+                    }
+                    foreach (var task in tasks)
+                    {
+                        if (task.EmployeeID == userID)
+                        {
+                            currentSeries.Points.AddXY(task.Title, task.Difficulty);
+                        }
+                    }
+                    dd.Visibility = Visibility.Visible;
+                    saveChartButton.Visibility = Visibility.Visible;
+                }
+            }
+            catch
+            {
+                string errorMessage = "Какой то из полей не выбран!";
+                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                errorWindow.Owner = this; ;
+                errorWindow.ShowDialog();
+            }
+        }
+
+        private void allButton_Click(object sender, RoutedEventArgs e)
         {
             comp = 0;
             exec = 0;
@@ -194,14 +250,10 @@ namespace emplySoftware.Windows
             var tasks = App.ContextDatabase.Task.ToList();
             foreach (var task in tasks)
             {
-                if (task.Deadline == search_date_picker.SelectedDate)
-                {
-                    if (task.Status == "Выполнена") comp++;
-                    else if (task.Status == "Выполняется") exec++;
-                    else if (task.Status == "Запланирована") plan++;
-                    else if (task.Status == "Отмененa") canc++;
-                }
-
+                if (task.Status == "Выполнена") comp++;
+                else if (task.Status == "Выполняется") exec++;
+                else if (task.Status == "Запланирована") plan++;
+                else if (task.Status == "Отменена") canc++;
             }
             completed_tasks_text_block.Text = comp.ToString();
             executing_tasks_text_block.Text = exec.ToString();
@@ -210,31 +262,39 @@ namespace emplySoftware.Windows
 
         }
 
-        private void LoginCloseButton_OnClick(object sender, RoutedEventArgs e)
+        private void saveChartButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-        private void ChartButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (user_chart_combo_box.SelectedItem.ToString() is string user &&
-                type_chart_combo_box.SelectedItem is SeriesChartType currentType)
+            using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
-                Series currentSeries = ChartTask.Series.FirstOrDefault();
-                currentSeries.ChartType = currentType;
-                currentSeries.Points.Clear();
-
-                int userID = userG.userID;
-
-                var tasks = App.ContextDatabase.Task.ToList();
-                foreach (var task in tasks)
+                string notif = "Изображение картинки успешно сохранено";
+                sfd.Title = "Сохранить изображение как ...";
+                sfd.Filter = "*.bmp|*.bmp;|*.png|*.png;|*.jpg|*.jpg";
+                sfd.AddExtension = true;
+                sfd.FileName = "graphicImage";
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (task.EmployeeID == userID)
+                    switch (sfd.FilterIndex)
                     {
-                        currentSeries.Points.AddXY(task.Title, task.Difficulty);
+                        case 1: { ChartTask.SaveImage(sfd.FileName, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Bmp);
+                                
+                                NotificationWindow notifWindow = new NotificationWindow(notif);
+                                notifWindow.Owner = this; ;
+                                notifWindow.ShowDialog();
+                                break; } 
+                        case 2: { ChartTask.SaveImage(sfd.FileName, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+                                NotificationWindow notifWindow = new NotificationWindow(notif);
+                                notifWindow.Owner = this; ;
+                                notifWindow.ShowDialog();
+                                break; }
+                        case 3: { ChartTask.SaveImage(sfd.FileName, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Jpeg);
+                                NotificationWindow notifWindow = new NotificationWindow(notif);
+                                notifWindow.Owner = this; ;
+                                notifWindow.ShowDialog();
+                                break; }
                     }
                 }
             }
         }
     }
 }
+

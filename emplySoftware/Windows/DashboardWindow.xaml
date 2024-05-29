@@ -82,16 +82,36 @@
                     <!--#endregion-->
 
                     <!--#region dashboard_top_panel-->
-                    <DatePicker x:Name="search_date_picker"
-                Tag="Фильтрация по дате..."
-                Width="300" Height="40"
-                Margin="20,0"
-                CalendarStyle="{DynamicResource calendar_style}"
-                Style="{StaticResource dashboard_date_picker}"
-                HorizontalAlignment="Left"
-                SelectedDateChanged="search_date_picker_SelectedDateChanged"/>
-                    <!--#endregion-->
 
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="10,5" >
+                        <ComboBox Grid.Row="0" x:Name="user_chart_combo_box"
+                              ItemContainerStyle="{StaticResource combo_box_item_container_style}"
+                              Width="300" Height="40"
+                              Margin="0,0,10,0"
+                              Style="{StaticResource combo_box_chart}"
+                              SelectionChanged="user_chart_combo_box_SelectionChanged">
+
+                        </ComboBox>
+                        <Button HorizontalAlignment="Left" Grid.Row="0" x:Name="allButton" Width="40" Height="40"
+                            Margin="1,0,0,0"
+                            Click="allButton_Click"
+                            />
+                        <Button x:Name="ExcelButton"
+                            HorizontalAlignment="Right"
+                            Width="40" Height="40"
+                            Margin="10,0,0,0"
+                            Click="ExcelButton_Click"
+                            Style="{StaticResource ExcelButton}"/>
+
+                        <Button x:Name="WordButton"
+                            HorizontalAlignment="Right"
+                            Width="40" Height="40"
+                            Margin="10,0,50,0"
+                            Click="WordButton_Click"
+                            Style="{StaticResource WordButton}"/>
+                    </StackPanel>
                     <!--#region dashboard_subtop_panel-->
                     <Grid Grid.Row="1">
 
@@ -387,42 +407,39 @@
                         BorderThickness="0,0,0,2">
 
                                     <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
                                 Margin="10,5">
-
-                                        <ComboBox x:Name="user_chart_combo_box"
-                                  ItemContainerStyle="{StaticResource combo_box_item_container_style}"
-                                  Width="300" Height="40"
-                                  Margin="0,0,10,0"
-                                  Style="{StaticResource combo_box_chart}"
-                                  SelectionChanged="user_chart_combo_box_SelectionChanged"/>
-
                                         <ComboBox x:Name="type_chart_combo_box"
                                   ItemContainerStyle="{StaticResource combo_box_item_container_style}"
                                   Width="250" Height="40"
                                   Style="{StaticResource combo_box_chart_type}"/>
-
+                                        <ComboBox x:Name="type_series_combo_box"
+                                                  ItemContainerStyle="{StaticResource combo_box_item_container_style}"
+                                                  Width="190" Height="40"
+                                                  Style="{StaticResource combo_box_chart_type}">
+                                            <ComboBoxItem Content="Сложность"/>
+                                        </ComboBox>
+                                        <ComboBox x:Name="type_status_combo_box"
+                                                  ItemContainerStyle="{StaticResource combo_box_item_container_style}"
+                                                  Width="230" Height="40"
+                                                  Style="{StaticResource combo_box_chart_type}">
+                                            <ComboBoxItem Content="Все"/>
+                                            <ComboBoxItem Content="Выполнено"/>
+                                            <ComboBoxItem Content="Выполняется"/>
+                                            <ComboBoxItem Content="Запланировано"/>
+                                            <ComboBoxItem Content="Отменена"/>
+                                        </ComboBox>
                                         <Button x:Name="ChartButton"
                                         Width="40" Height="40"
                                         Margin="10,0,0,0"
-                                         Click="ChartButton_Click"
-                                          />
-
-                                        <Button x:Name="ExcelButton"
-                                Width="40" Height="40"
-                                Margin="10,0,0,0"
-                                Click="ExcelButton_Click"
-                                Style="{StaticResource ExcelButton}"/>
-
-                                        <Button x:Name="WordButton"
-                                Width="40" Height="40"
-                                Margin="10,0,0,0"
-                                Click="WordButton_Click"
-                                Style="{StaticResource WordButton}"/>
-
+                                        Click="ChartButton_Click"/>
                                     </StackPanel>
 
                                 </Border>
-                                <WindowsFormsHost x:Name="dd" Grid.Row="1" Margin="50" >
+                                <WindowsFormsHost Visibility="Visible" 
+                                                  x:Name="dd" 
+                                                  Grid.Row="1" 
+                                                  Margin="20,20,58,20" >
                                     <charts:Chart x:Name="ChartTask">
                                         <charts:Chart.Legends>
                                             <charts:Legend>
@@ -430,10 +447,11 @@
                                             </charts:Legend>
                                         </charts:Chart.Legends>
                                     </charts:Chart>
-
                                 </WindowsFormsHost>
-
-
+                                <Button Visibility="Collapsed" x:Name="saveChartButton"
+                                        Grid.Row="1"
+                                        Margin="742,352,10,10"
+                                        Click="saveChartButton_Click"/>
 
                             </Grid>
 
@@ -458,7 +476,7 @@
             </Border>
             <!--#endregion-->
 
-           
+
         </Grid>
 
     </Border>
