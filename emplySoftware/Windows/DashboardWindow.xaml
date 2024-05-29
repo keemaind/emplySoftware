@@ -73,8 +73,14 @@
                             Margin="10,0,50,0"
                             Click="WordButton_Click"
                             Style="{StaticResource WordButton}"/>
+                        <CheckBox x:Name="AlltaskExport"
+                          Style="{StaticResource CheckBoxStyle}"
+                          Content="Экспорт всех задач в файл" 
+                          HorizontalAlignment="Right"
+                          Margin="-30,15,10,15"/>
 
-                    </StackPanel>
+
+            </StackPanel>
                     <!--#region dashboard_subtop_panel-->
                     <Grid Grid.Row="1">
 
@@ -409,7 +415,7 @@
                                                 Margin="0,0,10,0"
                                                 Click="ChartButton_Click"/>
 
-                                        <Button Visibility="Visible"
+                                        <Button Visibility="Collapsed"
                                                 Width="40" Height="40"
                                                 Style="{StaticResource SaveChartButton}"
                                                 x:Name="saveChartButton"
@@ -419,10 +425,10 @@
 
                         </Border>
 
-                        <WindowsFormsHost Visibility="Visible" 
+                        <WindowsFormsHost Visibility="Collapsed" 
                                                   x:Name="dd" 
                                                   Grid.Row="1" 
-                                                  Margin="20,20,58,20">
+                                                  Margin="20">
 
                             <charts:Chart x:Name="ChartTask">
 

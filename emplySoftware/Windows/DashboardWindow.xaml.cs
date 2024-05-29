@@ -92,88 +92,237 @@ namespace emplySoftware.Windows
         private void ExcelButton_Click(object sender, RoutedEventArgs e)
         {
             var tasks = App.ContextDatabase.Task.ToList();
-            Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
-            application.SheetsInNewWorkbook = 1;
-            Microsoft.Office.Interop.Excel.Workbook book = application.Workbooks.Add(Type.Missing);
-
-            int rowIndex = 1;
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = application.Worksheets.Item[1];
-            worksheet.Name = "Задачи";
-
-            worksheet.Cells[rowIndex, "A"] = "Заголовок";
-            worksheet.Cells[rowIndex, "B"] = "Исполнитель";
-            worksheet.Cells[rowIndex, "C"] = "Статус";
-            worksheet.Cells[rowIndex, "D"] = "Дата создания задачи";
-            worksheet.Cells[rowIndex, "E"] = "Конечная дата";
-            worksheet.Cells[rowIndex, "F"] = "Описание";
-
-            rowIndex++;
-
-            foreach (var task in tasks)
+            if ((bool)AlltaskExport.IsChecked)
             {
-                worksheet.Cells[rowIndex, "A"] = task.Title;
-                worksheet.Cells[rowIndex, "B"] = FIOus.GetFullNameInt(task.EmployeeID);
-                worksheet.Cells[rowIndex, "C"] = task.Status;
-                worksheet.Cells[rowIndex, "D"] = task.CreateDate.ToString("dd.MM.yyyy HH.mm");
-                worksheet.Cells[rowIndex, "E"] = task.Deadline.ToString("dd.MM.yyyy HH.mm");
-                worksheet.Cells[rowIndex, "F"] = task.Description;
+                Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+                application.SheetsInNewWorkbook = 1;
+                Microsoft.Office.Interop.Excel.Workbook book = application.Workbooks.Add(Type.Missing);
+
+                int rowIndex = 1;
+                Microsoft.Office.Interop.Excel.Worksheet worksheet = application.Worksheets.Item[1];
+                worksheet.Name = "Задачи";
+
+                worksheet.Cells[rowIndex, "A"] = "Заголовок";
+                worksheet.Cells[rowIndex, "B"] = "Исполнитель";
+                worksheet.Cells[rowIndex, "C"] = "Статус";
+                worksheet.Cells[rowIndex, "D"] = "Дата создания задачи";
+                worksheet.Cells[rowIndex, "E"] = "Конечная дата";
+                worksheet.Cells[rowIndex, "F"] = "Описание";
 
                 rowIndex++;
+
+                foreach (var task in tasks)
+                {
+                    worksheet.Cells[rowIndex, "A"] = task.Title;
+                    worksheet.Cells[rowIndex, "B"] = FIOus.GetFullNameInt(task.EmployeeID);
+                    worksheet.Cells[rowIndex, "C"] = task.Status;
+                    worksheet.Cells[rowIndex, "D"] = task.CreateDate.ToString("dd.MM.yyyy HH.mm");
+                    worksheet.Cells[rowIndex, "E"] = task.Deadline.ToString("dd.MM.yyyy HH.mm");
+                    worksheet.Cells[rowIndex, "F"] = task.Description;
+
+                    rowIndex++;
+                }
+                worksheet.Columns.AutoFit();
+                application.Visible = true;
             }
-            worksheet.Columns.AutoFit();
-            application.Visible = true;
+            else
+            {
+                try
+                {
+                    
+                    ComboBoxItem selectedValueSeries = (ComboBoxItem)type_series_combo_box.SelectedItem;
+                    ComboBoxItem selectedValueStatus = (ComboBoxItem)type_status_combo_box.SelectedItem;
+                    if (user_chart_combo_box.SelectedItem.ToString() is string user && selectedValueStatus.Content.ToString() != "")
+                    {
+                        DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
+                        int userID = userG.userID;
+
+                        string statusParametr = "";
+                        switch(selectedValueStatus.Content.ToString())
+                        {
+                            case "Все": {  } break;
+                            case "Выполнено": { statusParametr = "Выполнена"; } break;
+                            case "Выполняется": { statusParametr = "Выполняется"; } break;
+                            case "Запланировано": { statusParametr = "Запланирована"; } break;
+                            case "Отменена": { statusParametr = "Отменена"; } break;
+                        }
+                        if (string.IsNullOrEmpty(statusParametr)) App.ContextDatabase.Task.Where(x => x.EmployeeID == userID).ToList();
+                        else tasks = App.ContextDatabase.Task.Where(x => x.Status == statusParametr).ToList();
+
+                        Microsoft.Office.Interop.Excel.Application application = new Microsoft.Office.Interop.Excel.Application();
+                        application.SheetsInNewWorkbook = 1;
+                        Microsoft.Office.Interop.Excel.Workbook book = application.Workbooks.Add(Type.Missing);
+
+                        int rowIndex = 1;
+                        Microsoft.Office.Interop.Excel.Worksheet worksheet = application.Worksheets.Item[1];
+                        worksheet.Name = "Задачи";
+
+                        worksheet.Cells[rowIndex, "A"] = "Заголовок";
+                        worksheet.Cells[rowIndex, "B"] = "Исполнитель";
+                        worksheet.Cells[rowIndex, "C"] = "Статус";
+                        worksheet.Cells[rowIndex, "D"] = "Дата создания задачи";
+                        worksheet.Cells[rowIndex, "E"] = "Конечная дата";
+                        worksheet.Cells[rowIndex, "F"] = "Описание";
+
+                        rowIndex++;
+
+                        foreach (var task in tasks)
+                        {
+                            worksheet.Cells[rowIndex, "A"] = task.Title;
+                            worksheet.Cells[rowIndex, "B"] = FIOus.GetFullNameInt(task.EmployeeID);
+                            worksheet.Cells[rowIndex, "C"] = task.Status;
+                            worksheet.Cells[rowIndex, "D"] = task.CreateDate.ToString("dd.MM.yyyy HH.mm");
+                            worksheet.Cells[rowIndex, "E"] = task.Deadline.ToString("dd.MM.yyyy HH.mm");
+                            worksheet.Cells[rowIndex, "F"] = task.Description;
+
+                            rowIndex++;
+                        }
+                        worksheet.Columns.AutoFit();
+                        application.Visible = true;
+                    }
+                }
+                catch
+                {
+                    string errorMessage = "Поле пользователя или статуса не выбран!";
+                    ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                    errorWindow.Owner = this; ;
+                    errorWindow.ShowDialog();
+                }
+            }
         }
 
         private void WordButton_Click(object sender, RoutedEventArgs e)
         {
-            var users = App.ContextDatabase.User.ToList();
+            
             var tasks = App.ContextDatabase.Task.ToList();
-
-            var application = new Microsoft.Office.Interop.Word.Application();
-            Word.Document document = application.Documents.Add();
-
-            Word.Paragraph tableParagraph = document.Paragraphs.Add();
-            Word.Range tableRange = tableParagraph.Range;
-            Word.Table tasksTable = document.Tables.Add(tableRange, tasks.Count() + 1, 4);
-
-            tasksTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
-            tasksTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
-
-            Word.Range cellRange;
-
-            cellRange = tasksTable.Cell(1, 1).Range;
-            cellRange.Text = "Исполнитель";
-
-            cellRange = tasksTable.Cell(1, 2).Range;
-            cellRange.Text = "Задача";
-
-            cellRange = tasksTable.Cell(1, 3).Range;
-            cellRange.Text = "Статус";
-
-            cellRange = tasksTable.Cell(1, 4).Range;
-            cellRange.Text = "Срок";
-
-            tasksTable.Rows[1].Range.Bold = 1;
-            tasksTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-
-            for (int i = 0; i < tasks.Count(); i++)
+            if ((bool)AlltaskExport.IsChecked)
             {
-                var currentTask = tasks[i];
-                var executor = App.ContextDatabase.User.FirstOrDefault(exec => exec.userID == currentTask.EmployeeID); // Получаем исполнителя текущей задачи
-                tasksTable.Cell(i + 2, 1).Range.Text = $"{executor.FirstName} {executor.LastName}";
+                var application = new Microsoft.Office.Interop.Word.Application();
+                Word.Document document = application.Documents.Add();
 
-                cellRange = tasksTable.Cell(i + 2, 2).Range;
-                cellRange.Text = currentTask.Title;
+                Word.Paragraph tableParagraph = document.Paragraphs.Add();
+                Word.Range tableRange = tableParagraph.Range;
+                Word.Table tasksTable = document.Tables.Add(tableRange, tasks.Count() + 1, 4);
 
-                cellRange = tasksTable.Cell(i + 2, 3).Range;
-                cellRange.Text = currentTask.Status;
+                tasksTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+                tasksTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
 
-                cellRange = tasksTable.Cell(i + 2, 4).Range;
-                cellRange.Text = currentTask.Deadline.ToString("dd.MM.yyyy");
+                Word.Range cellRange;
+
+                cellRange = tasksTable.Cell(1, 1).Range;
+                cellRange.Text = "Исполнитель";
+
+                cellRange = tasksTable.Cell(1, 2).Range;
+                cellRange.Text = "Задача";
+
+                cellRange = tasksTable.Cell(1, 3).Range;
+                cellRange.Text = "Статус";
+
+                cellRange = tasksTable.Cell(1, 4).Range;
+                cellRange.Text = "Срок";
+
+                tasksTable.Rows[1].Range.Bold = 1;
+                tasksTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                for (int i = 0; i < tasks.Count(); i++)
+                {
+                    var currentTask = tasks[i];
+                    var executor = App.ContextDatabase.User.FirstOrDefault(exec => exec.userID == currentTask.EmployeeID); // Получаем исполнителя текущей задачи
+                    tasksTable.Cell(i + 2, 1).Range.Text = $"{executor.FirstName} {executor.LastName}";
+
+                    cellRange = tasksTable.Cell(i + 2, 2).Range;
+                    cellRange.Text = currentTask.Title;
+
+                    cellRange = tasksTable.Cell(i + 2, 3).Range;
+                    cellRange.Text = currentTask.Status;
+
+                    cellRange = tasksTable.Cell(i + 2, 4).Range;
+                    cellRange.Text = currentTask.Deadline.ToString("dd.MM.yyyy");
+                }
+
+
+                application.Visible = true;
             }
+            else
+            {
+                try
+                {
+                    ComboBoxItem selectedValueSeries = (ComboBoxItem)type_series_combo_box.SelectedItem;
+                    ComboBoxItem selectedValueStatus = (ComboBoxItem)type_status_combo_box.SelectedItem;
+                    if (user_chart_combo_box.SelectedItem.ToString() is string user && selectedValueStatus.Content.ToString() != "")
+                    {
+                        DatabaseSQL.User userG = users1.First(p => p.GetFullName() == user);
+                        int userID = userG.userID;
+
+                        string statusParametr = "";
+                        switch (selectedValueStatus.Content.ToString())
+                        {
+                            case "Все": { } break;
+                            case "Выполнено": { statusParametr = "Выполнена"; } break;
+                            case "Выполняется": { statusParametr = "Выполняется"; } break;
+                            case "Запланировано": { statusParametr = "Запланирована"; } break;
+                            case "Отменена": { statusParametr = "Отменена"; } break;
+                        }
+                        if (string.IsNullOrEmpty(statusParametr)) App.ContextDatabase.Task.Where(x => x.EmployeeID == userID).ToList();
+                        else tasks = App.ContextDatabase.Task.Where(x => x.Status == statusParametr).ToList();
+
+                        var application = new Microsoft.Office.Interop.Word.Application();
+                        Word.Document document = application.Documents.Add();
+
+                        Word.Paragraph tableParagraph = document.Paragraphs.Add();
+                        Word.Range tableRange = tableParagraph.Range;
+                        Word.Table tasksTable = document.Tables.Add(tableRange, tasks.Count() + 1, 4);
+
+                        tasksTable.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+                        tasksTable.Range.Cells.VerticalAlignment = Word.WdCellVerticalAlignment.wdCellAlignVerticalCenter;
+
+                        Word.Range cellRange;
+
+                        cellRange = tasksTable.Cell(1, 1).Range;
+                        cellRange.Text = "Исполнитель";
+
+                        cellRange = tasksTable.Cell(1, 2).Range;
+                        cellRange.Text = "Задача";
+
+                        cellRange = tasksTable.Cell(1, 3).Range;
+                        cellRange.Text = "Статус";
+
+                        cellRange = tasksTable.Cell(1, 4).Range;
+                        cellRange.Text = "Срок";
+
+                        tasksTable.Rows[1].Range.Bold = 1;
+                        tasksTable.Rows[1].Range.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                        for (int i = 0; i < tasks.Count(); i++)
+                        {
+                            var currentTask = tasks[i];
+                            var executor = App.ContextDatabase.User.FirstOrDefault(exec => exec.userID == currentTask.EmployeeID); // Получаем исполнителя текущей задачи
+                            tasksTable.Cell(i + 2, 1).Range.Text = $"{executor.FirstName} {executor.LastName}";
+
+                            cellRange = tasksTable.Cell(i + 2, 2).Range;
+                            cellRange.Text = currentTask.Title;
+
+                            cellRange = tasksTable.Cell(i + 2, 3).Range;
+                            cellRange.Text = currentTask.Status;
+
+                            cellRange = tasksTable.Cell(i + 2, 4).Range;
+                            cellRange.Text = currentTask.Deadline.ToString("dd.MM.yyyy");
+                        }
 
 
-            application.Visible = true;
+                        application.Visible = true;
+                    }
+                }
+                catch
+                {
+                    string errorMessage = "Поле пользователя или статуса не выбран!";
+                    ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                    errorWindow.Owner = this; ;
+                    errorWindow.ShowDialog();
+                }
+
+            }
+               
         }
 
 
@@ -196,31 +345,19 @@ namespace emplySoftware.Windows
                     currentSeries.ChartType = currentType;
                     currentSeries.Points.Clear();
                     int userID = userG.userID;
-                    var tasks = App.ContextDatabase.Task.ToList(); 
-                    if (selectedValueStatus.Content.ToString() == "Все")
+                    var tasks = App.ContextDatabase.Task.ToList();
+                    string statusParametr = "";
+                    switch (selectedValueStatus.Content.ToString())
                     {
-                        tasks.Clear();
-                        tasks = App.ContextDatabase.Task.ToList();
+                        case "Все": { } break;
+                        case "Выполнено": { statusParametr = "Выполнена"; } break;
+                        case "Выполняется": { statusParametr = "Выполняется"; } break;
+                        case "Запланировано": { statusParametr = "Запланирована"; } break;
+                        case "Отменена": { statusParametr = "Отменена"; } break;
+                    }
+                    if (string.IsNullOrEmpty(statusParametr)) tasks = App.ContextDatabase.Task.Where(x=> x.EmployeeID == userID).ToList();
+                    else tasks = App.ContextDatabase.Task.Where(x => x.Status == statusParametr && x.EmployeeID==userID).ToList();
 
-                    }else if (selectedValueStatus.Content.ToString() == "Выполнено")
-                    {
-                        tasks.Clear();
-                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Выполнена").ToList();
-                    }
-                    else if (selectedValueStatus.Content.ToString() == "Выполняется")
-                    {
-                        tasks.Clear();
-                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Выполняется").ToList();
-                    }
-                    else if (selectedValueStatus.Content.ToString() == "Запланировано")
-                    {tasks.Clear();
-                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Запланирована").ToList();
-                    }
-                    else if (selectedValueStatus.Content.ToString() == "Отменена")
-                    {
-                        tasks.Clear();
-                        tasks = App.ContextDatabase.Task.Where(x => x.Status == "Отменена").ToList();
-                    }
                     foreach (var task in tasks)
                     {
                         if (task.EmployeeID == userID)
