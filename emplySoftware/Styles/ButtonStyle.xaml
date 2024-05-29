@@ -2351,82 +2351,6 @@
     </Style>
     <!--#endregion-->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!--#region ShowAllCountTaskButton-->
     <Style x:Key="ShowAllCountTaskButton" TargetType="Button">
 
@@ -2441,8 +2365,8 @@
                 <ControlTemplate TargetType="Button">
 
                     <Border x:Name="border"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="15">
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="15">
 
                         <Border.Background>
 
@@ -2456,11 +2380,11 @@
                         </Border.BorderBrush>
 
                         <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center">
+                            HorizontalAlignment="Center">
 
                             <fa:IconImage Icon="Eye"
-                                      Margin="0,0,1,0"
-                                      Width="14" Height="14">
+                                  Margin="0,0,1,0"
+                                  Width="14" Height="14">
 
                                 <fa:IconImage.Foreground>
 
@@ -2471,10 +2395,10 @@
                             </fa:IconImage>
 
                             <Label Content="Все задачи"
-                               FontFamily="/FontTypes/#Montserrat Medium"
-                               FontSize="12"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
+                           FontFamily="/FontTypes/#Montserrat Medium"
+                           FontSize="12"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
 
                                 <Label.Foreground>
 
@@ -2497,28 +2421,28 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#ffffff"
-                                            To="#4DB1BD"
-                                            Duration="0:0:0:0.2"/>
+                                        Storyboard.TargetProperty="Color"
+                                        From="#ffffff"
+                                        To="#4DB1BD"
+                                        Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_label"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#4DB1BD"
-                                            To="#ffffff"
-                                            Duration="0:0:0:0.2"/>
+                                        Storyboard.TargetProperty="Color"
+                                        From="#4DB1BD"
+                                        To="#ffffff"
+                                        Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_icon"
+                                        Storyboard.TargetProperty="Color"
+                                        From="#4DB1BD"
+                                        To="#ffffff"
+                                        Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
                                             Storyboard.TargetProperty="Color"
                                             From="#4DB1BD"
                                             To="#ffffff"
                                             Duration="0:0:0:0.2"/>
-
-                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
-                                                Storyboard.TargetProperty="Color"
-                                                From="#4DB1BD"
-                                                To="#ffffff"
-                                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
@@ -2533,28 +2457,28 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#4DB1BD"
-                                            To="#ffffff"
-                                            Duration="0:0:0:0.2"/>
+                                        Storyboard.TargetProperty="Color"
+                                        From="#4DB1BD"
+                                        To="#ffffff"
+                                        Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_label"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#ffffff"
-                                            To="#4DB1BD"
-                                            Duration="0:0:0:0.2"/>
+                                        Storyboard.TargetProperty="Color"
+                                        From="#ffffff"
+                                        To="#4DB1BD"
+                                        Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_icon"
+                                        Storyboard.TargetProperty="Color"
+                                        From="#ffffff"
+                                        To="#4DB1BD"
+                                        Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
                                             Storyboard.TargetProperty="Color"
                                             From="#ffffff"
                                             To="#4DB1BD"
                                             Duration="0:0:0:0.2"/>
-
-                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
-                                                Storyboard.TargetProperty="Color"
-                                                From="#ffffff"
-                                                To="#4DB1BD"
-                                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
@@ -2587,8 +2511,8 @@
                 <ControlTemplate TargetType="Button">
 
                     <Border x:Name="border"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="15">
+        BorderThickness="{TemplateBinding BorderThickness}"
+        CornerRadius="15">
 
                         <Border.Background>
 
@@ -2599,8 +2523,8 @@
                         <Grid>
 
                             <fa:IconImage Icon="Download"
-                              Width="16" Height="16"
-                              Foreground="#ffffff"/>
+                          Width="16" Height="16"
+                          Foreground="#ffffff"/>
 
                         </Grid>
 
@@ -2615,10 +2539,10 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                    Storyboard.TargetProperty="Color"
-                                    From="#fdb643"
-                                    To="#fca311"
-                                    Duration="0:0:0:0.2"/>
+                                Storyboard.TargetProperty="Color"
+                                From="#fdb643"
+                                To="#fca311"
+                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
@@ -2633,10 +2557,10 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                    Storyboard.TargetProperty="Color"
-                                    From="#fca311"
-                                    To="#fdb643"
-                                    Duration="0:0:0:0.2"/>
+                                Storyboard.TargetProperty="Color"
+                                From="#fca311"
+                                To="#fdb643"
+                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
@@ -2669,8 +2593,8 @@
                 <ControlTemplate TargetType="Button">
 
                     <Border x:Name="border"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="15">
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="15">
 
                         <Border.Background>
 
@@ -2684,13 +2608,13 @@
                         </Border.BorderBrush>
 
                         <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
+                        HorizontalAlignment="Center">
 
                             <Label Content="Создать"
-                           FontFamily="/FontTypes/#Montserrat Medium"
-                           FontSize="12"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center">
+                       FontFamily="/FontTypes/#Montserrat Medium"
+                       FontSize="12"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
 
                                 <Label.Foreground>
 
@@ -2713,22 +2637,22 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                        Storyboard.TargetProperty="Color"
-                                        From="#ffffff"
-                                        To="#4BB57B"
-                                        Duration="0:0:0:0.2"/>
+                                    Storyboard.TargetProperty="Color"
+                                    From="#ffffff"
+                                    To="#4BB57B"
+                                    Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_label"
+                                    Storyboard.TargetProperty="Color"
+                                    From="#4BB57B"
+                                    To="#ffffff"
+                                    Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
                                         Storyboard.TargetProperty="Color"
                                         From="#4BB57B"
                                         To="#ffffff"
                                         Duration="0:0:0:0.2"/>
-
-                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#4BB57B"
-                                            To="#ffffff"
-                                            Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
@@ -2743,22 +2667,22 @@
                                 <Storyboard>
 
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
-                                        Storyboard.TargetProperty="Color"
-                                        From="#4BB57B"
-                                        To="#ffffff"
-                                        Duration="0:0:0:0.2"/>
+                                    Storyboard.TargetProperty="Color"
+                                    From="#4BB57B"
+                                    To="#ffffff"
+                                    Duration="0:0:0:0.2"/>
 
                                     <ColorAnimation Storyboard.TargetName="border_label"
+                                    Storyboard.TargetProperty="Color"
+                                    From="#ffffff"
+                                    To="#4BB57B"
+                                    Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
                                         Storyboard.TargetProperty="Color"
                                         From="#ffffff"
                                         To="#4BB57B"
                                         Duration="0:0:0:0.2"/>
-
-                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
-                                            Storyboard.TargetProperty="Color"
-                                            From="#ffffff"
-                                            To="#4BB57B"
-                                            Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
