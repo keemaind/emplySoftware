@@ -122,19 +122,26 @@ namespace emplySoftware
         #region Разные методы 
         private void ButtonTasks_Click(object sender, RoutedEventArgs e)
         {
+            UserChats.SelectedIndex = -1;
+            main_frame.Visibility = Visibility.Visible;
+            MessagesListView.Visibility = Visibility.Collapsed;
+            sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new Tasks());
         }
         private void CreateChat_Click(object sender, RoutedEventArgs e)
         {
             ChatCreatePage p1 = new ChatCreatePage();
+            UserChats.SelectedIndex = -1;
+            main_frame.Visibility = Visibility.Visible;
+            MessagesListView.Visibility = Visibility.Collapsed;
+            sendBlock.Visibility = Visibility.Collapsed;
             p1.DataChanged += P1_DataChanged;
             main_frame.Navigate(p1);
             //main_frame.NavigationService.Navigate(new ChatCreatePage());
         }
         private void P1_DataChanged(object sender, EventArgs e)
         {
-            MainWindowModel model = new MainWindowModel();
-            DataContext = model;
+            StartChatFill();
             main_frame.Navigate(mainPage);
         }
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
@@ -257,7 +264,7 @@ namespace emplySoftware
                         var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatj.chatID).ToList();
                         if (ll.Count() == 0)
                         {
-                            last = "";
+                            last = " ";
                         }
                         else last = ll.Last().Message.ToString();
                         var chatUsers = App.ContextDatabase.chatUsers.Where(x => x.chatID == chatj.chatID).ToList();
@@ -286,7 +293,15 @@ namespace emplySoftware
                         var ll = App.ContextDatabase.Messages.Where(p => p.chatID == chatj.chatID).ToList();
                         if (ll.Count() == 0)
                         {
-                            last = "";
+                            last = " ";
+                            userChats.Add(new chats
+                            {
+                                Title = chatj.Title,
+                                Image = chatj.Image,
+                                ChatID = chatj.chatID,
+                                LastMessage = last
+                            });
+                            (sender as BackgroundWorker).ReportProgress(progressPercentage, i);
                         }
                         else
                         {
@@ -331,10 +346,13 @@ namespace emplySoftware
         {
             if (Ltimer.IsEnabled) Ltimer.Stop();
 
-           
-            var selectedChat = (UserChats.SelectedItem as chats);
-            if (slcIndex == -20)
+           if (UserChats.SelectedIndex == -1)
+          {
+
+            }
+            else
             {
+                var selectedChat = (UserChats.SelectedItem as chats);
                 MessagesList.Clear();
                 MessagesListView.Items.Clear();
                 var persOrGrop = App.ContextDatabase.chatList.FirstOrDefault(p => p.chatID == selectedChat.ChatID).personal;
@@ -362,11 +380,8 @@ namespace emplySoftware
                     sendMessage.Visibility = Visibility.Visible;
                 }
             }
-            else 
-            { 
             
             
-            }
 
 
            
@@ -693,12 +708,19 @@ namespace emplySoftware
         }
 
         private void ButtonEmployees_Click(object sender, RoutedEventArgs e)
-        {
+        {UserChats.SelectedIndex = -1;
+            main_frame.Visibility = Visibility.Visible;
+            MessagesListView.Visibility = Visibility.Collapsed;
+            sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new AdmiPanel());
         }
 
         private void ButtonNews_Click(object sender, RoutedEventArgs e)
         {
+            UserChats.SelectedIndex = -1;
+            main_frame.Visibility = Visibility.Visible;
+            MessagesListView.Visibility = Visibility.Collapsed;
+            sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new CreateNews());
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -95,23 +96,26 @@ namespace emplySoftware.Pages
             int curINT = GetCurrent.CurrentUser.userID;
             if ((bool)GroupChat.IsChecked)
             {
-                DateTime nn = DateTime.Now;
+                DateTime datecreate = DateTime.Now;
+                SqlDateTime sqlNow = new SqlDateTime(datecreate);
                 var newGroupChat = new chatList
                 {
                     Title = TitleChat.Text.ToString(),
                     userID = curINT,
                     personal = false,
                     Image = _mainImageData,
-                    CreateDate = nn,
+                    CreateDate = datecreate,
                 };
                 App.ContextDatabase.chatList.Add(newGroupChat);
                 App.ContextDatabase.SaveChanges();
-                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
+               
+                int newChat = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == sqlNow.Value && p.Title == newGroupChat.Title).chatID;
+
                 foreach (User users in UsersList.SelectedItems)
                 {
                     var usersInChat = new chatUsers
                     {
-                        chatID = newChatId,
+                        chatID = newChat,
                         userID = users.userID
                     };
 
@@ -119,7 +123,7 @@ namespace emplySoftware.Pages
                 }
                 var creatorChat = new chatUsers
                 {
-                    chatID = newChatId,
+                    chatID = newChat,
                     userID = curINT,
                 };
                 App.ContextDatabase.chatUsers.Add(creatorChat);
