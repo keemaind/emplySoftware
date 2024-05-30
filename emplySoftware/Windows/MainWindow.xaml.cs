@@ -64,7 +64,7 @@ namespace emplySoftware
             if(GetCurrent.Admin == true)
             {
                 ButtonEmployees.Visibility = Visibility.Visible;
-                ButtonNews.Visibility = Visibility.Visible;
+                
             }
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
@@ -646,8 +646,9 @@ namespace emplySoftware
                 if (GetCurrent.Admin == true)
                 {
                     users_text_block.Visibility = Visibility.Visible;
-                    news_text_block.Visibility= Visibility.Visible;
+                    
                 }
+                news_text_block.Visibility = Visibility.Visible;
                 exit_text_block.Visibility = Visibility.Visible;
                 home_text_block.Visibility = Visibility.Visible;
                 user_name_menu.Visibility = Visibility.Visible;
@@ -683,8 +684,11 @@ namespace emplySoftware
 
         private void MainMaximizeButton_Click(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Normal)
+           
+            if (this.WindowState == WindowState.Normal)
+            {
                 this.WindowState = WindowState.Maximized;
+            }
             else this.WindowState = WindowState.Normal;
         }
 

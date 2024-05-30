@@ -301,7 +301,7 @@
                                        Style="{StaticResource sidebar_text_block}"/>
                             
                             <RadioButton x:Name="ButtonNews"
-                                         Visibility="Collapsed"
+                                         Visibility="Visible"
                                          Click="ButtonNews_Click"
                                          Style="{StaticResource news_radio_button}"
                                          Height="40"

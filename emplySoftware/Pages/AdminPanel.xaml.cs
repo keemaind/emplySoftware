@@ -33,7 +33,7 @@ namespace emplySoftware.Windows
 
         private void HELP()
         {
-
+            loadSpinner.Visibility = Visibility.Visible;
             data_grid_users.Clear();
             data_grid_user.Items.Clear();
             BackgroundWorker worker = new BackgroundWorker();
@@ -80,6 +80,7 @@ namespace emplySoftware.Windows
         }
         void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            loadSpinner.Visibility = Visibility.Collapsed;
             item = 0;
         }
         #endregion
@@ -90,7 +91,7 @@ namespace emplySoftware.Windows
 
             var currentUser = (sender as Button).DataContext as UserList;
             var user = App.ContextDatabase.User.FirstOrDefault(x => x.userID == currentUser.userID);
-            YesOrNoWindow yesOrNoWindow = new YesOrNoWindow();
+            BanOrNoWindow yesOrNoWindow = new BanOrNoWindow();
             ApplyEffect(mainWindow);
             yesOrNoWindow.ShowDialog();
             bool choice = yesOrNoWindow.choice;
@@ -110,18 +111,13 @@ namespace emplySoftware.Windows
 
             var currentUser = (sender as Button).DataContext as UserList;
             var user = App.ContextDatabase.User.FirstOrDefault(x => x.userID == currentUser.userID);
-            YesOrNoWindow yesOrNoWindow = new YesOrNoWindow();
-            ApplyEffect(mainWindow);
-            yesOrNoWindow.ShowDialog();
-            bool choice = yesOrNoWindow.choice;
-            if (choice)
-            {
-                user.Banned = false;
-                App.ContextDatabase.SaveChanges();
-                ClearEffect(mainWindow);
-            }
-            else
-                ClearEffect(mainWindow);
+            string g = "Пользователь разбанен";
+            NotificationWindow notificationWindow = new NotificationWindow(g);
+            notificationWindow.ShowDialog();
+            user.Banned = false;
+            App.ContextDatabase.SaveChanges();
+            
+            
         }
         private void ApplyEffect(Window win)
         {

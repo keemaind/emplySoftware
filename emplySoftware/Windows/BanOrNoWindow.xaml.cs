@@ -17,18 +17,13 @@ namespace emplySoftware.Windows
     /// <summary>
     /// Логика взаимодействия для YesOrNoWindow.xaml
     /// </summary>
-    public partial class YesOrNoWindow : Window
+    public partial class BanOrNoWindow : Window
     {
-        public YesOrNoWindow()
+        public BanOrNoWindow()
         {
             InitializeComponent();
         }
-
-        public YesOrNoWindow(string nemm)
-        {
-            InitializeComponent();
-            ErrorTextBlock.Text = nemm;
-        }
+    
         public bool choice;
         public bool Choice
         {

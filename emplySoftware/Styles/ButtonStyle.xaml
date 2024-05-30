@@ -1877,7 +1877,7 @@
 
                                 </fa:IconImage>
 
-                                <Label Content="Да, удалить задачу"
+                                <Label Content="Да, удалить"
                                        FontFamily="/FontTypes/#Montserrat Medium"
                                        FontSize="12"
                                        HorizontalAlignment="Center"
@@ -2925,6 +2925,323 @@
                                         From="#FFFFFF"
                                         To="#8171FE"
                                         Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region data_grid_unban_button-->
+    <Style x:Key="data_grid_unban_button" TargetType="Button">
+
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border BorderThickness="0"
+                            x:Name="border"
+                            CornerRadius="5">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#41a1e5" x:Name="border_background"/>
+
+                        </Border.Background>
+
+                        <fa:IconImage Icon="Unlock"
+                                      Width="10" Height="10">
+
+                            <fa:IconImage.Foreground>
+
+                                <SolidColorBrush Color="#ffffff" x:Name="border_icon"/>
+
+                            </fa:IconImage.Foreground>
+
+                        </fa:IconImage>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#41a1e5"
+                                                    To="#1d89d6"
+                                                    Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                                    Storyboard.TargetProperty="Color"
+                                                    From="#1d89d6
+"
+                                                    To="#41a1e5"
+                                                    Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region data_grid_ban_button-->
+    <Style x:Key="data_grid_ban_button" TargetType="Button">
+
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border BorderThickness="0"
+                        x:Name="border"
+                        CornerRadius="5">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#f02036" x:Name="border_background"/>
+
+                        </Border.Background>
+
+                        <fa:IconImage Icon="Lock"
+                                  Width="10" Height="10">
+
+                            <fa:IconImage.Foreground>
+
+                                <SolidColorBrush Color="#ffffff" x:Name="border_icon"/>
+
+                            </fa:IconImage.Foreground>
+
+                        </fa:IconImage>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f02036"
+                                                To="#cf0e22"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_background"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#cf0e22"
+                                                To="#f02036"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+
+    <!--#region confrim_ban_task_button-->
+    <Style x:Key="confrim_ban_task_button" TargetType="Button">
+
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="Button">
+
+                    <Border x:Name="border"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="15">
+
+                        <Border.BorderBrush>
+
+                            <SolidColorBrush Color="#f02036" x:Name="border_borderbrush"/>
+
+                        </Border.BorderBrush>
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#f6f6f6" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                        <Grid>
+
+                            <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+
+                                <fa:IconImage Icon="Ban"
+                                          Width="12" Height="12">
+
+                                    <fa:IconImage.Foreground>
+
+                                        <SolidColorBrush Color="#f02036" x:Name="border_icon"/>
+
+                                    </fa:IconImage.Foreground>
+
+                                </fa:IconImage>
+
+                                <Label Content="Да, заблокировать"
+                                   FontFamily="/FontTypes/#Montserrat Medium"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+
+                                    <Label.Foreground>
+
+                                        <SolidColorBrush Color="#f02036" x:Name="border_label"/>
+
+                                    </Label.Foreground>
+
+                                </Label>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f6f6f6"
+                                                To="#f02036"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f02036"
+                                                To="#f6f6f6"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f02036"
+                                                To="#f6f6f6"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f02036"
+                                                To="#f6f6f6"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f02036"
+                                                To="#f6f6f6"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_label"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f6f6f6"
+                                                To="#f02036"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_borderbrush"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f6f6f6"
+                                                To="#f02036"
+                                                Duration="0:0:0:0.2"/>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#f6f6f6"
+                                                To="#f02036"
+                                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 
