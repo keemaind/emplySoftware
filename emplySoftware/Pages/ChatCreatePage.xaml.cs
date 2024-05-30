@@ -54,7 +54,11 @@ namespace emplySoftware.Pages
             var Users = App.ContextDatabase.User.ToList();
             foreach (var User in Users)
             {
-                _users.Add(User);
+                if(User.userID != GetCurrent.CurrentUser.userID)
+                {
+                    _users.Add(User);
+                }
+                
             }
             UsersList.ItemsSource = _users;
         }
@@ -124,8 +128,27 @@ namespace emplySoftware.Pages
             }
             else if ((bool)PersonalChat.IsChecked)
             {
-                
                 DateTime nn = DateTime.Now;
+                User sel = UsersList.SelectedItem as User;
+                int chip = 0;
+                var chtsel = App.ContextDatabase.chatList.Where(x => x.userID == sel.userID && x.personal == true).ToList();
+                foreach(var jj in chtsel )
+                {
+                    var chatExist = App.ContextDatabase.chatUsers.FirstOrDefault(x => x.chatID == jj.chatID);
+                    if (chatExist.userID == curINT)
+                    {
+                        string errorMessage = "Чат с данным пользователем уже существует";
+                        ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                        errorWindow.ShowDialog();
+                        chip = 1;
+                        break;
+                    }
+                    
+                    
+                    
+                }
+                if (chip == 0) { 
+                
                 var newPersonalChat = new chatList
                 {
                     Title = "Личный чат",
@@ -135,7 +158,7 @@ namespace emplySoftware.Pages
                 };
                 App.ContextDatabase.chatList.Add(newPersonalChat);
                 App.ContextDatabase.SaveChanges();
-
+                
                 int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
                 foreach (User users in UsersList.SelectedItems)
                 {
@@ -156,8 +179,10 @@ namespace emplySoftware.Pages
                 App.ContextDatabase.SaveChanges();
 
                 DataChanged?.Invoke(this, new EventArgs());
+                }
+
             }
-           else 
+            else
             {
                 string errorMessage = "Выберите тип чата";
                 ErrorWindow errorWindow = new ErrorWindow(errorMessage);
