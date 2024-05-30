@@ -149,6 +149,9 @@
     <Compile Include="Windows\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PersonalInformationWindow.xaml.cs">
+      <DependentUpon>PersonalInformationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserSettingsWindow.xaml.cs">
       <DependentUpon>UserSettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\NotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PersonalInformationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

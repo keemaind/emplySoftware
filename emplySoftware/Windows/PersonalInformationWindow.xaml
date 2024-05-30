@@ -1,0 +1,126 @@
+﻿<Window x:Class="emplySoftware.Windows.PersonalInformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:emplySoftware.Windows"
+        mc:Ignorable="d"
+        Title="Персональные данные"
+        Height="auto" Width="470"
+        SizeToContent="Height"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.Effect>
+
+        <DropShadowEffect BlurRadius="15"
+                      Direction="-90"
+                      Color="#7f7f7f"
+                      ShadowDepth="2"/>
+
+    </Window.Effect>
+
+    <!--#region ErrorWindow-->
+    <Border CornerRadius="15"
+        Margin="20"
+        Background="{StaticResource main_color_01}">
+        <Grid>
+
+            <!--#region RowDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+
+            <!--#region TopPanel-->
+            <Border x:Name="top_panel_error"
+                Grid.Row="0"
+                CornerRadius="15,15,0,0"
+                Style="{StaticResource BorderTopPanel}">
+
+                <DockPanel>
+
+                    <Label Content="Персональные данные"
+                       Margin="5,0,0,0"
+                       Style="{StaticResource ErrorLabel}"/>
+
+                </DockPanel>
+
+            </Border>
+            <!--#endregion-->
+
+            <!--#region MiddlePanel-->
+            <Border x:Name="MiddlePanelError"
+                Grid.Row="1"
+                CornerRadius="0,0,15,15"
+                Style="{StaticResource BorderMiddlePanel}">
+
+                <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                    <Border x:Name="MiddlePanelCenterBorderError"
+                        Margin="20,20,20,0"
+                        Padding="10"
+                        Style="{StaticResource border_error_panel}">
+
+                        <Border.Effect>
+
+                            <DropShadowEffect BlurRadius="2"
+                                          Direction="-90"
+                                          Color="#f6f6f6"
+                                          ShadowDepth="0"/>
+
+                        </Border.Effect>
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Border Background="{StaticResource accent_color_03}"
+                                    CornerRadius="15"
+                                    Margin="0,0,7,0"
+                                    Height="13" Width="13"/>
+
+                            <TextBlock x:Name="PersonalTextBlock"
+                                       Style="{StaticResource ErrorTextBlock}"
+                                       Width="350"
+                                       HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+
+                        <Button x:Name="OKButton"
+                            Click="OKButton_Click"
+                            Content="OK"
+                            Style="{StaticResource ok_error_button}"
+                            Width="100" Height="40"
+                            Margin="0,20,0,20">
+
+                        </Button>
+
+                        <Button x:Name="NoButton"
+                                Click="NoButton_OnClick"
+                                Style="{StaticResource cancel_delete_button}"
+                                Width="100" Height="40"
+                                Margin="10,0"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+            <!--#endregion-->
+
+        </Grid>
+
+    </Border>
+    <!--#endregion-->
+
+</Window>
