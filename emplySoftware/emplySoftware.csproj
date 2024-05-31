@@ -318,9 +318,6 @@
     </Compile>
     <Resource Include="logo.ico" />
     <Resource Include="Icons\logo.png" />
-    <Resource Include="Icons\1e_.png" />
-    <Resource Include="Icons\2e_.png" />
-    <Resource Include="Icons\dfff-1.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
