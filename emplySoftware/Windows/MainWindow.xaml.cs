@@ -146,7 +146,7 @@ namespace emplySoftware
         }
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserChats.ItemsSource);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(UserChats.Items);
             view.Filter = UserFilter;
         }
         private bool UserFilter(object item)
@@ -344,7 +344,8 @@ namespace emplySoftware
 
         private void UserChats_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (Ltimer.IsEnabled) Ltimer.Stop();
+
+          if (Ltimer.IsEnabled) Ltimer.Stop();
 
            if (UserChats.SelectedIndex == -1)
           {
@@ -392,32 +393,37 @@ namespace emplySoftware
         #region Отправка сообщения 
         private void sendMessage_Click(object sender, RoutedEventArgs e)
         {
-            string msg = MsgTextBlock.Text.ToString();
-            var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == curUserID);
-
-            if (msg != "")
+            if (UserChats.SelectedIndex == -1)
             {
-                var Messages = new Messages
-                {
-                    chatID = thisChatID,
-                    userID = us.userID,
-                    Message = msg,
-                    sendDate = DateTime.Now,
-                };
-                
-                App.ContextDatabase.Messages.Add(Messages);
-                App.ContextDatabase.SaveChanges();
-                MsgTextBlock.Text = "";
-                //MessagesListView.Items.Add(Messagesll);
-                //RefreshData();
-                //DataChanged?.Invoke(this, new EventArgs());
+
             }
             else
             {
-                string errorMessage = "Сообщение не может быть пустым!";
-                ErrorWindow errorWindow = new ErrorWindow(errorMessage);
-                errorWindow.ShowDialog();
+                string msg = MsgTextBlock.Text.ToString();
+                var us = App.ContextDatabase.User.FirstOrDefault(t => t.userID == curUserID);
+
+                if (msg != "")
+                {
+                    var Messages = new Messages
+                    {
+                        chatID = thisChatID,
+                        userID = us.userID,
+                        Message = msg,
+                        sendDate = DateTime.Now,
+                    };
+
+                    App.ContextDatabase.Messages.Add(Messages);
+                    App.ContextDatabase.SaveChanges();
+                    MsgTextBlock.Text = "";
+                }
+                else
+                {
+                    string errorMessage = "Сообщение не может быть пустым!";
+                    ErrorWindow errorWindow = new ErrorWindow(errorMessage);
+                    errorWindow.ShowDialog();
+                }
             }
+            
         }
         #endregion 
 
