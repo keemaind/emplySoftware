@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:emplySoftware.Windows"
       mc:Ignorable="d" 
       d:DesignHeight="730" d:DesignWidth="875"
-      Title="Панель администратора">
+      Title="Пользователи">
 
     <Grid>
         <Grid.RowDefinitions>
