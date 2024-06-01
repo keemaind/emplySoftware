@@ -135,6 +135,7 @@
 
     <!--#region MessagesListViewItem-->
     <Style x:Key="MessagesListViewItem" TargetType="ListViewItem">
+
         <Setter Property="Cursor" Value="Hand"/>
 
         <Setter Property="Template">
@@ -147,11 +148,20 @@
                         x:Name="border"
                         CornerRadius="15">
 
-                        <StackPanel Orientation="Horizontal">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+
+                            </Grid.ColumnDefinitions>
 
                             <Ellipse x:Name="ProfilePhotoChats"
                                  Width="30" Height="30"
-                                 Margin="0,0,10,0"
+                                 HorizontalAlignment="Left"
+                                 Margin="0,0,5,0"
                                  SnapsToDevicePixels="False">
 
                                 <Ellipse.Fill>
@@ -167,19 +177,20 @@
 
                             </Ellipse>
 
-                            <StackPanel VerticalAlignment="Center">
+                            <TextBlock Style="{StaticResource ProfileNamesTextBlock}"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Message}"
+                                       Margin="0,0,0,2"/>
 
-                                <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
-        Text="{Binding Message}"
-        Margin="0,0,0,2"/>
+                            <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
+                                        Grid.Column="2"
+                                        VerticalAlignment="Bottom"
+                                        Margin="0,0,0,3"
+                                        Text="{Binding sendDate}"/>
 
-                                <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
-        Text="{Binding sendDate}"/>
-
-
-                            </StackPanel>
-
-                        </StackPanel>
+                        </Grid>
 
                         <Border.Background>
 

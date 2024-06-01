@@ -575,7 +575,8 @@
                          Tag="Отправить сообщение..."
                          Visibility="Collapsed"
                          Height="40" Width="{Binding ElementName=sendBlock, Path=ActualWidth}"
-                         Style="{StaticResource search_text_box}"/>
+                         Style="{StaticResource search_text_box}"
+                         BorderBrush="{StaticResource main_color_02}"/>
                 
                 <Button x:Name="sendMessage"
                         Width="32" Height="32"

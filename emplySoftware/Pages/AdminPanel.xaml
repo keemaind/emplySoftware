@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:emplySoftware.Windows"
       mc:Ignorable="d" 
       d:DesignHeight="730" d:DesignWidth="875"
-      Title="AdmiPanel">
+      Title="Панель администратора">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,6 +16,13 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
+
+        <Border x:Name="top_panel"
+                Grid.Row="0"
+                Margin="20,0"
+                BorderBrush="{StaticResource main_color_03}"
+                BorderThickness="0,0,0,1">
+
         <Grid>
             <Grid.ColumnDefinitions>
 
@@ -24,10 +31,10 @@
 
             </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="10" Orientation="Horizontal"
+            <StackPanel Orientation="Horizontal"
                 HorizontalAlignment="Left">
 
-                <fa:IconImage Icon="User"
+                <fa:IconImage Icon="Users"
                   Width="21" Height="21">
 
                     <fa:IconImage.Foreground>
@@ -85,6 +92,9 @@
 
 
         </Grid>
+
+        </Border>
+        
         <Viewbox x:Name="loadSpinner"
         Visibility="Collapsed" 
              Grid.Row="1"
@@ -128,14 +138,16 @@
             </Path>
 
         </Viewbox>
-        <DataGrid Grid.Row="1" ColumnHeaderStyle="{DynamicResource data_grid_column_header_task}"
-          CellStyle="{DynamicResource data_grid_cell_task}"
-          RowStyle="{DynamicResource data_grid_row_task}"
-          Style="{DynamicResource data_grid_task}"
-          x:Name="data_grid_user"
-          AutoGenerateColumns="False"
-          ItemsSource="{Binding TaskList}"
-          IsReadOnly="True">
+        <DataGrid Grid.Row="1"
+                  ColumnHeaderStyle="{DynamicResource data_grid_column_header_task}"
+                  CellStyle="{DynamicResource data_grid_cell_task}"
+                  RowStyle="{DynamicResource data_grid_row_task}"
+                  Style="{DynamicResource data_grid_task}"
+                  x:Name="data_grid_user"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding TaskList}"
+                  Margin="10,0"
+                  IsReadOnly="True">
 
             <DataGrid.Columns>
 
