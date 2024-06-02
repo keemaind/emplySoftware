@@ -116,10 +116,10 @@
                         VerticalAlignment="Center" Height="54" Width="200" 
                         >
                 <Button x:Name="editChat"
-                        HorizontalAlignment="Right"
-                        Width="24" Height="24"
+                        HorizontalAlignment="Left"
+                        Width="20" Height="20"
                         Click="editChat_Click"
-                        Margin="0,0,10,0"
+                        Margin="10,0,0,0"
                         Style="{StaticResource edit_chat_button}"/>
 
                 <TextBlock  Text="Title"
@@ -158,19 +158,16 @@
 
 
                         <StackPanel>
-                            <TextBlock HorizontalAlignment="Center"
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock HorizontalAlignment="Center"
                                        Text="Участники"
-                                        FontSize="10"
+                                        FontSize="15"
                                        Margin="0,10,0,0"
                                         Style="{StaticResource message_text_block}" 
                                         />
-                            <StackPanel HorizontalAlignment="Right">
-
                                 <Button x:Name="addUser"
-                                        HorizontalAlignment="Right"
                                         Width="24" Height="24"
                                         Click="addUser_Click"
-                                        Margin="0,0,10,0"
                                         Style="{StaticResource create_chat_button}"/>
 
                             </StackPanel>

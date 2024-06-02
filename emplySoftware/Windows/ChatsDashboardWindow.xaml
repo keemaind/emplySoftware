@@ -7,7 +7,7 @@
         xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
-        Title="ChatsDashboardWindow" Height="730" Width="875"
+        Title="Аналитика чатов" Height="730" Width="875"
         WindowStyle="SingleBorderWindow"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
@@ -96,6 +96,7 @@
 
                             <DatePicker x:Name="DateStart" 
                                         Margin="5,0,0,0"
+                                        CalendarStyle="{DynamicResource calendar_style}"
                                         Style="{StaticResource dashboard_date_picker}" 
                                         Height="50" Width="180">
 
@@ -138,6 +139,7 @@
                          Grid.Row="1">
 
                             <DatePicker x:Name="DateEnd" 
+                                        CalendarStyle="{DynamicResource calendar_style}"
             Margin="5,0,0,0"
             Style="{StaticResource dashboard_date_picker}" 
             Height="50" Width="180">
