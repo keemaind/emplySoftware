@@ -98,6 +98,10 @@ namespace emplySoftware.Pages
             {
                 DateTime datecreate = DateTime.Now;
                 SqlDateTime sqlNow = new SqlDateTime(datecreate);
+                if(_mainImageData == null)
+                {
+
+                }
                 var newGroupChat = new chatList
                 {
                     Title = TitleChat.Text.ToString(),

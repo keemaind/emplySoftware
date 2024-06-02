@@ -179,6 +179,11 @@ namespace emplySoftware.Windows
 
             }
         }
-        
+
+        private void statisticsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChatsDashboardWindow dashboardWindow = new ChatsDashboardWindow();
+            dashboardWindow.ShowDialog();
+        }
     }
 }

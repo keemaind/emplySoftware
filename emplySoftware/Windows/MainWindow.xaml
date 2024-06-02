@@ -416,14 +416,14 @@
                             
                         </fa:IconImage>
 
-                        <Label Content="Контакты"
+                        <Label Content="Чаты"
                                Style="{StaticResource contacts_label}"/>
 
                         <Button x:Name="CreateChat"
                                 Width="24" Height="24"
                                 Click="CreateChat_Click"
                                 Style="{StaticResource create_chat_button}"/>
-
+                        
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal"
@@ -509,8 +509,10 @@
                    Grid.Column="2" Grid.Row="1"
                    NavigationUIVisibility="Hidden"/>
             <!--#endregion-->
-
-            <Viewbox x:Name="loadSpinner"
+            <Grid>
+                
+            </Grid>
+                <Viewbox x:Name="loadSpinner"
                     Visibility="Collapsed" 
                          Grid.Column="2" 
                          Grid.Row="1" 
@@ -554,15 +556,31 @@
                     </Path>
                     
                 </Viewbox>
-            
+            <StackPanel Grid.Column="2" 
+                        Grid.Row="1" 
+                        x:Name="infoBlock" 
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        >
+                <Button x:Name="InfoChat"
+                        Grid.Column="2" 
+                        Grid.Row="1"
+                        Visibility="Collapsed"
+                        Width="50" 
+                        Height="50" 
+                        Click="InfoChat_Click"
+                        Margin="0,0,10,0"
+                        Style="{StaticResource info_chat_button}"/>
+
+            </StackPanel>
             <ListView Grid.Column="2" 
                       Grid.Row="1"
-                      Visibility="Collapsed"
+                      Visibility="Visible"
                       x:Name="MessagesListView" 
                       Background="Transparent"
                       ItemContainerStyle="{StaticResource MessagesListViewItem}"
-                      BorderThickness="0"/>
-
+                      BorderThickness="0" Margin="0,50,0,0"/>
+            
             <StackPanel Grid.Column="2" 
                         x:Name="sendBlock"
                         Visibility="Collapsed"

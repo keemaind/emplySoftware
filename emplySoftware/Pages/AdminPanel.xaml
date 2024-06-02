@@ -23,43 +23,44 @@
                 BorderBrush="{StaticResource main_color_03}"
                 BorderThickness="0,0,0,1">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="54*"/>
+                    <ColumnDefinition Width="601*"/>
 
-            </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center">
 
-                <fa:IconImage Icon="Users"
+                    <fa:IconImage Icon="Users"
                   Width="21" Height="21">
 
-                    <fa:IconImage.Foreground>
+                        <fa:IconImage.Foreground>
 
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
 
-                            <GradientStop Color="#8171fe" Offset="0"/>
-                            <GradientStop Color="#41a1e5" Offset="1"/>
+                                <GradientStop Color="#8171fe" Offset="0"/>
+                                <GradientStop Color="#41a1e5" Offset="1"/>
 
-                        </LinearGradientBrush>
+                            </LinearGradientBrush>
 
-                    </fa:IconImage.Foreground>
+                        </fa:IconImage.Foreground>
 
-                </fa:IconImage>
+                    </fa:IconImage>
 
-                <Label Content="Пользователи"
+                    <Label Content="Пользователи"
                        Style="{StaticResource contacts_label}"/>
 
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal"
-                Grid.Column="1"
-                HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal"
+                Grid.Column="3"
+                HorizontalAlignment="Left" Margin="11,0,0,0">
 
-                <ComboBox x:Name="combo_box_user_status"
+                    <ComboBox x:Name="combo_box_user_status"
                   SelectionChanged="combo_box_user_status_SelectionChanged"
                   Height="40" Width="300"
                   Margin="0,0,10,0"
@@ -67,34 +68,40 @@
                   ItemContainerStyle="{DynamicResource combo_box_item_container_style}"
                   Style="{StaticResource combo_box_task_status_02}">
 
-                    <ComboBoxItem Content="Все"
+                        <ComboBoxItem Content="Все"
                           x:Name="combo_box_task_all"/>
-                    
-                    <ComboBoxItem Content="Забанен"
-                          x:Name="combo_box_task_planned"/>
-                    
-                </ComboBox>
 
-                <TextBox Tag="Найти пользователя..."
+                        <ComboBoxItem Content="Забанен"
+                          x:Name="combo_box_task_planned"/>
+
+                    </ComboBox>
+
+                    <TextBox Tag="Найти пользователя..."
                  x:Name="search_text_box"
                  TextChanged="search_text_box_TextChanged"
                  Height="40" Width="280"
                  Style="{StaticResource search_task_text_box}"/>
 
-                <fa:IconImage Icon="Filter"
+                    <fa:IconImage Icon="Filter"
                       Foreground="{StaticResource secondary_color_04}"
                       Height="15" Width="15"
                       Margin="-40,0,0,0"/>
 
-                
-
-            </StackPanel>
 
 
-        </Grid>
+                </StackPanel>
+                <Button x:Name="statisticsButton"
+                 Grid.Column="1"
+    HorizontalAlignment="Right"
+    Width="40" Height="40"
+    Margin="0,0,5,0"
+    Click="statisticsButton_Click"
+    Style="{StaticResource statisticsButton}"/>
+
+            </Grid>
 
         </Border>
-        
+
         <Viewbox x:Name="loadSpinner"
         Visibility="Collapsed" 
              Grid.Row="1"
@@ -160,7 +167,7 @@
                             Binding="{Binding StartSession}"
                             MinWidth="130"
                             Width="*"/>
-                
+
                 <DataGridTextColumn Header="Статус пользователя"
                     Binding="{Binding Status}"
                     MinWidth="120"

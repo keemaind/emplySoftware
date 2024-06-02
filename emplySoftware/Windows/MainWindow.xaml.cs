@@ -367,13 +367,14 @@ namespace emplySoftware
                     sendBlock.Visibility = Visibility.Visible;
                     MsgTextBlock.Visibility = Visibility.Visible;
                     sendMessage.Visibility = Visibility.Visible;
+                    
                     MessagesListView.ScrollIntoView(MessagesListView);
                 }
                 else
                 {
                     thisChatID = selectedChat.ChatID;
                     MessagesListView.Visibility = Visibility.Visible;
-
+                    InfoChat.Visibility = Visibility.Visible;
                     main_frame.Visibility = Visibility.Hidden;
                     ChatGroupPage();
                     sendBlock.Visibility = Visibility.Visible;
@@ -381,13 +382,6 @@ namespace emplySoftware
                     sendMessage.Visibility = Visibility.Visible;
                 }
             }
-            
-            
-
-
-           
-            
-
         }
 
         #region Отправка сообщения 
@@ -728,6 +722,15 @@ namespace emplySoftware
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new CreateNews());
+        }
+
+        private void InfoChat_Click(object sender, RoutedEventArgs e)
+        {
+            ChatInfoWindow chatInfoWindow = new ChatInfoWindow(thisChatID);
+            chatInfoWindow.Owner = this;
+            ApplyEffect(this);
+            chatInfoWindow.ShowDialog();
+            ClearEffect(this);
         }
     }
 

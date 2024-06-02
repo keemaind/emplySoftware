@@ -193,9 +193,7 @@
                         </Grid>
 
                         <Border.Background>
-
                             <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
-
                         </Border.Background>
 
                     </Border>
