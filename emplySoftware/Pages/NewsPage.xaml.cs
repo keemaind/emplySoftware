@@ -49,7 +49,7 @@ namespace emplySoftware.Pages
             if (String.IsNullOrEmpty(search_text_box.Text))
                 return true;
             else
-                return ((item as UserList).Login.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as News).Title.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
