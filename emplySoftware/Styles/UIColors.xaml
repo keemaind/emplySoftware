@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--#region main_colors-->
+    <!--#region Maincolors-->
     <SolidColorBrush x:Key="main_color_01" Color="#ffffff"/>
     <SolidColorBrush x:Key="main_color_02" Color="#f6f6f6"/>
     <SolidColorBrush x:Key="main_color_03" Color="#c6c6c6"/>
     <!--#endregion-->
     
-    <!--#region secondary_colors-->
+    <!--#region SecondaryColors-->
     <SolidColorBrush x:Key="secondary_color_01" Color="#474747"/>
     <SolidColorBrush x:Key="secondary_color_02" Color="#7f7f7f"/>
     <SolidColorBrush x:Key="secondary_color_03" Color="#a9a9a9"/>
@@ -16,15 +16,12 @@
     <SolidColorBrush x:Key="secondary_color_06" Color="#dbdbdb"/>
     <!--#endregion-->
     
-    <!--#region accent_colors-->
+    <!--#region AccentColors-->
     <SolidColorBrush x:Key="accent_color_01" Color="#f02036"/>
     <SolidColorBrush x:Key="accent_color_02" Color="#8171fe"/>
     <SolidColorBrush x:Key="accent_color_03" Color="#4bb57b"/>
     <SolidColorBrush x:Key="accent_color_04" Color="#41a1e5"/>
     <SolidColorBrush x:Key="accent_color_05" Color="#4db1bd"/>
-    <!--#endregion-->
-    
-    <!--#region NeutralColors-->
     <!--#endregion-->
 
 </ResourceDictionary>

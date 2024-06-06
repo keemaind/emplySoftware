@@ -27,7 +27,7 @@ namespace emplySoftware.Pages
     /// </summary>
     public partial class Tasks : Page
     {
-        #region Визуал часть
+        #region BlurEffect
         private void ApplyEffect(Window win)
         {
             System.Windows.Media.Effects.BlurEffect objBlur = new System.Windows.Media.Effects.BlurEffect();

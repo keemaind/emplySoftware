@@ -668,6 +668,7 @@ namespace emplySoftware
                 home_text_block.Visibility = Visibility.Visible;
                 user_name_menu.Visibility = Visibility.Visible;
                 user_grade.Visibility = Visibility.Visible;
+                user_text_block.Visibility = Visibility.Visible;
             }
             else
             {
@@ -680,6 +681,7 @@ namespace emplySoftware
                 home_text_block.Visibility = Visibility.Collapsed;
                 user_name_menu.Visibility = Visibility.Collapsed;
                 user_grade.Visibility = Visibility.Collapsed;
+                user_text_block.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -708,7 +710,8 @@ namespace emplySoftware
         }
 
         private void ButtonEmployees_Click(object sender, RoutedEventArgs e)
-        {UserChats.SelectedIndex = -1;
+        {
+            UserChats.SelectedIndex = -1;
             main_frame.Visibility = Visibility.Visible;
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;
@@ -731,6 +734,11 @@ namespace emplySoftware
             ApplyEffect(this);
             chatInfoWindow.ShowDialog();
             ClearEffect(this);
+        }
+
+        private void ButtonUsers_OnClick(object sender, RoutedEventArgs e)
+        {
+            main_frame.NavigationService.Navigate(new UsersPage());
         }
     }
 

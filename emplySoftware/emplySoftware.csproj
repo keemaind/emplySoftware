@@ -78,6 +78,9 @@
     <Compile Include="Pages\CreateNews.xaml.cs">
       <DependentUpon>CreateNews.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChatPageModel.cs" />
     <Compile Include="Class\chats.cs" />
     <Compile Include="Class\FIOus.cs" />
@@ -184,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Tasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,10 +18,19 @@
                             x:Name="border"
                             CornerRadius="15">
 
-                        <StackPanel Orientation="Horizontal">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
 
                             <Ellipse x:Name="ProfilePhotoChats"
                                      Width="30" Height="30"
+                                     HorizontalAlignment="Left"
+                                     Grid.Column="0"
                                      Margin="0,0,10,0"
                                      SnapsToDevicePixels="False">
 
@@ -38,21 +47,34 @@
 
                             </Ellipse>
 
-                            <StackPanel VerticalAlignment="Center">
+                            <Grid Grid.Column="1">
+
+                                <Grid.RowDefinitions>
+
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+
+                                </Grid.RowDefinitions>
 
                                 <TextBlock  Style="{StaticResource ProfileNamesTextBlock}"
+                                            HorizontalAlignment="Left"
                                             Text="{Binding Title}"
+                                            Grid.Row="0"
+                                            VerticalAlignment="Bottom"
                                             x:Name="name_chat"
                                             Margin="0,0,0,2"/>
 
                                 <TextBlock  Style="{StaticResource message_text_block}"
                                             x:Name="text_chat"
+                                            HorizontalAlignment="Left"
+                                            Grid.Row="1"
+                                            VerticalAlignment="Top"
                                             Text="{Binding LastMessage}"
                                             TextTrimming="CharacterEllipsis"/>
 
-                            </StackPanel>
+                            </Grid>
 
-                        </StackPanel>
+                        </Grid>
 
                         <Border.Background>
 
@@ -142,11 +164,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
 
-                    <Border Height="50"
-                        Margin="10,5"
-                        Padding="10,5"
-                        x:Name="border"
-                        CornerRadius="15">
+                    <Border Margin="10,5"
+                            Padding="10,5"
+                            x:Name="border"
+                            CornerRadius="15">
 
                         <Grid>
 
@@ -182,6 +203,7 @@
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
                                        Text="{Binding Message}"
+                                       TextWrapping="Wrap"
                                        Margin="0,0,0,2"/>
 
                             <TextBlock  Style="{StaticResource ProfileJobTextBlock}"

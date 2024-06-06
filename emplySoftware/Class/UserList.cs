@@ -8,7 +8,16 @@ namespace emplySoftware.Class
 {
     public class UserList
     {
+        string fioUser;
+
+        public string FioUser
+        {
+            get { return fioUser; }
+            set { fioUser = value; }
+        }
         public int userID { get; set; }
+        public byte[] imageUser { get; set; }
+        public string Position { get; set; }
         public string Login { get; set; }
         public string MiddleName { get; set; }
         public string FirstName { get; set; }

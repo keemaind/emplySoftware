@@ -222,7 +222,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#222528"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Margin" Value="15,0"/>
         
