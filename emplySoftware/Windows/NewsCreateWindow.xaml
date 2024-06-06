@@ -131,20 +131,20 @@
 
                     <Button.Content>
 
-                        <Ellipse x:Name="ProfilePhoto"
-              Height="80"
-              Width="80"
+                        <Rectangle x:Name="ProfilePhoto"
+              Height="200"
+              Width="330"
               SnapsToDevicePixels="False">
 
-                            <Ellipse.Fill>
+                            <Rectangle.Fill>
 
                                 <ImageBrush x:Name="Image"
                          
                          RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                            </Ellipse.Fill>
+                            </Rectangle.Fill>
 
-                        </Ellipse>
+                        </Rectangle>
 
                     </Button.Content>
 

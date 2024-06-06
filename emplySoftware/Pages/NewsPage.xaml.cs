@@ -28,11 +28,19 @@ namespace emplySoftware.Pages
         public NewsPage()
         {
             InitializeComponent();
+            Fill();
+
+        }
+
+        public void Fill()
+        {
+            lsview_news.Clear();
             var neews = App.ContextDatabase.News.ToList();
             foreach (var neew in neews)
             {
                 lsview_news.Add(new News
                 {
+                    newsID = neew.newsID,
                     Title = neew.Title,
                     IMAGE = neew.IMAGE,
                     CreateDate = neew.CreateDate,
@@ -41,9 +49,7 @@ namespace emplySoftware.Pages
                 );
             }
             NewsListView.ItemsSource = lsview_news;
-
         }
-
         private bool UserFilterSearch(object item)
         {
             if (String.IsNullOrEmpty(search_text_box.Text))
@@ -74,6 +80,7 @@ namespace emplySoftware.Pages
             }
             else
             {
+                Fill();
                 NewsCreateWindow newsCreateWindow = new NewsCreateWindow(selectedNews);
                 newsCreateWindow.ShowDialog();
             }
@@ -82,6 +89,7 @@ namespace emplySoftware.Pages
         private void delete_new_button_Click(object sender, RoutedEventArgs e)
         {
             var selectedNews = NewsListView.SelectedItem as News;
+            News Newsd = App.ContextDatabase.News.ToList().First(x => x.newsID == selectedNews.newsID);
             if (selectedNews == null)
             {
                 string error = "Выберите новость!";
@@ -95,11 +103,12 @@ namespace emplySoftware.Pages
                 bool choice = yesOrNoWindow.choice;
                 if (choice)
                 {
-                    App.ContextDatabase.News.Remove(selectedNews);
+                    App.ContextDatabase.News.Remove(Newsd);
                     App.ContextDatabase.SaveChanges();
                     string notification = "Новость удалена";
                     NotificationWindow notificationWindow = new NotificationWindow(notification);
                     notificationWindow.ShowDialog();
+                    Fill();
                 }
                 else
                 {
