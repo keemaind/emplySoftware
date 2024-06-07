@@ -724,7 +724,7 @@ namespace emplySoftware
             main_frame.Visibility = Visibility.Visible;
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;
-            main_frame.NavigationService.Navigate(new CreateNews());
+            main_frame.NavigationService.Navigate(new NewsPage());
         }
 
         private void InfoChat_Click(object sender, RoutedEventArgs e)
@@ -738,6 +738,10 @@ namespace emplySoftware
 
         private void ButtonUsers_OnClick(object sender, RoutedEventArgs e)
         {
+            UserChats.SelectedIndex = -1;
+            main_frame.Visibility = Visibility.Visible;
+            MessagesListView.Visibility = Visibility.Collapsed;
+            sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new UsersPage());
         }
     }

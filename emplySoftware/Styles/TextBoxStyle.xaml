@@ -743,7 +743,6 @@
         <Setter Property="Background" Value="{StaticResource main_color_01}"/>
         <Setter Property="BorderBrush" Value="{StaticResource main_color_01}"/>
         <Setter Property="Foreground" Value="{StaticResource secondary_color_01}"/>
-        <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FontFamily" Value="/FontTypes/#Montserrat Medium"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Cursor" Value="IBeam"/>
@@ -755,10 +754,10 @@
                 <ControlTemplate TargetType="TextBox">
 
                     <Border Background="{TemplateBinding Background}"
-                    x:Name="border"
-                    BorderBrush="{TemplateBinding BorderBrush}" 
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    SnapsToDevicePixels="True">
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True">
 
                         <Grid Margin="{TemplateBinding Margin}">
 
@@ -768,12 +767,12 @@
                                   VerticalScrollBarVisibility="Hidden"/>
 
                             <Label x:Name="Watermark" 
-                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                           Visibility="Collapsed"
-                           Margin="5,0"
-                           Content="{TemplateBinding Tag}"
-                           Foreground="{StaticResource secondary_color_04}"/>
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Visibility="Collapsed"
+                                   Margin="5,-5,5,0"
+                                   Content="{TemplateBinding Tag}"
+                                   Foreground="{StaticResource secondary_color_04}"/>
                         </Grid>
 
                     </Border>
@@ -793,25 +792,6 @@
                             Value="Visible"/>
 
                         </MultiTrigger>
-
-                        <Trigger Property="IsFocused" Value="True">
-
-                            <Setter Property="BorderBrush" TargetName="border">
-
-                                <Setter.Value>
-
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-
-                                        <GradientStop Color="#41a1e5" Offset="0"/>
-                                        <GradientStop Color="#4db1bd" Offset="1"/>
-
-                                    </LinearGradientBrush>
-
-                                </Setter.Value>
-
-                            </Setter>
-
-                        </Trigger>
 
                     </ControlTemplate.Triggers>
 
