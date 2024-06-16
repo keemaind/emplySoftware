@@ -38,7 +38,8 @@ namespace emplySoftware.Windows
             UserLastNameTextBox.Text = user.LastName;
             UserMiddleNameTextBox.Text = user.MiddleName;
             UserLoginTextBox.Text = user.Login;
-            ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(user.Image);
+            if (user.Image != null) { ImageUser.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(user.Image); }
+            
         }
 
         private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
@@ -84,8 +85,9 @@ namespace emplySoftware.Windows
                    us.Password = psw;
                 }
                 else
-                    us.Password = Encription(UserPasswordTextBox.Password.ToString());
+                us.Password = Encription(UserPasswordTextBox.Password.ToString());
                 App.ContextDatabase.SaveChanges();
+                DataChanged?.Invoke(this, new EventArgs());
                 this.Close();
             }
             

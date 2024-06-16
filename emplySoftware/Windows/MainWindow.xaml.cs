@@ -64,10 +64,14 @@ namespace emplySoftware
             if(GetCurrent.Admin == true)
             {
                 ButtonEmployees.Visibility = Visibility.Visible;
-                
-            }
+                user_grade.Text = "Администратор";
+
+
+            }else user_grade.Text = "Сотрудник";
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
+            
+
             //StartReceiveNotification();
 
         }
@@ -142,6 +146,7 @@ namespace emplySoftware
         private void P1_DataChanged(object sender, EventArgs e)
         {
             StartChatFill();
+            UserImage.ImageSource = (ImageSource)new ImageSourceConverter().ConvertFrom(GetCurrent.CurrentUser.Image);
             main_frame.Navigate(mainPage);
         }
         private void search_text_box_TextChanged(object sender, TextChangedEventArgs e)
@@ -465,6 +470,7 @@ namespace emplySoftware
                         {
                             messageID = message.messageID,
                             userID = (int)message.userID,
+                            userFIO = FIOus.GetFullNameInt(message.userID),
                             Message = message.Message,
                             sendDate = (DateTime)message.sendDate,
                             imageUser = usImd.imageUser
@@ -568,6 +574,7 @@ namespace emplySoftware
                     {
                         messageID = message.messageID,
                         userID = (int)message.userID,
+                        userFIO = FIOus.GetFullNameInt(message.userID),
                         Message = message.Message,
                         sendDate = (DateTime)message.sendDate,
                         imageUser = curUsImg
@@ -578,6 +585,7 @@ namespace emplySoftware
                     {
                         messageID = message.messageID,
                         userID = (int)message.userID,
+                        userFIO = FIOus.GetFullNameInt(message.userID),
                         Message = message.Message,
                         sendDate = (DateTime)message.sendDate,
                         imageUser = usImg
@@ -712,6 +720,7 @@ namespace emplySoftware
         private void ButtonEmployees_Click(object sender, RoutedEventArgs e)
         {
             UserChats.SelectedIndex = -1;
+            InfoChat.Visibility = Visibility.Collapsed;
             main_frame.Visibility = Visibility.Visible;
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;
@@ -722,6 +731,7 @@ namespace emplySoftware
         {
             UserChats.SelectedIndex = -1;
             main_frame.Visibility = Visibility.Visible;
+            InfoChat.Visibility = Visibility.Collapsed;
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;
             main_frame.NavigationService.Navigate(new NewsPage());
@@ -739,6 +749,7 @@ namespace emplySoftware
         private void ButtonUsers_OnClick(object sender, RoutedEventArgs e)
         {
             UserChats.SelectedIndex = -1;
+            InfoChat.Visibility = Visibility.Collapsed;
             main_frame.Visibility = Visibility.Visible;
             MessagesListView.Visibility = Visibility.Collapsed;
             sendBlock.Visibility = Visibility.Collapsed;

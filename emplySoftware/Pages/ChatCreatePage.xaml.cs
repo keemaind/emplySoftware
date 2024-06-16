@@ -96,9 +96,9 @@ namespace emplySoftware.Pages
             int curINT = GetCurrent.CurrentUser.userID;
             if ((bool)GroupChat.IsChecked)
             {
-                DateTime datecreate = DateTime.Now;
-                SqlDateTime sqlNow = new SqlDateTime(datecreate);
-                if(_mainImageData == null)
+                DateTime nn = DateTime.Now;
+                User sel = UsersList.SelectedItem as User;
+                if (_mainImageData == null)
                 {
 
                 }
@@ -108,12 +108,14 @@ namespace emplySoftware.Pages
                     userID = curINT,
                     personal = false,
                     Image = _mainImageData,
-                    CreateDate = datecreate,
+                    CreateDate = nn,
                 };
                 App.ContextDatabase.chatList.Add(newGroupChat);
                 App.ContextDatabase.SaveChanges();
-               
-                int newChat = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == sqlNow.Value && p.Title == newGroupChat.Title).chatID;
+
+                var Chats = App.ContextDatabase.chatList.ToList();
+                int newChat = Chats.First(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
+                
 
                 foreach (User users in UsersList.SelectedItems)
                 {
@@ -151,9 +153,6 @@ namespace emplySoftware.Pages
                         chip = 1;
                         break;
                     }
-                    
-                    
-                    
                 }
                 if (chip == 0) { 
                 
@@ -166,8 +165,11 @@ namespace emplySoftware.Pages
                 };
                 App.ContextDatabase.chatList.Add(newPersonalChat);
                 App.ContextDatabase.SaveChanges();
-                
-                int newChatId = App.ContextDatabase.chatList.FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
+
+                    TitleChat.Text = "Личный чат";
+                    //int newChatId = App.ContextDatabase.chatList.ToList().FirstOrDefault(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
+                    var Chats = App.ContextDatabase.chatList.ToList();
+                    int newChatId = Chats.First(p => p.CreateDate == nn && p.Title == TitleChat.Text.ToString()).chatID;
                 foreach (User users in UsersList.SelectedItems)
                 {
                     var usersInChat = new chatUsers

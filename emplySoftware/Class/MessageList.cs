@@ -12,6 +12,7 @@ namespace emplySoftware.Class
         public int messageID { get; set; }
         public int chatID { get; set; }
         public int userID { get; set; }
+        public string userFIO { get; set; }
         public string Message { get; set; }
         public DateTime sendDate { get; set; }
 

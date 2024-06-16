@@ -163,7 +163,7 @@
                                        Visibility="Collapsed"
                                        Style="{StaticResource ProfileNamesTextBlock}"/>
 
-                            <TextBlock Text="Frontend-разработчик"
+                            <TextBlock Text=""
                                        x:Name="user_grade"
                                        Visibility="Collapsed"
                                        Style="{StaticResource ProfileJobTextBlock}"/>
