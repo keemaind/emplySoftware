@@ -573,7 +573,8 @@
 
             <Grid Grid.Row="1"
                   x:Name="GridChat"
-                  Grid.Column="2">
+                  Grid.Column="2"
+                  Margin="15,0">
 
                 <Grid.RowDefinitions>
 
@@ -586,9 +587,9 @@
                           Visibility="Visible"
                           x:Name="MessagesListView" 
                           Background="Transparent"
-                          Width="{Binding ElementName=GridChat, Path=ActualWidth}"
+                          Width="{Binding ElementName=main_frame, Path=ActualWidth}"
                           BorderThickness="0"
-                          Margin="0,50,0,0">
+                          Margin="0,50,0,0" d:ItemsSource="{d:SampleData ItemCount=5}">
 
                     <ListView.ItemContainerStyle>
 
@@ -602,9 +603,10 @@
 
                                     <ControlTemplate TargetType="ListViewItem">
 
-                                        <Border Margin="10,5"
+                                        <Border Margin="0,5"
                                                 Padding="10,5"
                                                 x:Name="border"
+                                                HorizontalAlignment="Left"
                                                 Width="{Binding ElementName=GridChat, Path=ActualWidth}"
                                                 CornerRadius="15">
 
@@ -638,16 +640,29 @@
 
                                                 </Ellipse>
 
-                                                <TextBlock Style="{StaticResource ProfileNamesTextBlock}"
-                                                           Grid.Column="1"
-                                                           HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           Text="{Binding Message}"
-                                                           TextWrapping="Wrap"
-                                                           FontFamily="/FontTypes/#Montserrat"
-                                                           Foreground="{StaticResource secondary_color_01}"
-                                                           FontSize="12"
-                                                           Margin="0,0,0,2"/>
+                                                <StackPanel Grid.Column="1">
+
+                                                    <TextBlock Style="{StaticResource ProfileNamesTextBlock}"
+                                                               HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Text="Блин бро я переживаю за тебя"
+                                                               TextWrapping="Wrap"
+                                                               FontFamily="/FontTypes/#Montserrat Bold"
+                                                               Foreground="{StaticResource secondary_color_01}"
+                                                               FontSize="12"
+                                                               Margin="0,0,0,2"/>
+
+                                                    <TextBlock Style="{StaticResource ProfileNamesTextBlock}"
+                                                               HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Text="{Binding Message}"
+                                                               TextWrapping="Wrap"
+                                                               FontFamily="/FontTypes/#Montserrat"
+                                                               Foreground="{StaticResource secondary_color_01}"
+                                                               FontSize="12"
+                                                               Margin="0,0,0,2"/>
+
+                                                </StackPanel>
 
                                                 <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
                                                             Grid.Column="2"
@@ -758,7 +773,7 @@
                     <Button x:Name="sendMessage"
                             Width="32" Height="32"
                             Visibility="Visible"
-                            VerticalAlignment="Top"
+                            VerticalAlignment="Center"
                             Margin="-43,0,0,0"
                             Click="sendMessage_Click"
                             Style="{StaticResource sendMSG_button}"/>

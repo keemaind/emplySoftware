@@ -112,15 +112,16 @@
 
         <!--#region middle_panel-->
         <Border x:Name="middle_panel"
-                Grid.Row="1">
+                Grid.Row="1"
+                Margin="15,0">
 
-            <ListView Grid.Row="0"
-                      Visibility="Visible"
+            <ListView Visibility="Visible"
                       x:Name="NewsListView" 
                       Background="Transparent"
                       Width="{Binding ElementName=news, Path=ActualWidth}"
                       BorderThickness="0"
-                      Margin="0,10,0,0">
+                      Margin="0,10,0,0"
+                      d:ItemsSource="{d:SampleData ItemCount=5}">
 
                 <ListView.ItemContainerStyle>
 
@@ -134,9 +135,10 @@
 
                                 <ControlTemplate TargetType="ListViewItem">
 
-                                    <Border Margin="10,5"
+                                    <Border Margin="0,5"
                                             x:Name="border"
-                                            Width="870"
+                                            Width="{Binding ElementName=middle_panel, Path=ActualWidth}"
+                                            HorizontalAlignment="Left"
                                             CornerRadius="15">
 
                                         <Grid>
@@ -178,6 +180,7 @@
                                                            VerticalAlignment="Top"
                                                            Text="{Binding Title}"
                                                            TextWrapping="Wrap"
+                                                           x:Name="title"
                                                            FontFamily="/FontTypes/#Montserrat Bold"
                                                            Foreground="{StaticResource secondary_color_01}"
                                                            FontSize="30"
@@ -186,6 +189,7 @@
                                                 <TextBlock Style="{StaticResource dashboard_title_tasks}"
                                                            HorizontalAlignment="Left"
                                                            VerticalAlignment="Top"
+                                                           x:Name="description"
                                                            Text="{Binding Description}"
                                                            TextWrapping="Wrap"
                                                            FontFamily="/FontTypes/#Montserrat Medium"
@@ -198,6 +202,7 @@
 
                                             <TextBlock  Style="{StaticResource ProfileJobTextBlock}"
                                                         Grid.Column="1"
+                                                        x:Name="date"
                                                         FontFamily="/FontTypes/#Montserrat"
                                                         Foreground="{StaticResource secondary_color_02}"
                                                         FontSize="12"
@@ -269,6 +274,10 @@
                                                 </Setter.Value>
 
                                             </Setter>
+
+                                            <Setter Property="Foreground" Value="#FFFFFF" TargetName="date"/>
+                                            <Setter Property="Foreground" Value="#FFFFFF" TargetName="description"/>
+                                            <Setter Property="Foreground" Value="#FFFFFF" TargetName="title"/>
 
                                         </Trigger>
 

@@ -52,8 +52,8 @@ namespace emplySoftware.Windows
                     GetCurrent.CurrentUser = currentUser;
                     currentUser.StartSession = DateTime.Now;
                     App.ContextDatabase.SaveChanges();
-                    PersonalInformationWindow personalPage = new PersonalInformationWindow();
-                    personalPage.Show();
+                    MainWindow mainPage = new MainWindow();
+                    mainPage.Show();
                     this.Close();
                 }
                 
