@@ -28,7 +28,13 @@ namespace emplySoftware.Pages
         public NewsPage()
         {
             InitializeComponent();
-            Fill();
+            if (GetCurrent.Admin == true)
+            {
+                edit_new_button.Visibility = Visibility.Visible;
+                add_new_button.Visibility= Visibility.Visible;
+                delete_new_button.Visibility = Visibility.Visible;
+            }
+                Fill();
 
         }
 

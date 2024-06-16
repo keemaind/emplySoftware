@@ -81,6 +81,7 @@
                             Margin="10,0"
                             Height="25" Width="25"
                             Style="{StaticResource create_task_button}"/>
+                    
 
                 </StackPanel>
 

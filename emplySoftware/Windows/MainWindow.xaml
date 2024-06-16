@@ -340,9 +340,9 @@
                                        Style="{StaticResource sidebar_text_block}"/>
 
                             <RadioButton x:Name="ButtonUsers"
-                                         Visibility="Visible"
+                                         Visibility="Collapsed"
                                          Click="ButtonUsers_OnClick"
-                                         Style="{StaticResource employees_radio_button}"
+                                         Style="{StaticResource users_radio_button}"
                                          Height="40"
                                          Margin="29,0,0,0"
                                          Grid.Row="5"

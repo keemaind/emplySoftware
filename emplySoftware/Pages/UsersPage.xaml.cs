@@ -1,4 +1,5 @@
 ﻿using emplySoftware.Class;
+using emplySoftware.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -104,22 +105,48 @@ namespace emplySoftware.Pages
 
         private void Search_text_box_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(data_grid_user.Items);
+            view.Filter = UserFilterSearch;
+        }
+        private bool UserFilterSearch(object item)
+        {
+            if (String.IsNullOrEmpty(search_text_box.Text))
+                return true;
+            else
+                return ((item as UserList).FioUser.IndexOf(search_text_box.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void Add_user_button_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            string create = "Создание пользователя";
+            UserSettingsWindow userSettingsWindow = new UserSettingsWindow(create);
+            userSettingsWindow.ShowDialog();
+            Filling();
         }
 
         private void Data_grid_edit_button_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var currentUs = (sender as Button).DataContext as UserList;
+            UserSettingsWindow userSettingsWindow = new UserSettingsWindow(currentUs.userID);
+            userSettingsWindow.ShowDialog();
+            Filling();
         }
 
         private void Data_grid_delete_button_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var currentUs = (sender as Button).DataContext as UserList;
+            var Us = App.ContextDatabase.User.ToList().FirstOrDefault(x => x.userID == currentUs.userID);
+            YesOrNoWindow yesOrNoWindow = new YesOrNoWindow();
+            yesOrNoWindow.ShowDialog();
+            bool choice = yesOrNoWindow.choice;
+            if (choice)
+            {
+                App.ContextDatabase.User.Remove(Us);
+                App.ContextDatabase.SaveChanges();
+                Filling();
+            }
+            else { }
+                
         }
     }
 }

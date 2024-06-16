@@ -363,7 +363,7 @@
                             <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
 
-                            <fa:IconImage Icon="UserGroup"
+                            <fa:IconImage Icon="UserTie"
                                           x:Name="icon"
                                           Height="20" Width="20"
                                           VerticalAlignment="Center">
@@ -746,6 +746,116 @@
                                                  From="#4db1bd"
                                                  To="#474747"
                                                  Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+
+                            <Setter Property="Foreground" TargetName="icon">
+
+                                <Setter.Value>
+
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+
+                                        <GradientStop Color="#41a1e5" Offset="0"/>
+                                        <GradientStop Color="#4db1bd" Offset="1"/>
+
+                                    </LinearGradientBrush>
+
+                                </Setter.Value>
+
+                            </Setter>
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+    <!--#endregion-->
+    <!--#region users_radio_button-->
+    <Style x:Key="users_radio_button" TargetType="RadioButton">
+
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <Setter Property="Template">
+
+            <Setter.Value>
+
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border x:Name="border">
+
+                        <Border.Background>
+
+                            <SolidColorBrush Color="#ffffff" x:Name="BorderBackground"/>
+
+                        </Border.Background>
+
+                        <Grid>
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+
+                            <fa:IconImage Icon="Users"
+                                      x:Name="icon"
+                                      Height="20" Width="20"
+                                      VerticalAlignment="Center">
+
+                                <fa:IconImage.Foreground>
+
+                                    <SolidColorBrush Color="#474747" x:Name="border_icon"/>
+
+                                </fa:IconImage.Foreground>
+
+                            </fa:IconImage>
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#474747"
+                                                To="#4db1bd"
+                                                Duration="0:0:0:0.2"/>
+
+                                </Storyboard>
+
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave" SourceName="border">
+
+                            <BeginStoryboard>
+
+                                <Storyboard>
+
+                                    <ColorAnimation Storyboard.TargetName="border_icon"
+                                                Storyboard.TargetProperty="Color"
+                                                From="#4db1bd"
+                                                To="#474747"
+                                                Duration="0:0:0:0.2"/>
 
                                 </Storyboard>
 

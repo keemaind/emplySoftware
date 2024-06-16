@@ -61,13 +61,17 @@ namespace emplySoftware
             StartChatFill();
             curUsImg = model.imageUserST;
             curUserID = GetCurrent.CurrentUser.userID;
-            if(GetCurrent.Admin == true)
+            if (GetCurrent.Admin == true)
             {
                 ButtonEmployees.Visibility = Visibility.Visible;
                 user_grade.Text = "Администратор";
+                ButtonUsers.Visibility = Visibility.Visible;
 
-
-            }else user_grade.Text = "Сотрудник";
+            }
+            else
+            {
+                user_grade.Text = "Сотрудник";
+            }
             user_name_menu.Text = FIOus.GetNotFullName(GetCurrent.CurrentUser);
             main_frame.Navigate(mainPage);
             

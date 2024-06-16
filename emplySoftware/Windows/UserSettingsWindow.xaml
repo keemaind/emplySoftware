@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:emplySoftware.Windows"
         mc:Ignorable="d"
         Title="User settings"
-        Height="560" Width="400"
+        Height="600" Width="400"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -45,7 +45,8 @@
 
                 <DockPanel>
 
-                    <Label Content="Настройка профиля"
+                    <Label x:Name="funct"
+                          Content="Настройка профиля"
                            Margin="5,0,0,0"
                            Style="{StaticResource ErrorLabel}"/>
 
@@ -167,6 +168,20 @@
                                 <PasswordBox x:Name="UserPasswordTextBox"
                                              Height="50" Width="300"
                                              Style="{StaticResource edit_profile_password_box}"/>
+
+                            </StackPanel>
+                            <StackPanel x:Name="StackPanelUserPosition" Visibility="Visible">
+
+                                <ComboBox x:Name="UserPosition"
+                                          Tag="Роль"
+                 Height="50" Width="300"
+                 Style="{StaticResource combo_box_position}"
+                 ItemContainerStyle="{DynamicResource combo_box_item_container_style}">
+                                    <ComboBoxItem Content="Сотрудник"/>
+                                    <ComboBoxItem Content="Администратор"/>
+                                    
+                                </ComboBox>
+                                
 
                             </StackPanel>
 

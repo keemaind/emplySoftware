@@ -157,6 +157,7 @@ namespace emplySoftware.Pages
             {
                 App.ContextDatabase.Task.Remove(Task);
                 App.ContextDatabase.SaveChanges();
+                HELP();
                 ClearEffect(mainWindow);
             }
             else

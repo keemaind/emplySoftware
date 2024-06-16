@@ -78,6 +78,7 @@
                                   Margin="-40,0,0,0"/>
 
                     <Button x:Name="add_new_button"
+                            Visibility="Collapsed"
                             Click="add_new_button_Click"
                             Margin="10,0"
                             Height="25" Width="25"
@@ -85,12 +86,14 @@
 
                     <Button x:Name="edit_new_button"
                             Click="edit_new_button_Click"
+                            Visibility="Collapsed"
                             Margin="10,0"
                             Height="25" Width="25"
                             
                             Style="{StaticResource news_edit_button}"/>
 
                     <Button x:Name="delete_new_button"
+                            Visibility="Collapsed"
                             Click="delete_new_button_Click"
                             Margin="10,0"
                             Height="25" Width="25"
