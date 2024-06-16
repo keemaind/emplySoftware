@@ -149,9 +149,10 @@
                                 <Button Visibility="Visible"
                                         Padding="-20"
                                         HorizontalAlignment="Center"
-                                        Width="330"
+                                        Width="280"
                                         x:Name="BtnSelectImage"
-                                        Click="BtnSelectImage_Click">
+                                        Click="BtnSelectImage_Click"
+                                        Style="{StaticResource news_picture_button}">
 
                                     <Button.Effect>
 
@@ -165,8 +166,11 @@
                                     <Button.Content>
 
                                         <Rectangle x:Name="ProfilePhoto"
-                                                   Height="200"
-                                                   Width="330"
+                                                   Height="230"
+                                                   HorizontalAlignment="Center"
+                                                   Width="280"
+                                                   RadiusX="25"
+                                                   RadiusY="25"
                                                    SnapsToDevicePixels="False">
 
                                             <Rectangle.Fill>

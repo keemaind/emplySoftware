@@ -174,9 +174,9 @@
 
                                 <ComboBox x:Name="UserPosition"
                                           Tag="Роль"
-                 Height="50" Width="300"
-                 Style="{StaticResource combo_box_position}"
-                 ItemContainerStyle="{DynamicResource combo_box_item_container_style}">
+                                          Height="50" Width="300"
+                                          Style="{StaticResource combo_box_position}"
+                                          ItemContainerStyle="{DynamicResource combo_box_item_container_style}">
                                     <ComboBoxItem Content="Сотрудник"/>
                                     <ComboBoxItem Content="Администратор"/>
                                     

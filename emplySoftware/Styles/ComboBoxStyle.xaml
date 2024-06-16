@@ -1713,6 +1713,7 @@
 
     </Style>
     <!--#endregion-->
+
     <!--#region combo_box_position-->
     <Style x:Key="combo_box_position" TargetType="{x:Type ComboBox}">
 
@@ -1735,41 +1736,41 @@
                 <ControlTemplate TargetType="ComboBox">
 
                     <Border x:Name="border"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        SnapsToDevicePixels="True">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
 
                         <Grid>
 
                             <ToggleButton Name="ToggleButton"
-                                      Grid.Column="2"
-                                      ClickMode="Press"
-                                      Focusable="False"
-                                      IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                                      Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
+                                          Grid.Column="2"
+                                          ClickMode="Press"
+                                          Focusable="False"
+                                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
 
                             <ContentPresenter Name="ContentSite"
-                                          Margin="110,3,23,3"
-                                          IsHitTestVisible="False"
-                                          HorizontalAlignment="Left"
-                                          VerticalAlignment="Center"                              
-                                          Content="{TemplateBinding ComboBox.SelectionBoxItem}"
-                                          ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
-                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                                              Margin="75,3,23,3"
+                                              IsHitTestVisible="False"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"                              
+                                              Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
 
                             <TextBox Name="Watermark"
-                                 Margin="15,0,0,0"
-                                 Text="Роль"
-                                 FontFamily="/FontTypes/#Montserrat Regular"
-                                 FontSize="10"
-                                 Foreground="#a9a9a9"
-                                 IsReadOnly="{TemplateBinding IsReadOnly}"
-                                 Visibility="Visible"
-                                 Background="Transparent"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 Focusable="False">
+                                     Margin="15,0,0,0"
+                                     Text="Роль"
+                                     FontFamily="/FontTypes/#Montserrat Regular"
+                                     FontSize="10"
+                                     Foreground="#a9a9a9"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                                     Visibility="Visible"
+                                     Background="Transparent"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Focusable="False">
 
                                 <TextBox.Template>
 
@@ -1785,24 +1786,24 @@
                             </TextBox>
 
                             <TextBox Name="PART_EditableTextBox"
-                                 Margin="75,0,0,0"
-                                 Cursor="Hand"
-                                 FontFamily="/FontTypes/#Montserrat Regular"
-                                 FontSize="10"
-                                 Foreground="#a9a9a9"
-                                 IsReadOnly="{TemplateBinding IsReadOnly}"
-                                 Visibility="Collapsed"
-                                 Background="Transparent"
-                                 HorizontalAlignment="Left"
-                                 VerticalAlignment="Center"
-                                 Focusable="False">
+                                     Margin="75,0,0,0"
+                                     Cursor="Hand"
+                                     FontFamily="/FontTypes/#Montserrat Regular"
+                                     FontSize="10"
+                                     Foreground="#a9a9a9"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                                     Visibility="Collapsed"
+                                     Background="Transparent"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     Focusable="False">
 
                                 <TextBox.Template>
 
                                     <ControlTemplate TargetType="TextBox">
 
                                         <Border Name="PART_ContentHost"
-                                            Focusable="False"/>
+                                                Focusable="False"/>
 
                                     </ControlTemplate>
 
@@ -1811,25 +1812,25 @@
                             </TextBox>
 
                             <Popup Name="Popup"
-                               Placement="Bottom"
-                               Focusable="False"
-                               AllowsTransparency="True"
-                               IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
-                               PopupAnimation="Slide">
+                                   Placement="Bottom"
+                                   Focusable="False"
+                                   AllowsTransparency="True"
+                                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                                   PopupAnimation="Slide">
 
                                 <Grid Name="DropDown"
-                                  SnapsToDevicePixels="True"
-                                  MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
-                                  MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
+                                      SnapsToDevicePixels="True"
+                                      MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                      MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
 
                                     <Border Name="DropDownBorder"
-                                        Background="{StaticResource main_color_01}"
-                                        CornerRadius="0,0,15,15"
-                                        BorderThickness="2" 
-                                        BorderBrush="{StaticResource main_color_02}"/>
+                                            Background="{StaticResource main_color_01}"
+                                            CornerRadius="0,0,15,15"
+                                            BorderThickness="2" 
+                                            BorderBrush="{StaticResource main_color_02}"/>
 
                                     <ScrollViewer Margin="4"
-                                              SnapsToDevicePixels="True">
+                                                  SnapsToDevicePixels="True">
 
                                         <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
 

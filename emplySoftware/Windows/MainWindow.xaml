@@ -333,6 +333,7 @@
                                          Grid.Row="4"
                                          HorizontalAlignment="Left"
                                          HorizontalContentAlignment="Center"/>
+
                             <TextBlock Text="Новости"
                                        x:Name="news_text_block"
                                        Visibility="Collapsed"
@@ -340,7 +341,7 @@
                                        Style="{StaticResource sidebar_text_block}"/>
 
                             <RadioButton x:Name="ButtonUsers"
-                                         Visibility="Collapsed"
+                                         Visibility="Visible"
                                          Click="ButtonUsers_OnClick"
                                          Style="{StaticResource users_radio_button}"
                                          Height="40"
@@ -645,7 +646,7 @@
                                                     <TextBlock Style="{StaticResource ProfileNamesTextBlock}"
                                                                HorizontalAlignment="Left"
                                                                VerticalAlignment="Center"
-                                                               Text="Блин бро я переживаю за тебя"
+                                                               Text="{Binding userFIO}"
                                                                TextWrapping="Wrap"
                                                                FontFamily="/FontTypes/#Montserrat Bold"
                                                                Foreground="{StaticResource secondary_color_01}"
